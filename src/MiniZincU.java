@@ -41,6 +41,7 @@ public class MiniZincU {
 		
 	        String inputFile = null; 
 	        if ( args.length>0 ) inputFile = args[0];
+	        else throw new Exception("Please specify MiniZinc input file");
 	        InputStream is = System.in;
 	        if ( inputFile!=null ) is = new FileInputStream(inputFile);
 	        ANTLRInputStream input = new ANTLRInputStream(is);
