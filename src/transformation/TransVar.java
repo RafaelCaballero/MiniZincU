@@ -3,10 +3,9 @@ package transformation;
 import java.util.ArrayList;
 import java.util.List;
 
+import program.Constraint;
 import terms.BoolC;
 import terms.Var;
-
-import constraints.Constraint;
 
 public class TransVar {
 	private  List<Var>  var = new ArrayList<Var>();

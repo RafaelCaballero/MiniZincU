@@ -1,5 +1,6 @@
 package examples;
 
+import program.SDataDef;
 import program.ProgramU;
 import terms.Show;
 import terms.Var;
@@ -15,11 +16,11 @@ public class ExampleStack extends ProgramU {
 		
 		
 		////////// Datadef
-		DataDef itemdef = new DataDef("tItem");
+		SDataDef itemdef = new SDataDef("tItem");
 		itemdef.setDataName(item);
-		DataDef boxdef = new DataDef("tBox");
+		SDataDef boxdef = new SDataDef("tBox");
 		boxdef.setDataName(box);
-		DataDef stackdef = new DataDef("tStack");
+		SDataDef stackdef = new SDataDef("tStack");
 		stackdef.setDataName(stack);
 		
 		getData().add(itemdef);

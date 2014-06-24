@@ -49,11 +49,11 @@ public class MiniZincU {
 	        MiniZincGrammarLexer lexer = new MiniZincGrammarLexer(input); 
 	        CommonTokenStream tokens = new CommonTokenStream(lexer); 
 	        MiniZincGrammarParser parser = new MiniZincGrammarParser(tokens);
-	        ParseTree tree = parser.prog(); // parse; start at prog <label id="code.tour.main.6"/>
+	        ParseTree tree = parser.model(); // parse; start at prog <label id="code.tour.main.6"/>
 
 	        // prepare the listener
 	        ParseTreeWalker walker = new ParseTreeWalker();
-	        MiniZincListener extractor = new MiniZincListener(parser,pu);
+	        MiniZincGrammarBaseListener extractor = new MiniZincGrammarBaseListener(); //(parser,pu);
 	        walker.walk(extractor, tree);
 	   //     System.out.println(tree.toStringTree(parser)); // print tree as text <label id="code.tour.main.7"/>
 	    

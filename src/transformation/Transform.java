@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 import Path.Path;
-
 import constraints.*;
+import program.Constraint;
+import program.SDataDef;
 import program.ProgramU;
 import terms.*;
-
 import datatypes.*;
  
 public class Transform {
@@ -34,7 +34,7 @@ public class Transform {
 		 else {
 			  String typename = v.getT().rhsString();
 			 
-			  DataDef d = p.getDataByName(typename);
+			  SDataDef d = p.getDataByName(typename);
  			  if (d==null)
 				 throw new Exception("Unexpected union type name "+typename);
 			  else  result = transvarAux(v,d);
@@ -44,7 +44,7 @@ public class Transform {
 		 return result;		  
     }
 
-	private TransVar transvarAux(Var v, DataDef d) throws Exception {
+	private TransVar transvarAux(Var v, SDataDef d) throws Exception {
 		TransVar result = new TransVar();
 		
 		  int size =  d.getCons().size();
@@ -143,7 +143,7 @@ public class Transform {
 		return name+"_"+i+"_"+j;
 	}
 	
-	private List<List<TransVar>> recursiveCalls(Var v, DataDef d, int size) throws Exception {
+	private List<List<TransVar>> recursiveCalls(Var v, SDataDef d, int size) throws Exception {
 		List<List<TransVar>> result = new  ArrayList<List<TransVar>>() ;
     	int l = v.getLevel()-1;
         for (int i=0; i<size; i++) {
@@ -271,7 +271,7 @@ public class Transform {
 		Term t = null;
 			
 			String typename = v.getT().rhsString();
-			DataDef d = p.getDataByName(typename);
+			SDataDef d = p.getDataByName(typename);
 			if (d==null)
 			   throw new Exception("(sVar) Unexpected union type name "+typename);
 			else {
@@ -290,7 +290,7 @@ public class Transform {
 		return t;
 	}
 	
-	private Term sVari(DataDef d, Var v, int l, int i, int n) throws Exception {
+	private Term sVari(SDataDef d, Var v, int l, int i, int n) throws Exception {
 		Term t = null;
 		Tcons c = d.getCons().get(i);		
 		int m = c.getSubtypes().size();

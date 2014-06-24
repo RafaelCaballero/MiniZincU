@@ -4,6 +4,7 @@
 package examples;
 
 import datatypes.*;
+import program.SDataDef;
 import program.ProgramU;
 import terms.Show;
 import terms.Var;
@@ -19,9 +20,9 @@ public class ExampleTree extends ProgramU {
 		Tunion tree   = new Tunion("Tree");
 		
 		////////// Datadef
-		DataDef opdef = new DataDef("Op");
+		SDataDef opdef = new SDataDef("Op");
 		opdef.setDataName(op);
-		DataDef treedef = new DataDef("Tree");
+		SDataDef treedef = new SDataDef("Tree");
 		treedef.setDataName(tree);
 		
 		getData().add(opdef);

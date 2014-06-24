@@ -1,6 +1,7 @@
 package program;
 
 import datatypes.Type;
+
 import java.util.List;
 
 import terms.*;
@@ -22,7 +23,7 @@ public class TransformedProgram extends Program {
 			for (Var x:tv.getVar()) {
 				String name = x.getName();
 				Type t = x.getT();
-				addVar(new Var(name,t,0));
+				add(new Var(name,t,0));
 			}
 			//addCtr(tv.getCtr());
 			addCtr(tv.getCtr());

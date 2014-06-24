@@ -12,22 +12,18 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import terms.*;
-import constraints.Constraint;
-
 import datatypes.*;
-
 import antlr4.MiniZincGrammarParser.*;
-
-import program.ProgramU;
+import program.*;
 
 /**
  * @author rafa
  *
  */
 public class MiniZincListener extends MiniZincGrammarBaseListener {
-    private ProgramU pu;
+    private Program pu;
 	private MiniZincGrammarParser parser;
-	public MiniZincListener(MiniZincGrammarParser parser, ProgramU pu) {
+	public MiniZincListener(MiniZincGrammarParser parser, Program pu) {
 		this.parser=parser; 
 		this.pu = pu;
 	}
@@ -44,7 +40,7 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 	    
 		
 		////////// Datadef
-		DataDef itemdef = new DataDef(tid);
+		SDataDef itemdef = new SDataDef(tid);
 		itemdef.setDataName(item);
 		pu.getData().add(itemdef);
 
@@ -60,7 +56,7 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 			
 	}
 	
-	public void dealConst(DataDef itemdef, ConstrContext c) {
+	public void dealConst(SDataDef itemdef, ConstrContext c) {
         // constructor without arguments  
 		if (c.scons()!=null) { 
         	  SconsContext sc = c.scons();
@@ -163,10 +159,9 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 	
 	@Override public void exitConstraint(@NotNull MiniZincGrammarParser.ConstraintContext ctx) {
 		ExprContext e = ctx.expr();
-		String prus = e.getText();
 		Term t = parseExpr(e);
 		Constraint c = new Constraint(t);
-		pu.addCtr(c);
+		pu.add(c);
 		
 	}
 
@@ -256,9 +251,9 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 		String id = cp.ID().getText();
 		
 		// is a constructor?
-		DataDef d=null;
+		SDataDef d=null;
 		Tcons c = null;
-		for(DataDef dp:pu.getData()) {
+		for(SDataDef dp:pu.getData()) {
 			if (dp.getConsByName(id)!=null) {
 				d = dp;
 				c = dp.getConsByName(id);
@@ -293,9 +288,9 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 			
 		String id =cp.ID().getText();
 		// is a constructor?
-		DataDef d=null;
+		SDataDef d=null;
 		Tcons c = null;
-		for(DataDef dp:pu.getData()) {
+		for(SDataDef dp:pu.getData()) {
 			if (dp.getConsByName(id)!=null) {
 				d = dp;
 				c = dp.getConsByName(id);

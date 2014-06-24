@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import datatypes.DataDef;
 import datatypes.Tunion;
 
 public class ProgramU extends Program{
-	private List<DataDef> data= new ArrayList<DataDef>();
+	private List<SDataDef> data= new ArrayList<SDataDef>();
 	private List<Tunion> union= new ArrayList<Tunion>();
 
 	@Override
 	public  String toString(){
 		String s ="";
-		Iterator<DataDef> it = data.iterator();
+		Iterator<SDataDef> it = data.iterator();
 		while(it.hasNext())
 			s += it.next()+"\n";
 		s+="\n";
@@ -23,16 +22,16 @@ public class ProgramU extends Program{
 		return s;
 	}
 
-	public List<DataDef> getData() {
+	public List<SDataDef> getData() {
 		return data;
 	}
 	public List<Tunion> getUnion() {
 		return union;
 	}
 
-	public DataDef getDataByName(String name) {
-		DataDef result = null;
-		for (DataDef j:data) {
+	public SDataDef getDataByName(String name) {
+		SDataDef result = null;
+		for (SDataDef j:data) {
 			if (j.getDataName().getName().equals(name)) result = j;
 			
 		}

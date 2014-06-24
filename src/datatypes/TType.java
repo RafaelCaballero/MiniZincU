@@ -1,6 +1,6 @@
 package datatypes;
 
 public enum TType {
-	    INT, RANGE, UNION, FLOAT, BOOL
+	    INT, RANGE, UNION, FLOAT, BOOL, EXTENSION
 
 }

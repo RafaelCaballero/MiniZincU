@@ -11,22 +11,32 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 import terms.*;
 
-import constraints.Constraint;
-
 
 /**
  * @author Rafa Caballero
- * @desc represents a MiniZinc program
+ * Represents a MiniZinc model
  */
 public class Program {
+	private List<Statement> stat = new ArrayList<Statement>();
+	
+	public void add(Statement s ) { 
+		stat.add(s); 
+	}
+	
+	public List<Var> getVar() {
+		List<Var> l = new ArrayList<Var>();
+		for(Statement s:stat) 
+			if (s.getType()==TStatement.VARDECL) 
+				  l.add(((SVar)s).getV());
+		return l;
+	}
+/*
 	private  List<Var> var= new ArrayList<Var>();
 	private List<Constraint> ctrs = new ArrayList<Constraint>();
 
 	private List<Term> output = new ArrayList<Term>();
 	
-	public List<Var> getVar() {
-		return var;
-	}
+	
 	
 	public Var getVarByName(String name) {
 		Var v = null;
@@ -44,9 +54,16 @@ public class Program {
 	public void setVar(List<Var> var) {
 		this.var = var;
 	}
-
+*/
 	@Override
 	public  String toString(){
+		String s = "";
+		for (Statement st:stat) {
+			s += st.toString() + ";\n";
+		}
+		
+		return s;
+		/*
 		String s ="";
 		
 		for(Var itv:var) {
@@ -72,6 +89,7 @@ public class Program {
 		}
 		s+="]);";
 		return s;
+		*/
 	}
 
 	/**
@@ -88,7 +106,7 @@ public class Program {
 			output.add(new Show(itvs));
 			
 		}
-	}*/
+	}
 	public List<Constraint> getCtrs() {
 		return ctrs;
 	}
@@ -113,5 +131,5 @@ public class Program {
 	public void addOutput(Term t) {
 		this.output.add(t);
 	}
-
+*/
 }
