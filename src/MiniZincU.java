@@ -1,13 +1,17 @@
-import program.ProgramU;
-import program.TransformedProgram;
 
 
-import examples.*;
+
+import model.Model;
+import model.TransformedProgram;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
+
+
+
 
 
 import antlr4.*;
@@ -19,11 +23,11 @@ public class MiniZincU {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-        ProgramU pu = new ProgramU();
+        Model pu = new Model();
 		loadFile(args,pu);
-//		System.out.println(pu);
-	     TransformedProgram tp = new TransformedProgram(pu);
-	     System.out.println(tp);
+		System.out.println(pu);
+//	     TransformedProgram tp = new TransformedProgram(pu);
+//	     System.out.println(tp);
 		
        //ExampleStack p = new ExampleStack();
 	//	ExampleTree p = new ExampleTree(); 
@@ -37,7 +41,7 @@ public class MiniZincU {
         
 	}
 	
-	private static void loadFile(String [] args, ProgramU pu) throws Exception{
+	private static void loadFile(String [] args, Model pu) throws Exception{
 		
 	        String inputFile = null; 
 	        if ( args.length>0 ) inputFile = args[0];
@@ -53,7 +57,7 @@ public class MiniZincU {
 
 	        // prepare the listener
 	        ParseTreeWalker walker = new ParseTreeWalker();
-	        MiniZincGrammarBaseListener extractor = new MiniZincGrammarBaseListener(); //(parser,pu);
+	        MiniZinc2JavaModel extractor = new MiniZinc2JavaModel(parser,pu); //(parser,pu);
 	        walker.walk(extractor, tree);
 	   //     System.out.println(tree.toStringTree(parser)); // print tree as text <label id="code.tour.main.7"/>
 	    

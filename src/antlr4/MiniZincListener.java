@@ -5,6 +5,8 @@ package antlr4;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.*;
+
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -14,35 +16,50 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import terms.*;
 import datatypes.*;
 import antlr4.MiniZincGrammarParser.*;
-import program.*;
+
+/**
+ * This class generates a Model object obtained after the parsing of a MiniZinc
+ * model (probably with extensions and/or union types)
+ * @author rafa
+ *
+ */
 
 /**
  * @author rafa
  *
  */
 public class MiniZincListener extends MiniZincGrammarBaseListener {
-    private Program pu;
+    private Model pu;
 	private MiniZincGrammarParser parser;
-	public MiniZincListener(MiniZincGrammarParser parser, Program pu) {
+
+	/**
+	 * @param parser : The ANTLR4 grammar parser
+	 * @param pu : An empty model that will be completed after the parsing
+	 */
+	public MiniZincListener(MiniZincGrammarParser parser, Model pu) {
 		this.parser=parser; 
 		this.pu = pu;
 	}
 	
-	// data declaration
+	
+	/**
+	 * After a data statement has been parsed the program will contain a new SDataDef statement
+	 * @see antlr4.MiniZincGrammarBaseListener#exitData(antlr4.MiniZincGrammarParser.DataContext)
+	 */
 	@Override public void exitData(@NotNull MiniZincGrammarParser.DataContext ctx) {
 	    String id = ctx.ID().getText();
 	    String tid = id;
 
 	    // tunion
 	    Tunion item  = new Tunion(tid);
-	    pu.getUnion().add(item);
+	  //  pu.getUnion().add(item);
 	    
 	    
 		
 		////////// Datadef
 		SDataDef itemdef = new SDataDef(tid);
 		itemdef.setDataName(item);
-		pu.getData().add(itemdef);
+		pu.add(itemdef);
 
 		List<ConstrContext> lconstr = ctx.constr();
 		int n = lconstr.size();
@@ -56,7 +73,7 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 			
 	}
 	
-	public void dealConst(SDataDef itemdef, ConstrContext c) {
+	private void dealConst(SDataDef itemdef, ConstrContext c) {
         // constructor without arguments  
 		if (c.scons()!=null) { 
         	  SconsContext sc = c.scons();
@@ -374,15 +391,24 @@ public class MiniZincListener extends MiniZincGrammarBaseListener {
 
 	@Override 
 	public void exitOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) {
-		List<ExprContext> lc = ctx.list().expr();
-		Term t = null;
-		for (ExprContext ec:lc) {
-			t = parseExpr(ec);
-			pu.addOutput(t);
-		}
+		ListExprContext lc = ctx.listExpr();
+		List<Term> l = getExpr(lc);
+		SOutput o = new SOutput(l);
+		pu.add(o);
 	}
 
-	public ProgramU getProgramU() {
+	public List<Term>  getExpr(ListExprContext lc) {
+		List<Term> l = new ArrayList<Term>();
+		if (lc.listValue() != null) ;
+		else if (lc.listExpr() != null) ;
+		else if (lc.oneDimList() != null) ;
+		else if (lc.multiDimList() != null) ;
+		else System.out.println("Error: unexpected list ("+lc.getText()+")");
+			
+		return l;
+		
+	}
+	public Model getProgram() {
 		return pu;
 	}
 }

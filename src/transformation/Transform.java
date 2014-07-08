@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import model.Constraint;
+import model.Model;
+import model.SDataDef;
 import Path.Path;
-import constraints.*;
-import program.Constraint;
-import program.SDataDef;
-import program.ProgramU;
 import terms.*;
 import datatypes.*;
  
 public class Transform {
-	private ProgramU p;
+	private Model p;
 	
-	public Transform(ProgramU p) {
+	public Transform(Model p) {
 		this.p = p;
 	}
 	

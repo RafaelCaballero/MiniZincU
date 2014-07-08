@@ -3,7 +3,7 @@ package transformation;
 import java.util.ArrayList;
 import java.util.List;
 
-import program.Constraint;
+import model.Constraint;
 import terms.BoolC;
 import terms.Var;
 
