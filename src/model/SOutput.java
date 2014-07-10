@@ -1,5 +1,7 @@
 package model;
 
+import terms.Term;
+
 
 public class SOutput extends Statement {
 	Term t = null;

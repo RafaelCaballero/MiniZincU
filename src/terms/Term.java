@@ -3,8 +3,16 @@ package terms;
 import Path.Path;
 
 public abstract class Term {
-  public abstract boolean standard();
-  public abstract Path getPath();
+	
+  /**
+  * @return is this an standard MiniZinc term?
+  */
+  public  boolean standard() {
+	  return false;
+  };
+  public  Path getPath() { 
+	  return null; 
+	  };
   public abstract String toString();
   public abstract boolean equals(Object other);
   public abstract int hashCode();

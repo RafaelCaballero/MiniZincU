@@ -1083,6 +1083,19 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterListExpr(@NotNull MiniZincGrammarParser.ListExprContext ctx) { }
 	/**
 	 * {@inheritDoc}

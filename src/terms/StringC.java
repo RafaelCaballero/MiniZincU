@@ -19,7 +19,7 @@ public class StringC extends Term {
 
 	@Override
 	public String toString() {
-		return "\"" + s + "\"";
+		return  s ;
 	}
 
 	public String getS() {

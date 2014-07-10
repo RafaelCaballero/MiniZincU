@@ -7,12 +7,7 @@ public class IfS extends Term {
 	Term Exp1;
 	Term Exp2;
 
-	public IfS() {
 		
-	}
-	
-	
-	
 	public IfS(Term cond, Term exp1, Term exp2) {
 		Cond = cond;
 		Exp1 = exp1;

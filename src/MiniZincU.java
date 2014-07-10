@@ -7,8 +7,10 @@ import model.TransformedProgram;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+
 
 
 
@@ -44,7 +46,15 @@ public class MiniZincU {
 	private static void loadFile(String [] args, Model pu) throws Exception{
 		
 	        String inputFile = null; 
-	        if ( args.length>0 ) inputFile = args[0];
+	        if ( args.length>0 ) {
+	        	inputFile = args[0];
+	        	// check if the file exists
+	        	File f = new File(inputFile);
+
+	            if(!f.exists()){
+	                System.out.println("File "+inputFile+" not found!");
+	            }
+	        }
 	        else throw new Exception("Please specify MiniZinc input file");
 	        InputStream is = System.in;
 	        if ( inputFile!=null ) is = new FileInputStream(inputFile);

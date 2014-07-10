@@ -27,7 +27,8 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	@Override public void exitModel(@NotNull MiniZincGrammarParser.ModelContext ctx) 
 	{ 
 		// just for debugging
-		System.out.println(m);
+		//System.out.println(m);
+		
 	}
 
 	/**
@@ -36,9 +37,8 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>Adds a SOutput sentence to the model</p>
 	 */
 	@Override public void exitOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) {
-		ListExprContext lec = ctx.listExpr();
-		MiniZinc
-		SOutput so = new SOutput();
+		SOutput so = MiniZinc2Java.output(ctx);
+		m.add(so);
 	}
 
 	/**

@@ -911,6 +911,17 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	void exitLetDecl(@NotNull MiniZincGrammarParser.LetDeclContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link MiniZincGrammarParser#arithOp2}.
+	 * @param ctx the parse tree
+	 */
+	void enterArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniZincGrammarParser#arithOp2}.
+	 * @param ctx the parse tree
+	 */
+	void exitArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#listExpr}.
 	 * @param ctx the parse tree
 	 */

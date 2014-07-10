@@ -67,7 +67,7 @@ public class Model {
 	public  String toString(){
 		String s = "";
 		for (Statement st:stat) {
-			s += st.toString() + ";\n";
+			s += st.toString() + "\n";
 		}
 		
 		return s;
