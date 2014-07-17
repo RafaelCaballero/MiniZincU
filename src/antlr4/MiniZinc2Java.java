@@ -8,9 +8,12 @@ import model.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import antlr4.MiniZincGrammarParser.ArithComplexExprContext;
 import antlr4.MiniZincGrammarParser.ArithExprContext;
 import antlr4.MiniZincGrammarParser.BoolComplexExprContext;
+import antlr4.MiniZincGrammarParser.BoolExprContext;
 import antlr4.MiniZincGrammarParser.MinusExprContext;
+import antlr4.MiniZincGrammarParser.NotExprContext;
 import antlr4.MiniZincGrammarParser.RbracketExprContext;
 import antlr4.MiniZincGrammarParser.*;
 import terms.*;
@@ -260,6 +263,36 @@ public  class MiniZinc2Java {
 	}
 	
   /**
+   * Grammar:<br>
+   * arithComplexExpr :
+   *      minusExpr
+   * |   arithExpr arithOp2 arithExpr   
+   *
+   * @param ctx grammar context
+   * @return Term representation
+  */
+private static Term arithComplexExpr(
+			ArithComplexExprContext ctx) {
+		Term t = null;
+		if (has(ctx.minusExpr())) {
+			t = minusExpr(ctx.minusExpr());			
+		}
+		else if (has(ctx.arithOp2())) {
+			ArithExprContext a0 = ctx.arithExpr(0);
+			ArithExprContext a1 = ctx.arithExpr(1);
+			if (a0==null || a1==null)
+				error("arithComplexExpr (null operand):  "+ctx.toString());
+			else {
+				Term t0 = arithExpr(a0);
+				Term t1 = arithExpr(a1);
+				String op = ctx.arithOp2().getText();
+				t = infixArithOp(t0,t1,op);
+			}
+		}
+		else error("arithComplexExpr:  "+ctx.toString());
+		return t;
+	}
+/**
    * <p>Grammar:</p>
    * boolComplexExpr:<br>     
    *  boolExpr (boolOp|qualBoolOp)  boolExpr<br>  
@@ -273,7 +306,7 @@ public  class MiniZinc2Java {
 private static Term boolComplexExpr(BoolComplexExprContext ctx) {
 		Term t = null;
 		if (has(ctx.notExpr())) {
-			
+			t = notExpr(ctx.notExpr());
 		}
 		else if (ctx.boolExpr().size() == 2) {
 			BoolExprContext b0 = ctx.boolExpr(0);
@@ -314,6 +347,79 @@ private static Term boolComplexExpr(BoolComplexExprContext ctx) {
 		return t;
 	}
 
+
+
+/**
+ * <p>Grammar</p>
+ * boolExpr : boolExpr (boolOp|qualBoolOp) boolExpr<br>     
+ *   |   arithExpr (arithOp|qualArithOp) expr<br>
+ *   |   notExpr  <br>
+ *   |   boolVal<br>
+ *   ;
+ * @param ctx the grammar context
+ * @return Term representation
+ */
+private static Term boolExpr(BoolExprContext ctx) {
+	Term t = null;
+	if (ctx.boolExpr().size()==2) {
+		BoolExprContext b0 = ctx.boolExpr(0);
+		BoolExprContext b1 = ctx.boolExpr(1);
+		Term t0 = boolExpr(b0);
+		Term t1 = boolExpr(b1);
+		String op = "";
+		if (has(ctx.boolOp())) {
+			op = ctx.boolOp().getText();
+			t = infixBoolOp(t0,t1,op);
+		}
+		else if (has(ctx.qualBoolOp())) {
+			op = ctx.qualBoolOp().getText();
+			t = infixBoolOp(t0,t1,op);				
+		}
+		else error("BoolExprContext - unexpected operator "+ctx.toString());
+
+	} else if (has(ctx.arithExpr())) {
+		ArithExprContext a0 = ctx.arithExpr();
+		ExprContext a1 = ctx.expr();
+		Term t0 = arithExpr(a0);
+		Term t1 = expr(a1);
+		String op = "";
+		if (has(ctx.arithOp())) {
+			op = ctx.arithOp().getText();
+			t = infixArithOp(t0,t1,op);
+		}
+		else if (has(ctx.qualArithOp())) {
+			op = ctx.qualArithOp().getText();
+			t = infixArithOp(t0,t1,op);				
+		}
+		else error("boolExpr - unexpected operator "+ctx.toString());
+
+		
+	} else if (has(ctx.notExpr())) {
+		t = notExpr(ctx.notExpr());
+		
+	} else if (has(ctx.boolVal())) {
+		t = boolVal(ctx.boolVal());
+	}
+	else error("boolExpr "+ctx.toString());
+	
+	return t;
+}
+/**
+ * Grammar: <br>
+ * notExpr  : 'not'  expr ;
+ * @param ctx Grammar context
+ * @return Term representation
+ */
+private static Term notExpr(NotExprContext ctx) {
+	Term t = null;
+	ExprContext e0 = ctx.expr();
+	if (e0 != null) {
+		t = expr(e0);
+	}
+	else error("notExpr "+ctx.toString());
+
+	return t;
+}
 /**
  * Arithmetic infix expression
  * @param t0 First operand
@@ -398,7 +504,7 @@ private static Term rbracketExpr(RbracketExprContext ctx) {
 		    t = expr(e);
 	    }  
 	    else error("rbracketExpr "+ctx.getText())   
-		return 
+		return t;
 	}
 /******************************************************/
 	
