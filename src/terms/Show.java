@@ -2,43 +2,51 @@ package terms;
 
 import Path.Path;
 
-
-public class Show  extends Term{
+public class Show extends Term {
 	private Var t;
+
 	public Show(Var t) {
 		this.t = t;
 	}
+
 	public Var getT() {
 		return t;
 	}
+
 	public void setT(Var t) {
 		this.t = t;
 	}
+
 	@Override
-	public  Term simplify(){
+	public Term simplify() {
 		return t;
 	}
+
 	@Override
-	public  String toString(){
-		String s = "show("+t+")";
+	public String toString() {
+		String s = "show(" + t + ")";
 		return s;
 	}
+
 	@Override
 	public boolean standard() {
 		return t.standard();
 	}
-	
+
 	@Override
 	public boolean isShow() {
 		return true;
 	}
-	
+
 	@Override
 	public Path getPath() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -48,7 +56,10 @@ public class Show  extends Term{
 		result = prime * result + ((t == null) ? 0 : t.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -67,6 +78,5 @@ public class Show  extends Term{
 			return false;
 		return true;
 	}
-
 
 }

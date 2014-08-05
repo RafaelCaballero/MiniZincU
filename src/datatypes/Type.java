@@ -16,7 +16,9 @@ public abstract class Type {
 		this.type = type;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -27,7 +29,9 @@ public abstract class Type {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -47,11 +51,14 @@ public abstract class Type {
 	public TType getType() {
 		return type;
 	}
+
 	public void setType(TType type) {
 		this.type = type;
 	}
-	public abstract String rhsString(); 
+
+	public abstract String rhsString();
+
 	public abstract Term zero();
+
 	public abstract boolean basic();
 }
-

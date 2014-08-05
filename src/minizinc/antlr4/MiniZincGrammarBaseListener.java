@@ -1,54 +1,23 @@
-package antlr4;
+package minizinc.antlr4;
 
-import model.*;
+// Generated from MiniZincGrammar.g4 by ANTLR 4.4
 
-
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
-import antlr4.MiniZincGrammarParser.ListExprContext;
-
-public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
-
-	private Model m;
-	private MiniZincGrammarParser parser;
-	
-	public MiniZinc2JavaModel(MiniZincGrammarParser parser, Model m) {
-		this.parser=parser; 
-		this.m = m;
-	}
-	
-	
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>Do nothing; everything has been done by each statement </p>
-	 * <p> Model m has already all the information </p>
-	 */
-	@Override public void exitModel(@NotNull MiniZincGrammarParser.ModelContext ctx) 
-	{ 
-		// just for debugging
-		//System.out.println(m);
-		
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>Adds a SOutput sentence to the model</p>
-	 */
-	@Override public void exitOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) {
-		SOutput so = MiniZinc2Java.output(ctx);
-		m.add(so);
-	}
-
+/**
+ * This class provides an empty implementation of {@link MiniZincGrammarListener},
+ * which can be extended to create a listener which only needs to handle a subset
+ * of the available methods.
+ */
+public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPredicate(@NotNull MiniZincGrammarParser.PredicateContext ctx) { }
-
-	
 	@Override public void enterBoolComplexExpr(@NotNull MiniZincGrammarParser.BoolComplexExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -56,7 +25,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolComplexExpr(@NotNull MiniZincGrammarParser.BoolComplexExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -69,7 +37,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSetS(@NotNull MiniZincGrammarParser.SetSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -82,7 +49,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgunion(@NotNull MiniZincGrammarParser.ArgunionContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,7 +61,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRint(@NotNull MiniZincGrammarParser.RintContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -108,7 +73,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolVal(@NotNull MiniZincGrammarParser.BoolValContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -121,7 +85,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMinusExpr(@NotNull MiniZincGrammarParser.MinusExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -134,9 +97,18 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArithOp(@NotNull MiniZincGrammarParser.ArithOpContext ctx) { }
-
-	
-	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -149,14 +121,18 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMaximize(@NotNull MiniZincGrammarParser.MaximizeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterPredicate(@NotNull MiniZincGrammarParser.PredicateContext ctx) { }
-	
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPredicate(@NotNull MiniZincGrammarParser.PredicateContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -169,14 +145,18 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQualArithOp(@NotNull MiniZincGrammarParser.QualArithOpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterModel(@NotNull MiniZincGrammarParser.ModelContext ctx) { }
-
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitModel(@NotNull MiniZincGrammarParser.ModelContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -189,7 +169,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBool2int(@NotNull MiniZincGrammarParser.Bool2intContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -202,7 +181,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInit(@NotNull MiniZincGrammarParser.InitContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -215,7 +193,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOneSection(@NotNull MiniZincGrammarParser.OneSectionContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -228,7 +205,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInfixOp(@NotNull MiniZincGrammarParser.InfixOpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -241,7 +217,18 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgint(@NotNull MiniZincGrammarParser.ArgintContext ctx) { }
-
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSimpleNonEmptyList(@NotNull MiniZincGrammarParser.SimpleNonEmptyListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSimpleNonEmptyList(@NotNull MiniZincGrammarParser.SimpleNonEmptyListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -254,7 +241,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVar(@NotNull MiniZincGrammarParser.VarContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -267,7 +253,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRbool(@NotNull MiniZincGrammarParser.RboolContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -280,7 +265,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolS(@NotNull MiniZincGrammarParser.BoolSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -293,7 +277,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTcons(@NotNull MiniZincGrammarParser.TconsContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -306,7 +289,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInDecl(@NotNull MiniZincGrammarParser.InDeclContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -319,7 +301,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMultiDimList(@NotNull MiniZincGrammarParser.MultiDimListContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -332,7 +313,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitToR(@NotNull MiniZincGrammarParser.ToRContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -345,7 +325,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFromR(@NotNull MiniZincGrammarParser.FromRContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -358,7 +337,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSetExpr(@NotNull MiniZincGrammarParser.SetExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -371,7 +349,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQualName(@NotNull MiniZincGrammarParser.QualNameContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -384,7 +361,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPredOrUnionExpr(@NotNull MiniZincGrammarParser.PredOrUnionExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -397,7 +373,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGuard(@NotNull MiniZincGrammarParser.GuardContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -410,7 +385,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRange(@NotNull MiniZincGrammarParser.RangeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -423,7 +397,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSum(@NotNull MiniZincGrammarParser.SumContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -436,7 +409,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVardecl(@NotNull MiniZincGrammarParser.VardeclContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -449,7 +421,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIdexpr(@NotNull MiniZincGrammarParser.IdexprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -462,7 +433,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExtended(@NotNull MiniZincGrammarParser.ExtendedContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -475,7 +445,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLetExpr(@NotNull MiniZincGrammarParser.LetExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -488,7 +457,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitConstrainchoice(@NotNull MiniZincGrammarParser.ConstrainchoiceContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -501,7 +469,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitConstr(@NotNull MiniZincGrammarParser.ConstrContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -514,7 +481,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTwoSections(@NotNull MiniZincGrammarParser.TwoSectionsContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -527,7 +493,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypedata(@NotNull MiniZincGrammarParser.TypedataContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -540,7 +505,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMin(@NotNull MiniZincGrammarParser.MinContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -553,7 +517,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArithComplexExpr(@NotNull MiniZincGrammarParser.ArithComplexExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -566,7 +529,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitShowExpr(@NotNull MiniZincGrammarParser.ShowExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -579,7 +541,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArray1d(@NotNull MiniZincGrammarParser.Array1dContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -592,7 +553,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArg(@NotNull MiniZincGrammarParser.ArgContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -605,7 +565,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIfExpr(@NotNull MiniZincGrammarParser.IfExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -618,7 +577,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitElseifS(@NotNull MiniZincGrammarParser.ElseifSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -631,7 +589,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSetVal(@NotNull MiniZincGrammarParser.SetValContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -644,7 +601,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMinimize(@NotNull MiniZincGrammarParser.MinimizeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -657,7 +613,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnnotation(@NotNull MiniZincGrammarParser.AnnotationContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -670,7 +625,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInclude(@NotNull MiniZincGrammarParser.IncludeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -683,7 +637,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStat(@NotNull MiniZincGrammarParser.StatContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -696,7 +649,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProd(@NotNull MiniZincGrammarParser.ProdContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -709,7 +661,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMax(@NotNull MiniZincGrammarParser.MaxContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -722,7 +673,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitForall(@NotNull MiniZincGrammarParser.ForallContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -735,7 +685,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRfloat(@NotNull MiniZincGrammarParser.RfloatContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -748,7 +697,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGuardedList(@NotNull MiniZincGrammarParser.GuardedListContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -761,7 +709,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIntS(@NotNull MiniZincGrammarParser.IntSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -774,7 +721,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExists(@NotNull MiniZincGrammarParser.ExistsContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -787,7 +733,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitConstraint(@NotNull MiniZincGrammarParser.ConstraintContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -800,7 +745,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCaseExpr(@NotNull MiniZincGrammarParser.CaseExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -813,7 +757,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolExpr(@NotNull MiniZincGrammarParser.BoolExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -826,7 +769,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRbracketExpr(@NotNull MiniZincGrammarParser.RbracketExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -839,7 +781,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPardecl(@NotNull MiniZincGrammarParser.PardeclContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -852,7 +793,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypename(@NotNull MiniZincGrammarParser.TypenameContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -865,7 +805,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperand(@NotNull MiniZincGrammarParser.OperandContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -878,7 +817,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDimensions(@NotNull MiniZincGrammarParser.DimensionsContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -891,7 +829,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDecl(@NotNull MiniZincGrammarParser.DeclContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -904,7 +841,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitData(@NotNull MiniZincGrammarParser.DataContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -917,7 +853,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCommaList(@NotNull MiniZincGrammarParser.CommaListContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -930,7 +865,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRestS(@NotNull MiniZincGrammarParser.RestSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -943,7 +877,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInteger(@NotNull MiniZincGrammarParser.IntegerContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -956,7 +889,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPararray(@NotNull MiniZincGrammarParser.PararrayContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -969,7 +901,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVararray(@NotNull MiniZincGrammarParser.VararrayContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -982,7 +913,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQualBoolOp(@NotNull MiniZincGrammarParser.QualBoolOpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -995,7 +925,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArithExpr(@NotNull MiniZincGrammarParser.ArithExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1008,7 +937,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOneDimList(@NotNull MiniZincGrammarParser.OneDimListContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1021,7 +949,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionExpr(@NotNull MiniZincGrammarParser.FunctionExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1034,7 +961,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStringExpr(@NotNull MiniZincGrammarParser.StringExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1047,7 +973,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOptimize(@NotNull MiniZincGrammarParser.OptimizeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1060,7 +985,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction(@NotNull MiniZincGrammarParser.FunctionContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1073,7 +997,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCaseBranch(@NotNull MiniZincGrammarParser.CaseBranchContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1086,7 +1009,18 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLetDecl(@NotNull MiniZincGrammarParser.LetDeclContext ctx) { }
-
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArithOp2(@NotNull MiniZincGrammarParser.ArithOp2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1099,7 +1033,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitListExpr(@NotNull MiniZincGrammarParser.ListExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1112,7 +1045,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitScons(@NotNull MiniZincGrammarParser.SconsContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1125,7 +1057,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgrange(@NotNull MiniZincGrammarParser.ArgrangeContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1138,7 +1069,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReal(@NotNull MiniZincGrammarParser.RealContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1151,7 +1081,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgfloat(@NotNull MiniZincGrammarParser.ArgfloatContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1164,7 +1093,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGuardedSet(@NotNull MiniZincGrammarParser.GuardedSetContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1177,7 +1105,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNotExpr(@NotNull MiniZincGrammarParser.NotExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1190,7 +1117,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSolve(@NotNull MiniZincGrammarParser.SolveContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1203,7 +1129,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitString(@NotNull MiniZincGrammarParser.StringContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1216,7 +1141,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInfixSetOp(@NotNull MiniZincGrammarParser.InfixSetOpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1229,7 +1153,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVarchoice(@NotNull MiniZincGrammarParser.VarchoiceContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1242,7 +1165,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGuardExprArg(@NotNull MiniZincGrammarParser.GuardExprArgContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1255,7 +1177,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModeAnnotation(@NotNull MiniZincGrammarParser.ModeAnnotationContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1268,7 +1189,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPostExt(@NotNull MiniZincGrammarParser.PostExtContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1281,7 +1201,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypeset(@NotNull MiniZincGrammarParser.TypesetContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1294,7 +1213,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAlldifferent(@NotNull MiniZincGrammarParser.AlldifferentContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1307,7 +1225,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParameter(@NotNull MiniZincGrammarParser.ParameterContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1320,7 +1237,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSimpleList(@NotNull MiniZincGrammarParser.SimpleListContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1333,7 +1249,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBodyIf(@NotNull MiniZincGrammarParser.BodyIfContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1346,7 +1261,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(@NotNull MiniZincGrammarParser.ExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1359,7 +1273,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArrayaccess(@NotNull MiniZincGrammarParser.ArrayaccessContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1372,7 +1285,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgbool(@NotNull MiniZincGrammarParser.ArgboolContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1385,7 +1297,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoolOp(@NotNull MiniZincGrammarParser.BoolOpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1398,7 +1309,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSeqS(@NotNull MiniZincGrammarParser.SeqSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1411,7 +1321,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOp(@NotNull MiniZincGrammarParser.OpContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1424,7 +1333,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGuardExpr(@NotNull MiniZincGrammarParser.GuardExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1437,7 +1345,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSatisfy(@NotNull MiniZincGrammarParser.SatisfyContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1450,7 +1357,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitListExtended(@NotNull MiniZincGrammarParser.ListExtendedContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1463,7 +1369,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBracketExpr(@NotNull MiniZincGrammarParser.BracketExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1476,7 +1381,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPreExt(@NotNull MiniZincGrammarParser.PreExtContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1489,7 +1393,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitListValue(@NotNull MiniZincGrammarParser.ListValueContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1502,7 +1405,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComplexSetExpr(@NotNull MiniZincGrammarParser.ComplexSetExprContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1515,7 +1417,6 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitElseS(@NotNull MiniZincGrammarParser.ElseSContext ctx) { }
-
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1529,5 +1430,28 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 */
 	@Override public void exitWhereCond(@NotNull MiniZincGrammarParser.WhereCondContext ctx) { }
 
-
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void visitTerminal(@NotNull TerminalNode node) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
 }

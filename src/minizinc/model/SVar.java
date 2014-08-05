@@ -1,4 +1,4 @@
-package model;
+package minizinc.model;
 
 import datatypes.Type;
 import terms.Var;
@@ -9,10 +9,10 @@ public class SVar extends Statement {
 	public SVar() {
 		super(TStatement.VARDECL);
 	}
-	
+
 	public SVar(String name, Type t, int level) {
 		super(TStatement.VARDECL);
-		v = new Var(name,t,level);
+		v = new Var(name, t, level);
 	}
 
 	public Var getV() {

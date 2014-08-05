@@ -1,4 +1,6 @@
 package datatypes;
+
+import minizinc.expressions.BoolC;
 import terms.*;
 
 public class Tbool extends Type {
@@ -6,10 +8,10 @@ public class Tbool extends Type {
 	public Tbool() {
 		super(TType.BOOL);
 	}
-	
+
 	@Override
 	public String rhsString() {
-		return toString();	
+		return toString();
 	}
 
 	@Override
@@ -17,7 +19,6 @@ public class Tbool extends Type {
 		// TODO Auto-generated method stub
 		return new BoolC(false);
 	}
-
 
 	@Override
 	public boolean basic() {

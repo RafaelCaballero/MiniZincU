@@ -1,11 +1,11 @@
-package model;
+package minizinc.model;
 
 import java.util.List;
 
 import datatypes.Textension;
 import terms.Term;
 
-public class SExtensionDef extends Statement{
+public class SExtensionDef extends Statement {
 	private Textension dataName;
 	private String baseName;
 	private List<String> left;
@@ -15,46 +15,46 @@ public class SExtensionDef extends Statement{
 		super(TStatement.EXTENDED);
 		dataName = new Textension(name);
 		this.baseName = null;
-		left = right = null;				
+		left = right = null;
 	}
 
-	public SExtensionDef(String name,  String baseName, List<String> left, List<String> right) {
+	public SExtensionDef(String name, String baseName, List<String> left,
+			List<String> right) {
 		super(TStatement.EXTENDED);
 
 		dataName = new Textension(name);
 		this.baseName = baseName;
 		this.left = left;
-		this.right = right;				
+		this.right = right;
 	}
-	
-	
-	
+
 	public String toString() {
-		String s="";
+		String s = "";
 		String sl = listToString(left);
 		String sr = listToString(right);
-		
-		s = "extended "+dataName+" = " + sl+ (sl.length() == 0 ? "" : "++") 
-				 + baseName + 
-				 (sr.length() == 0 ? "" : "++") + sr;
-		
+
+		s = "extended " + dataName + " = " + sl
+				+ (sl.length() == 0 ? "" : "++") + baseName
+				+ (sr.length() == 0 ? "" : "++") + sr;
+
 		return s;
 	}
-	
-	private  String listToString( List<String> l) {
+
+	private String listToString(List<String> l) {
 		String s = "";
-		boolean empty=true;
-		for(String ls:l) {
-			if (empty) s = "["; 
-			else s = ", ";
-			empty=false;
-		    s+=ls;							
+		boolean empty = true;
+		for (String ls : l) {
+			if (empty)
+				s = "[";
+			else
+				s = ", ";
+			empty = false;
+			s += ls;
 		}
-		if (!empty) s = "]";
+		if (!empty)
+			s = "]";
 		return s;
 	}
-	
-	
 
 	/**
 	 * @return the dataName
@@ -64,7 +64,8 @@ public class SExtensionDef extends Statement{
 	}
 
 	/**
-	 * @param dataName the dataName to set
+	 * @param dataName
+	 *            the dataName to set
 	 */
 	public void setDataName(Textension dataName) {
 		this.dataName = dataName;
@@ -78,7 +79,8 @@ public class SExtensionDef extends Statement{
 	}
 
 	/**
-	 * @param baseName the baseName to set
+	 * @param baseName
+	 *            the baseName to set
 	 */
 	public void setBaseName(String baseName) {
 		this.baseName = baseName;
@@ -92,7 +94,8 @@ public class SExtensionDef extends Statement{
 	}
 
 	/**
-	 * @param left the left to set
+	 * @param left
+	 *            the left to set
 	 */
 	public void setLeft(List<String> left) {
 		this.left = left;
@@ -106,13 +109,16 @@ public class SExtensionDef extends Statement{
 	}
 
 	/**
-	 * @param right the right to set
+	 * @param right
+	 *            the right to set
 	 */
 	public void setRight(List<String> right) {
 		this.right = right;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -128,7 +134,9 @@ public class SExtensionDef extends Statement{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

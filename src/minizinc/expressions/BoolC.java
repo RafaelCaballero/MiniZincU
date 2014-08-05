@@ -1,44 +1,29 @@
-package terms;
+package minizinc.expressions;
 
+import java.util.List;
+
+import terms.Term;
 import Path.Path;
 
-public class BoolC extends Term {
+public class BoolC extends Expr {
 	private boolean value;
-	
-	
+
 	public BoolC(boolean i) {
 		value = i;
 	}
-
-
-	@Override
-	public  boolean standard() {
-		return true;
-	}
-
 
 	public boolean getValue() {
 		return value;
 	}
 
-
 	public void setValue(boolean value) {
 		this.value = value;
 	}
-	
-	@Override
-	public String toString() {
-		return ""+value;
-	}
 
-
-	@Override
-	public Path getPath() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -49,8 +34,9 @@ public class BoolC extends Term {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -65,6 +51,21 @@ public class BoolC extends Term {
 		if (value != other.value)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String print() {
+		return "" + value;
+	}
+
+	@Override
+	public List<? extends Expr> subexpressions() {
+		return null;
+	}
+
+	@Override
+	public Type type() {
+		return Type.BOOL;
 	}
 
 }

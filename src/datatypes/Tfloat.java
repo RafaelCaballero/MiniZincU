@@ -1,4 +1,5 @@
 package datatypes;
+
 import terms.*;
 
 public class Tfloat extends Type {
@@ -6,10 +7,10 @@ public class Tfloat extends Type {
 	public Tfloat() {
 		super(TType.FLOAT);
 	}
-	
+
 	@Override
 	public String rhsString() {
-		return toString();	
+		return toString();
 	}
 
 	@Override
@@ -17,7 +18,6 @@ public class Tfloat extends Type {
 
 		return new FloatC(0.0);
 	}
-
 
 	@Override
 	public boolean basic() {

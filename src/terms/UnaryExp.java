@@ -9,13 +9,11 @@ import Path.Path;
 public class UnaryExp extends Term {
 	private String op;
 	private Term t1;
-	
-	
+
 	public UnaryExp(String op, Term t1) {
 		this.op = op;
 		this.t1 = t1;
 	}
-	
 
 	@Override
 	public boolean standard() {
@@ -23,16 +21,14 @@ public class UnaryExp extends Term {
 	}
 
 	@Override
-    public Term simplify() {
-	   Term t1p = t1.simplify();
-	   return new UnaryExp(this.op, t1p);
+	public Term simplify() {
+		Term t1p = t1.simplify();
+		return new UnaryExp(this.op, t1p);
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
-		return op+"("+t1+")"; 
+		return op + "(" + t1 + ")";
 	}
 
 	public String getOp() {
@@ -51,15 +47,15 @@ public class UnaryExp extends Term {
 		this.t1 = t1;
 	}
 
-	
 	@Override
 	public Path getPath() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -71,8 +67,9 @@ public class UnaryExp extends Term {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

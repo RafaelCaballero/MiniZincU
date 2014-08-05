@@ -1,11 +1,15 @@
-package model;
+package minizinc.model;
 
 public class Statement {
-    private TStatement type;
+	private TStatement type;
+
 	public Statement(TStatement type) {
 		this.type = type;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -15,7 +19,10 @@ public class Statement {
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -31,14 +38,17 @@ public class Statement {
 			return false;
 		return true;
 	}
+
 	/**
 	 * @return the type
 	 */
 	public TStatement getType() {
 		return type;
 	}
+
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(TStatement type) {
 		this.type = type;

@@ -7,66 +7,67 @@ public class Var extends Term {
 	private Type t;
 	private String name;
 	private int level;
-	
 
 	public Var(String name, Type t, int level) {
 		this.t = t;
 		this.name = name;
 		this.level = level;
 	}
-	
+
 	public Var(Type t, String name) {
 		this.t = t;
 		this.name = name;
 		this.level = 0;
 	}
-	
+
 	@Override
-	public  boolean standard() {
+	public boolean standard() {
 		return t.basic();
 	}
 
-	
 	@Override
-	public  boolean isVar() {
+	public boolean isVar() {
 		return true;
 	}
 
-	
 	public Type getT() {
 		return t;
 	}
+
 	public void setT(Type t) {
 		this.t = t;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	
-	
+
 	public String varDecl() {
-		String s="";
-		s = "var "+t.rhsString();
-		if (level!=0) s+="("+level+")";
-		s+=": "+name+";";
-		return s;		
+		String s = "";
+		s = "var " + t.rhsString();
+		if (level != 0)
+			s += "(" + level + ")";
+		s += ": " + name + ";";
+		return s;
 	}
-   
+
 	@Override
 	public String toString() {
-		String s="";
-		s =name;
-		return s;		
+		String s = "";
+		s = name;
+		return s;
 	}
 
 	@Override
@@ -75,7 +76,9 @@ public class Var extends Term {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -86,7 +89,9 @@ public class Var extends Term {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -105,6 +110,5 @@ public class Var extends Term {
 			return false;
 		return true;
 	}
-
 
 }

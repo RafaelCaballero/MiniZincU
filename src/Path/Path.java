@@ -2,9 +2,8 @@ package Path;
 
 import java.util.ArrayList;
 
-
 public class Path {
-	 private ArrayList<Integer> p=null;
+	private ArrayList<Integer> p = null;
 
 	/**
 	 * @return the path
@@ -14,7 +13,8 @@ public class Path {
 	}
 
 	/**
-	 * @param p the path to set
+	 * @param p
+	 *            the path to set
 	 */
 	public void setP(ArrayList<Integer> p) {
 		this.p = p;
@@ -23,16 +23,15 @@ public class Path {
 	/**
 	 * @return a string representation of the path
 	 */
-	@Override 
+	@Override
 	public String toString() {
 		String s = "";
-		
-		if (p!=null)
-			for (Integer i:p) s += "_"+i;
-		
+
+		if (p != null)
+			for (Integer i : p)
+				s += "_" + i;
+
 		return s;
 	}
 
-
-	
 }

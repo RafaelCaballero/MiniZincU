@@ -4,18 +4,15 @@ import Path.Path;
 
 public class IntC extends Term {
 	private int value;
-	
-	
+
 	public IntC(int i) {
 		value = i;
 	}
 
-
 	@Override
-	public  boolean standard() {
+	public boolean standard() {
 		return true;
 	}
-
 
 	public int getValue() {
 		return value;
@@ -24,12 +21,11 @@ public class IntC extends Term {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	public String toString() {
-		return ""+value;
+		return "" + value;
 	}
-
 
 	@Override
 	public Path getPath() {
@@ -37,8 +33,9 @@ public class IntC extends Term {
 		return null;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -49,8 +46,9 @@ public class IntC extends Term {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

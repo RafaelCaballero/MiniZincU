@@ -5,13 +5,12 @@ import java.util.List;
 
 import Path.Path;
 
-
-public class CTerm extends Term{
+public class CTerm extends Term {
 	private String cons;
 	private List<Term> args;
-	
+
 	@Override
-	public  boolean standard() {
+	public boolean standard() {
 		return false;
 	}
 
@@ -21,18 +20,17 @@ public class CTerm extends Term{
 
 	@Override
 	public Term simplify() {
-		 List<Term> args2 = new ArrayList<Term>();
-  		 int n = args.size();
-		 for (int i=0; i<n; i++) {
-			 args2.add(args.get(i).simplify());
-		 }
-		
-		 
-		 CTerm t = new CTerm();
-		 t.setCons(cons);
-		 t.setArgs(args2);
-		 return t;
-		
+		List<Term> args2 = new ArrayList<Term>();
+		int n = args.size();
+		for (int i = 0; i < n; i++) {
+			args2.add(args.get(i).simplify());
+		}
+
+		CTerm t = new CTerm();
+		t.setCons(cons);
+		t.setArgs(args2);
+		return t;
+
 	}
 
 	@Override
@@ -40,16 +38,18 @@ public class CTerm extends Term{
 		String s;
 		s = cons;
 		int n = args.size();
-		if (n>0) s += "(";
-		for (int i=0; i<n; i++) {
+		if (n > 0)
+			s += "(";
+		for (int i = 0; i < n; i++) {
 			s += args.get(i);
-			if (i<n-1) s+=", ";
+			if (i < n - 1)
+				s += ", ";
 		}
-		if (n>0) s +=")";
+		if (n > 0)
+			s += ")";
 		return s;
 	}
 
-	
 	public void setCons(String cons) {
 		this.cons = cons;
 	}
@@ -68,7 +68,9 @@ public class CTerm extends Term{
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -80,7 +82,9 @@ public class CTerm extends Term{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -104,6 +108,5 @@ public class CTerm extends Term{
 			return false;
 		return true;
 	}
-
 
 }

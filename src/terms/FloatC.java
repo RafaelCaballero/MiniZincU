@@ -4,18 +4,15 @@ import Path.Path;
 
 public class FloatC extends Term {
 	private double value;
-	
-	
+
 	public FloatC(double i) {
 		value = i;
 	}
 
-
 	@Override
-	public  boolean standard() {
+	public boolean standard() {
 		return true;
 	}
-
 
 	public double getValue() {
 		return value;
@@ -24,12 +21,11 @@ public class FloatC extends Term {
 	public void setValue(double value) {
 		this.value = value;
 	}
-	
+
 	@Override
 	public String toString() {
-		return ""+value;
+		return "" + value;
 	}
-
 
 	@Override
 	public Path getPath() {
@@ -37,8 +33,9 @@ public class FloatC extends Term {
 		return null;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -51,8 +48,9 @@ public class FloatC extends Term {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

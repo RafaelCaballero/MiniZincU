@@ -1,4 +1,4 @@
-package model;
+package minizinc.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,12 +8,11 @@ import datatypes.Tcons;
 import datatypes.Tunion;
 import datatypes.Type;
 
-
 /*
  * Right-hand side of a data declaration
  */
 public class SDataDef extends Statement {
-	private Tunion dataName;		
+	private Tunion dataName;
 	private List<Tcons> cons;
 
 	public SDataDef(String dataName) {
@@ -24,31 +23,32 @@ public class SDataDef extends Statement {
 
 	public void addCons(String consName) {
 		Tcons c = new Tcons(consName);
-		cons.add(c);		
+		cons.add(c);
 	}
-	
+
 	public void addCons(Tcons c) {
-		cons.add(c);		
+		cons.add(c);
 	}
-	
-	public Tcons getConsByName(String name ) {
+
+	public Tcons getConsByName(String name) {
 		Tcons c = null;
-		for (Tcons cp:cons)
-			if (cp.getCons().equals(name)) c = cp;
+		for (Tcons cp : cons)
+			if (cp.getCons().equals(name))
+				c = cp;
 		return c;
 	}
+
 	// returns the position of the constraint
 	public int addSubtype(String consName, Type t) {
 		int r;
-		r = cons.indexOf( new Tcons(consName));
-		
-		if (r!=-1) 
+		r = cons.indexOf(new Tcons(consName));
+
+		if (r != -1)
 			(cons.get(r)).add(t);
-		
-	   return r;
+
+		return r;
 	}
-	
-	
+
 	public List<Tcons> getCons() {
 		return cons;
 	}
@@ -66,39 +66,38 @@ public class SDataDef extends Statement {
 	}
 
 	@Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass()) {
-            return false;
-        }
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
 
-        SDataDef c = (SDataDef) obj;
-        return dataName!=null && c.dataName != null &&
-        		dataName.equals(c.dataName);
-    }
-   
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result
-                + ((dataName == null) ? 0 : dataName.hashCode());
-        return result;
-    }
-    
+		SDataDef c = (SDataDef) obj;
+		return dataName != null && c.dataName != null
+				&& dataName.equals(c.dataName);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((dataName == null) ? 0 : dataName.hashCode());
+		return result;
+	}
+
 	@Override
 	public String toString() {
 		String s = "";
-		
+
 		Iterator<Tcons> it = cons.iterator();
-		while(it.hasNext()) {
-			s += it.next()+(it.hasNext() ? " , ":"};");
+		while (it.hasNext()) {
+			s += it.next() + (it.hasNext() ? " , " : "};");
 		}
 
-		return "enum "+dataName.rhsString()+"= {"+s;
+		return "enum " + dataName.rhsString() + "= {" + s;
 	}
-
 
 }

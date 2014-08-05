@@ -5,21 +5,20 @@ import java.util.ArrayList;
 
 import Path.Path;
 
-public  class PredicateCall extends Term {
-	
+public class PredicateCall extends Term {
+
 	private String name;
-	private  List<Term> args= new ArrayList<Term>();
+	private List<Term> args = new ArrayList<Term>();
 
 	public PredicateCall(String name) {
 		this.name = name;
 	}
-	 
-	
+
 	public PredicateCall(String name, List<Term> args) {
 		this.name = name;
 		this.args = args;
 	}
-	
+
 	// new argument
 	public void add(Term t) {
 		args.add(t);
@@ -30,21 +29,21 @@ public  class PredicateCall extends Term {
 		String s;
 		s = name + "(";
 		int n = args.size();
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			s += args.get(i);
-			if (i<n-1) s+=", ";
+			if (i < n - 1)
+				s += ", ";
 		}
-		s +=")";
+		s += ")";
 		return s;
 	}
-	
-	
+
 	@Override
 	public boolean standard() {
 		return true;
 	}
 
-	public  boolean standardPred() {
+	public boolean standardPred() {
 		return true;
 	}
 
@@ -64,15 +63,15 @@ public  class PredicateCall extends Term {
 		this.args = args;
 	}
 
-
 	@Override
 	public Path getPath() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -84,8 +83,9 @@ public  class PredicateCall extends Term {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -109,6 +109,5 @@ public  class PredicateCall extends Term {
 			return false;
 		return true;
 	}
-
 
 }

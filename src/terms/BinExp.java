@@ -8,55 +8,53 @@ import Path.Path;
 
 public class BinExp extends Term {
 
-
 	protected String op;
 	protected Term t1;
 	protected Term t2;
 
 	public BinExp() {
-		
-	}
-	
 
-	
+	}
+
 	public BinExp(String op, Term t1, Term t2) {
 		this.op = op;
 		this.t1 = t1;
 		this.t2 = t2;
 	}
-	
+
 	// fold constructors
-	
+
 	public BinExp(String op, List<Term> lt) {
-		fold(op,lt,lt.size());
+		fold(op, lt, lt.size());
 	}
 
 	public BinExp(String op, List<Term> lt, int n) {
-		fold(op,lt,n);
+		fold(op, lt, n);
 	}
 
 	public void fold(String op, List<Term> lt, int n) {
-	  	  this.op = op;
-	      if (n<=1) {
-	    	  t1 = null;
-	    	  t2 = null;
-	      } else if (n==2) {
-	        this.t1 = lt.get(0);
-	        this.t2 = lt.get(1);
-	      } else {
-	    	  this.t2 =  lt.get(n-1);    	
-	    	  this.t1 = new BinExp(op,lt,n-1);
-	      }    	 		
-		
+		this.op = op;
+		if (n <= 1) {
+			t1 = null;
+			t2 = null;
+		} else if (n == 2) {
+			this.t1 = lt.get(0);
+			this.t2 = lt.get(1);
+		} else {
+			this.t2 = lt.get(n - 1);
+			this.t1 = new BinExp(op, lt, n - 1);
+		}
+
 	}
+
 	@Override
 	public boolean standard() {
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "("+t1+" "+op+" "+ t2 + ")"; 
+		return "(" + t1 + " " + op + " " + t2 + ")";
 	}
 
 	public String getOp() {
@@ -83,25 +81,26 @@ public class BinExp extends Term {
 		this.t2 = t2;
 	}
 
-	
 	@Override
 	public Path getPath() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	 public Term simplify() {
-		 Term t1p = t1.simplify();
-		 Term t2p = t2.simplify();
-		 return new BinExp(this.op, t1p, t2p);
-	 }
 
-	 @Override
-	 public boolean isBin() {
-		  return true;
-	  }
-	 
-	/* (non-Javadoc)
+	public Term simplify() {
+		Term t1p = t1.simplify();
+		Term t2p = t2.simplify();
+		return new BinExp(this.op, t1p, t2p);
+	}
+
+	@Override
+	public boolean isBin() {
+		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -114,9 +113,9 @@ public class BinExp extends Term {
 		return result;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -145,6 +144,5 @@ public class BinExp extends Term {
 			return false;
 		return true;
 	}
-
 
 }

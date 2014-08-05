@@ -3,23 +3,24 @@ package terms;
 import Path.Path;
 
 public class StringC extends Term {
-    private String s;
+	private String s;
 
-    public StringC(String s) {
-    	this.s=s;
-    }
-    public StringC(Term s) {
-    	this.s= ""+s;
-    }
+	public StringC(String s) {
+		this.s = s;
+	}
+
+	public StringC(Term s) {
+		this.s = "" + s;
+	}
+
 	@Override
 	public boolean standard() {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
-		return  s ;
+		return s;
 	}
 
 	public String getS() {
@@ -29,12 +30,16 @@ public class StringC extends Term {
 	public void setS(String s) {
 		this.s = s;
 	}
+
 	@Override
 	public Path getPath() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -44,7 +49,10 @@ public class StringC extends Term {
 		result = prime * result + ((s == null) ? 0 : s.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -63,7 +71,5 @@ public class StringC extends Term {
 			return false;
 		return true;
 	}
-	
-	
 
 }

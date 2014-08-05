@@ -1,19 +1,23 @@
-package terms;
+package minizinc.expressions;
 
+import java.util.Arrays;
+import java.util.List;
+
+import terms.Term;
 import Path.Path;
 
-public class IfS extends Term {
-	Term Cond;
-	Term Exp1;
-	Term Exp2;
+public class IfS extends Expr {
+	private Expr Cond;
+	private Expr Exp1;
+	private Expr Exp2;
 
-		
-	public IfS(Term cond, Term exp1, Term exp2) {
+	public IfS(Expr cond, Expr exp1, Expr exp2) {
 		Cond = cond;
 		Exp1 = exp1;
 		Exp2 = exp2;
 	}
 
+	/*
 	@Override
 	public Term simplify() {
 		Term condp = Cond.simplify();
@@ -21,65 +25,37 @@ public class IfS extends Term {
 		Term exp2p = Exp2.simplify();
 		return new IfS(condp, exp1p, exp2p);
 	}
-
-	@Override
-	public boolean standard() {	
-		return true;
-	}
-
-	
-	@Override
-	public String toString() {	
-		return "if ("+Cond+") then "+Exp1+" else "+Exp2+" endif";
-	}
+    */
 
 
-
-	public Term getCond() {
+	public Expr getCond() {
 		return Cond;
 	}
 
-
-
-	public void setCond(Term cond) {
+	public void setCond(Expr cond) {
 		Cond = cond;
 	}
 
-
-
-	public Term getExp1() {
+	public Expr getExp1() {
 		return Exp1;
 	}
 
-
-
-	public void setExp1(Term exp1) {
+	public void setExp1(Expr exp1) {
 		Exp1 = exp1;
 	}
 
-
-
-	public Term getExp2() {
+	public Expr getExp2() {
 		return Exp2;
 	}
 
-
-
-	public void setExp2(Term exp2) {
+	public void setExp2(Expr exp2) {
 		Exp2 = exp2;
 	}
 
 
-
-	@Override
-	public Path getPath() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -92,9 +68,9 @@ public class IfS extends Term {
 		return result;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -124,5 +100,25 @@ public class IfS extends Term {
 		return true;
 	}
 
+	@Override
+	public String print() {
+		return "if (" + Cond + ") then " + Exp1 + " else " + Exp2 + " endif";
+	}
+
+	@Override
+	public List<? extends Expr> subexpressions() {
+		return Arrays.asList(Cond, Exp1, Exp2);
+	}
+
+	/**
+	 * Returns the type of the if statement. Observe that both the then and the
+	 * else must have the same type, but we don't check that and simply return 
+	 * the if part.
+	 * @return The type of the Then Expression
+	 */
+	@Override
+	public Type type() {
+		return Exp1.type();
+	}
 
 }
