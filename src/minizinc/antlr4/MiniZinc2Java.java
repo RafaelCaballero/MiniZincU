@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import minizinc.antlr4.MiniZincGrammarParser.ArrayaccessContext;
-import minizinc.antlr4.MiniZincGrammarParser.ExprContext;
-import minizinc.antlr4.MiniZincGrammarParser.SimpleNonEmptyListContext;
+import minizinc.antlr4.MiniZincGrammarParser.LetDeclContext;
 import minizinc.antlr4.MiniZincGrammarParser.*;
 import minizinc.expressions.*;
 import minizinc.model.*;
@@ -433,18 +431,42 @@ public class MiniZinc2Java {
 			BoolC bc = BOOLTerm(ctx.BOOL());
 			t = new BoolVal(bc);
 		} else if (has(ctx.arrayaccess())) {
-			t = arrayaccess(ctx.arrayaccess());
+			t = new BoolVal(arrayaccess(ctx.arrayaccess()));
 		} else if (has(ctx.ifExpr())) {
 			IfS  i = ifExpr(ctx.ifExpr());
 			t = new BoolVal(i);
 		} else if (has(ctx.letExpr())) {
-			t = letExpr(ctx.letExpr());
+			t = new BoolVal(letExpr(ctx.letExpr()));
 		} else if (has(ctx.predOrUnionExpr())) {
 			t = predOrUnionExpr(ctx.predOrUnionExpr());
 		} else if (has(ctx.guardExpr())) {
 			t = guardExpr(ctx.guardExpr());
 		} else
 			error("boolVal " + ctx.getText());
+		return t;
+	}
+
+	/**
+	 * Constructing a let expression. Grammar:<br>
+	 * letExpr : 'let' '{' letDecl   (',' letDecl)* '}' 'in' expr;
+	 * @param ctx the context
+	 * @return the representation as a LetExpr
+	 */
+	private static LetExpr letExpr(LetExprContext ctx) {
+		LetExpr t = null;
+		if (has(ctx.expr())) {
+			Expr e = expr(ctx.expr());
+			List<LetDecl> ldecl = ctx.letDecl().stream().map(x -> letDecl(x)).collect(Collectors.toList());
+			t = new LetExpr(ldecl,e);
+			
+		} else {
+			error("letExpr. No expression found " + ctx.getText());
+		}
+		return t;
+	}
+
+	private static LetDecl letDecl(LetDeclContext x) {
+		LetDecl t = null;
 		return t;
 	}
 
