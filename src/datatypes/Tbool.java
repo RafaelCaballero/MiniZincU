@@ -1,6 +1,6 @@
 package datatypes;
 
-import minizinc.expressions.BoolC;
+import minizinc.representation.expressions.BoolC;
 import terms.*;
 
 public class Tbool extends Type {

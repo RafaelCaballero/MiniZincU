@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import minizinc.antlr4.MiniZincGrammarParser.LetDeclContext;
 import minizinc.antlr4.MiniZincGrammarParser.*;
-import minizinc.expressions.*;
 import minizinc.model.*;
+import minizinc.representation.expressions.*;
+import minizinc.representation.statement.decls.VarDecl;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -94,8 +94,8 @@ public class MiniZinc2Java {
 	 * listValue : stringExpr | ID | ifExpr | arrayaccess | showExpr | inDecl |
 	 * functionExpr;
 	 */
-	private static Term listValue(ListValueContext lvc) {
-		Term t = null;
+	private static Expr listValue(ListValueContext lvc) {
+		Expr t = null;
 
 		if (has(lvc.stringExpr())) {
 			t = stringExpr(lvc.stringExpr());
@@ -460,13 +460,60 @@ public class MiniZinc2Java {
 			t = new LetExpr(ldecl,e);
 			
 		} else {
-			error("letExpr. No expression found " + ctx.getText());
+			error("Error in letExpr. No expression found " + ctx.getText());
 		}
 		return t;
 	}
 
-	private static LetDecl letDecl(LetDeclContext x) {
+	
+	/**
+	 * Let declarations. Grammar:<br>
+	 * letDecl : decl | constraint;
+	 * @param ctx
+	 * @return
+	 */
+	private static LetDecl letDecl(LetDeclContext ctx) {
 		LetDecl t = null;
+		if (has(ctx.decl())) {
+			t = decl(ctx.decl());
+			
+		} else if (has(ctx.constraint())) {
+		
+		} else {
+			error("Error in letDecl " + ctx.getText());
+		}
+		return t;
+	}
+
+	/**
+     * Variable and parameter declarations, including possible initializations.<br>
+     * Grammar<br>
+     * decl : vardecl | pardecl;<br>
+	 * @param ctx
+	 * @return
+	 */
+	private static LetDecl decl(DeclContext ctx) {
+		LetDecl t =null;
+		if (has(ctx.vardecl())) {
+			t = new LetDecl(vardecl(ctx.vardecl()));
+		} else if (has(ctx.pardecl())) {
+			t = new LetDecl(pardecl(ctx.pardecl()));
+		} else {
+			error("Error in decl " + ctx.getText());
+		}
+		return t;
+	}
+
+	/**
+	 * Obtaining the Java representation of a variable declaration.<br>
+	 * Grammar:<br>
+	 * vardecl : (var | vararray) ('=' expr)?;
+	 * @param vardecl
+	 * @return
+	 */
+	private static VarDecl vardecl(VardeclContext vardecl) {
+		VarDecl t = null;
+		
 		return t;
 	}
 

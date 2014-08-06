@@ -2,7 +2,7 @@ package terms;
 
 import java.util.List;
 
-import minizinc.expressions.BoolC;
+import minizinc.representation.expressions.BoolC;
 
 public class And extends BinExp {
 	public And(Term t1, Term t2) {

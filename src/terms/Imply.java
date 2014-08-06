@@ -1,6 +1,6 @@
 package terms;
 
-import minizinc.expressions.BoolC;
+import minizinc.representation.expressions.BoolC;
 
 public class Imply extends BinExp {
 	public Imply(Term t1, Term t2) {

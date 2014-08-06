@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import minizinc.antlr4.MiniZincGrammarParser.*;
-import minizinc.expressions.BoolC;
 import minizinc.model.*;
+import minizinc.representation.expressions.BoolC;
 
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.misc.Interval;

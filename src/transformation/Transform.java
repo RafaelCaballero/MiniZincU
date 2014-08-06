@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import minizinc.expressions.BoolC;
-import minizinc.expressions.IfS;
 import minizinc.model.Constraint;
 import minizinc.model.Model;
 import minizinc.model.SDataDef;
+import minizinc.representation.expressions.BoolC;
+import minizinc.representation.expressions.IfS;
 import Path.Path;
 import terms.*;
 import datatypes.*;
