@@ -11,7 +11,11 @@ public enum TypeName{
 	FLOAT,
 	STRING,
 	SET,
-	DATA,
-	ARRAY;
+	ARRAY,
+	LIST,
+	EXTENSION_OR_RANGE,
+	RANGE,
+	UNION,
+	PRED_OR_UNION;
 	
 }

@@ -1,23 +1,29 @@
+/**
+ * 
+ */
 package minizinc.representation.types;
+
 import minizinc.representation.TypeName;
-import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 
 /**
- * Represents type int
- * 
+ *  An ID as a typename. It can be 
+ * <ol>
+ * <li> An extension name in extended MiniZinc
+ * <li> A range determined by the name of a set.
+ * <ol>
+ *
  * @author rafa
+ *
  */
-public class TypeData extends Type {
-
+public class TypeID extends Type {
 	private ID id;
-	private Expr e;
 	
 	/**
-	 * Constructor: name of the data type and level (an integer expr).
+	 * Constructor: name of the type
 	 */
-	public TypeData(ID id, Expr e) {
-		this.id = id; this.e = e;
+	public TypeID(ID id) {
+		this.id = id;
 	}
 
 	/* (non-Javadoc)
@@ -25,7 +31,7 @@ public class TypeData extends Type {
 	 */
 	@Override
 	public String print() {
-		return id.print()+"("+e.print()+")";
+		return id.print();
 	}
 
 	/* (non-Javadoc)
@@ -33,14 +39,11 @@ public class TypeData extends Type {
 	 */
 	@Override
 	public TypeName type() {
-		return TypeName.DATA;		
-	}
-	public ID getId() {
-		return id;
+		return TypeName.EXTENSION_OR_RANGE;
 	}
 
-	public Expr getE() {
-		return e;
+	public ID getId() {
+		return id;
 	}
 
 }

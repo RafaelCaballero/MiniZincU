@@ -16,18 +16,17 @@ import minizinc.representation.types.TypeArray;
  * @author rafa
  *
  */
-public class VarDecl extends Decl {
+public class ParDecl extends Decl {
 	
-	public VarDecl(Type vartype, ID id) {
-		super(vartype, id);
+	public ParDecl(Type partype, ID id) {
+		super(partype, id);
 	}
 	
-	public VarDecl(Type vartype,ID id,Expr expr) {
-		super(vartype,id,expr);
+	public ParDecl(Type partype,ID id,Expr expr) {
+		super(partype,id,expr);
 	}
 
-
-		/* (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -35,10 +34,10 @@ public class VarDecl extends Decl {
 		String s = null;
 		if (declType.type()==TypeName.ARRAY) {
 			TypeArray at = (TypeArray) declType; 
-			s = at.printDimensions() + " var " +  at.printBase() +  ':'  + id.print() ; 
+			s = at.printDimensions() + " " +  at.printBase() +  ':'  + id.print() ; 
 		}
 		else
-			s = "var" + declType.print() +  ':'  + id.print() ;
+			s =  declType.print() +  ':'  + id.print() ;
 		return s;
 	}
 

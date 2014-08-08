@@ -38,13 +38,20 @@ public  class BoolVal extends BoolExpr {
 	public BoolVal(PredOrUnionExpr expr) {
 		e = expr;
 	}
-	public BoolVal(GuardExpr expr) {
-		e = expr;
-	}
 
 	
 	public Expr getExpr(Expr e) {
 		return e;
+	}
+
+	@Override
+	public String print() {
+		return e.print();
+	}
+
+	@Override
+	public List<Expr> subexpressions() {
+		return e.subexpressions();
 	}
 	
 

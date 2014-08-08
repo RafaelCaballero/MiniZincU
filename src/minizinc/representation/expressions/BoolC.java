@@ -3,7 +3,6 @@ package minizinc.representation.expressions;
 import java.util.List;
 
 import minizinc.representation.TypeName;
-import terms.Term;
 import Path.Path;
 
 public class BoolC extends Expr {

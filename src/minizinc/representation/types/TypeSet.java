@@ -6,15 +6,26 @@ import minizinc.representation.TypeName;
  * 
  * @author rafa
  */
-public class Rint extends Type {
+public class TypeSet extends Type {
+	/**
+	 * elems type
+	 */
+	private Type elem;
 
-
+	public TypeSet(Type elem) {
+		this.elem = elem;
+	}
+	
+	public Type getElem() {
+		return elem;
+	}
+	
 	/* (non-Javadoc)
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "int";
+		return "set of "+elem.print();
 	}
 
 	/* (non-Javadoc)

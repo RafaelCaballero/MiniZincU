@@ -1,5 +1,4 @@
 package minizinc.antlr4;
-
 // Generated from MiniZincGrammar.g4 by ANTLR 4.4
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -162,18 +161,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBool2int(@NotNull MiniZincGrammarParser.Bool2intContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBool2int(@NotNull MiniZincGrammarParser.Bool2intContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterInit(@NotNull MiniZincGrammarParser.InitContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -181,18 +168,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInit(@NotNull MiniZincGrammarParser.InitContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOneSection(@NotNull MiniZincGrammarParser.OneSectionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOneSection(@NotNull MiniZincGrammarParser.OneSectionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -318,6 +293,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOnesection(@NotNull MiniZincGrammarParser.OnesectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOnesection(@NotNull MiniZincGrammarParser.OnesectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFromR(@NotNull MiniZincGrammarParser.FromRContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -385,18 +372,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRange(@NotNull MiniZincGrammarParser.RangeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSum(@NotNull MiniZincGrammarParser.SumContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSum(@NotNull MiniZincGrammarParser.SumContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -474,18 +449,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTwoSections(@NotNull MiniZincGrammarParser.TwoSectionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTwoSections(@NotNull MiniZincGrammarParser.TwoSectionsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTypedata(@NotNull MiniZincGrammarParser.TypedataContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -498,18 +461,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMin(@NotNull MiniZincGrammarParser.MinContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMin(@NotNull MiniZincGrammarParser.MinContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterArithComplexExpr(@NotNull MiniZincGrammarParser.ArithComplexExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -517,30 +468,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArithComplexExpr(@NotNull MiniZincGrammarParser.ArithComplexExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterShowExpr(@NotNull MiniZincGrammarParser.ShowExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitShowExpr(@NotNull MiniZincGrammarParser.ShowExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterArray1d(@NotNull MiniZincGrammarParser.Array1dContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArray1d(@NotNull MiniZincGrammarParser.Array1dContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -642,42 +569,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProd(@NotNull MiniZincGrammarParser.ProdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProd(@NotNull MiniZincGrammarParser.ProdContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMax(@NotNull MiniZincGrammarParser.MaxContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMax(@NotNull MiniZincGrammarParser.MaxContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterForall(@NotNull MiniZincGrammarParser.ForallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitForall(@NotNull MiniZincGrammarParser.ForallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterRfloat(@NotNull MiniZincGrammarParser.RfloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -709,18 +600,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIntS(@NotNull MiniZincGrammarParser.IntSContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExists(@NotNull MiniZincGrammarParser.ExistsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExists(@NotNull MiniZincGrammarParser.ExistsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -865,6 +744,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRestS(@NotNull MiniZincGrammarParser.RestSContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTwosections(@NotNull MiniZincGrammarParser.TwosectionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTwosections(@NotNull MiniZincGrammarParser.TwosectionsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1158,18 +1049,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGuardExprArg(@NotNull MiniZincGrammarParser.GuardExprArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGuardExprArg(@NotNull MiniZincGrammarParser.GuardExprArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterModeAnnotation(@NotNull MiniZincGrammarParser.ModeAnnotationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1201,18 +1080,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTypeset(@NotNull MiniZincGrammarParser.TypesetContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAlldifferent(@NotNull MiniZincGrammarParser.AlldifferentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAlldifferent(@NotNull MiniZincGrammarParser.AlldifferentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1326,18 +1193,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGuardExpr(@NotNull MiniZincGrammarParser.GuardExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGuardExpr(@NotNull MiniZincGrammarParser.GuardExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterSatisfy(@NotNull MiniZincGrammarParser.SatisfyContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1393,18 +1248,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitListValue(@NotNull MiniZincGrammarParser.ListValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterComplexSetExpr(@NotNull MiniZincGrammarParser.ComplexSetExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitComplexSetExpr(@NotNull MiniZincGrammarParser.ComplexSetExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

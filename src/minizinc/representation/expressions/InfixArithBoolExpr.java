@@ -12,7 +12,7 @@ import java.util.List;
  * @author rafa
  *
  */
-public class InfixArithBoolExpr extends BoolComplexExpr {
+public class InfixArithBoolExpr extends BoolExpr {
 	private Expr e1;
 	private Expr e2;
 	private String op;

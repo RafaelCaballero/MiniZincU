@@ -14,7 +14,7 @@ public class Rfloat extends Type {
 	 */
 	@Override
 	public String print() {
-		return "int";
+		return "float";
 	}
 
 	/* (non-Javadoc)
@@ -22,7 +22,7 @@ public class Rfloat extends Type {
 	 */
 	@Override
 	public TypeName type() {
-		return TypeName.INT;
+		return TypeName.FLOAT;
 		
 	}
 

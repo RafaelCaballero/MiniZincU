@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import minizinc.representation.statement.decls.*;
+
 import org.antlr.v4.runtime.misc.NotNull;
 
-import terms.*;
 
 /**
  * @author Rafa Caballero Represents a MiniZinc model
@@ -21,11 +22,11 @@ public class Model {
 		stat.add(s);
 	}
 
-	public List<Var> getVar() {
-		List<Var> l = new ArrayList<Var>();
+	public List<VarDecl> getVar() {
+		List<VarDecl> l = new ArrayList<VarDecl>();
 		for (Statement s : stat)
 			if (s.getType() == TStatement.VARDECL)
-				l.add(((SVar) s).getV());
+				l.add((VarDecl) s);
 		return l;
 	}
 

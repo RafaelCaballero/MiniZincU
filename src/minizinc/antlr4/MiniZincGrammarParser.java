@@ -1,5 +1,4 @@
 package minizinc.antlr4;
-
 // Generated from MiniZincGrammar.g4 by ANTLR 4.4
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -18,37 +17,33 @@ public class MiniZincGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__95=1, T__94=2, T__93=3, T__92=4, T__91=5, T__90=6, T__89=7, T__88=8, 
-		T__87=9, T__86=10, T__85=11, T__84=12, T__83=13, T__82=14, T__81=15, T__80=16, 
-		T__79=17, T__78=18, T__77=19, T__76=20, T__75=21, T__74=22, T__73=23, 
-		T__72=24, T__71=25, T__70=26, T__69=27, T__68=28, T__67=29, T__66=30, 
-		T__65=31, T__64=32, T__63=33, T__62=34, T__61=35, T__60=36, T__59=37, 
-		T__58=38, T__57=39, T__56=40, T__55=41, T__54=42, T__53=43, T__52=44, 
-		T__51=45, T__50=46, T__49=47, T__48=48, T__47=49, T__46=50, T__45=51, 
-		T__44=52, T__43=53, T__42=54, T__41=55, T__40=56, T__39=57, T__38=58, 
-		T__37=59, T__36=60, T__35=61, T__34=62, T__33=63, T__32=64, T__31=65, 
-		T__30=66, T__29=67, T__28=68, T__27=69, T__26=70, T__25=71, T__24=72, 
-		T__23=73, T__22=74, T__21=75, T__20=76, T__19=77, T__18=78, T__17=79, 
-		T__16=80, T__15=81, T__14=82, T__13=83, T__12=84, T__11=85, T__10=86, 
-		T__9=87, T__8=88, T__7=89, T__6=90, T__5=91, T__4=92, T__3=93, T__2=94, 
-		T__1=95, T__0=96, ESC=97, SINGLE_LINE_COMMENT=98, ID=99, NAT=100, WS=101, 
-		BOOL=102;
+		T__85=1, T__84=2, T__83=3, T__82=4, T__81=5, T__80=6, T__79=7, T__78=8, 
+		T__77=9, T__76=10, T__75=11, T__74=12, T__73=13, T__72=14, T__71=15, T__70=16, 
+		T__69=17, T__68=18, T__67=19, T__66=20, T__65=21, T__64=22, T__63=23, 
+		T__62=24, T__61=25, T__60=26, T__59=27, T__58=28, T__57=29, T__56=30, 
+		T__55=31, T__54=32, T__53=33, T__52=34, T__51=35, T__50=36, T__49=37, 
+		T__48=38, T__47=39, T__46=40, T__45=41, T__44=42, T__43=43, T__42=44, 
+		T__41=45, T__40=46, T__39=47, T__38=48, T__37=49, T__36=50, T__35=51, 
+		T__34=52, T__33=53, T__32=54, T__31=55, T__30=56, T__29=57, T__28=58, 
+		T__27=59, T__26=60, T__25=61, T__24=62, T__23=63, T__22=64, T__21=65, 
+		T__20=66, T__19=67, T__18=68, T__17=69, T__16=70, T__15=71, T__14=72, 
+		T__13=73, T__12=74, T__11=75, T__10=76, T__9=77, T__8=78, T__7=79, T__6=80, 
+		T__5=81, T__4=82, T__3=83, T__2=84, T__1=85, T__0=86, ESC=87, SINGLE_LINE_COMMENT=88, 
+		ID=89, NAT=90, WS=91, BOOL=92;
 	public static final String[] tokenNames = {
 		"<INVALID>", "'endif'", "'maximize'", "'int_search'", "'minimize'", "'set'", 
 		"'!='", "'float'", "'{'", "'..'", "'::'", "'='", "'^'", "'int'", "'bool_search'", 
-		"'include'", "'union'", "'('", "'min'", "','", "'extended'", "'output'", 
-		"'indomain'", "'<-'", "'var'", "'first_fail'", "'indomain_split'", "'smallest'", 
-		"'complete'", "'endcase'", "'mod'", "'>='", "'<'", "'++'", "']'", "'bool2int'", 
-		"'indomain_random'", "'|]'", "'#'", "'let'", "'-->'", "'alldifferent'", 
-		"'function'", "'seq_search'", "'then'", "'+'", "'array'", "'<->'", "'/'", 
-		"'array1d'", "'of'", "'elseif'", "'sum'", "'indomain_min'", "';'", "'max'", 
-		"'predicate'", "'set_search'", "'}'", "'if'", "'solve'", "'\\/'", "'enum'", 
-		"'`'", "'<='", "'[|'", "'\"'", "'constraint'", "'*'", "'exists'", "'.'", 
-		"'case'", "'->'", "'par'", "':'", "'['", "'|'", "'=='", "'show'", "'bool'", 
-		"'>'", "'forall'", "'_'", "'xor'", "'where'", "'satisfy'", "'indomain_median'", 
-		"'div'", "'else'", "'in'", "'intersect'", "'prod'", "')'", "'/\\'", "'not'", 
-		"'input_order'", "'-'", "ESC", "SINGLE_LINE_COMMENT", "ID", "NAT", "WS", 
-		"BOOL"
+		"'include'", "'union'", "'('", "','", "'extended'", "'output'", "'indomain'", 
+		"'<-'", "'var'", "'first_fail'", "'indomain_split'", "'smallest'", "'complete'", 
+		"'endcase'", "'mod'", "'>='", "'<'", "'++'", "']'", "'indomain_random'", 
+		"'|]'", "'#'", "'let'", "'-->'", "'function'", "'seq_search'", "'then'", 
+		"'+'", "'array'", "'<->'", "'/'", "'of'", "'elseif'", "'indomain_min'", 
+		"';'", "'predicate'", "'set_search'", "'}'", "'if'", "'solve'", "'\\/'", 
+		"'enum'", "'`'", "'<='", "'[|'", "'\"'", "'constraint'", "'*'", "'.'", 
+		"'case'", "'->'", "'par'", "':'", "'['", "'|'", "'=='", "'bool'", "'>'", 
+		"'_'", "'xor'", "'where'", "'satisfy'", "'indomain_median'", "'div'", 
+		"'else'", "'in'", "'intersect'", "')'", "'/\\'", "'not'", "'input_order'", 
+		"'-'", "ESC", "SINGLE_LINE_COMMENT", "ID", "NAT", "WS", "BOOL"
 	};
 	public static final int
 		RULE_model = 0, RULE_stat = 1, RULE_decl = 2, RULE_vardecl = 3, RULE_pardecl = 4, 
@@ -66,20 +61,17 @@ public class MiniZincGrammarParser extends Parser {
 		RULE_op = 50, RULE_boolOp = 51, RULE_arithOp = 52, RULE_arithOp2 = 53, 
 		RULE_qualBoolOp = 54, RULE_qualArithOp = 55, RULE_boolComplexExpr = 56, 
 		RULE_boolExpr = 57, RULE_operand = 58, RULE_arithComplexExpr = 59, RULE_arithExpr = 60, 
-		RULE_notExpr = 61, RULE_minusExpr = 62, RULE_predOrUnionExpr = 63, RULE_rbracketExpr = 64, 
-		RULE_idexpr = 65, RULE_stringExpr = 66, RULE_infixOp = 67, RULE_infixSetOp = 68, 
-		RULE_arrayaccess = 69, RULE_caseExpr = 70, RULE_caseBranch = 71, RULE_listExpr = 72, 
-		RULE_oneDimList = 73, RULE_simpleList = 74, RULE_simpleNonEmptyList = 75, 
-		RULE_guardedList = 76, RULE_multiDimList = 77, RULE_listValue = 78, RULE_showExpr = 79, 
-		RULE_functionExpr = 80, RULE_guardExpr = 81, RULE_forall = 82, RULE_exists = 83, 
-		RULE_sum = 84, RULE_prod = 85, RULE_max = 86, RULE_min = 87, RULE_bool2int = 88, 
-		RULE_alldifferent = 89, RULE_array1d = 90, RULE_guardExprArg = 91, RULE_oneSection = 92, 
-		RULE_twoSections = 93, RULE_inDecl = 94, RULE_whereCond = 95, RULE_letExpr = 96, 
-		RULE_letDecl = 97, RULE_ifExpr = 98, RULE_bodyIf = 99, RULE_elseS = 100, 
-		RULE_elseifS = 101, RULE_setVal = 102, RULE_complexSetExpr = 103, RULE_setExpr = 104, 
-		RULE_bracketExpr = 105, RULE_guardedSet = 106, RULE_commaList = 107, RULE_guard = 108, 
-		RULE_range = 109, RULE_fromR = 110, RULE_toR = 111, RULE_rint = 112, RULE_rfloat = 113, 
-		RULE_rbool = 114, RULE_integer = 115, RULE_real = 116, RULE_string = 117;
+		RULE_notExpr = 61, RULE_minusExpr = 62, RULE_predOrUnionExpr = 63, RULE_onesection = 64, 
+		RULE_twosections = 65, RULE_rbracketExpr = 66, RULE_idexpr = 67, RULE_stringExpr = 68, 
+		RULE_infixOp = 69, RULE_infixSetOp = 70, RULE_arrayaccess = 71, RULE_caseExpr = 72, 
+		RULE_caseBranch = 73, RULE_listExpr = 74, RULE_oneDimList = 75, RULE_simpleList = 76, 
+		RULE_simpleNonEmptyList = 77, RULE_guardedList = 78, RULE_multiDimList = 79, 
+		RULE_listValue = 80, RULE_functionExpr = 81, RULE_inDecl = 82, RULE_whereCond = 83, 
+		RULE_letExpr = 84, RULE_letDecl = 85, RULE_ifExpr = 86, RULE_bodyIf = 87, 
+		RULE_elseS = 88, RULE_elseifS = 89, RULE_setVal = 90, RULE_setExpr = 91, 
+		RULE_bracketExpr = 92, RULE_guardedSet = 93, RULE_commaList = 94, RULE_guard = 95, 
+		RULE_range = 96, RULE_fromR = 97, RULE_toR = 98, RULE_rint = 99, RULE_rfloat = 100, 
+		RULE_rbool = 101, RULE_integer = 102, RULE_real = 103, RULE_string = 104;
 	public static final String[] ruleNames = {
 		"model", "stat", "decl", "vardecl", "pardecl", "data", "extended", "listExtended", 
 		"preExt", "postExt", "constraint", "var", "output", "solve", "parameter", 
@@ -90,16 +82,14 @@ public class MiniZincGrammarParser extends Parser {
 		"typename", "typeset", "vararray", "pararray", "dimensions", "typedata", 
 		"expr", "boolVal", "op", "boolOp", "arithOp", "arithOp2", "qualBoolOp", 
 		"qualArithOp", "boolComplexExpr", "boolExpr", "operand", "arithComplexExpr", 
-		"arithExpr", "notExpr", "minusExpr", "predOrUnionExpr", "rbracketExpr", 
-		"idexpr", "stringExpr", "infixOp", "infixSetOp", "arrayaccess", "caseExpr", 
-		"caseBranch", "listExpr", "oneDimList", "simpleList", "simpleNonEmptyList", 
-		"guardedList", "multiDimList", "listValue", "showExpr", "functionExpr", 
-		"guardExpr", "forall", "exists", "sum", "prod", "max", "min", "bool2int", 
-		"alldifferent", "array1d", "guardExprArg", "oneSection", "twoSections", 
+		"arithExpr", "notExpr", "minusExpr", "predOrUnionExpr", "onesection", 
+		"twosections", "rbracketExpr", "idexpr", "stringExpr", "infixOp", "infixSetOp", 
+		"arrayaccess", "caseExpr", "caseBranch", "listExpr", "oneDimList", "simpleList", 
+		"simpleNonEmptyList", "guardedList", "multiDimList", "listValue", "functionExpr", 
 		"inDecl", "whereCond", "letExpr", "letDecl", "ifExpr", "bodyIf", "elseS", 
-		"elseifS", "setVal", "complexSetExpr", "setExpr", "bracketExpr", "guardedSet", 
-		"commaList", "guard", "range", "fromR", "toR", "rint", "rfloat", "rbool", 
-		"integer", "real", "string"
+		"elseifS", "setVal", "setExpr", "bracketExpr", "guardedSet", "commaList", 
+		"guard", "range", "fromR", "toR", "rint", "rfloat", "rbool", "integer", 
+		"real", "string"
 	};
 
 	@Override
@@ -149,20 +139,20 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(239); 
+			setState(213); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(236); stat();
-				setState(237); match(T__42);
+				setState(210); stat();
+				setState(211); match(T__37);
 				}
 				}
-				setState(241); 
+				setState(215); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__91) | (1L << T__89) | (1L << T__83) | (1L << T__81) | (1L << T__79) | (1L << T__78) | (1L << T__76) | (1L << T__75) | (1L << T__72) | (1L << T__61) | (1L << T__57) | (1L << T__55) | (1L << T__54) | (1L << T__50) | (1L << T__47) | (1L << T__44) | (1L << T__41) | (1L << T__40) | (1L << T__37) | (1L << T__36) | (1L << T__34))) != 0) || ((((_la - 67)) & ~0x3f) == 0 && ((1L << (_la - 67)) & ((1L << (T__29 - 67)) | (1L << (T__27 - 67)) | (1L << (T__23 - 67)) | (1L << (T__21 - 67)) | (1L << (T__17 - 67)) | (1L << (T__15 - 67)) | (1L << (T__5 - 67)) | (1L << (T__0 - 67)) | (1L << (ID - 67)) | (1L << (NAT - 67)))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__81) | (1L << T__79) | (1L << T__73) | (1L << T__71) | (1L << T__69) | (1L << T__67) | (1L << T__66) | (1L << T__63) | (1L << T__49) | (1L << T__47) | (1L << T__43) | (1L << T__36) | (1L << T__33) | (1L << T__32) | (1L << T__30) | (1L << T__25))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (T__20 - 66)) | (1L << (T__18 - 66)) | (1L << (T__15 - 66)) | (1L << (T__0 - 66)) | (1L << (ID - 66)) | (1L << (NAT - 66)))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -225,66 +215,66 @@ public class MiniZincGrammarParser extends Parser {
 		StatContext _localctx = new StatContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_stat);
 		try {
-			setState(253);
+			setState(227);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(243); data();
+				setState(217); data();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(244); extended();
+				setState(218); extended();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(245); constraint();
+				setState(219); constraint();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(246); decl();
+				setState(220); decl();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(247); solve();
+				setState(221); solve();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(248); output();
+				setState(222); output();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(249); predicate();
+				setState(223); predicate();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(250); function();
+				setState(224); function();
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(251); include();
+				setState(225); include();
 				}
 				break;
 			case 10:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(252); init();
+				setState(226); init();
 				}
 				break;
 			}
@@ -325,18 +315,18 @@ public class MiniZincGrammarParser extends Parser {
 		DeclContext _localctx = new DeclContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_decl);
 		try {
-			setState(257);
+			setState(231);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(255); vardecl();
+				setState(229); vardecl();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(256); pardecl();
+				setState(230); pardecl();
 				}
 				break;
 			}
@@ -383,27 +373,27 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(261);
+			setState(235);
 			switch (_input.LA(1)) {
-			case T__72:
+			case T__63:
 				{
-				setState(259); var();
+				setState(233); var();
 				}
 				break;
-			case T__50:
+			case T__43:
 				{
-				setState(260); vararray();
+				setState(234); vararray();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(265);
+			setState(239);
 			_la = _input.LA(1);
-			if (_la==T__85) {
+			if (_la==T__75) {
 				{
-				setState(263); match(T__85);
-				setState(264); expr(0);
+				setState(237); match(T__75);
+				setState(238); expr(0);
 				}
 			}
 
@@ -445,38 +435,29 @@ public class MiniZincGrammarParser extends Parser {
 		PardeclContext _localctx = new PardeclContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_pardecl);
 		try {
-			setState(269);
+			setState(243);
 			switch (_input.LA(1)) {
-			case T__91:
-			case T__89:
-			case T__83:
+			case T__81:
 			case T__79:
-			case T__78:
-			case T__61:
-			case T__57:
-			case T__55:
-			case T__47:
-			case T__44:
-			case T__41:
-			case T__37:
-			case T__27:
-			case T__23:
-			case T__21:
-			case T__17:
+			case T__73:
+			case T__69:
+			case T__49:
+			case T__33:
+			case T__20:
+			case T__18:
 			case T__15:
-			case T__5:
 			case T__0:
 			case ID:
 			case NAT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(267); parameter();
+				setState(241); parameter();
 				}
 				break;
-			case T__50:
+			case T__43:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(268); pararray();
+				setState(242); pararray();
 				}
 				break;
 			default:
@@ -523,26 +504,26 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(271); match(T__34);
-			setState(272); match(ID);
-			setState(273); match(T__85);
-			setState(274); match(T__88);
-			setState(275); constr();
-			setState(280);
+			setState(245); match(T__30);
+			setState(246); match(ID);
+			setState(247); match(T__75);
+			setState(248); match(T__78);
+			setState(249); constr();
+			setState(254);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(276); match(T__77);
-				setState(277); constr();
+				setState(250); match(T__68);
+				setState(251); constr();
 				}
 				}
-				setState(282);
+				setState(256);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(283); match(T__38);
+			setState(257); match(T__34);
 			}
 		}
 		catch (RecognitionException re) {
@@ -588,25 +569,25 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(285); match(T__76);
-			setState(286); match(ID);
-			setState(287); match(T__85);
-			setState(291);
+			setState(259); match(T__67);
+			setState(260); match(ID);
+			setState(261); match(T__75);
+			setState(265);
 			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				{
-				setState(288); preExt();
-				setState(289); match(T__63);
+				setState(262); preExt();
+				setState(263); match(T__54);
 				}
 				break;
 			}
-			setState(293); typename();
-			setState(296);
+			setState(267); typename();
+			setState(270);
 			_la = _input.LA(1);
-			if (_la==T__63) {
+			if (_la==T__54) {
 				{
-				setState(294); match(T__63);
-				setState(295); postExt();
+				setState(268); match(T__54);
+				setState(269); postExt();
 				}
 			}
 
@@ -649,23 +630,23 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(298); match(T__21);
-			setState(299); match(ID);
-			setState(304);
+			setState(272); match(T__18);
+			setState(273); match(ID);
+			setState(278);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(300); match(T__77);
-				setState(301); match(ID);
+				setState(274); match(T__68);
+				setState(275); match(ID);
 				}
 				}
-				setState(306);
+				setState(280);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(307); match(T__62);
+			setState(281); match(T__53);
 			}
 		}
 		catch (RecognitionException re) {
@@ -703,7 +684,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(309); listExtended();
+			setState(283); listExtended();
 			}
 		}
 		catch (RecognitionException re) {
@@ -741,7 +722,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(311); listExtended();
+			setState(285); listExtended();
 			}
 		}
 		catch (RecognitionException re) {
@@ -779,8 +760,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(313); match(T__29);
-			setState(314); expr(0);
+			setState(287); match(T__25);
+			setState(288); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -819,10 +800,10 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(316); match(T__72);
-			setState(317); typename();
-			setState(318); match(T__22);
-			setState(319); match(ID);
+			setState(290); match(T__63);
+			setState(291); typename();
+			setState(292); match(T__19);
+			setState(293); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -858,22 +839,22 @@ public class MiniZincGrammarParser extends Parser {
 		OutputContext _localctx = new OutputContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_output);
 		try {
-			setState(328);
+			setState(302);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(321); match(T__75);
-				setState(322); match(T__79);
-				setState(323); listExpr(0);
-				setState(324); match(T__4);
+				setState(295); match(T__66);
+				setState(296); match(T__69);
+				setState(297); listExpr(0);
+				setState(298); match(T__4);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(326); match(T__75);
-				setState(327); listExpr(0);
+				setState(300); match(T__66);
+				setState(301); listExpr(0);
 				}
 				break;
 			}
@@ -920,26 +901,26 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(330); match(T__36);
-			setState(332);
+			setState(304); match(T__32);
+			setState(306);
 			_la = _input.LA(1);
-			if (_la==T__86) {
+			if (_la==T__76) {
 				{
-				setState(331); annotation();
+				setState(305); annotation();
 				}
 			}
 
-			setState(336);
+			setState(310);
 			switch (_input.LA(1)) {
-			case T__11:
+			case T__10:
 				{
-				setState(334); satisfy();
+				setState(308); satisfy();
 				}
 				break;
-			case T__94:
-			case T__92:
+			case T__84:
+			case T__82:
 				{
-				setState(335); optimize();
+				setState(309); optimize();
 				}
 				break;
 			default:
@@ -987,23 +968,23 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(339);
+			setState(313);
 			_la = _input.LA(1);
-			if (_la==T__23) {
+			if (_la==T__20) {
 				{
-				setState(338); match(T__23);
+				setState(312); match(T__20);
 				}
 			}
 
-			setState(341); typename();
-			setState(342); match(T__22);
-			setState(343); match(ID);
-			setState(346);
+			setState(315); typename();
+			setState(316); match(T__19);
+			setState(317); match(ID);
+			setState(320);
 			_la = _input.LA(1);
-			if (_la==T__85) {
+			if (_la==T__75) {
 				{
-				setState(344); match(T__85);
-				setState(345); expr(0);
+				setState(318); match(T__75);
+				setState(319); expr(0);
 				}
 			}
 
@@ -1044,8 +1025,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(348); match(T__81);
-			setState(349); stringExpr();
+			setState(322); match(T__71);
+			setState(323); stringExpr();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1084,9 +1065,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(351); match(ID);
-			setState(352); match(T__85);
-			setState(353); expr(0);
+			setState(325); match(ID);
+			setState(326); match(T__75);
+			setState(327); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1132,34 +1113,34 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(355); match(T__40);
-			setState(356); match(ID);
-			setState(357); match(T__79);
-			setState(366);
+			setState(329); match(T__36);
+			setState(330); match(ID);
+			setState(331); match(T__69);
+			setState(340);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__91) | (1L << T__89) | (1L << T__83) | (1L << T__79) | (1L << T__78) | (1L << T__72) | (1L << T__61) | (1L << T__57) | (1L << T__55) | (1L << T__50) | (1L << T__47) | (1L << T__44) | (1L << T__41) | (1L << T__37))) != 0) || ((((_la - 69)) & ~0x3f) == 0 && ((1L << (_la - 69)) & ((1L << (T__27 - 69)) | (1L << (T__23 - 69)) | (1L << (T__21 - 69)) | (1L << (T__17 - 69)) | (1L << (T__15 - 69)) | (1L << (T__5 - 69)) | (1L << (T__0 - 69)) | (1L << (ID - 69)) | (1L << (NAT - 69)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__81) | (1L << T__79) | (1L << T__73) | (1L << T__69) | (1L << T__63) | (1L << T__49) | (1L << T__43) | (1L << T__33))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (T__20 - 66)) | (1L << (T__18 - 66)) | (1L << (T__15 - 66)) | (1L << (T__0 - 66)) | (1L << (ID - 66)) | (1L << (NAT - 66)))) != 0)) {
 				{
-				setState(358); decl();
-				setState(363);
+				setState(332); decl();
+				setState(337);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__77) {
+				while (_la==T__68) {
 					{
 					{
-					setState(359); match(T__77);
-					setState(360); decl();
+					setState(333); match(T__68);
+					setState(334); decl();
 					}
 					}
-					setState(365);
+					setState(339);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(368); match(T__4);
-			setState(369); match(T__85);
-			setState(370); expr(0);
+			setState(342); match(T__4);
+			setState(343); match(T__75);
+			setState(344); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1207,42 +1188,42 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(372); match(T__54);
-			setState(374);
+			setState(346); match(T__47);
+			setState(348);
 			_la = _input.LA(1);
-			if (_la==T__72) {
+			if (_la==T__63) {
 				{
-				setState(373); match(T__72);
+				setState(347); match(T__63);
 				}
 			}
 
-			setState(376); qualName();
-			setState(377); match(T__79);
-			setState(386);
+			setState(350); qualName();
+			setState(351); match(T__69);
+			setState(360);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__91) | (1L << T__89) | (1L << T__83) | (1L << T__79) | (1L << T__78) | (1L << T__72) | (1L << T__61) | (1L << T__57) | (1L << T__55) | (1L << T__50) | (1L << T__47) | (1L << T__44) | (1L << T__41) | (1L << T__37))) != 0) || ((((_la - 69)) & ~0x3f) == 0 && ((1L << (_la - 69)) & ((1L << (T__27 - 69)) | (1L << (T__23 - 69)) | (1L << (T__21 - 69)) | (1L << (T__17 - 69)) | (1L << (T__15 - 69)) | (1L << (T__5 - 69)) | (1L << (T__0 - 69)) | (1L << (ID - 69)) | (1L << (NAT - 69)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__81) | (1L << T__79) | (1L << T__73) | (1L << T__69) | (1L << T__63) | (1L << T__49) | (1L << T__43) | (1L << T__33))) != 0) || ((((_la - 66)) & ~0x3f) == 0 && ((1L << (_la - 66)) & ((1L << (T__20 - 66)) | (1L << (T__18 - 66)) | (1L << (T__15 - 66)) | (1L << (T__0 - 66)) | (1L << (ID - 66)) | (1L << (NAT - 66)))) != 0)) {
 				{
-				setState(378); decl();
-				setState(383);
+				setState(352); decl();
+				setState(357);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__77) {
+				while (_la==T__68) {
 					{
 					{
-					setState(379); match(T__77);
-					setState(380); decl();
+					setState(353); match(T__68);
+					setState(354); decl();
 					}
 					}
-					setState(385);
+					setState(359);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(388); match(T__4);
-			setState(389); match(T__85);
-			setState(390); expr(0);
+			setState(362); match(T__4);
+			setState(363); match(T__75);
+			setState(364); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1279,20 +1260,20 @@ public class MiniZincGrammarParser extends Parser {
 		QualNameContext _localctx = new QualNameContext(_ctx, getState());
 		enterRule(_localctx, 38, RULE_qualName);
 		try {
-			setState(396);
+			setState(370);
 			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(392); match(ID);
+				setState(366); match(ID);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(393); match(ID);
-				setState(394); match(T__22);
-				setState(395); op();
+				setState(367); match(ID);
+				setState(368); match(T__19);
+				setState(369); op();
 				}
 				break;
 			}
@@ -1329,7 +1310,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(398); match(T__11);
+			setState(372); match(T__10);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1368,18 +1349,18 @@ public class MiniZincGrammarParser extends Parser {
 		OptimizeContext _localctx = new OptimizeContext(_ctx, getState());
 		enterRule(_localctx, 42, RULE_optimize);
 		try {
-			setState(402);
+			setState(376);
 			switch (_input.LA(1)) {
-			case T__94:
+			case T__84:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(400); maximize();
+				setState(374); maximize();
 				}
 				break;
-			case T__92:
+			case T__82:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(401); minimize();
+				setState(375); minimize();
 				}
 				break;
 			default:
@@ -1421,8 +1402,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(404); match(T__94);
-			setState(405); expr(0);
+			setState(378); match(T__84);
+			setState(379); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1460,8 +1441,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(407); match(T__92);
-			setState(408); expr(0);
+			setState(381); match(T__82);
+			setState(382); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1499,8 +1480,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(410); match(T__86);
-			setState(411); modeAnnotation();
+			setState(384); match(T__76);
+			setState(385); modeAnnotation();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1545,30 +1526,30 @@ public class MiniZincGrammarParser extends Parser {
 		ModeAnnotationContext _localctx = new ModeAnnotationContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_modeAnnotation);
 		try {
-			setState(417);
+			setState(391);
 			switch (_input.LA(1)) {
-			case T__93:
+			case T__83:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(413); intS();
+				setState(387); intS();
 				}
 				break;
-			case T__82:
+			case T__72:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(414); boolS();
+				setState(388); boolS();
 				}
 				break;
-			case T__39:
+			case T__35:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(415); setS();
+				setState(389); setS();
 				}
 				break;
-			case T__53:
+			case T__46:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(416); seqS();
+				setState(390); seqS();
 				}
 				break;
 			default:
@@ -1610,8 +1591,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(419); match(T__93);
-			setState(420); restS();
+			setState(393); match(T__83);
+			setState(394); restS();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1649,8 +1630,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(422); match(T__82);
-			setState(423); restS();
+			setState(396); match(T__72);
+			setState(397); restS();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1688,8 +1669,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(425); match(T__39);
-			setState(426); restS();
+			setState(399); match(T__35);
+			setState(400); restS();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1731,37 +1712,37 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(428); match(T__53);
-			setState(430);
+			setState(402); match(T__46);
+			setState(404);
 			_la = _input.LA(1);
-			if (_la==T__79) {
+			if (_la==T__69) {
 				{
-				setState(429); match(T__79);
+				setState(403); match(T__69);
 				}
 			}
 
-			setState(432); match(T__21);
-			setState(433); modeAnnotation();
-			setState(438);
+			setState(406); match(T__18);
+			setState(407); modeAnnotation();
+			setState(412);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(434); match(T__77);
-				setState(435); modeAnnotation();
+				setState(408); match(T__68);
+				setState(409); modeAnnotation();
 				}
 				}
-				setState(440);
+				setState(414);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(441); match(T__62);
-			setState(443);
+			setState(415); match(T__53);
+			setState(417);
 			_la = _input.LA(1);
 			if (_la==T__4) {
 				{
-				setState(442); match(T__4);
+				setState(416); match(T__4);
 				}
 			}
 
@@ -1808,15 +1789,15 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(445); match(T__79);
-			setState(446); expr(0);
-			setState(447); match(T__77);
-			setState(448); varchoice();
-			setState(449); match(T__77);
-			setState(450); constrainchoice();
-			setState(451); match(T__77);
-			setState(452); match(T__68);
-			setState(453); match(T__4);
+			setState(419); match(T__69);
+			setState(420); expr(0);
+			setState(421); match(T__68);
+			setState(422); varchoice();
+			setState(423); match(T__68);
+			setState(424); constrainchoice();
+			setState(425); match(T__68);
+			setState(426); match(T__59);
+			setState(427); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1852,9 +1833,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(455);
+			setState(429);
 			_la = _input.LA(1);
-			if ( !(_la==T__71 || _la==T__69 || _la==T__1) ) {
+			if ( !(((((_la - 24)) & ~0x3f) == 0 && ((1L << (_la - 24)) & ((1L << (T__62 - 24)) | (1L << (T__60 - 24)) | (1L << (T__1 - 24)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -1893,9 +1874,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(457);
+			setState(431);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__74) | (1L << T__70) | (1L << T__60) | (1L << T__43))) != 0) || _la==T__10) ) {
+			if ( !(((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (T__65 - 21)) | (1L << (T__61 - 21)) | (1L << (T__52 - 21)) | (1L << (T__38 - 21)) | (1L << (T__9 - 21)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -1937,18 +1918,18 @@ public class MiniZincGrammarParser extends Parser {
 		ConstrContext _localctx = new ConstrContext(_ctx, getState());
 		enterRule(_localctx, 66, RULE_constr);
 		try {
-			setState(461);
+			setState(435);
 			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(459); scons();
+				setState(433); scons();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(460); tcons();
+				setState(434); tcons();
 				}
 				break;
 			}
@@ -1986,7 +1967,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(463); match(ID);
+			setState(437); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2029,24 +2010,24 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(465); match(ID);
-			setState(466); match(T__79);
-			setState(467); arg();
-			setState(472);
+			setState(439); match(ID);
+			setState(440); match(T__69);
+			setState(441); arg();
+			setState(446);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(468); match(T__77);
-				setState(469); arg();
+				setState(442); match(T__68);
+				setState(443); arg();
 				}
 				}
-				setState(474);
+				setState(448);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(475); match(T__4);
+			setState(449); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2094,36 +2075,36 @@ public class MiniZincGrammarParser extends Parser {
 		ArgContext _localctx = new ArgContext(_ctx, getState());
 		enterRule(_localctx, 72, RULE_arg);
 		try {
-			setState(482);
+			setState(456);
 			switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(477); argint();
+				setState(451); argint();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(478); argfloat();
+				setState(452); argfloat();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(479); argbool();
+				setState(453); argbool();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(480); argunion();
+				setState(454); argunion();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(481); argrange();
+				setState(455); argrange();
 				}
 				break;
 			}
@@ -2163,7 +2144,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(484); rint();
+			setState(458); rint();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2201,7 +2182,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(486); rfloat();
+			setState(460); rfloat();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2239,7 +2220,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(488); rbool();
+			setState(462); rbool();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2275,7 +2256,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(490); match(ID);
+			setState(464); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2313,7 +2294,7 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(492); range();
+			setState(466); range();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2365,48 +2346,48 @@ public class MiniZincGrammarParser extends Parser {
 		TypenameContext _localctx = new TypenameContext(_ctx, getState());
 		enterRule(_localctx, 84, RULE_typename);
 		try {
-			setState(501);
+			setState(475);
 			switch ( getInterpreter().adaptivePredict(_input,29,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(494); rint();
+				setState(468); rint();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(495); rbool();
+				setState(469); rbool();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(496); rfloat();
+				setState(470); rfloat();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(497); match(ID);
+				setState(471); match(ID);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(498); typedata();
+				setState(472); typedata();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(499); range();
+				setState(473); range();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(500); typeset();
+				setState(474); typeset();
 				}
 				break;
 			}
@@ -2446,9 +2427,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(503); match(T__91);
-			setState(504); match(T__46);
-			setState(505); typename();
+			setState(477); match(T__81);
+			setState(478); match(T__40);
+			setState(479); typename();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2489,10 +2470,10 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(507); match(T__50);
-			setState(508); dimensions();
-			setState(509); match(T__46);
-			setState(510); var();
+			setState(481); match(T__43);
+			setState(482); dimensions();
+			setState(483); match(T__40);
+			setState(484); var();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2533,10 +2514,10 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(512); match(T__50);
-			setState(513); dimensions();
-			setState(514); match(T__46);
-			setState(515); parameter();
+			setState(486); match(T__43);
+			setState(487); dimensions();
+			setState(488); match(T__40);
+			setState(489); parameter();
 			}
 		}
 		catch (RecognitionException re) {
@@ -2578,54 +2559,45 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(517); match(T__21);
-			setState(527);
+			setState(491); match(T__18);
+			setState(501);
 			switch (_input.LA(1)) {
-			case T__79:
-			case T__78:
-			case T__61:
-			case T__57:
-			case T__55:
-			case T__47:
-			case T__44:
-			case T__41:
-			case T__37:
-			case T__27:
-			case T__21:
-			case T__15:
-			case T__5:
+			case T__69:
+			case T__49:
+			case T__33:
+			case T__18:
 			case T__0:
 			case ID:
 			case NAT:
 				{
 				{
-				setState(518); range();
-				setState(523);
+				setState(492); range();
+				setState(497);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__77) {
+				while (_la==T__68) {
 					{
 					{
-					setState(519); match(T__77);
-					setState(520); range();
+					setState(493); match(T__68);
+					setState(494); range();
 					}
 					}
-					setState(525);
+					setState(499);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 				}
 				break;
-			case T__83:
+			case T__73:
 				{
-				setState(526); match(T__83);
+				setState(500); match(T__73);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			setState(529); match(T__62);
+			setState(503); match(T__53);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2641,8 +2613,8 @@ public class MiniZincGrammarParser extends Parser {
 
 	public static class TypedataContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(MiniZincGrammarParser.ID, 0); }
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
+		public ArithExprContext arithExpr() {
+			return getRuleContext(ArithExprContext.class,0);
 		}
 		public TypedataContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2664,10 +2636,10 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(531); match(ID);
-			setState(532); match(T__79);
-			setState(533); expr(0);
-			setState(534); match(T__4);
+			setState(505); match(ID);
+			setState(506); match(T__69);
+			setState(507); arithExpr(0);
+			setState(508); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2682,9 +2654,6 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
-		public GuardExprContext guardExpr() {
-			return getRuleContext(GuardExprContext.class,0);
-		}
 		public TerminalNode BOOL() { return getToken(MiniZincGrammarParser.BOOL, 0); }
 		public SetExprContext setExpr() {
 			return getRuleContext(SetExprContext.class,0);
@@ -2761,7 +2730,7 @@ public class MiniZincGrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(553);
+			setState(526);
 			switch ( getInterpreter().adaptivePredict(_input,32,_ctx) ) {
 			case 1:
 				{
@@ -2769,87 +2738,82 @@ public class MiniZincGrammarParser extends Parser {
 				break;
 			case 2:
 				{
-				setState(537); rbracketExpr();
+				setState(511); rbracketExpr();
 				}
 				break;
 			case 3:
 				{
-				setState(538); boolComplexExpr();
+				setState(512); boolComplexExpr();
 				}
 				break;
 			case 4:
 				{
-				setState(539); arithComplexExpr();
+				setState(513); arithComplexExpr();
 				}
 				break;
 			case 5:
 				{
-				setState(540); setExpr(0);
+				setState(514); setExpr(0);
 				}
 				break;
 			case 6:
 				{
-				setState(541); listExpr(0);
+				setState(515); listExpr(0);
 				}
 				break;
 			case 7:
 				{
-				setState(542); ifExpr();
+				setState(516); ifExpr();
 				}
 				break;
 			case 8:
 				{
-				setState(543); letExpr();
+				setState(517); letExpr();
 				}
 				break;
 			case 9:
 				{
-				setState(544); guardExpr();
+				setState(518); predOrUnionExpr();
 				}
 				break;
 			case 10:
 				{
-				setState(545); predOrUnionExpr();
+				setState(519); stringExpr();
 				}
 				break;
 			case 11:
 				{
-				setState(546); stringExpr();
+				setState(520); caseExpr();
 				}
 				break;
 			case 12:
 				{
-				setState(547); caseExpr();
+				setState(521); match(BOOL);
 				}
 				break;
 			case 13:
 				{
-				setState(548); match(BOOL);
+				setState(522); real();
 				}
 				break;
 			case 14:
 				{
-				setState(549); real();
+				setState(523); integer();
 				}
 				break;
 			case 15:
 				{
-				setState(550); integer();
+				setState(524); match(ID);
 				}
 				break;
 			case 16:
 				{
-				setState(551); match(ID);
-				}
-				break;
-			case 17:
-				{
-				setState(552); match(T__14);
+				setState(525); match(T__13);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(561);
+			setState(534);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -2860,14 +2824,14 @@ public class MiniZincGrammarParser extends Parser {
 					{
 					_localctx = new ExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_expr);
-					setState(555);
-					if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-					setState(556); infixOp();
-					setState(557); expr(13);
+					setState(528);
+					if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+					setState(529); infixOp();
+					setState(530); expr(12);
 					}
 					} 
 				}
-				setState(563);
+				setState(536);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,33,_ctx);
 			}
@@ -2890,9 +2854,6 @@ public class MiniZincGrammarParser extends Parser {
 			return getRuleContext(BoolExprContext.class,0);
 		}
 		public TerminalNode BOOL() { return getToken(MiniZincGrammarParser.BOOL, 0); }
-		public GuardExprContext guardExpr() {
-			return getRuleContext(GuardExprContext.class,0);
-		}
 		public IfExprContext ifExpr() {
 			return getRuleContext(IfExprContext.class,0);
 		}
@@ -2923,7 +2884,7 @@ public class MiniZincGrammarParser extends Parser {
 		BoolValContext _localctx = new BoolValContext(_ctx, getState());
 		enterRule(_localctx, 98, RULE_boolVal);
 		try {
-			setState(576);
+			setState(548);
 			switch ( getInterpreter().adaptivePredict(_input,34,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
@@ -2933,51 +2894,45 @@ public class MiniZincGrammarParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(565); match(T__79);
-				setState(566); boolExpr(0);
-				setState(567); match(T__4);
+				setState(538); match(T__69);
+				setState(539); boolExpr(0);
+				setState(540); match(T__4);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(569); match(ID);
+				setState(542); match(ID);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(570); match(BOOL);
+				setState(543); match(BOOL);
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(571); arrayaccess();
+				setState(544); arrayaccess();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(572); ifExpr();
+				setState(545); ifExpr();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(573); letExpr();
+				setState(546); letExpr();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(574); predOrUnionExpr();
-				}
-				break;
-			case 9:
-				enterOuterAlt(_localctx, 9);
-				{
-				setState(575); guardExpr();
+				setState(547); predOrUnionExpr();
 				}
 				break;
 			}
@@ -3018,18 +2973,18 @@ public class MiniZincGrammarParser extends Parser {
 		OpContext _localctx = new OpContext(_ctx, getState());
 		enterRule(_localctx, 100, RULE_op);
 		try {
-			setState(580);
+			setState(552);
 			switch ( getInterpreter().adaptivePredict(_input,35,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(578); boolOp();
+				setState(550); boolOp();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(579); arithOp();
+				setState(551); arithOp();
 				}
 				break;
 			}
@@ -3067,9 +3022,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(582);
+			setState(554);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__90) | (1L << T__85) | (1L << T__73) | (1L << T__49) | (1L << T__35))) != 0) || ((((_la - 72)) & ~0x3f) == 0 && ((1L << (_la - 72)) & ((1L << (T__24 - 72)) | (1L << (T__19 - 72)) | (1L << (T__13 - 72)) | (1L << (T__3 - 72)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__80) | (1L << T__75) | (1L << T__64) | (1L << T__42) | (1L << T__31))) != 0) || ((((_la - 65)) & ~0x3f) == 0 && ((1L << (_la - 65)) & ((1L << (T__21 - 65)) | (1L << (T__16 - 65)) | (1L << (T__12 - 65)) | (1L << (T__3 - 65)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -3108,9 +3063,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(584);
+			setState(556);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__90) | (1L << T__85) | (1L << T__65) | (1L << T__64))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (T__32 - 64)) | (1L << (T__19 - 64)) | (1L << (T__16 - 64)) | (1L << (T__7 - 64)))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__80) | (1L << T__75) | (1L << T__56) | (1L << T__55) | (1L << T__28))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (T__16 - 70)) | (1L << (T__14 - 70)) | (1L << (T__6 - 70)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -3149,9 +3104,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(586);
+			setState(558);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__66) | (1L << T__51) | (1L << T__48))) != 0) || ((((_la - 68)) & ~0x3f) == 0 && ((1L << (_la - 68)) & ((1L << (T__28 - 68)) | (1L << (T__9 - 68)) | (1L << (T__0 - 68)))) != 0)) ) {
+			if ( !(((((_la - 29)) & ~0x3f) == 0 && ((1L << (_la - 29)) & ((1L << (T__57 - 29)) | (1L << (T__44 - 29)) | (1L << (T__41 - 29)) | (1L << (T__24 - 29)) | (1L << (T__8 - 29)) | (1L << (T__0 - 29)))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -3193,9 +3148,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(588); match(ID);
-			setState(589); match(T__22);
-			setState(590); boolOp();
+			setState(560); match(ID);
+			setState(561); match(T__19);
+			setState(562); boolOp();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3234,9 +3189,9 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(592); match(ID);
-			setState(593); match(T__22);
-			setState(594); arithOp();
+			setState(564); match(ID);
+			setState(565); match(T__19);
+			setState(566); arithOp();
 			}
 		}
 		catch (RecognitionException re) {
@@ -3296,71 +3251,71 @@ public class MiniZincGrammarParser extends Parser {
 		BoolComplexExprContext _localctx = new BoolComplexExprContext(_ctx, getState());
 		enterRule(_localctx, 112, RULE_boolComplexExpr);
 		try {
-			setState(611);
+			setState(583);
 			switch ( getInterpreter().adaptivePredict(_input,38,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(596); boolExpr(0);
-				setState(599);
+				setState(568); boolExpr(0);
+				setState(571);
 				switch (_input.LA(1)) {
-				case T__90:
-				case T__85:
-				case T__73:
-				case T__49:
-				case T__35:
-				case T__24:
-				case T__19:
-				case T__13:
+				case T__80:
+				case T__75:
+				case T__64:
+				case T__42:
+				case T__31:
+				case T__21:
+				case T__16:
+				case T__12:
 				case T__3:
 					{
-					setState(597); boolOp();
+					setState(569); boolOp();
 					}
 					break;
 				case ID:
 					{
-					setState(598); qualBoolOp();
+					setState(570); qualBoolOp();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(601); boolExpr(0);
+				setState(573); boolExpr(0);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(603); arithExpr(0);
-				setState(606);
+				setState(575); arithExpr(0);
+				setState(578);
 				switch (_input.LA(1)) {
-				case T__90:
-				case T__85:
-				case T__65:
-				case T__64:
-				case T__32:
-				case T__19:
+				case T__80:
+				case T__75:
+				case T__56:
+				case T__55:
+				case T__28:
 				case T__16:
-				case T__7:
+				case T__14:
+				case T__6:
 					{
-					setState(604); arithOp();
+					setState(576); arithOp();
 					}
 					break;
 				case ID:
 					{
-					setState(605); qualArithOp();
+					setState(577); qualArithOp();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(608); arithExpr(0);
+				setState(580); arithExpr(0);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(610); notExpr();
+				setState(582); notExpr();
 				}
 				break;
 			}
@@ -3383,8 +3338,8 @@ public class MiniZincGrammarParser extends Parser {
 		public List<BoolExprContext> boolExpr() {
 			return getRuleContexts(BoolExprContext.class);
 		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
+		public ArithExprContext arithExpr(int i) {
+			return getRuleContext(ArithExprContext.class,i);
 		}
 		public QualBoolOpContext qualBoolOp() {
 			return getRuleContext(QualBoolOpContext.class,0);
@@ -3392,8 +3347,8 @@ public class MiniZincGrammarParser extends Parser {
 		public BoolExprContext boolExpr(int i) {
 			return getRuleContext(BoolExprContext.class,i);
 		}
-		public ArithExprContext arithExpr() {
-			return getRuleContext(ArithExprContext.class,0);
+		public List<ArithExprContext> arithExpr() {
+			return getRuleContexts(ArithExprContext.class);
 		}
 		public BoolOpContext boolOp() {
 			return getRuleContext(BoolOpContext.class,0);
@@ -3436,49 +3391,49 @@ public class MiniZincGrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(623);
+			setState(595);
 			switch ( getInterpreter().adaptivePredict(_input,40,_ctx) ) {
 			case 1:
 				{
-				setState(614); arithExpr(0);
-				setState(617);
+				setState(586); arithExpr(0);
+				setState(589);
 				switch (_input.LA(1)) {
-				case T__90:
-				case T__85:
-				case T__65:
-				case T__64:
-				case T__32:
-				case T__19:
+				case T__80:
+				case T__75:
+				case T__56:
+				case T__55:
+				case T__28:
 				case T__16:
-				case T__7:
+				case T__14:
+				case T__6:
 					{
-					setState(615); arithOp();
+					setState(587); arithOp();
 					}
 					break;
 				case ID:
 					{
-					setState(616); qualArithOp();
+					setState(588); qualArithOp();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(619); expr(0);
+				setState(591); arithExpr(0);
 				}
 				break;
 			case 2:
 				{
-				setState(621); notExpr();
+				setState(593); notExpr();
 				}
 				break;
 			case 3:
 				{
-				setState(622); boolVal();
+				setState(594); boolVal();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(634);
+			setState(606);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,42,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -3489,36 +3444,36 @@ public class MiniZincGrammarParser extends Parser {
 					{
 					_localctx = new BoolExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_boolExpr);
-					setState(625);
+					setState(597);
 					if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-					setState(628);
+					setState(600);
 					switch (_input.LA(1)) {
-					case T__90:
-					case T__85:
-					case T__73:
-					case T__49:
-					case T__35:
-					case T__24:
-					case T__19:
-					case T__13:
+					case T__80:
+					case T__75:
+					case T__64:
+					case T__42:
+					case T__31:
+					case T__21:
+					case T__16:
+					case T__12:
 					case T__3:
 						{
-						setState(626); boolOp();
+						setState(598); boolOp();
 						}
 						break;
 					case ID:
 						{
-						setState(627); qualBoolOp();
+						setState(599); qualBoolOp();
 						}
 						break;
 					default:
 						throw new NoViableAltException(this);
 					}
-					setState(630); boolExpr(5);
+					setState(602); boolExpr(5);
 					}
 					} 
 				}
-				setState(636);
+				setState(608);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,42,_ctx);
 			}
@@ -3579,62 +3534,62 @@ public class MiniZincGrammarParser extends Parser {
 		OperandContext _localctx = new OperandContext(_ctx, getState());
 		enterRule(_localctx, 116, RULE_operand);
 		try {
-			setState(649);
+			setState(621);
 			switch ( getInterpreter().adaptivePredict(_input,43,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(637); match(ID);
+				setState(609); match(ID);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(638); integer();
+				setState(610); integer();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(639); real();
+				setState(611); real();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(640); arrayaccess();
+				setState(612); arrayaccess();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(641); ifExpr();
+				setState(613); ifExpr();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(642); letExpr();
+				setState(614); letExpr();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(643); match(T__79);
-				setState(644); arithExpr(0);
-				setState(645); match(T__4);
+				setState(615); match(T__69);
+				setState(616); arithExpr(0);
+				setState(617); match(T__4);
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(647); predOrUnionExpr();
+				setState(619); predOrUnionExpr();
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(648); functionExpr();
+				setState(620); functionExpr();
 				}
 				break;
 			}
@@ -3681,20 +3636,20 @@ public class MiniZincGrammarParser extends Parser {
 		ArithComplexExprContext _localctx = new ArithComplexExprContext(_ctx, getState());
 		enterRule(_localctx, 118, RULE_arithComplexExpr);
 		try {
-			setState(656);
+			setState(628);
 			switch ( getInterpreter().adaptivePredict(_input,44,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(651); minusExpr();
+				setState(623); minusExpr();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(652); arithExpr(0);
-				setState(653); arithOp2();
-				setState(654); arithExpr(0);
+				setState(624); arithExpr(0);
+				setState(625); arithOp2();
+				setState(626); arithExpr(0);
 				}
 				break;
 			}
@@ -3755,21 +3710,21 @@ public class MiniZincGrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(661);
+			setState(633);
 			switch ( getInterpreter().adaptivePredict(_input,45,_ctx) ) {
 			case 1:
 				{
-				setState(659); minusExpr();
+				setState(631); minusExpr();
 				}
 				break;
 			case 2:
 				{
-				setState(660); operand();
+				setState(632); operand();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(669);
+			setState(641);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,46,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -3780,14 +3735,14 @@ public class MiniZincGrammarParser extends Parser {
 					{
 					_localctx = new ArithExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_arithExpr);
-					setState(663);
+					setState(635);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(664); arithOp2();
-					setState(665); arithExpr(3);
+					setState(636); arithOp2();
+					setState(637); arithExpr(3);
 					}
 					} 
 				}
-				setState(671);
+				setState(643);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,46,_ctx);
 			}
@@ -3828,8 +3783,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(672); match(T__2);
-			setState(673); expr(0);
+			setState(644); match(T__2);
+			setState(645); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3867,8 +3822,8 @@ public class MiniZincGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(675); match(T__0);
-			setState(676); arithExpr(0);
+			setState(647); match(T__0);
+			setState(648); arithExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3883,12 +3838,12 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class PredOrUnionExprContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(MiniZincGrammarParser.ID, 0); }
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
+		public OnesectionContext onesection() {
+			return getRuleContext(OnesectionContext.class,0);
 		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
+		public TerminalNode ID() { return getToken(MiniZincGrammarParser.ID, 0); }
+		public TwosectionsContext twosections() {
+			return getRuleContext(TwosectionsContext.class,0);
 		}
 		public PredOrUnionExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -3907,35 +3862,134 @@ public class MiniZincGrammarParser extends Parser {
 	public final PredOrUnionExprContext predOrUnionExpr() throws RecognitionException {
 		PredOrUnionExprContext _localctx = new PredOrUnionExprContext(_ctx, getState());
 		enterRule(_localctx, 126, RULE_predOrUnionExpr);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(650); match(ID);
+			setState(653);
+			switch ( getInterpreter().adaptivePredict(_input,47,_ctx) ) {
+			case 1:
+				{
+				setState(651); twosections();
+				}
+				break;
+			case 2:
+				{
+				setState(652); onesection();
+				}
+				break;
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class OnesectionContext extends ParserRuleContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public OnesectionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_onesection; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterOnesection(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitOnesection(this);
+		}
+	}
+
+	public final OnesectionContext onesection() throws RecognitionException {
+		OnesectionContext _localctx = new OnesectionContext(_ctx, getState());
+		enterRule(_localctx, 128, RULE_onesection);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(678); match(ID);
-			setState(690);
-			switch ( getInterpreter().adaptivePredict(_input,48,_ctx) ) {
+			setState(666);
+			switch ( getInterpreter().adaptivePredict(_input,49,_ctx) ) {
 			case 1:
 				{
-				setState(679); match(T__79);
-				setState(680); expr(0);
-				setState(685);
+				setState(655); match(T__69);
+				setState(656); expr(0);
+				setState(661);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__77) {
+				while (_la==T__68) {
 					{
 					{
-					setState(681); match(T__77);
-					setState(682); expr(0);
+					setState(657); match(T__68);
+					setState(658); expr(0);
 					}
 					}
-					setState(687);
+					setState(663);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(688); match(T__4);
+				setState(664); match(T__4);
 				}
 				break;
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TwosectionsContext extends ParserRuleContext {
+		public GuardContext guard() {
+			return getRuleContext(GuardContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public TwosectionsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_twosections; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterTwosections(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitTwosections(this);
+		}
+	}
+
+	public final TwosectionsContext twosections() throws RecognitionException {
+		TwosectionsContext _localctx = new TwosectionsContext(_ctx, getState());
+		enterRule(_localctx, 130, RULE_twosections);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(668); match(T__69);
+			setState(669); guard();
+			setState(670); match(T__4);
+			setState(671); match(T__69);
+			setState(672); expr(0);
+			setState(673); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -3969,13 +4023,13 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RbracketExprContext rbracketExpr() throws RecognitionException {
 		RbracketExprContext _localctx = new RbracketExprContext(_ctx, getState());
-		enterRule(_localctx, 128, RULE_rbracketExpr);
+		enterRule(_localctx, 132, RULE_rbracketExpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(692); match(T__79);
-			setState(693); expr(0);
-			setState(694); match(T__4);
+			setState(675); match(T__69);
+			setState(676); expr(0);
+			setState(677); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4007,11 +4061,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final IdexprContext idexpr() throws RecognitionException {
 		IdexprContext _localctx = new IdexprContext(_ctx, getState());
-		enterRule(_localctx, 130, RULE_idexpr);
+		enterRule(_localctx, 134, RULE_idexpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(696); match(ID);
+			setState(679); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4045,13 +4099,13 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final StringExprContext stringExpr() throws RecognitionException {
 		StringExprContext _localctx = new StringExprContext(_ctx, getState());
-		enterRule(_localctx, 132, RULE_stringExpr);
+		enterRule(_localctx, 136, RULE_stringExpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(698); match(T__30);
-			setState(699); string();
-			setState(700); match(T__30);
+			setState(681); match(T__26);
+			setState(682); string();
+			setState(683); match(T__26);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4086,24 +4140,24 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final InfixOpContext infixOp() throws RecognitionException {
 		InfixOpContext _localctx = new InfixOpContext(_ctx, getState());
-		enterRule(_localctx, 134, RULE_infixOp);
+		enterRule(_localctx, 138, RULE_infixOp);
 		try {
-			setState(706);
+			setState(689);
 			switch (_input.LA(1)) {
-			case T__33:
+			case T__29:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(702); match(T__33);
-				setState(703); match(ID);
-				setState(704); match(T__33);
+				setState(685); match(T__29);
+				setState(686); match(ID);
+				setState(687); match(T__29);
 				}
 				break;
-			case T__80:
-			case T__7:
+			case T__70:
 			case T__6:
+			case T__5:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(705); infixSetOp();
+				setState(688); infixSetOp();
 				}
 				break;
 			default:
@@ -4138,14 +4192,14 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final InfixSetOpContext infixSetOp() throws RecognitionException {
 		InfixSetOpContext _localctx = new InfixSetOpContext(_ctx, getState());
-		enterRule(_localctx, 136, RULE_infixSetOp);
+		enterRule(_localctx, 140, RULE_infixSetOp);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(708);
+			setState(691);
 			_la = _input.LA(1);
-			if ( !(_la==T__80 || _la==T__7 || _la==T__6) ) {
+			if ( !(_la==T__70 || _la==T__6 || _la==T__5) ) {
 			_errHandler.recoverInline(this);
 			}
 			consume();
@@ -4186,22 +4240,22 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final ArrayaccessContext arrayaccess() throws RecognitionException {
 		ArrayaccessContext _localctx = new ArrayaccessContext(_ctx, getState());
-		enterRule(_localctx, 138, RULE_arrayaccess);
+		enterRule(_localctx, 142, RULE_arrayaccess);
 		try {
-			setState(715);
+			setState(698);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(710); match(ID);
-				setState(711); simpleNonEmptyList();
+				setState(693); match(ID);
+				setState(694); simpleNonEmptyList();
 				}
 				break;
-			case T__21:
+			case T__18:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(712); simpleNonEmptyList();
-				setState(713); simpleNonEmptyList();
+				setState(695); simpleNonEmptyList();
+				setState(696); simpleNonEmptyList();
 				}
 				break;
 			default:
@@ -4243,29 +4297,29 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final CaseExprContext caseExpr() throws RecognitionException {
 		CaseExprContext _localctx = new CaseExprContext(_ctx, getState());
-		enterRule(_localctx, 140, RULE_caseExpr);
+		enterRule(_localctx, 144, RULE_caseExpr);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(717); match(T__25);
-			setState(718); match(ID);
-			setState(719); match(T__46);
-			setState(723); 
+			setState(700); match(T__22);
+			setState(701); match(ID);
+			setState(702); match(T__40);
+			setState(706); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(720); caseBranch();
-				setState(721); match(T__42);
+				setState(703); caseBranch();
+				setState(704); match(T__37);
 				}
 				}
-				setState(725); 
+				setState(708); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==ID );
-			setState(727); match(T__67);
+			setState(710); match(T__58);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4302,13 +4356,13 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final CaseBranchContext caseBranch() throws RecognitionException {
 		CaseBranchContext _localctx = new CaseBranchContext(_ctx, getState());
-		enterRule(_localctx, 142, RULE_caseBranch);
+		enterRule(_localctx, 146, RULE_caseBranch);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(729); predOrUnionExpr();
-			setState(730); match(T__56);
-			setState(731); expr(0);
+			setState(712); predOrUnionExpr();
+			setState(713); match(T__48);
+			setState(714); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4326,17 +4380,17 @@ public class MiniZincGrammarParser extends Parser {
 		public MultiDimListContext multiDimList() {
 			return getRuleContext(MultiDimListContext.class,0);
 		}
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
 		public ListValueContext listValue() {
 			return getRuleContext(ListValueContext.class,0);
 		}
 		public OneDimListContext oneDimList() {
 			return getRuleContext(OneDimListContext.class,0);
 		}
-		public ListExprContext listExpr() {
-			return getRuleContext(ListExprContext.class,0);
+		public List<ListExprContext> listExpr() {
+			return getRuleContexts(ListExprContext.class);
+		}
+		public ListExprContext listExpr(int i) {
+			return getRuleContext(ListExprContext.class,i);
 		}
 		public ListExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4361,34 +4415,34 @@ public class MiniZincGrammarParser extends Parser {
 		int _parentState = getState();
 		ListExprContext _localctx = new ListExprContext(_ctx, _parentState);
 		ListExprContext _prevctx = _localctx;
-		int _startState = 144;
-		enterRecursionRule(_localctx, 144, RULE_listExpr, _p);
+		int _startState = 148;
+		enterRecursionRule(_localctx, 148, RULE_listExpr, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(737);
-			switch ( getInterpreter().adaptivePredict(_input,52,_ctx) ) {
+			setState(720);
+			switch ( getInterpreter().adaptivePredict(_input,53,_ctx) ) {
 			case 1:
 				{
-				setState(734); listValue();
+				setState(717); listValue();
 				}
 				break;
 			case 2:
 				{
-				setState(735); oneDimList();
+				setState(718); oneDimList();
 				}
 				break;
 			case 3:
 				{
-				setState(736); multiDimList();
+				setState(719); multiDimList();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(744);
+			setState(727);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,53,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,54,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -4397,16 +4451,16 @@ public class MiniZincGrammarParser extends Parser {
 					{
 					_localctx = new ListExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_listExpr);
-					setState(739);
+					setState(722);
 					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(740); match(T__63);
-					setState(741); expr(0);
+					setState(723); match(T__54);
+					setState(724); listExpr(4);
 					}
 					} 
 				}
-				setState(746);
+				setState(729);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,53,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,54,_ctx);
 			}
 			}
 		}
@@ -4444,20 +4498,20 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final OneDimListContext oneDimList() throws RecognitionException {
 		OneDimListContext _localctx = new OneDimListContext(_ctx, getState());
-		enterRule(_localctx, 146, RULE_oneDimList);
+		enterRule(_localctx, 150, RULE_oneDimList);
 		try {
-			setState(749);
-			switch ( getInterpreter().adaptivePredict(_input,54,_ctx) ) {
+			setState(732);
+			switch ( getInterpreter().adaptivePredict(_input,55,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(747); simpleList();
+				setState(730); simpleList();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(748); guardedList();
+				setState(731); guardedList();
 				}
 				break;
 			}
@@ -4493,21 +4547,21 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final SimpleListContext simpleList() throws RecognitionException {
 		SimpleListContext _localctx = new SimpleListContext(_ctx, getState());
-		enterRule(_localctx, 148, RULE_simpleList);
+		enterRule(_localctx, 152, RULE_simpleList);
 		try {
-			setState(754);
-			switch ( getInterpreter().adaptivePredict(_input,55,_ctx) ) {
+			setState(737);
+			switch ( getInterpreter().adaptivePredict(_input,56,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(751); match(T__21);
-				setState(752); match(T__62);
+				setState(734); match(T__18);
+				setState(735); match(T__53);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(753); simpleNonEmptyList();
+				setState(736); simpleNonEmptyList();
 				}
 				break;
 			}
@@ -4546,28 +4600,28 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final SimpleNonEmptyListContext simpleNonEmptyList() throws RecognitionException {
 		SimpleNonEmptyListContext _localctx = new SimpleNonEmptyListContext(_ctx, getState());
-		enterRule(_localctx, 150, RULE_simpleNonEmptyList);
+		enterRule(_localctx, 154, RULE_simpleNonEmptyList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(756); match(T__21);
-			setState(757); expr(0);
-			setState(762);
+			setState(739); match(T__18);
+			setState(740); expr(0);
+			setState(745);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(758); match(T__77);
-				setState(759); expr(0);
+				setState(741); match(T__68);
+				setState(742); expr(0);
 				}
 				}
-				setState(764);
+				setState(747);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(765); match(T__62);
+			setState(748); match(T__53);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4582,17 +4636,14 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class GuardedListContext extends ParserRuleContext {
+		public GuardContext guard() {
+			return getRuleContext(GuardContext.class,0);
+		}
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
-		}
-		public InDeclContext inDecl(int i) {
-			return getRuleContext(InDeclContext.class,i);
-		}
-		public List<InDeclContext> inDecl() {
-			return getRuleContexts(InDeclContext.class);
 		}
 		public GuardedListContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4610,51 +4661,32 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final GuardedListContext guardedList() throws RecognitionException {
 		GuardedListContext _localctx = new GuardedListContext(_ctx, getState());
-		enterRule(_localctx, 152, RULE_guardedList);
+		enterRule(_localctx, 156, RULE_guardedList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(767); match(T__21);
-			setState(776);
-			switch ( getInterpreter().adaptivePredict(_input,58,_ctx) ) {
-			case 1:
-				{
-				setState(768); expr(0);
-				setState(773);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				while (_la==T__77) {
-					{
-					{
-					setState(769); match(T__77);
-					setState(770); expr(0);
-					}
-					}
-					setState(775);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
-			}
-			setState(778); match(T__20);
-			setState(779); inDecl();
-			setState(784);
+			setState(750); match(T__18);
+			{
+			setState(751); expr(0);
+			setState(756);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(780); match(T__77);
-				setState(781); inDecl();
+				setState(752); match(T__68);
+				setState(753); expr(0);
 				}
 				}
-				setState(786);
+				setState(758);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(787); match(T__62);
+			}
+			setState(759); match(T__17);
+			setState(760); guard();
+			setState(761); match(T__53);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4691,76 +4723,71 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final MultiDimListContext multiDimList() throws RecognitionException {
 		MultiDimListContext _localctx = new MultiDimListContext(_ctx, getState());
-		enterRule(_localctx, 154, RULE_multiDimList);
+		enterRule(_localctx, 158, RULE_multiDimList);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(789); match(T__31);
-			setState(798);
-			switch ( getInterpreter().adaptivePredict(_input,61,_ctx) ) {
-			case 1:
-				{
-				setState(790); expr(0);
-				setState(795);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,60,_ctx);
-				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-					if ( _alt==1 ) {
-						{
-						{
-						setState(791); match(T__77);
-						setState(792); expr(0);
-						}
-						} 
+			setState(763); match(T__27);
+			{
+			setState(764); expr(0);
+			setState(769);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,59,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(765); match(T__68);
+					setState(766); expr(0);
 					}
-					setState(797);
-					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,60,_ctx);
+					} 
 				}
-				}
-				break;
+				setState(771);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,59,_ctx);
 			}
-			setState(814);
+			}
+			setState(786);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77 || _la==T__20) {
+			while (_la==T__68 || _la==T__17) {
 				{
 				{
-				setState(801);
+				setState(773);
 				_la = _input.LA(1);
-				if (_la==T__77) {
+				if (_la==T__68) {
 					{
-					setState(800); match(T__77);
+					setState(772); match(T__68);
 					}
 				}
 
-				setState(803); match(T__20);
-				setState(804); expr(0);
-				setState(809);
+				setState(775); match(T__17);
+				setState(776); expr(0);
+				setState(781);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,63,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,61,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(805); match(T__77);
-						setState(806); expr(0);
+						setState(777); match(T__68);
+						setState(778); expr(0);
 						}
 						} 
 					}
-					setState(811);
+					setState(783);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,63,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,61,_ctx);
 				}
 				}
 				}
-				setState(816);
+				setState(788);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(817); match(T__59);
+			setState(789); match(T__51);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4788,12 +4815,6 @@ public class MiniZincGrammarParser extends Parser {
 		public ArrayaccessContext arrayaccess() {
 			return getRuleContext(ArrayaccessContext.class,0);
 		}
-		public ShowExprContext showExpr() {
-			return getRuleContext(ShowExprContext.class,0);
-		}
-		public InDeclContext inDecl() {
-			return getRuleContext(InDeclContext.class,0);
-		}
 		public ListValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -4810,93 +4831,40 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final ListValueContext listValue() throws RecognitionException {
 		ListValueContext _localctx = new ListValueContext(_ctx, getState());
-		enterRule(_localctx, 156, RULE_listValue);
+		enterRule(_localctx, 160, RULE_listValue);
 		try {
-			setState(826);
-			switch ( getInterpreter().adaptivePredict(_input,65,_ctx) ) {
+			setState(796);
+			switch ( getInterpreter().adaptivePredict(_input,63,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(819); stringExpr();
+				setState(791); stringExpr();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(820); match(ID);
+				setState(792); match(ID);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(821); ifExpr();
+				setState(793); ifExpr();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(822); arrayaccess();
+				setState(794); arrayaccess();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(823); showExpr();
+				setState(795); functionExpr();
 				}
 				break;
-			case 6:
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(824); inDecl();
-				}
-				break;
-			case 7:
-				enterOuterAlt(_localctx, 7);
-				{
-				setState(825); functionExpr();
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ShowExprContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public ShowExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_showExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterShowExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitShowExpr(this);
-		}
-	}
-
-	public final ShowExprContext showExpr() throws RecognitionException {
-		ShowExprContext _localctx = new ShowExprContext(_ctx, getState());
-		enterRule(_localctx, 158, RULE_showExpr);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(828); match(T__18);
-			setState(829); match(T__79);
-			setState(830); expr(0);
-			setState(831); match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4911,8 +4879,8 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class FunctionExprContext extends ParserRuleContext {
-		public GuardExprContext guardExpr() {
-			return getRuleContext(GuardExprContext.class,0);
+		public PredOrUnionExprContext predOrUnionExpr() {
+			return getRuleContext(PredOrUnionExprContext.class,0);
 		}
 		public FunctionExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4930,688 +4898,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final FunctionExprContext functionExpr() throws RecognitionException {
 		FunctionExprContext _localctx = new FunctionExprContext(_ctx, getState());
-		enterRule(_localctx, 160, RULE_functionExpr);
+		enterRule(_localctx, 162, RULE_functionExpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(833); guardExpr();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class GuardExprContext extends ParserRuleContext {
-		public AlldifferentContext alldifferent() {
-			return getRuleContext(AlldifferentContext.class,0);
-		}
-		public MinContext min() {
-			return getRuleContext(MinContext.class,0);
-		}
-		public Array1dContext array1d() {
-			return getRuleContext(Array1dContext.class,0);
-		}
-		public ProdContext prod() {
-			return getRuleContext(ProdContext.class,0);
-		}
-		public ForallContext forall() {
-			return getRuleContext(ForallContext.class,0);
-		}
-		public MaxContext max() {
-			return getRuleContext(MaxContext.class,0);
-		}
-		public Bool2intContext bool2int() {
-			return getRuleContext(Bool2intContext.class,0);
-		}
-		public ExistsContext exists() {
-			return getRuleContext(ExistsContext.class,0);
-		}
-		public SumContext sum() {
-			return getRuleContext(SumContext.class,0);
-		}
-		public GuardExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_guardExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterGuardExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitGuardExpr(this);
-		}
-	}
-
-	public final GuardExprContext guardExpr() throws RecognitionException {
-		GuardExprContext _localctx = new GuardExprContext(_ctx, getState());
-		enterRule(_localctx, 162, RULE_guardExpr);
-		try {
-			setState(844);
-			switch ( getInterpreter().adaptivePredict(_input,66,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(835); forall();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(836); exists();
-				}
-				break;
-			case 3:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(837); sum();
-				}
-				break;
-			case 4:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(838); prod();
-				}
-				break;
-			case 5:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(839); max();
-				}
-				break;
-			case 6:
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(840); min();
-				}
-				break;
-			case 7:
-				enterOuterAlt(_localctx, 7);
-				{
-				setState(841); bool2int();
-				}
-				break;
-			case 8:
-				enterOuterAlt(_localctx, 8);
-				{
-				setState(842); alldifferent();
-				}
-				break;
-			case 9:
-				enterOuterAlt(_localctx, 9);
-				{
-				setState(843); array1d();
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ForallContext extends ParserRuleContext {
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public ForallContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_forall; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterForall(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitForall(this);
-		}
-	}
-
-	public final ForallContext forall() throws RecognitionException {
-		ForallContext _localctx = new ForallContext(_ctx, getState());
-		enterRule(_localctx, 164, RULE_forall);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(846); match(T__15);
-			setState(847); guardExprArg();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ExistsContext extends ParserRuleContext {
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public ExistsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_exists; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterExists(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitExists(this);
-		}
-	}
-
-	public final ExistsContext exists() throws RecognitionException {
-		ExistsContext _localctx = new ExistsContext(_ctx, getState());
-		enterRule(_localctx, 166, RULE_exists);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(849); match(T__27);
-			setState(850); guardExprArg();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class SumContext extends ParserRuleContext {
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public SumContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_sum; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterSum(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitSum(this);
-		}
-	}
-
-	public final SumContext sum() throws RecognitionException {
-		SumContext _localctx = new SumContext(_ctx, getState());
-		enterRule(_localctx, 168, RULE_sum);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(852); match(T__44);
-			setState(853); guardExprArg();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ProdContext extends ParserRuleContext {
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public ProdContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_prod; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterProd(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitProd(this);
-		}
-	}
-
-	public final ProdContext prod() throws RecognitionException {
-		ProdContext _localctx = new ProdContext(_ctx, getState());
-		enterRule(_localctx, 170, RULE_prod);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(855); match(T__5);
-			setState(856); guardExprArg();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class MaxContext extends ParserRuleContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MaxContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_max; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterMax(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitMax(this);
-		}
-	}
-
-	public final MaxContext max() throws RecognitionException {
-		MaxContext _localctx = new MaxContext(_ctx, getState());
-		enterRule(_localctx, 172, RULE_max);
-		try {
-			setState(867);
-			switch ( getInterpreter().adaptivePredict(_input,67,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(858); match(T__41);
-				setState(859); guardExprArg();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(860); match(T__41);
-				setState(861); match(T__79);
-				setState(862); expr(0);
-				setState(863); match(T__77);
-				setState(864); expr(0);
-				setState(865); match(T__4);
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class MinContext extends ParserRuleContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MinContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_min; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterMin(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitMin(this);
-		}
-	}
-
-	public final MinContext min() throws RecognitionException {
-		MinContext _localctx = new MinContext(_ctx, getState());
-		enterRule(_localctx, 174, RULE_min);
-		try {
-			setState(878);
-			switch (_input.LA(1)) {
-			case T__78:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(869); match(T__78);
-				setState(870); guardExprArg();
-				}
-				break;
-			case T__41:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(871); match(T__41);
-				setState(872); match(T__79);
-				setState(873); expr(0);
-				setState(874); match(T__77);
-				setState(875); expr(0);
-				setState(876); match(T__4);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Bool2intContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public Bool2intContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_bool2int; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterBool2int(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitBool2int(this);
-		}
-	}
-
-	public final Bool2intContext bool2int() throws RecognitionException {
-		Bool2intContext _localctx = new Bool2intContext(_ctx, getState());
-		enterRule(_localctx, 176, RULE_bool2int);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(880); match(T__61);
-			setState(881); match(T__79);
-			setState(882); expr(0);
-			setState(883); match(T__4);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class AlldifferentContext extends ParserRuleContext {
-		public GuardExprArgContext guardExprArg() {
-			return getRuleContext(GuardExprArgContext.class,0);
-		}
-		public AlldifferentContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_alldifferent; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterAlldifferent(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitAlldifferent(this);
-		}
-	}
-
-	public final AlldifferentContext alldifferent() throws RecognitionException {
-		AlldifferentContext _localctx = new AlldifferentContext(_ctx, getState());
-		enterRule(_localctx, 178, RULE_alldifferent);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(885); match(T__55);
-			setState(886); guardExprArg();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Array1dContext extends ParserRuleContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public Array1dContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_array1d; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterArray1d(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitArray1d(this);
-		}
-	}
-
-	public final Array1dContext array1d() throws RecognitionException {
-		Array1dContext _localctx = new Array1dContext(_ctx, getState());
-		enterRule(_localctx, 180, RULE_array1d);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(888); match(T__47);
-			setState(889); match(T__79);
-			setState(890); expr(0);
-			setState(891); match(T__77);
-			setState(892); expr(0);
-			setState(893); match(T__4);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class GuardExprArgContext extends ParserRuleContext {
-		public TwoSectionsContext twoSections() {
-			return getRuleContext(TwoSectionsContext.class,0);
-		}
-		public OneSectionContext oneSection() {
-			return getRuleContext(OneSectionContext.class,0);
-		}
-		public GuardExprArgContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_guardExprArg; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterGuardExprArg(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitGuardExprArg(this);
-		}
-	}
-
-	public final GuardExprArgContext guardExprArg() throws RecognitionException {
-		GuardExprArgContext _localctx = new GuardExprArgContext(_ctx, getState());
-		enterRule(_localctx, 182, RULE_guardExprArg);
-		try {
-			setState(897);
-			switch ( getInterpreter().adaptivePredict(_input,69,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(895); twoSections();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(896); oneSection();
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class OneSectionContext extends ParserRuleContext {
-		public ListExprContext listExpr() {
-			return getRuleContext(ListExprContext.class,0);
-		}
-		public OneSectionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_oneSection; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterOneSection(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitOneSection(this);
-		}
-	}
-
-	public final OneSectionContext oneSection() throws RecognitionException {
-		OneSectionContext _localctx = new OneSectionContext(_ctx, getState());
-		enterRule(_localctx, 184, RULE_oneSection);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(899); match(T__79);
-			setState(900); listExpr(0);
-			setState(901); match(T__4);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class TwoSectionsContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public InDeclContext inDecl(int i) {
-			return getRuleContext(InDeclContext.class,i);
-		}
-		public List<InDeclContext> inDecl() {
-			return getRuleContexts(InDeclContext.class);
-		}
-		public TwoSectionsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_twoSections; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterTwoSections(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitTwoSections(this);
-		}
-	}
-
-	public final TwoSectionsContext twoSections() throws RecognitionException {
-		TwoSectionsContext _localctx = new TwoSectionsContext(_ctx, getState());
-		enterRule(_localctx, 186, RULE_twoSections);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(903); match(T__79);
-			setState(904); inDecl();
-			setState(909);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==T__77) {
-				{
-				{
-				setState(905); match(T__77);
-				setState(906); inDecl();
-				}
-				}
-				setState(911);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			setState(912); match(T__4);
-			setState(913); match(T__79);
-			setState(914); expr(0);
-			setState(915); match(T__4);
+			setState(798); predOrUnionExpr();
 			}
 		}
 		catch (RecognitionException re) {
@@ -5652,36 +4943,36 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final InDeclContext inDecl() throws RecognitionException {
 		InDeclContext _localctx = new InDeclContext(_ctx, getState());
-		enterRule(_localctx, 188, RULE_inDecl);
+		enterRule(_localctx, 164, RULE_inDecl);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(917); match(ID);
-			setState(922);
+			setState(800); match(ID);
+			setState(805);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(918); match(T__77);
-				setState(919); match(ID);
+				setState(801); match(T__68);
+				setState(802); match(ID);
 				}
 				}
-				setState(924);
+				setState(807);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(925); match(T__7);
-			setState(926); setExpr(0);
-			setState(928);
-			switch ( getInterpreter().adaptivePredict(_input,72,_ctx) ) {
-			case 1:
+			setState(808); match(T__6);
+			setState(809); setExpr(0);
+			setState(811);
+			_la = _input.LA(1);
+			if (_la==T__11) {
 				{
-				setState(927); whereCond();
+				setState(810); whereCond();
 				}
-				break;
 			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -5696,8 +4987,8 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class WhereCondContext extends ParserRuleContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
+		public BoolExprContext boolExpr() {
+			return getRuleContext(BoolExprContext.class,0);
 		}
 		public WhereCondContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -5715,12 +5006,12 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final WhereCondContext whereCond() throws RecognitionException {
 		WhereCondContext _localctx = new WhereCondContext(_ctx, getState());
-		enterRule(_localctx, 190, RULE_whereCond);
+		enterRule(_localctx, 166, RULE_whereCond);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(930); match(T__12);
-			setState(931); expr(0);
+			setState(813); match(T__11);
+			setState(814); boolExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5760,31 +5051,31 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final LetExprContext letExpr() throws RecognitionException {
 		LetExprContext _localctx = new LetExprContext(_ctx, getState());
-		enterRule(_localctx, 192, RULE_letExpr);
+		enterRule(_localctx, 168, RULE_letExpr);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(933); match(T__57);
-			setState(934); match(T__88);
-			setState(935); letDecl();
-			setState(940);
+			setState(816); match(T__49);
+			setState(817); match(T__78);
+			setState(818); letDecl();
+			setState(823);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(936); match(T__77);
-				setState(937); letDecl();
+				setState(819); match(T__68);
+				setState(820); letDecl();
 				}
 				}
-				setState(942);
+				setState(825);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(943); match(T__38);
-			setState(944); match(T__7);
-			setState(945); expr(0);
+			setState(826); match(T__34);
+			setState(827); match(T__6);
+			setState(828); expr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -5821,42 +5112,33 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final LetDeclContext letDecl() throws RecognitionException {
 		LetDeclContext _localctx = new LetDeclContext(_ctx, getState());
-		enterRule(_localctx, 194, RULE_letDecl);
+		enterRule(_localctx, 170, RULE_letDecl);
 		try {
-			setState(949);
+			setState(832);
 			switch (_input.LA(1)) {
-			case T__91:
-			case T__89:
-			case T__83:
+			case T__81:
 			case T__79:
-			case T__78:
-			case T__72:
-			case T__61:
-			case T__57:
-			case T__55:
-			case T__50:
-			case T__47:
-			case T__44:
-			case T__41:
-			case T__37:
-			case T__27:
-			case T__23:
-			case T__21:
-			case T__17:
+			case T__73:
+			case T__69:
+			case T__63:
+			case T__49:
+			case T__43:
+			case T__33:
+			case T__20:
+			case T__18:
 			case T__15:
-			case T__5:
 			case T__0:
 			case ID:
 			case NAT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(947); decl();
+				setState(830); decl();
 				}
 				break;
-			case T__29:
+			case T__25:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(948); constraint();
+				setState(831); constraint();
 				}
 				break;
 			default:
@@ -5894,12 +5176,12 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final IfExprContext ifExpr() throws RecognitionException {
 		IfExprContext _localctx = new IfExprContext(_ctx, getState());
-		enterRule(_localctx, 196, RULE_ifExpr);
+		enterRule(_localctx, 172, RULE_ifExpr);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(951); match(T__37);
-			setState(952); bodyIf();
+			setState(834); match(T__33);
+			setState(835); bodyIf();
 			}
 		}
 		catch (RecognitionException re) {
@@ -5942,23 +5224,23 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final BodyIfContext bodyIf() throws RecognitionException {
 		BodyIfContext _localctx = new BodyIfContext(_ctx, getState());
-		enterRule(_localctx, 198, RULE_bodyIf);
+		enterRule(_localctx, 174, RULE_bodyIf);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(954); expr(0);
-			setState(955); match(T__52);
-			setState(956); expr(0);
-			setState(959);
+			setState(837); expr(0);
+			setState(838); match(T__45);
+			setState(839); expr(0);
+			setState(842);
 			switch (_input.LA(1)) {
-			case T__8:
+			case T__7:
 				{
-				setState(957); elseS();
+				setState(840); elseS();
 				}
 				break;
-			case T__45:
+			case T__39:
 				{
-				setState(958); elseifS();
+				setState(841); elseifS();
 				}
 				break;
 			default:
@@ -5997,13 +5279,13 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final ElseSContext elseS() throws RecognitionException {
 		ElseSContext _localctx = new ElseSContext(_ctx, getState());
-		enterRule(_localctx, 200, RULE_elseS);
+		enterRule(_localctx, 176, RULE_elseS);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(961); match(T__8);
-			setState(962); expr(0);
-			setState(963); match(T__95);
+			setState(844); match(T__7);
+			setState(845); expr(0);
+			setState(846); match(T__85);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6037,12 +5319,12 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final ElseifSContext elseifS() throws RecognitionException {
 		ElseifSContext _localctx = new ElseifSContext(_ctx, getState());
-		enterRule(_localctx, 202, RULE_elseifS);
+		enterRule(_localctx, 178, RULE_elseifS);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(965); match(T__45);
-			setState(966); bodyIf();
+			setState(848); match(T__39);
+			setState(849); bodyIf();
 			}
 		}
 		catch (RecognitionException re) {
@@ -6082,74 +5364,28 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final SetValContext setVal() throws RecognitionException {
 		SetValContext _localctx = new SetValContext(_ctx, getState());
-		enterRule(_localctx, 204, RULE_setVal);
+		enterRule(_localctx, 180, RULE_setVal);
 		try {
-			setState(971);
-			switch ( getInterpreter().adaptivePredict(_input,76,_ctx) ) {
+			setState(854);
+			switch ( getInterpreter().adaptivePredict(_input,69,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(968); bracketExpr();
+				setState(851); bracketExpr();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(969); range();
+				setState(852); range();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(970); guardedSet();
+				setState(853); guardedSet();
 				}
 				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ComplexSetExprContext extends ParserRuleContext {
-		public InfixSetOpContext infixSetOp() {
-			return getRuleContext(InfixSetOpContext.class,0);
-		}
-		public List<SetExprContext> setExpr() {
-			return getRuleContexts(SetExprContext.class);
-		}
-		public SetExprContext setExpr(int i) {
-			return getRuleContext(SetExprContext.class,i);
-		}
-		public ComplexSetExprContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_complexSetExpr; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).enterComplexSetExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MiniZincGrammarListener ) ((MiniZincGrammarListener)listener).exitComplexSetExpr(this);
-		}
-	}
-
-	public final ComplexSetExprContext complexSetExpr() throws RecognitionException {
-		ComplexSetExprContext _localctx = new ComplexSetExprContext(_ctx, getState());
-		enterRule(_localctx, 206, RULE_complexSetExpr);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(973); setExpr(0);
-			setState(974); infixSetOp();
-			setState(975); setExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6199,19 +5435,19 @@ public class MiniZincGrammarParser extends Parser {
 		int _parentState = getState();
 		SetExprContext _localctx = new SetExprContext(_ctx, _parentState);
 		SetExprContext _prevctx = _localctx;
-		int _startState = 208;
-		enterRecursionRule(_localctx, 208, RULE_setExpr, _p);
+		int _startState = 182;
+		enterRecursionRule(_localctx, 182, RULE_setExpr, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(978); setVal();
+			setState(857); setVal();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(986);
+			setState(865);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,77,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,70,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -6220,16 +5456,16 @@ public class MiniZincGrammarParser extends Parser {
 					{
 					_localctx = new SetExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_setExpr);
-					setState(980);
+					setState(859);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(981); infixSetOp();
-					setState(982); setExpr(2);
+					setState(860); infixSetOp();
+					setState(861); setExpr(2);
 					}
 					} 
 				}
-				setState(988);
+				setState(867);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,77,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,70,_ctx);
 			}
 			}
 		}
@@ -6264,13 +5500,25 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final BracketExprContext bracketExpr() throws RecognitionException {
 		BracketExprContext _localctx = new BracketExprContext(_ctx, getState());
-		enterRule(_localctx, 210, RULE_bracketExpr);
+		enterRule(_localctx, 184, RULE_bracketExpr);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(989); match(T__88);
-			setState(990); commaList();
-			setState(991); match(T__38);
+			setState(874);
+			switch ( getInterpreter().adaptivePredict(_input,71,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(868); match(T__78);
+				setState(869); match(T__34);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(870); match(T__78);
+				setState(871); commaList();
+				setState(872); match(T__34);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -6285,11 +5533,11 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static class GuardedSetContext extends ParserRuleContext {
-		public CommaListContext commaList() {
-			return getRuleContext(CommaListContext.class,0);
-		}
 		public GuardContext guard() {
 			return getRuleContext(GuardContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
 		}
 		public GuardedSetContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -6307,15 +5555,15 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final GuardedSetContext guardedSet() throws RecognitionException {
 		GuardedSetContext _localctx = new GuardedSetContext(_ctx, getState());
-		enterRule(_localctx, 212, RULE_guardedSet);
+		enterRule(_localctx, 186, RULE_guardedSet);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(993); match(T__88);
-			setState(994); commaList();
-			setState(995); match(T__20);
-			setState(996); guard();
-			setState(997); match(T__38);
+			setState(876); match(T__78);
+			setState(877); expr(0);
+			setState(878); match(T__17);
+			setState(879); guard();
+			setState(880); match(T__34);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6352,32 +5600,27 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final CommaListContext commaList() throws RecognitionException {
 		CommaListContext _localctx = new CommaListContext(_ctx, getState());
-		enterRule(_localctx, 214, RULE_commaList);
+		enterRule(_localctx, 188, RULE_commaList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1007);
-			switch ( getInterpreter().adaptivePredict(_input,79,_ctx) ) {
-			case 1:
+			{
+			setState(882); expr(0);
+			setState(887);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__68) {
 				{
-				setState(999); expr(0);
-				setState(1004);
+				{
+				setState(883); match(T__68);
+				setState(884); expr(0);
+				}
+				}
+				setState(889);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__77) {
-					{
-					{
-					setState(1000); match(T__77);
-					setState(1001); expr(0);
-					}
-					}
-					setState(1006);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
+			}
 			}
 			}
 		}
@@ -6415,23 +5658,23 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final GuardContext guard() throws RecognitionException {
 		GuardContext _localctx = new GuardContext(_ctx, getState());
-		enterRule(_localctx, 216, RULE_guard);
+		enterRule(_localctx, 190, RULE_guard);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1009); inDecl();
-			setState(1014);
+			setState(890); inDecl();
+			setState(895);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__77) {
+			while (_la==T__68) {
 				{
 				{
-				setState(1010); match(T__77);
-				setState(1011); inDecl();
+				setState(891); match(T__68);
+				setState(892); inDecl();
 				}
 				}
-				setState(1016);
+				setState(897);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -6472,22 +5715,22 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RangeContext range() throws RecognitionException {
 		RangeContext _localctx = new RangeContext(_ctx, getState());
-		enterRule(_localctx, 218, RULE_range);
+		enterRule(_localctx, 192, RULE_range);
 		try {
-			setState(1022);
-			switch ( getInterpreter().adaptivePredict(_input,81,_ctx) ) {
+			setState(903);
+			switch ( getInterpreter().adaptivePredict(_input,74,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(1017); fromR();
-				setState(1018); match(T__87);
-				setState(1019); toR();
+				setState(898); fromR();
+				setState(899); match(T__77);
+				setState(900); toR();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(1021); match(ID);
+				setState(902); match(ID);
 				}
 				break;
 			}
@@ -6523,11 +5766,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final FromRContext fromR() throws RecognitionException {
 		FromRContext _localctx = new FromRContext(_ctx, getState());
-		enterRule(_localctx, 220, RULE_fromR);
+		enterRule(_localctx, 194, RULE_fromR);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1024); arithExpr(0);
+			setState(905); arithExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6561,11 +5804,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final ToRContext toR() throws RecognitionException {
 		ToRContext _localctx = new ToRContext(_ctx, getState());
-		enterRule(_localctx, 222, RULE_toR);
+		enterRule(_localctx, 196, RULE_toR);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1026); arithExpr(0);
+			setState(907); arithExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6596,11 +5839,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RintContext rint() throws RecognitionException {
 		RintContext _localctx = new RintContext(_ctx, getState());
-		enterRule(_localctx, 224, RULE_rint);
+		enterRule(_localctx, 198, RULE_rint);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1028); match(T__83);
+			setState(909); match(T__73);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6631,11 +5874,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RfloatContext rfloat() throws RecognitionException {
 		RfloatContext _localctx = new RfloatContext(_ctx, getState());
-		enterRule(_localctx, 226, RULE_rfloat);
+		enterRule(_localctx, 200, RULE_rfloat);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1030); match(T__89);
+			setState(911); match(T__79);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6666,11 +5909,11 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RboolContext rbool() throws RecognitionException {
 		RboolContext _localctx = new RboolContext(_ctx, getState());
-		enterRule(_localctx, 228, RULE_rbool);
+		enterRule(_localctx, 202, RULE_rbool);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1032); match(T__17);
+			setState(913); match(T__15);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6702,21 +5945,21 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final IntegerContext integer() throws RecognitionException {
 		IntegerContext _localctx = new IntegerContext(_ctx, getState());
-		enterRule(_localctx, 230, RULE_integer);
+		enterRule(_localctx, 204, RULE_integer);
 		try {
-			setState(1037);
+			setState(918);
 			switch (_input.LA(1)) {
 			case NAT:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(1034); match(NAT);
+				setState(915); match(NAT);
 				}
 				break;
 			case T__0:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(1035); match(T__0);
-				setState(1036); match(NAT);
+				setState(916); match(T__0);
+				setState(917); match(NAT);
 				}
 				break;
 			default:
@@ -6755,13 +5998,13 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final RealContext real() throws RecognitionException {
 		RealContext _localctx = new RealContext(_ctx, getState());
-		enterRule(_localctx, 232, RULE_real);
+		enterRule(_localctx, 206, RULE_real);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1039); integer();
-			setState(1040); match(T__26);
-			setState(1041); match(NAT);
+			setState(920); integer();
+			setState(921); match(T__23);
+			setState(922); match(NAT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -6796,24 +6039,24 @@ public class MiniZincGrammarParser extends Parser {
 
 	public final StringContext string() throws RecognitionException {
 		StringContext _localctx = new StringContext(_ctx, getState());
-		enterRule(_localctx, 234, RULE_string);
+		enterRule(_localctx, 208, RULE_string);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(1052);
+			setState(933);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__95) | (1L << T__94) | (1L << T__93) | (1L << T__92) | (1L << T__91) | (1L << T__90) | (1L << T__89) | (1L << T__88) | (1L << T__87) | (1L << T__86) | (1L << T__85) | (1L << T__84) | (1L << T__83) | (1L << T__82) | (1L << T__81) | (1L << T__80) | (1L << T__79) | (1L << T__78) | (1L << T__77) | (1L << T__76) | (1L << T__75) | (1L << T__74) | (1L << T__73) | (1L << T__72) | (1L << T__71) | (1L << T__70) | (1L << T__69) | (1L << T__68) | (1L << T__67) | (1L << T__66) | (1L << T__65) | (1L << T__64) | (1L << T__63) | (1L << T__62) | (1L << T__61) | (1L << T__60) | (1L << T__59) | (1L << T__58) | (1L << T__57) | (1L << T__56) | (1L << T__55) | (1L << T__54) | (1L << T__53) | (1L << T__52) | (1L << T__51) | (1L << T__50) | (1L << T__49) | (1L << T__48) | (1L << T__47) | (1L << T__46) | (1L << T__45) | (1L << T__44) | (1L << T__43) | (1L << T__42) | (1L << T__41) | (1L << T__40) | (1L << T__39) | (1L << T__38) | (1L << T__37) | (1L << T__36) | (1L << T__35) | (1L << T__34) | (1L << T__33))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (T__32 - 64)) | (1L << (T__31 - 64)) | (1L << (T__29 - 64)) | (1L << (T__28 - 64)) | (1L << (T__27 - 64)) | (1L << (T__26 - 64)) | (1L << (T__25 - 64)) | (1L << (T__24 - 64)) | (1L << (T__23 - 64)) | (1L << (T__22 - 64)) | (1L << (T__21 - 64)) | (1L << (T__20 - 64)) | (1L << (T__19 - 64)) | (1L << (T__18 - 64)) | (1L << (T__17 - 64)) | (1L << (T__16 - 64)) | (1L << (T__15 - 64)) | (1L << (T__14 - 64)) | (1L << (T__13 - 64)) | (1L << (T__12 - 64)) | (1L << (T__11 - 64)) | (1L << (T__10 - 64)) | (1L << (T__9 - 64)) | (1L << (T__8 - 64)) | (1L << (T__7 - 64)) | (1L << (T__6 - 64)) | (1L << (T__5 - 64)) | (1L << (T__4 - 64)) | (1L << (T__3 - 64)) | (1L << (T__2 - 64)) | (1L << (T__1 - 64)) | (1L << (T__0 - 64)) | (1L << (ESC - 64)) | (1L << (SINGLE_LINE_COMMENT - 64)) | (1L << (ID - 64)) | (1L << (NAT - 64)) | (1L << (WS - 64)) | (1L << (BOOL - 64)))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__85) | (1L << T__84) | (1L << T__83) | (1L << T__82) | (1L << T__81) | (1L << T__80) | (1L << T__79) | (1L << T__78) | (1L << T__77) | (1L << T__76) | (1L << T__75) | (1L << T__74) | (1L << T__73) | (1L << T__72) | (1L << T__71) | (1L << T__70) | (1L << T__69) | (1L << T__68) | (1L << T__67) | (1L << T__66) | (1L << T__65) | (1L << T__64) | (1L << T__63) | (1L << T__62) | (1L << T__61) | (1L << T__60) | (1L << T__59) | (1L << T__58) | (1L << T__57) | (1L << T__56) | (1L << T__55) | (1L << T__54) | (1L << T__53) | (1L << T__52) | (1L << T__51) | (1L << T__50) | (1L << T__49) | (1L << T__48) | (1L << T__47) | (1L << T__46) | (1L << T__45) | (1L << T__44) | (1L << T__43) | (1L << T__42) | (1L << T__41) | (1L << T__40) | (1L << T__39) | (1L << T__38) | (1L << T__37) | (1L << T__36) | (1L << T__35) | (1L << T__34) | (1L << T__33) | (1L << T__32) | (1L << T__31) | (1L << T__30) | (1L << T__29) | (1L << T__28) | (1L << T__27) | (1L << T__25) | (1L << T__24) | (1L << T__23))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (T__22 - 64)) | (1L << (T__21 - 64)) | (1L << (T__20 - 64)) | (1L << (T__19 - 64)) | (1L << (T__18 - 64)) | (1L << (T__17 - 64)) | (1L << (T__16 - 64)) | (1L << (T__15 - 64)) | (1L << (T__14 - 64)) | (1L << (T__13 - 64)) | (1L << (T__12 - 64)) | (1L << (T__11 - 64)) | (1L << (T__10 - 64)) | (1L << (T__9 - 64)) | (1L << (T__8 - 64)) | (1L << (T__7 - 64)) | (1L << (T__6 - 64)) | (1L << (T__5 - 64)) | (1L << (T__4 - 64)) | (1L << (T__3 - 64)) | (1L << (T__2 - 64)) | (1L << (T__1 - 64)) | (1L << (T__0 - 64)) | (1L << (ESC - 64)) | (1L << (SINGLE_LINE_COMMENT - 64)) | (1L << (ID - 64)) | (1L << (NAT - 64)) | (1L << (WS - 64)) | (1L << (BOOL - 64)))) != 0)) {
 				{
 				{
-				setState(1048);
-				switch ( getInterpreter().adaptivePredict(_input,83,_ctx) ) {
+				setState(929);
+				switch ( getInterpreter().adaptivePredict(_input,76,_ctx) ) {
 				case 1:
 					{
-					setState(1043);
+					setState(924);
 					_la = _input.LA(1);
-					if ( _la <= 0 || (_la==T__30) ) {
+					if ( _la <= 0 || (_la==T__26) ) {
 					_errHandler.recoverInline(this);
 					}
 					consume();
@@ -6821,28 +6064,28 @@ public class MiniZincGrammarParser extends Parser {
 					break;
 				case 2:
 					{
-					setState(1044); match(ESC);
+					setState(925); match(ESC);
 					}
 					break;
 				case 3:
 					{
-					setState(1045); match(T__26);
+					setState(926); match(T__23);
 					}
 					break;
 				case 4:
 					{
-					setState(1046); match(T__84);
+					setState(927); match(T__74);
 					}
 					break;
 				case 5:
 					{
-					setState(1047); match(T__58);
+					setState(928); match(T__50);
 					}
 					break;
 				}
 				}
 				}
-				setState(1054);
+				setState(935);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -6864,14 +6107,14 @@ public class MiniZincGrammarParser extends Parser {
 		case 48: return expr_sempred((ExprContext)_localctx, predIndex);
 		case 57: return boolExpr_sempred((BoolExprContext)_localctx, predIndex);
 		case 60: return arithExpr_sempred((ArithExprContext)_localctx, predIndex);
-		case 72: return listExpr_sempred((ListExprContext)_localctx, predIndex);
-		case 104: return setExpr_sempred((SetExprContext)_localctx, predIndex);
+		case 74: return listExpr_sempred((ListExprContext)_localctx, predIndex);
+		case 91: return setExpr_sempred((SetExprContext)_localctx, predIndex);
 		}
 		return true;
 	}
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return precpred(_ctx, 12);
+		case 0: return precpred(_ctx, 11);
 		}
 		return true;
 	}
@@ -6901,7 +6144,7 @@ public class MiniZincGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3h\u0422\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3^\u03ab\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -6912,379 +6155,335 @@ public class MiniZincGrammarParser extends Parser {
 		"\4>\t>\4?\t?\4@\t@\4A\tA\4B\tB\4C\tC\4D\tD\4E\tE\4F\tF\4G\tG\4H\tH\4I"+
 		"\tI\4J\tJ\4K\tK\4L\tL\4M\tM\4N\tN\4O\tO\4P\tP\4Q\tQ\4R\tR\4S\tS\4T\tT"+
 		"\4U\tU\4V\tV\4W\tW\4X\tX\4Y\tY\4Z\tZ\4[\t[\4\\\t\\\4]\t]\4^\t^\4_\t_\4"+
-		"`\t`\4a\ta\4b\tb\4c\tc\4d\td\4e\te\4f\tf\4g\tg\4h\th\4i\ti\4j\tj\4k\t"+
-		"k\4l\tl\4m\tm\4n\tn\4o\to\4p\tp\4q\tq\4r\tr\4s\ts\4t\tt\4u\tu\4v\tv\4"+
-		"w\tw\3\2\3\2\3\2\6\2\u00f2\n\2\r\2\16\2\u00f3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\5\3\u0100\n\3\3\4\3\4\5\4\u0104\n\4\3\5\3\5\5\5\u0108"+
-		"\n\5\3\5\3\5\5\5\u010c\n\5\3\6\3\6\5\6\u0110\n\6\3\7\3\7\3\7\3\7\3\7\3"+
-		"\7\3\7\7\7\u0119\n\7\f\7\16\7\u011c\13\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3"+
-		"\b\5\b\u0126\n\b\3\b\3\b\3\b\5\b\u012b\n\b\3\t\3\t\3\t\3\t\7\t\u0131\n"+
-		"\t\f\t\16\t\u0134\13\t\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\f\3\r\3\r\3"+
-		"\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u014b\n\16\3\17\3\17"+
-		"\5\17\u014f\n\17\3\17\3\17\5\17\u0153\n\17\3\20\5\20\u0156\n\20\3\20\3"+
-		"\20\3\20\3\20\3\20\5\20\u015d\n\20\3\21\3\21\3\21\3\22\3\22\3\22\3\22"+
-		"\3\23\3\23\3\23\3\23\3\23\3\23\7\23\u016c\n\23\f\23\16\23\u016f\13\23"+
-		"\5\23\u0171\n\23\3\23\3\23\3\23\3\23\3\24\3\24\5\24\u0179\n\24\3\24\3"+
-		"\24\3\24\3\24\3\24\7\24\u0180\n\24\f\24\16\24\u0183\13\24\5\24\u0185\n"+
-		"\24\3\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\5\25\u018f\n\25\3\26\3\26"+
-		"\3\27\3\27\5\27\u0195\n\27\3\30\3\30\3\30\3\31\3\31\3\31\3\32\3\32\3\32"+
-		"\3\33\3\33\3\33\3\33\5\33\u01a4\n\33\3\34\3\34\3\34\3\35\3\35\3\35\3\36"+
-		"\3\36\3\36\3\37\3\37\5\37\u01b1\n\37\3\37\3\37\3\37\3\37\7\37\u01b7\n"+
-		"\37\f\37\16\37\u01ba\13\37\3\37\3\37\5\37\u01be\n\37\3 \3 \3 \3 \3 \3"+
-		" \3 \3 \3 \3 \3!\3!\3\"\3\"\3#\3#\5#\u01d0\n#\3$\3$\3%\3%\3%\3%\3%\7%"+
-		"\u01d9\n%\f%\16%\u01dc\13%\3%\3%\3&\3&\3&\3&\3&\5&\u01e5\n&\3\'\3\'\3"+
-		"(\3(\3)\3)\3*\3*\3+\3+\3,\3,\3,\3,\3,\3,\3,\5,\u01f8\n,\3-\3-\3-\3-\3"+
-		".\3.\3.\3.\3.\3/\3/\3/\3/\3/\3\60\3\60\3\60\3\60\7\60\u020c\n\60\f\60"+
-		"\16\60\u020f\13\60\3\60\5\60\u0212\n\60\3\60\3\60\3\61\3\61\3\61\3\61"+
-		"\3\61\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62"+
-		"\3\62\3\62\3\62\3\62\5\62\u022c\n\62\3\62\3\62\3\62\3\62\7\62\u0232\n"+
-		"\62\f\62\16\62\u0235\13\62\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63"+
-		"\3\63\3\63\3\63\5\63\u0243\n\63\3\64\3\64\5\64\u0247\n\64\3\65\3\65\3"+
-		"\66\3\66\3\67\3\67\38\38\38\38\39\39\39\39\3:\3:\3:\5:\u025a\n:\3:\3:"+
-		"\3:\3:\3:\5:\u0261\n:\3:\3:\3:\5:\u0266\n:\3;\3;\3;\3;\5;\u026c\n;\3;"+
-		"\3;\3;\3;\5;\u0272\n;\3;\3;\3;\5;\u0277\n;\3;\3;\7;\u027b\n;\f;\16;\u027e"+
-		"\13;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\5<\u028c\n<\3=\3=\3=\3=\3=\5"+
-		"=\u0293\n=\3>\3>\3>\5>\u0298\n>\3>\3>\3>\3>\7>\u029e\n>\f>\16>\u02a1\13"+
-		">\3?\3?\3?\3@\3@\3@\3A\3A\3A\3A\3A\7A\u02ae\nA\fA\16A\u02b1\13A\3A\3A"+
-		"\5A\u02b5\nA\3B\3B\3B\3B\3C\3C\3D\3D\3D\3D\3E\3E\3E\3E\5E\u02c5\nE\3F"+
-		"\3F\3G\3G\3G\3G\3G\5G\u02ce\nG\3H\3H\3H\3H\3H\3H\6H\u02d6\nH\rH\16H\u02d7"+
-		"\3H\3H\3I\3I\3I\3I\3J\3J\3J\3J\5J\u02e4\nJ\3J\3J\3J\7J\u02e9\nJ\fJ\16"+
-		"J\u02ec\13J\3K\3K\5K\u02f0\nK\3L\3L\3L\5L\u02f5\nL\3M\3M\3M\3M\7M\u02fb"+
-		"\nM\fM\16M\u02fe\13M\3M\3M\3N\3N\3N\3N\7N\u0306\nN\fN\16N\u0309\13N\5"+
-		"N\u030b\nN\3N\3N\3N\3N\7N\u0311\nN\fN\16N\u0314\13N\3N\3N\3O\3O\3O\3O"+
-		"\7O\u031c\nO\fO\16O\u031f\13O\5O\u0321\nO\3O\5O\u0324\nO\3O\3O\3O\3O\7"+
-		"O\u032a\nO\fO\16O\u032d\13O\7O\u032f\nO\fO\16O\u0332\13O\3O\3O\3P\3P\3"+
-		"P\3P\3P\3P\3P\5P\u033d\nP\3Q\3Q\3Q\3Q\3Q\3R\3R\3S\3S\3S\3S\3S\3S\3S\3"+
-		"S\3S\5S\u034f\nS\3T\3T\3T\3U\3U\3U\3V\3V\3V\3W\3W\3W\3X\3X\3X\3X\3X\3"+
-		"X\3X\3X\3X\5X\u0366\nX\3Y\3Y\3Y\3Y\3Y\3Y\3Y\3Y\3Y\5Y\u0371\nY\3Z\3Z\3"+
-		"Z\3Z\3Z\3[\3[\3[\3\\\3\\\3\\\3\\\3\\\3\\\3\\\3]\3]\5]\u0384\n]\3^\3^\3"+
-		"^\3^\3_\3_\3_\3_\7_\u038e\n_\f_\16_\u0391\13_\3_\3_\3_\3_\3_\3`\3`\3`"+
-		"\7`\u039b\n`\f`\16`\u039e\13`\3`\3`\3`\5`\u03a3\n`\3a\3a\3a\3b\3b\3b\3"+
-		"b\3b\7b\u03ad\nb\fb\16b\u03b0\13b\3b\3b\3b\3b\3c\3c\5c\u03b8\nc\3d\3d"+
-		"\3d\3e\3e\3e\3e\3e\5e\u03c2\ne\3f\3f\3f\3f\3g\3g\3g\3h\3h\3h\5h\u03ce"+
-		"\nh\3i\3i\3i\3i\3j\3j\3j\3j\3j\3j\3j\7j\u03db\nj\fj\16j\u03de\13j\3k\3"+
-		"k\3k\3k\3l\3l\3l\3l\3l\3l\3m\3m\3m\7m\u03ed\nm\fm\16m\u03f0\13m\5m\u03f2"+
-		"\nm\3n\3n\3n\7n\u03f7\nn\fn\16n\u03fa\13n\3o\3o\3o\3o\3o\5o\u0401\no\3"+
-		"p\3p\3q\3q\3r\3r\3s\3s\3t\3t\3u\3u\3u\5u\u0410\nu\3v\3v\3v\3v\3w\3w\3"+
-		"w\3w\3w\5w\u041b\nw\7w\u041d\nw\fw\16w\u0420\13w\3w\2\7btz\u0092\u00d2"+
-		"x\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDF"+
-		"HJLNPRTVXZ\\^`bdfhjlnprtvxz|~\u0080\u0082\u0084\u0086\u0088\u008a\u008c"+
-		"\u008e\u0090\u0092\u0094\u0096\u0098\u009a\u009c\u009e\u00a0\u00a2\u00a4"+
-		"\u00a6\u00a8\u00aa\u00ac\u00ae\u00b0\u00b2\u00b4\u00b6\u00b8\u00ba\u00bc"+
-		"\u00be\u00c0\u00c2\u00c4\u00c6\u00c8\u00ca\u00cc\u00ce\u00d0\u00d2\u00d4"+
-		"\u00d6\u00d8\u00da\u00dc\u00de\u00e0\u00e2\u00e4\u00e6\u00e8\u00ea\u00ec"+
-		"\2\t\5\2\33\33\35\35aa\7\2\30\30\34\34&&\67\67XX\13\2\b\b\r\r\31\31\61"+
-		"\61??JJOOUU__\t\2\b\b\r\r!\"BBOORR[[\b\2  //\62\62FFYYbb\4\2\22\22[\\"+
-		"\3\2DD\u0442\2\u00f1\3\2\2\2\4\u00ff\3\2\2\2\6\u0103\3\2\2\2\b\u0107\3"+
-		"\2\2\2\n\u010f\3\2\2\2\f\u0111\3\2\2\2\16\u011f\3\2\2\2\20\u012c\3\2\2"+
-		"\2\22\u0137\3\2\2\2\24\u0139\3\2\2\2\26\u013b\3\2\2\2\30\u013e\3\2\2\2"+
-		"\32\u014a\3\2\2\2\34\u014c\3\2\2\2\36\u0155\3\2\2\2 \u015e\3\2\2\2\"\u0161"+
-		"\3\2\2\2$\u0165\3\2\2\2&\u0176\3\2\2\2(\u018e\3\2\2\2*\u0190\3\2\2\2,"+
-		"\u0194\3\2\2\2.\u0196\3\2\2\2\60\u0199\3\2\2\2\62\u019c\3\2\2\2\64\u01a3"+
-		"\3\2\2\2\66\u01a5\3\2\2\28\u01a8\3\2\2\2:\u01ab\3\2\2\2<\u01ae\3\2\2\2"+
-		">\u01bf\3\2\2\2@\u01c9\3\2\2\2B\u01cb\3\2\2\2D\u01cf\3\2\2\2F\u01d1\3"+
-		"\2\2\2H\u01d3\3\2\2\2J\u01e4\3\2\2\2L\u01e6\3\2\2\2N\u01e8\3\2\2\2P\u01ea"+
-		"\3\2\2\2R\u01ec\3\2\2\2T\u01ee\3\2\2\2V\u01f7\3\2\2\2X\u01f9\3\2\2\2Z"+
-		"\u01fd\3\2\2\2\\\u0202\3\2\2\2^\u0207\3\2\2\2`\u0215\3\2\2\2b\u022b\3"+
-		"\2\2\2d\u0242\3\2\2\2f\u0246\3\2\2\2h\u0248\3\2\2\2j\u024a\3\2\2\2l\u024c"+
-		"\3\2\2\2n\u024e\3\2\2\2p\u0252\3\2\2\2r\u0265\3\2\2\2t\u0271\3\2\2\2v"+
-		"\u028b\3\2\2\2x\u0292\3\2\2\2z\u0297\3\2\2\2|\u02a2\3\2\2\2~\u02a5\3\2"+
-		"\2\2\u0080\u02a8\3\2\2\2\u0082\u02b6\3\2\2\2\u0084\u02ba\3\2\2\2\u0086"+
-		"\u02bc\3\2\2\2\u0088\u02c4\3\2\2\2\u008a\u02c6\3\2\2\2\u008c\u02cd\3\2"+
-		"\2\2\u008e\u02cf\3\2\2\2\u0090\u02db\3\2\2\2\u0092\u02e3\3\2\2\2\u0094"+
-		"\u02ef\3\2\2\2\u0096\u02f4\3\2\2\2\u0098\u02f6\3\2\2\2\u009a\u0301\3\2"+
-		"\2\2\u009c\u0317\3\2\2\2\u009e\u033c\3\2\2\2\u00a0\u033e\3\2\2\2\u00a2"+
-		"\u0343\3\2\2\2\u00a4\u034e\3\2\2\2\u00a6\u0350\3\2\2\2\u00a8\u0353\3\2"+
-		"\2\2\u00aa\u0356\3\2\2\2\u00ac\u0359\3\2\2\2\u00ae\u0365\3\2\2\2\u00b0"+
-		"\u0370\3\2\2\2\u00b2\u0372\3\2\2\2\u00b4\u0377\3\2\2\2\u00b6\u037a\3\2"+
-		"\2\2\u00b8\u0383\3\2\2\2\u00ba\u0385\3\2\2\2\u00bc\u0389\3\2\2\2\u00be"+
-		"\u0397\3\2\2\2\u00c0\u03a4\3\2\2\2\u00c2\u03a7\3\2\2\2\u00c4\u03b7\3\2"+
-		"\2\2\u00c6\u03b9\3\2\2\2\u00c8\u03bc\3\2\2\2\u00ca\u03c3\3\2\2\2\u00cc"+
-		"\u03c7\3\2\2\2\u00ce\u03cd\3\2\2\2\u00d0\u03cf\3\2\2\2\u00d2\u03d3\3\2"+
-		"\2\2\u00d4\u03df\3\2\2\2\u00d6\u03e3\3\2\2\2\u00d8\u03f1\3\2\2\2\u00da"+
-		"\u03f3\3\2\2\2\u00dc\u0400\3\2\2\2\u00de\u0402\3\2\2\2\u00e0\u0404\3\2"+
-		"\2\2\u00e2\u0406\3\2\2\2\u00e4\u0408\3\2\2\2\u00e6\u040a\3\2\2\2\u00e8"+
-		"\u040f\3\2\2\2\u00ea\u0411\3\2\2\2\u00ec\u041e\3\2\2\2\u00ee\u00ef\5\4"+
-		"\3\2\u00ef\u00f0\78\2\2\u00f0\u00f2\3\2\2\2\u00f1\u00ee\3\2\2\2\u00f2"+
-		"\u00f3\3\2\2\2\u00f3\u00f1\3\2\2\2\u00f3\u00f4\3\2\2\2\u00f4\3\3\2\2\2"+
-		"\u00f5\u0100\5\f\7\2\u00f6\u0100\5\16\b\2\u00f7\u0100\5\26\f\2\u00f8\u0100"+
-		"\5\6\4\2\u00f9\u0100\5\34\17\2\u00fa\u0100\5\32\16\2\u00fb\u0100\5$\23"+
-		"\2\u00fc\u0100\5&\24\2\u00fd\u0100\5 \21\2\u00fe\u0100\5\"\22\2\u00ff"+
-		"\u00f5\3\2\2\2\u00ff\u00f6\3\2\2\2\u00ff\u00f7\3\2\2\2\u00ff\u00f8\3\2"+
-		"\2\2\u00ff\u00f9\3\2\2\2\u00ff\u00fa\3\2\2\2\u00ff\u00fb\3\2\2\2\u00ff"+
-		"\u00fc\3\2\2\2\u00ff\u00fd\3\2\2\2\u00ff\u00fe\3\2\2\2\u0100\5\3\2\2\2"+
-		"\u0101\u0104\5\b\5\2\u0102\u0104\5\n\6\2\u0103\u0101\3\2\2\2\u0103\u0102"+
-		"\3\2\2\2\u0104\7\3\2\2\2\u0105\u0108\5\30\r\2\u0106\u0108\5Z.\2\u0107"+
-		"\u0105\3\2\2\2\u0107\u0106\3\2\2\2\u0108\u010b\3\2\2\2\u0109\u010a\7\r"+
-		"\2\2\u010a\u010c\5b\62\2\u010b\u0109\3\2\2\2\u010b\u010c\3\2\2\2\u010c"+
-		"\t\3\2\2\2\u010d\u0110\5\36\20\2\u010e\u0110\5\\/\2\u010f\u010d\3\2\2"+
-		"\2\u010f\u010e\3\2\2\2\u0110\13\3\2\2\2\u0111\u0112\7@\2\2\u0112\u0113"+
-		"\7e\2\2\u0113\u0114\7\r\2\2\u0114\u0115\7\n\2\2\u0115\u011a\5D#\2\u0116"+
-		"\u0117\7\25\2\2\u0117\u0119\5D#\2\u0118\u0116\3\2\2\2\u0119\u011c\3\2"+
-		"\2\2\u011a\u0118\3\2\2\2\u011a\u011b\3\2\2\2\u011b\u011d\3\2\2\2\u011c"+
-		"\u011a\3\2\2\2\u011d\u011e\7<\2\2\u011e\r\3\2\2\2\u011f\u0120\7\26\2\2"+
-		"\u0120\u0121\7e\2\2\u0121\u0125\7\r\2\2\u0122\u0123\5\22\n\2\u0123\u0124"+
-		"\7#\2\2\u0124\u0126\3\2\2\2\u0125\u0122\3\2\2\2\u0125\u0126\3\2\2\2\u0126"+
-		"\u0127\3\2\2\2\u0127\u012a\5V,\2\u0128\u0129\7#\2\2\u0129\u012b\5\24\13"+
-		"\2\u012a\u0128\3\2\2\2\u012a\u012b\3\2\2\2\u012b\17\3\2\2\2\u012c\u012d"+
-		"\7M\2\2\u012d\u0132\7e\2\2\u012e\u012f\7\25\2\2\u012f\u0131\7e\2\2\u0130"+
-		"\u012e\3\2\2\2\u0131\u0134\3\2\2\2\u0132\u0130\3\2\2\2\u0132\u0133\3\2"+
-		"\2\2\u0133\u0135\3\2\2\2\u0134\u0132\3\2\2\2\u0135\u0136\7$\2\2\u0136"+
-		"\21\3\2\2\2\u0137\u0138\5\20\t\2\u0138\23\3\2\2\2\u0139\u013a\5\20\t\2"+
-		"\u013a\25\3\2\2\2\u013b\u013c\7E\2\2\u013c\u013d\5b\62\2\u013d\27\3\2"+
-		"\2\2\u013e\u013f\7\32\2\2\u013f\u0140\5V,\2\u0140\u0141\7L\2\2\u0141\u0142"+
-		"\7e\2\2\u0142\31\3\2\2\2\u0143\u0144\7\27\2\2\u0144\u0145\7\23\2\2\u0145"+
-		"\u0146\5\u0092J\2\u0146\u0147\7^\2\2\u0147\u014b\3\2\2\2\u0148\u0149\7"+
-		"\27\2\2\u0149\u014b\5\u0092J\2\u014a\u0143\3\2\2\2\u014a\u0148\3\2\2\2"+
-		"\u014b\33\3\2\2\2\u014c\u014e\7>\2\2\u014d\u014f\5\62\32\2\u014e\u014d"+
-		"\3\2\2\2\u014e\u014f\3\2\2\2\u014f\u0152\3\2\2\2\u0150\u0153\5*\26\2\u0151"+
-		"\u0153\5,\27\2\u0152\u0150\3\2\2\2\u0152\u0151\3\2\2\2\u0153\35\3\2\2"+
-		"\2\u0154\u0156\7K\2\2\u0155\u0154\3\2\2\2\u0155\u0156\3\2\2\2\u0156\u0157"+
-		"\3\2\2\2\u0157\u0158\5V,\2\u0158\u0159\7L\2\2\u0159\u015c\7e\2\2\u015a"+
-		"\u015b\7\r\2\2\u015b\u015d\5b\62\2\u015c\u015a\3\2\2\2\u015c\u015d\3\2"+
-		"\2\2\u015d\37\3\2\2\2\u015e\u015f\7\21\2\2\u015f\u0160\5\u0086D\2\u0160"+
-		"!\3\2\2\2\u0161\u0162\7e\2\2\u0162\u0163\7\r\2\2\u0163\u0164\5b\62\2\u0164"+
-		"#\3\2\2\2\u0165\u0166\7:\2\2\u0166\u0167\7e\2\2\u0167\u0170\7\23\2\2\u0168"+
-		"\u016d\5\6\4\2\u0169\u016a\7\25\2\2\u016a\u016c\5\6\4\2\u016b\u0169\3"+
-		"\2\2\2\u016c\u016f\3\2\2\2\u016d\u016b\3\2\2\2\u016d\u016e\3\2\2\2\u016e"+
-		"\u0171\3\2\2\2\u016f\u016d\3\2\2\2\u0170\u0168\3\2\2\2\u0170\u0171\3\2"+
-		"\2\2\u0171\u0172\3\2\2\2\u0172\u0173\7^\2\2\u0173\u0174\7\r\2\2\u0174"+
-		"\u0175\5b\62\2\u0175%\3\2\2\2\u0176\u0178\7,\2\2\u0177\u0179\7\32\2\2"+
-		"\u0178\u0177\3\2\2\2\u0178\u0179\3\2\2\2\u0179\u017a\3\2\2\2\u017a\u017b"+
-		"\5(\25\2\u017b\u0184\7\23\2\2\u017c\u0181\5\6\4\2\u017d\u017e\7\25\2\2"+
-		"\u017e\u0180\5\6\4\2\u017f\u017d\3\2\2\2\u0180\u0183\3\2\2\2\u0181\u017f"+
-		"\3\2\2\2\u0181\u0182\3\2\2\2\u0182\u0185\3\2\2\2\u0183\u0181\3\2\2\2\u0184"+
-		"\u017c\3\2\2\2\u0184\u0185\3\2\2\2\u0185\u0186\3\2\2\2\u0186\u0187\7^"+
-		"\2\2\u0187\u0188\7\r\2\2\u0188\u0189\5b\62\2\u0189\'\3\2\2\2\u018a\u018f"+
-		"\7e\2\2\u018b\u018c\7e\2\2\u018c\u018d\7L\2\2\u018d\u018f\5f\64\2\u018e"+
-		"\u018a\3\2\2\2\u018e\u018b\3\2\2\2\u018f)\3\2\2\2\u0190\u0191\7W\2\2\u0191"+
-		"+\3\2\2\2\u0192\u0195\5.\30\2\u0193\u0195\5\60\31\2\u0194\u0192\3\2\2"+
-		"\2\u0194\u0193\3\2\2\2\u0195-\3\2\2\2\u0196\u0197\7\4\2\2\u0197\u0198"+
-		"\5b\62\2\u0198/\3\2\2\2\u0199\u019a\7\6\2\2\u019a\u019b\5b\62\2\u019b"+
-		"\61\3\2\2\2\u019c\u019d\7\f\2\2\u019d\u019e\5\64\33\2\u019e\63\3\2\2\2"+
-		"\u019f\u01a4\5\66\34\2\u01a0\u01a4\58\35\2\u01a1\u01a4\5:\36\2\u01a2\u01a4"+
-		"\5<\37\2\u01a3\u019f\3\2\2\2\u01a3\u01a0\3\2\2\2\u01a3\u01a1\3\2\2\2\u01a3"+
-		"\u01a2\3\2\2\2\u01a4\65\3\2\2\2\u01a5\u01a6\7\5\2\2\u01a6\u01a7\5> \2"+
-		"\u01a7\67\3\2\2\2\u01a8\u01a9\7\20\2\2\u01a9\u01aa\5> \2\u01aa9\3\2\2"+
-		"\2\u01ab\u01ac\7;\2\2\u01ac\u01ad\5> \2\u01ad;\3\2\2\2\u01ae\u01b0\7-"+
-		"\2\2\u01af\u01b1\7\23\2\2\u01b0\u01af\3\2\2\2\u01b0\u01b1\3\2\2\2\u01b1"+
-		"\u01b2\3\2\2\2\u01b2\u01b3\7M\2\2\u01b3\u01b8\5\64\33\2\u01b4\u01b5\7"+
-		"\25\2\2\u01b5\u01b7\5\64\33\2\u01b6\u01b4\3\2\2\2\u01b7\u01ba\3\2\2\2"+
-		"\u01b8\u01b6\3\2\2\2\u01b8\u01b9\3\2\2\2\u01b9\u01bb\3\2\2\2\u01ba\u01b8"+
-		"\3\2\2\2\u01bb\u01bd\7$\2\2\u01bc\u01be\7^\2\2\u01bd\u01bc\3\2\2\2\u01bd"+
-		"\u01be\3\2\2\2\u01be=\3\2\2\2\u01bf\u01c0\7\23\2\2\u01c0\u01c1\5b\62\2"+
-		"\u01c1\u01c2\7\25\2\2\u01c2\u01c3\5@!\2\u01c3\u01c4\7\25\2\2\u01c4\u01c5"+
-		"\5B\"\2\u01c5\u01c6\7\25\2\2\u01c6\u01c7\7\36\2\2\u01c7\u01c8\7^\2\2\u01c8"+
-		"?\3\2\2\2\u01c9\u01ca\t\2\2\2\u01caA\3\2\2\2\u01cb\u01cc\t\3\2\2\u01cc"+
-		"C\3\2\2\2\u01cd\u01d0\5F$\2\u01ce\u01d0\5H%\2\u01cf\u01cd\3\2\2\2\u01cf"+
-		"\u01ce\3\2\2\2\u01d0E\3\2\2\2\u01d1\u01d2\7e\2\2\u01d2G\3\2\2\2\u01d3"+
-		"\u01d4\7e\2\2\u01d4\u01d5\7\23\2\2\u01d5\u01da\5J&\2\u01d6\u01d7\7\25"+
-		"\2\2\u01d7\u01d9\5J&\2\u01d8\u01d6\3\2\2\2\u01d9\u01dc\3\2\2\2\u01da\u01d8"+
-		"\3\2\2\2\u01da\u01db\3\2\2\2\u01db\u01dd\3\2\2\2\u01dc\u01da\3\2\2\2\u01dd"+
-		"\u01de\7^\2\2\u01deI\3\2\2\2\u01df\u01e5\5L\'\2\u01e0\u01e5\5N(\2\u01e1"+
-		"\u01e5\5P)\2\u01e2\u01e5\5R*\2\u01e3\u01e5\5T+\2\u01e4\u01df\3\2\2\2\u01e4"+
-		"\u01e0\3\2\2\2\u01e4\u01e1\3\2\2\2\u01e4\u01e2\3\2\2\2\u01e4\u01e3\3\2"+
-		"\2\2\u01e5K\3\2\2\2\u01e6\u01e7\5\u00e2r\2\u01e7M\3\2\2\2\u01e8\u01e9"+
-		"\5\u00e4s\2\u01e9O\3\2\2\2\u01ea\u01eb\5\u00e6t\2\u01ebQ\3\2\2\2\u01ec"+
-		"\u01ed\7e\2\2\u01edS\3\2\2\2\u01ee\u01ef\5\u00dco\2\u01efU\3\2\2\2\u01f0"+
-		"\u01f8\5\u00e2r\2\u01f1\u01f8\5\u00e6t\2\u01f2\u01f8\5\u00e4s\2\u01f3"+
-		"\u01f8\7e\2\2\u01f4\u01f8\5`\61\2\u01f5\u01f8\5\u00dco\2\u01f6\u01f8\5"+
-		"X-\2\u01f7\u01f0\3\2\2\2\u01f7\u01f1\3\2\2\2\u01f7\u01f2\3\2\2\2\u01f7"+
-		"\u01f3\3\2\2\2\u01f7\u01f4\3\2\2\2\u01f7\u01f5\3\2\2\2\u01f7\u01f6\3\2"+
-		"\2\2\u01f8W\3\2\2\2\u01f9\u01fa\7\7\2\2\u01fa\u01fb\7\64\2\2\u01fb\u01fc"+
-		"\5V,\2\u01fcY\3\2\2\2\u01fd\u01fe\7\60\2\2\u01fe\u01ff\5^\60\2\u01ff\u0200"+
-		"\7\64\2\2\u0200\u0201\5\30\r\2\u0201[\3\2\2\2\u0202\u0203\7\60\2\2\u0203"+
-		"\u0204\5^\60\2\u0204\u0205\7\64\2\2\u0205\u0206\5\36\20\2\u0206]\3\2\2"+
-		"\2\u0207\u0211\7M\2\2\u0208\u020d\5\u00dco\2\u0209\u020a\7\25\2\2\u020a"+
-		"\u020c\5\u00dco\2\u020b\u0209\3\2\2\2\u020c\u020f\3\2\2\2\u020d\u020b"+
-		"\3\2\2\2\u020d\u020e\3\2\2\2\u020e\u0212\3\2\2\2\u020f\u020d\3\2\2\2\u0210"+
-		"\u0212\7\17\2\2\u0211\u0208\3\2\2\2\u0211\u0210\3\2\2\2\u0212\u0213\3"+
-		"\2\2\2\u0213\u0214\7$\2\2\u0214_\3\2\2\2\u0215\u0216\7e\2\2\u0216\u0217"+
-		"\7\23\2\2\u0217\u0218\5b\62\2\u0218\u0219\7^\2\2\u0219a\3\2\2\2\u021a"+
-		"\u022c\b\62\1\2\u021b\u022c\5\u0082B\2\u021c\u022c\5r:\2\u021d\u022c\5"+
-		"x=\2\u021e\u022c\5\u00d2j\2\u021f\u022c\5\u0092J\2\u0220\u022c\5\u00c6"+
-		"d\2\u0221\u022c\5\u00c2b\2\u0222\u022c\5\u00a4S\2\u0223\u022c\5\u0080"+
-		"A\2\u0224\u022c\5\u0086D\2\u0225\u022c\5\u008eH\2\u0226\u022c\7h\2\2\u0227"+
-		"\u022c\5\u00eav\2\u0228\u022c\5\u00e8u\2\u0229\u022c\7e\2\2\u022a\u022c"+
-		"\7T\2\2\u022b\u021a\3\2\2\2\u022b\u021b\3\2\2\2\u022b\u021c\3\2\2\2\u022b"+
-		"\u021d\3\2\2\2\u022b\u021e\3\2\2\2\u022b\u021f\3\2\2\2\u022b\u0220\3\2"+
-		"\2\2\u022b\u0221\3\2\2\2\u022b\u0222\3\2\2\2\u022b\u0223\3\2\2\2\u022b"+
-		"\u0224\3\2\2\2\u022b\u0225\3\2\2\2\u022b\u0226\3\2\2\2\u022b\u0227\3\2"+
-		"\2\2\u022b\u0228\3\2\2\2\u022b\u0229\3\2\2\2\u022b\u022a\3\2\2\2\u022c"+
-		"\u0233\3\2\2\2\u022d\u022e\f\16\2\2\u022e\u022f\5\u0088E\2\u022f\u0230"+
-		"\5b\62\17\u0230\u0232\3\2\2\2\u0231\u022d\3\2\2\2\u0232\u0235\3\2\2\2"+
-		"\u0233\u0231\3\2\2\2\u0233\u0234\3\2\2\2\u0234c\3\2\2\2\u0235\u0233\3"+
-		"\2\2\2\u0236\u0243\3\2\2\2\u0237\u0238\7\23\2\2\u0238\u0239\5t;\2\u0239"+
-		"\u023a\7^\2\2\u023a\u0243\3\2\2\2\u023b\u0243\7e\2\2\u023c\u0243\7h\2"+
-		"\2\u023d\u0243\5\u008cG\2\u023e\u0243\5\u00c6d\2\u023f\u0243\5\u00c2b"+
-		"\2\u0240\u0243\5\u0080A\2\u0241\u0243\5\u00a4S\2\u0242\u0236\3\2\2\2\u0242"+
-		"\u0237\3\2\2\2\u0242\u023b\3\2\2\2\u0242\u023c\3\2\2\2\u0242\u023d\3\2"+
-		"\2\2\u0242\u023e\3\2\2\2\u0242\u023f\3\2\2\2\u0242\u0240\3\2\2\2\u0242"+
-		"\u0241\3\2\2\2\u0243e\3\2\2\2\u0244\u0247\5h\65\2\u0245\u0247\5j\66\2"+
-		"\u0246\u0244\3\2\2\2\u0246\u0245\3\2\2\2\u0247g\3\2\2\2\u0248\u0249\t"+
-		"\4\2\2\u0249i\3\2\2\2\u024a\u024b\t\5\2\2\u024bk\3\2\2\2\u024c\u024d\t"+
-		"\6\2\2\u024dm\3\2\2\2\u024e\u024f\7e\2\2\u024f\u0250\7L\2\2\u0250\u0251"+
-		"\5h\65\2\u0251o\3\2\2\2\u0252\u0253\7e\2\2\u0253\u0254\7L\2\2\u0254\u0255"+
-		"\5j\66\2\u0255q\3\2\2\2\u0256\u0259\5t;\2\u0257\u025a\5h\65\2\u0258\u025a"+
-		"\5n8\2\u0259\u0257\3\2\2\2\u0259\u0258\3\2\2\2\u025a\u025b\3\2\2\2\u025b"+
-		"\u025c\5t;\2\u025c\u0266\3\2\2\2\u025d\u0260\5z>\2\u025e\u0261\5j\66\2"+
-		"\u025f\u0261\5p9\2\u0260\u025e\3\2\2\2\u0260\u025f\3\2\2\2\u0261\u0262"+
-		"\3\2\2\2\u0262\u0263\5z>\2\u0263\u0266\3\2\2\2\u0264\u0266\5|?\2\u0265"+
-		"\u0256\3\2\2\2\u0265\u025d\3\2\2\2\u0265\u0264\3\2\2\2\u0266s\3\2\2\2"+
-		"\u0267\u0268\b;\1\2\u0268\u026b\5z>\2\u0269\u026c\5j\66\2\u026a\u026c"+
-		"\5p9\2\u026b\u0269\3\2\2\2\u026b\u026a\3\2\2\2\u026c\u026d\3\2\2\2\u026d"+
-		"\u026e\5b\62\2\u026e\u0272\3\2\2\2\u026f\u0272\5|?\2\u0270\u0272\5d\63"+
-		"\2\u0271\u0267\3\2\2\2\u0271\u026f\3\2\2\2\u0271\u0270\3\2\2\2\u0272\u027c"+
-		"\3\2\2\2\u0273\u0276\f\6\2\2\u0274\u0277\5h\65\2\u0275\u0277\5n8\2\u0276"+
-		"\u0274\3\2\2\2\u0276\u0275\3\2\2\2\u0277\u0278\3\2\2\2\u0278\u0279\5t"+
-		";\7\u0279\u027b\3\2\2\2\u027a\u0273\3\2\2\2\u027b\u027e\3\2\2\2\u027c"+
-		"\u027a\3\2\2\2\u027c\u027d\3\2\2\2\u027du\3\2\2\2\u027e\u027c\3\2\2\2"+
-		"\u027f\u028c\7e\2\2\u0280\u028c\5\u00e8u\2\u0281\u028c\5\u00eav\2\u0282"+
-		"\u028c\5\u008cG\2\u0283\u028c\5\u00c6d\2\u0284\u028c\5\u00c2b\2\u0285"+
-		"\u0286\7\23\2\2\u0286\u0287\5z>\2\u0287\u0288\7^\2\2\u0288\u028c\3\2\2"+
-		"\2\u0289\u028c\5\u0080A\2\u028a\u028c\5\u00a2R\2\u028b\u027f\3\2\2\2\u028b"+
-		"\u0280\3\2\2\2\u028b\u0281\3\2\2\2\u028b\u0282\3\2\2\2\u028b\u0283\3\2"+
-		"\2\2\u028b\u0284\3\2\2\2\u028b\u0285\3\2\2\2\u028b\u0289\3\2\2\2\u028b"+
-		"\u028a\3\2\2\2\u028cw\3\2\2\2\u028d\u0293\5~@\2\u028e\u028f\5z>\2\u028f"+
-		"\u0290\5l\67\2\u0290\u0291\5z>\2\u0291\u0293\3\2\2\2\u0292\u028d\3\2\2"+
-		"\2\u0292\u028e\3\2\2\2\u0293y\3\2\2\2\u0294\u0295\b>\1\2\u0295\u0298\5"+
-		"~@\2\u0296\u0298\5v<\2\u0297\u0294\3\2\2\2\u0297\u0296\3\2\2\2\u0298\u029f"+
-		"\3\2\2\2\u0299\u029a\f\4\2\2\u029a\u029b\5l\67\2\u029b\u029c\5z>\5\u029c"+
-		"\u029e\3\2\2\2\u029d\u0299\3\2\2\2\u029e\u02a1\3\2\2\2\u029f\u029d\3\2"+
-		"\2\2\u029f\u02a0\3\2\2\2\u02a0{\3\2\2\2\u02a1\u029f\3\2\2\2\u02a2\u02a3"+
-		"\7`\2\2\u02a3\u02a4\5b\62\2\u02a4}\3\2\2\2\u02a5\u02a6\7b\2\2\u02a6\u02a7"+
-		"\5z>\2\u02a7\177\3\2\2\2\u02a8\u02b4\7e\2\2\u02a9\u02aa\7\23\2\2\u02aa"+
-		"\u02af\5b\62\2\u02ab\u02ac\7\25\2\2\u02ac\u02ae\5b\62\2\u02ad\u02ab\3"+
-		"\2\2\2\u02ae\u02b1\3\2\2\2\u02af\u02ad\3\2\2\2\u02af\u02b0\3\2\2\2\u02b0"+
-		"\u02b2\3\2\2\2\u02b1\u02af\3\2\2\2\u02b2\u02b3\7^\2\2\u02b3\u02b5\3\2"+
-		"\2\2\u02b4\u02a9\3\2\2\2\u02b4\u02b5\3\2\2\2\u02b5\u0081\3\2\2\2\u02b6"+
-		"\u02b7\7\23\2\2\u02b7\u02b8\5b\62\2\u02b8\u02b9\7^\2\2\u02b9\u0083\3\2"+
-		"\2\2\u02ba\u02bb\7e\2\2\u02bb\u0085\3\2\2\2\u02bc\u02bd\7D\2\2\u02bd\u02be"+
-		"\5\u00ecw\2\u02be\u02bf\7D\2\2\u02bf\u0087\3\2\2\2\u02c0\u02c1\7A\2\2"+
-		"\u02c1\u02c2\7e\2\2\u02c2\u02c5\7A\2\2\u02c3\u02c5\5\u008aF\2\u02c4\u02c0"+
-		"\3\2\2\2\u02c4\u02c3\3\2\2\2\u02c5\u0089\3\2\2\2\u02c6\u02c7\t\7\2\2\u02c7"+
-		"\u008b\3\2\2\2\u02c8\u02c9\7e\2\2\u02c9\u02ce\5\u0098M\2\u02ca\u02cb\5"+
-		"\u0098M\2\u02cb\u02cc\5\u0098M\2\u02cc\u02ce\3\2\2\2\u02cd\u02c8\3\2\2"+
-		"\2\u02cd\u02ca\3\2\2\2\u02ce\u008d\3\2\2\2\u02cf\u02d0\7I\2\2\u02d0\u02d1"+
-		"\7e\2\2\u02d1\u02d5\7\64\2\2\u02d2\u02d3\5\u0090I\2\u02d3\u02d4\78\2\2"+
-		"\u02d4\u02d6\3\2\2\2\u02d5\u02d2\3\2\2\2\u02d6\u02d7\3\2\2\2\u02d7\u02d5"+
-		"\3\2\2\2\u02d7\u02d8\3\2\2\2\u02d8\u02d9\3\2\2\2\u02d9\u02da\7\37\2\2"+
-		"\u02da\u008f\3\2\2\2\u02db\u02dc\5\u0080A\2\u02dc\u02dd\7*\2\2\u02dd\u02de"+
-		"\5b\62\2\u02de\u0091\3\2\2\2\u02df\u02e0\bJ\1\2\u02e0\u02e4\5\u009eP\2"+
-		"\u02e1\u02e4\5\u0094K\2\u02e2\u02e4\5\u009cO\2\u02e3\u02df\3\2\2\2\u02e3"+
-		"\u02e1\3\2\2\2\u02e3\u02e2\3\2\2\2\u02e4\u02ea\3\2\2\2\u02e5\u02e6\f\5"+
-		"\2\2\u02e6\u02e7\7#\2\2\u02e7\u02e9\5b\62\2\u02e8\u02e5\3\2\2\2\u02e9"+
-		"\u02ec\3\2\2\2\u02ea\u02e8\3\2\2\2\u02ea\u02eb\3\2\2\2\u02eb\u0093\3\2"+
-		"\2\2\u02ec\u02ea\3\2\2\2\u02ed\u02f0\5\u0096L\2\u02ee\u02f0\5\u009aN\2"+
-		"\u02ef\u02ed\3\2\2\2\u02ef\u02ee\3\2\2\2\u02f0\u0095\3\2\2\2\u02f1\u02f2"+
-		"\7M\2\2\u02f2\u02f5\7$\2\2\u02f3\u02f5\5\u0098M\2\u02f4\u02f1\3\2\2\2"+
-		"\u02f4\u02f3\3\2\2\2\u02f5\u0097\3\2\2\2\u02f6\u02f7\7M\2\2\u02f7\u02fc"+
-		"\5b\62\2\u02f8\u02f9\7\25\2\2\u02f9\u02fb\5b\62\2\u02fa\u02f8\3\2\2\2"+
-		"\u02fb\u02fe\3\2\2\2\u02fc\u02fa\3\2\2\2\u02fc\u02fd\3\2\2\2\u02fd\u02ff"+
-		"\3\2\2\2\u02fe\u02fc\3\2\2\2\u02ff\u0300\7$\2\2\u0300\u0099\3\2\2\2\u0301"+
-		"\u030a\7M\2\2\u0302\u0307\5b\62\2\u0303\u0304\7\25\2\2\u0304\u0306\5b"+
-		"\62\2\u0305\u0303\3\2\2\2\u0306\u0309\3\2\2\2\u0307\u0305\3\2\2\2\u0307"+
-		"\u0308\3\2\2\2\u0308\u030b\3\2\2\2\u0309\u0307\3\2\2\2\u030a\u0302\3\2"+
-		"\2\2\u030a\u030b\3\2\2\2\u030b\u030c\3\2\2\2\u030c\u030d\7N\2\2\u030d"+
-		"\u0312\5\u00be`\2\u030e\u030f\7\25\2\2\u030f\u0311\5\u00be`\2\u0310\u030e"+
-		"\3\2\2\2\u0311\u0314\3\2\2\2\u0312\u0310\3\2\2\2\u0312\u0313\3\2\2\2\u0313"+
-		"\u0315\3\2\2\2\u0314\u0312\3\2\2\2\u0315\u0316\7$\2\2\u0316\u009b\3\2"+
-		"\2\2\u0317\u0320\7C\2\2\u0318\u031d\5b\62\2\u0319\u031a\7\25\2\2\u031a"+
-		"\u031c\5b\62\2\u031b\u0319\3\2\2\2\u031c\u031f\3\2\2\2\u031d\u031b\3\2"+
-		"\2\2\u031d\u031e\3\2\2\2\u031e\u0321\3\2\2\2\u031f\u031d\3\2\2\2\u0320"+
-		"\u0318\3\2\2\2\u0320\u0321\3\2\2\2\u0321\u0330\3\2\2\2\u0322\u0324\7\25"+
-		"\2\2\u0323\u0322\3\2\2\2\u0323\u0324\3\2\2\2\u0324\u0325\3\2\2\2\u0325"+
-		"\u0326\7N\2\2\u0326\u032b\5b\62\2\u0327\u0328\7\25\2\2\u0328\u032a\5b"+
-		"\62\2\u0329\u0327\3\2\2\2\u032a\u032d\3\2\2\2\u032b\u0329\3\2\2\2\u032b"+
-		"\u032c\3\2\2\2\u032c\u032f\3\2\2\2\u032d\u032b\3\2\2\2\u032e\u0323\3\2"+
-		"\2\2\u032f\u0332\3\2\2\2\u0330\u032e\3\2\2\2\u0330\u0331\3\2\2\2\u0331"+
-		"\u0333\3\2\2\2\u0332\u0330\3\2\2\2\u0333\u0334\7\'\2\2\u0334\u009d\3\2"+
-		"\2\2\u0335\u033d\5\u0086D\2\u0336\u033d\7e\2\2\u0337\u033d\5\u00c6d\2"+
-		"\u0338\u033d\5\u008cG\2\u0339\u033d\5\u00a0Q\2\u033a\u033d\5\u00be`\2"+
-		"\u033b\u033d\5\u00a2R\2\u033c\u0335\3\2\2\2\u033c\u0336\3\2\2\2\u033c"+
-		"\u0337\3\2\2\2\u033c\u0338\3\2\2\2\u033c\u0339\3\2\2\2\u033c\u033a\3\2"+
-		"\2\2\u033c\u033b\3\2\2\2\u033d\u009f\3\2\2\2\u033e\u033f\7P\2\2\u033f"+
-		"\u0340\7\23\2\2\u0340\u0341\5b\62\2\u0341\u0342\7^\2\2\u0342\u00a1\3\2"+
-		"\2\2\u0343\u0344\5\u00a4S\2\u0344\u00a3\3\2\2\2\u0345\u034f\5\u00a6T\2"+
-		"\u0346\u034f\5\u00a8U\2\u0347\u034f\5\u00aaV\2\u0348\u034f\5\u00acW\2"+
-		"\u0349\u034f\5\u00aeX\2\u034a\u034f\5\u00b0Y\2\u034b\u034f\5\u00b2Z\2"+
-		"\u034c\u034f\5\u00b4[\2\u034d\u034f\5\u00b6\\\2\u034e\u0345\3\2\2\2\u034e"+
-		"\u0346\3\2\2\2\u034e\u0347\3\2\2\2\u034e\u0348\3\2\2\2\u034e\u0349\3\2"+
-		"\2\2\u034e\u034a\3\2\2\2\u034e\u034b\3\2\2\2\u034e\u034c\3\2\2\2\u034e"+
-		"\u034d\3\2\2\2\u034f\u00a5\3\2\2\2\u0350\u0351\7S\2\2\u0351\u0352\5\u00b8"+
-		"]\2\u0352\u00a7\3\2\2\2\u0353\u0354\7G\2\2\u0354\u0355\5\u00b8]\2\u0355"+
-		"\u00a9\3\2\2\2\u0356\u0357\7\66\2\2\u0357\u0358\5\u00b8]\2\u0358\u00ab"+
-		"\3\2\2\2\u0359\u035a\7]\2\2\u035a\u035b\5\u00b8]\2\u035b\u00ad\3\2\2\2"+
-		"\u035c\u035d\79\2\2\u035d\u0366\5\u00b8]\2\u035e\u035f\79\2\2\u035f\u0360"+
-		"\7\23\2\2\u0360\u0361\5b\62\2\u0361\u0362\7\25\2\2\u0362\u0363\5b\62\2"+
-		"\u0363\u0364\7^\2\2\u0364\u0366\3\2\2\2\u0365\u035c\3\2\2\2\u0365\u035e"+
-		"\3\2\2\2\u0366\u00af\3\2\2\2\u0367\u0368\7\24\2\2\u0368\u0371\5\u00b8"+
-		"]\2\u0369\u036a\79\2\2\u036a\u036b\7\23\2\2\u036b\u036c\5b\62\2\u036c"+
-		"\u036d\7\25\2\2\u036d\u036e\5b\62\2\u036e\u036f\7^\2\2\u036f\u0371\3\2"+
-		"\2\2\u0370\u0367\3\2\2\2\u0370\u0369\3\2\2\2\u0371\u00b1\3\2\2\2\u0372"+
-		"\u0373\7%\2\2\u0373\u0374\7\23\2\2\u0374\u0375\5b\62\2\u0375\u0376\7^"+
-		"\2\2\u0376\u00b3\3\2\2\2\u0377\u0378\7+\2\2\u0378\u0379\5\u00b8]\2\u0379"+
-		"\u00b5\3\2\2\2\u037a\u037b\7\63\2\2\u037b\u037c\7\23\2\2\u037c\u037d\5"+
-		"b\62\2\u037d\u037e\7\25\2\2\u037e\u037f\5b\62\2\u037f\u0380\7^\2\2\u0380"+
-		"\u00b7\3\2\2\2\u0381\u0384\5\u00bc_\2\u0382\u0384\5\u00ba^\2\u0383\u0381"+
-		"\3\2\2\2\u0383\u0382\3\2\2\2\u0384\u00b9\3\2\2\2\u0385\u0386\7\23\2\2"+
-		"\u0386\u0387\5\u0092J\2\u0387\u0388\7^\2\2\u0388\u00bb\3\2\2\2\u0389\u038a"+
-		"\7\23\2\2\u038a\u038f\5\u00be`\2\u038b\u038c\7\25\2\2\u038c\u038e\5\u00be"+
-		"`\2\u038d\u038b\3\2\2\2\u038e\u0391\3\2\2\2\u038f\u038d\3\2\2\2\u038f"+
-		"\u0390\3\2\2\2\u0390\u0392\3\2\2\2\u0391\u038f\3\2\2\2\u0392\u0393\7^"+
-		"\2\2\u0393\u0394\7\23\2\2\u0394\u0395\5b\62\2\u0395\u0396\7^\2\2\u0396"+
-		"\u00bd\3\2\2\2\u0397\u039c\7e\2\2\u0398\u0399\7\25\2\2\u0399\u039b\7e"+
-		"\2\2\u039a\u0398\3\2\2\2\u039b\u039e\3\2\2\2\u039c\u039a\3\2\2\2\u039c"+
-		"\u039d\3\2\2\2\u039d\u039f\3\2\2\2\u039e\u039c\3\2\2\2\u039f\u03a0\7["+
-		"\2\2\u03a0\u03a2\5\u00d2j\2\u03a1\u03a3\5\u00c0a\2\u03a2\u03a1\3\2\2\2"+
-		"\u03a2\u03a3\3\2\2\2\u03a3\u00bf\3\2\2\2\u03a4\u03a5\7V\2\2\u03a5\u03a6"+
-		"\5b\62\2\u03a6\u00c1\3\2\2\2\u03a7\u03a8\7)\2\2\u03a8\u03a9\7\n\2\2\u03a9"+
-		"\u03ae\5\u00c4c\2\u03aa\u03ab\7\25\2\2\u03ab\u03ad\5\u00c4c\2\u03ac\u03aa"+
-		"\3\2\2\2\u03ad\u03b0\3\2\2\2\u03ae\u03ac\3\2\2\2\u03ae\u03af\3\2\2\2\u03af"+
-		"\u03b1\3\2\2\2\u03b0\u03ae\3\2\2\2\u03b1\u03b2\7<\2\2\u03b2\u03b3\7[\2"+
-		"\2\u03b3\u03b4\5b\62\2\u03b4\u00c3\3\2\2\2\u03b5\u03b8\5\6\4\2\u03b6\u03b8"+
-		"\5\26\f\2\u03b7\u03b5\3\2\2\2\u03b7\u03b6\3\2\2\2\u03b8\u00c5\3\2\2\2"+
-		"\u03b9\u03ba\7=\2\2\u03ba\u03bb\5\u00c8e\2\u03bb\u00c7\3\2\2\2\u03bc\u03bd"+
-		"\5b\62\2\u03bd\u03be\7.\2\2\u03be\u03c1\5b\62\2\u03bf\u03c2\5\u00caf\2"+
-		"\u03c0\u03c2\5\u00ccg\2\u03c1\u03bf\3\2\2\2\u03c1\u03c0\3\2\2\2\u03c2"+
-		"\u00c9\3\2\2\2\u03c3\u03c4\7Z\2\2\u03c4\u03c5\5b\62\2\u03c5\u03c6\7\3"+
-		"\2\2\u03c6\u00cb\3\2\2\2\u03c7\u03c8\7\65\2\2\u03c8\u03c9\5\u00c8e\2\u03c9"+
-		"\u00cd\3\2\2\2\u03ca\u03ce\5\u00d4k\2\u03cb\u03ce\5\u00dco\2\u03cc\u03ce"+
-		"\5\u00d6l\2\u03cd\u03ca\3\2\2\2\u03cd\u03cb\3\2\2\2\u03cd\u03cc\3\2\2"+
-		"\2\u03ce\u00cf\3\2\2\2\u03cf\u03d0\5\u00d2j\2\u03d0\u03d1\5\u008aF\2\u03d1"+
-		"\u03d2\5\u00d2j\2\u03d2\u00d1\3\2\2\2\u03d3\u03d4\bj\1\2\u03d4\u03d5\5"+
-		"\u00ceh\2\u03d5\u03dc\3\2\2\2\u03d6\u03d7\f\3\2\2\u03d7\u03d8\5\u008a"+
-		"F\2\u03d8\u03d9\5\u00d2j\4\u03d9\u03db\3\2\2\2\u03da\u03d6\3\2\2\2\u03db"+
-		"\u03de\3\2\2\2\u03dc\u03da\3\2\2\2\u03dc\u03dd\3\2\2\2\u03dd\u00d3\3\2"+
-		"\2\2\u03de\u03dc\3\2\2\2\u03df\u03e0\7\n\2\2\u03e0\u03e1\5\u00d8m\2\u03e1"+
-		"\u03e2\7<\2\2\u03e2\u00d5\3\2\2\2\u03e3\u03e4\7\n\2\2\u03e4\u03e5\5\u00d8"+
-		"m\2\u03e5\u03e6\7N\2\2\u03e6\u03e7\5\u00dan\2\u03e7\u03e8\7<\2\2\u03e8"+
-		"\u00d7\3\2\2\2\u03e9\u03ee\5b\62\2\u03ea\u03eb\7\25\2\2\u03eb\u03ed\5"+
-		"b\62\2\u03ec\u03ea\3\2\2\2\u03ed\u03f0\3\2\2\2\u03ee\u03ec\3\2\2\2\u03ee"+
-		"\u03ef\3\2\2\2\u03ef\u03f2\3\2\2\2\u03f0\u03ee\3\2\2\2\u03f1\u03e9\3\2"+
-		"\2\2\u03f1\u03f2\3\2\2\2\u03f2\u00d9\3\2\2\2\u03f3\u03f8\5\u00be`\2\u03f4"+
-		"\u03f5\7\25\2\2\u03f5\u03f7\5\u00be`\2\u03f6\u03f4\3\2\2\2\u03f7\u03fa"+
-		"\3\2\2\2\u03f8\u03f6\3\2\2\2\u03f8\u03f9\3\2\2\2\u03f9\u00db\3\2\2\2\u03fa"+
-		"\u03f8\3\2\2\2\u03fb\u03fc\5\u00dep\2\u03fc\u03fd\7\13\2\2\u03fd\u03fe"+
-		"\5\u00e0q\2\u03fe\u0401\3\2\2\2\u03ff\u0401\7e\2\2\u0400\u03fb\3\2\2\2"+
-		"\u0400\u03ff\3\2\2\2\u0401\u00dd\3\2\2\2\u0402\u0403\5z>\2\u0403\u00df"+
-		"\3\2\2\2\u0404\u0405\5z>\2\u0405\u00e1\3\2\2\2\u0406\u0407\7\17\2\2\u0407"+
-		"\u00e3\3\2\2\2\u0408\u0409\7\t\2\2\u0409\u00e5\3\2\2\2\u040a\u040b\7Q"+
-		"\2\2\u040b\u00e7\3\2\2\2\u040c\u0410\7f\2\2\u040d\u040e\7b\2\2\u040e\u0410"+
-		"\7f\2\2\u040f\u040c\3\2\2\2\u040f\u040d\3\2\2\2\u0410\u00e9\3\2\2\2\u0411"+
-		"\u0412\5\u00e8u\2\u0412\u0413\7H\2\2\u0413\u0414\7f\2\2\u0414\u00eb\3"+
-		"\2\2\2\u0415\u041b\n\b\2\2\u0416\u041b\7c\2\2\u0417\u041b\7H\2\2\u0418"+
-		"\u041b\7\16\2\2\u0419\u041b\7(\2\2\u041a\u0415\3\2\2\2\u041a\u0416\3\2"+
-		"\2\2\u041a\u0417\3\2\2\2\u041a\u0418\3\2\2\2\u041a\u0419\3\2\2\2\u041b"+
-		"\u041d\3\2\2\2\u041c\u041a\3\2\2\2\u041d\u0420\3\2\2\2\u041e\u041c\3\2"+
-		"\2\2\u041e\u041f\3\2\2\2\u041f\u00ed\3\2\2\2\u0420\u041e\3\2\2\2W\u00f3"+
-		"\u00ff\u0103\u0107\u010b\u010f\u011a\u0125\u012a\u0132\u014a\u014e\u0152"+
-		"\u0155\u015c\u016d\u0170\u0178\u0181\u0184\u018e\u0194\u01a3\u01b0\u01b8"+
-		"\u01bd\u01cf\u01da\u01e4\u01f7\u020d\u0211\u022b\u0233\u0242\u0246\u0259"+
-		"\u0260\u0265\u026b\u0271\u0276\u027c\u028b\u0292\u0297\u029f\u02af\u02b4"+
-		"\u02c4\u02cd\u02d7\u02e3\u02ea\u02ef\u02f4\u02fc\u0307\u030a\u0312\u031d"+
-		"\u0320\u0323\u032b\u0330\u033c\u034e\u0365\u0370\u0383\u038f\u039c\u03a2"+
-		"\u03ae\u03b7\u03c1\u03cd\u03dc\u03ee\u03f1\u03f8\u0400\u040f\u041a\u041e";
+		"`\t`\4a\ta\4b\tb\4c\tc\4d\td\4e\te\4f\tf\4g\tg\4h\th\4i\ti\4j\tj\3\2\3"+
+		"\2\3\2\6\2\u00d8\n\2\r\2\16\2\u00d9\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\5\3\u00e6\n\3\3\4\3\4\5\4\u00ea\n\4\3\5\3\5\5\5\u00ee\n\5\3\5\3"+
+		"\5\5\5\u00f2\n\5\3\6\3\6\5\6\u00f6\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7"+
+		"\u00ff\n\7\f\7\16\7\u0102\13\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\5\b\u010c"+
+		"\n\b\3\b\3\b\3\b\5\b\u0111\n\b\3\t\3\t\3\t\3\t\7\t\u0117\n\t\f\t\16\t"+
+		"\u011a\13\t\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r"+
+		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u0131\n\16\3\17\3\17\5\17\u0135"+
+		"\n\17\3\17\3\17\5\17\u0139\n\17\3\20\5\20\u013c\n\20\3\20\3\20\3\20\3"+
+		"\20\3\20\5\20\u0143\n\20\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\23\3\23"+
+		"\3\23\3\23\3\23\3\23\7\23\u0152\n\23\f\23\16\23\u0155\13\23\5\23\u0157"+
+		"\n\23\3\23\3\23\3\23\3\23\3\24\3\24\5\24\u015f\n\24\3\24\3\24\3\24\3\24"+
+		"\3\24\7\24\u0166\n\24\f\24\16\24\u0169\13\24\5\24\u016b\n\24\3\24\3\24"+
+		"\3\24\3\24\3\25\3\25\3\25\3\25\5\25\u0175\n\25\3\26\3\26\3\27\3\27\5\27"+
+		"\u017b\n\27\3\30\3\30\3\30\3\31\3\31\3\31\3\32\3\32\3\32\3\33\3\33\3\33"+
+		"\3\33\5\33\u018a\n\33\3\34\3\34\3\34\3\35\3\35\3\35\3\36\3\36\3\36\3\37"+
+		"\3\37\5\37\u0197\n\37\3\37\3\37\3\37\3\37\7\37\u019d\n\37\f\37\16\37\u01a0"+
+		"\13\37\3\37\3\37\5\37\u01a4\n\37\3 \3 \3 \3 \3 \3 \3 \3 \3 \3 \3!\3!\3"+
+		"\"\3\"\3#\3#\5#\u01b6\n#\3$\3$\3%\3%\3%\3%\3%\7%\u01bf\n%\f%\16%\u01c2"+
+		"\13%\3%\3%\3&\3&\3&\3&\3&\5&\u01cb\n&\3\'\3\'\3(\3(\3)\3)\3*\3*\3+\3+"+
+		"\3,\3,\3,\3,\3,\3,\3,\5,\u01de\n,\3-\3-\3-\3-\3.\3.\3.\3.\3.\3/\3/\3/"+
+		"\3/\3/\3\60\3\60\3\60\3\60\7\60\u01f2\n\60\f\60\16\60\u01f5\13\60\3\60"+
+		"\5\60\u01f8\n\60\3\60\3\60\3\61\3\61\3\61\3\61\3\61\3\62\3\62\3\62\3\62"+
+		"\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\3\62\5\62\u0211"+
+		"\n\62\3\62\3\62\3\62\3\62\7\62\u0217\n\62\f\62\16\62\u021a\13\62\3\63"+
+		"\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63\3\63\5\63\u0227\n\63\3\64"+
+		"\3\64\5\64\u022b\n\64\3\65\3\65\3\66\3\66\3\67\3\67\38\38\38\38\39\39"+
+		"\39\39\3:\3:\3:\5:\u023e\n:\3:\3:\3:\3:\3:\5:\u0245\n:\3:\3:\3:\5:\u024a"+
+		"\n:\3;\3;\3;\3;\5;\u0250\n;\3;\3;\3;\3;\5;\u0256\n;\3;\3;\3;\5;\u025b"+
+		"\n;\3;\3;\7;\u025f\n;\f;\16;\u0262\13;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3"+
+		"<\3<\5<\u0270\n<\3=\3=\3=\3=\3=\5=\u0277\n=\3>\3>\3>\5>\u027c\n>\3>\3"+
+		">\3>\3>\7>\u0282\n>\f>\16>\u0285\13>\3?\3?\3?\3@\3@\3@\3A\3A\3A\5A\u0290"+
+		"\nA\3B\3B\3B\3B\7B\u0296\nB\fB\16B\u0299\13B\3B\3B\5B\u029d\nB\3C\3C\3"+
+		"C\3C\3C\3C\3C\3D\3D\3D\3D\3E\3E\3F\3F\3F\3F\3G\3G\3G\3G\5G\u02b4\nG\3"+
+		"H\3H\3I\3I\3I\3I\3I\5I\u02bd\nI\3J\3J\3J\3J\3J\3J\6J\u02c5\nJ\rJ\16J\u02c6"+
+		"\3J\3J\3K\3K\3K\3K\3L\3L\3L\3L\5L\u02d3\nL\3L\3L\3L\7L\u02d8\nL\fL\16"+
+		"L\u02db\13L\3M\3M\5M\u02df\nM\3N\3N\3N\5N\u02e4\nN\3O\3O\3O\3O\7O\u02ea"+
+		"\nO\fO\16O\u02ed\13O\3O\3O\3P\3P\3P\3P\7P\u02f5\nP\fP\16P\u02f8\13P\3"+
+		"P\3P\3P\3P\3Q\3Q\3Q\3Q\7Q\u0302\nQ\fQ\16Q\u0305\13Q\3Q\5Q\u0308\nQ\3Q"+
+		"\3Q\3Q\3Q\7Q\u030e\nQ\fQ\16Q\u0311\13Q\7Q\u0313\nQ\fQ\16Q\u0316\13Q\3"+
+		"Q\3Q\3R\3R\3R\3R\3R\5R\u031f\nR\3S\3S\3T\3T\3T\7T\u0326\nT\fT\16T\u0329"+
+		"\13T\3T\3T\3T\5T\u032e\nT\3U\3U\3U\3V\3V\3V\3V\3V\7V\u0338\nV\fV\16V\u033b"+
+		"\13V\3V\3V\3V\3V\3W\3W\5W\u0343\nW\3X\3X\3X\3Y\3Y\3Y\3Y\3Y\5Y\u034d\n"+
+		"Y\3Z\3Z\3Z\3Z\3[\3[\3[\3\\\3\\\3\\\5\\\u0359\n\\\3]\3]\3]\3]\3]\3]\3]"+
+		"\7]\u0362\n]\f]\16]\u0365\13]\3^\3^\3^\3^\3^\3^\5^\u036d\n^\3_\3_\3_\3"+
+		"_\3_\3_\3`\3`\3`\7`\u0378\n`\f`\16`\u037b\13`\3a\3a\3a\7a\u0380\na\fa"+
+		"\16a\u0383\13a\3b\3b\3b\3b\3b\5b\u038a\nb\3c\3c\3d\3d\3e\3e\3f\3f\3g\3"+
+		"g\3h\3h\3h\5h\u0399\nh\3i\3i\3i\3i\3j\3j\3j\3j\3j\5j\u03a4\nj\7j\u03a6"+
+		"\nj\fj\16j\u03a9\13j\3j\2\7btz\u0096\u00b8k\2\4\6\b\n\f\16\20\22\24\26"+
+		"\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnprtvxz|"+
+		"~\u0080\u0082\u0084\u0086\u0088\u008a\u008c\u008e\u0090\u0092\u0094\u0096"+
+		"\u0098\u009a\u009c\u009e\u00a0\u00a2\u00a4\u00a6\u00a8\u00aa\u00ac\u00ae"+
+		"\u00b0\u00b2\u00b4\u00b6\u00b8\u00ba\u00bc\u00be\u00c0\u00c2\u00c4\u00c6"+
+		"\u00c8\u00ca\u00cc\u00ce\u00d0\u00d2\2\t\5\2\32\32\34\34WW\7\2\27\27\33"+
+		"\33$$\62\62OO\13\2\b\b\r\r\30\30..99CCHHLLUU\t\2\b\b\r\r !<<HHJJRR\b\2"+
+		"\37\37,,//@@PPXX\4\2\22\22RS\3\2>>\u03c6\2\u00d7\3\2\2\2\4\u00e5\3\2\2"+
+		"\2\6\u00e9\3\2\2\2\b\u00ed\3\2\2\2\n\u00f5\3\2\2\2\f\u00f7\3\2\2\2\16"+
+		"\u0105\3\2\2\2\20\u0112\3\2\2\2\22\u011d\3\2\2\2\24\u011f\3\2\2\2\26\u0121"+
+		"\3\2\2\2\30\u0124\3\2\2\2\32\u0130\3\2\2\2\34\u0132\3\2\2\2\36\u013b\3"+
+		"\2\2\2 \u0144\3\2\2\2\"\u0147\3\2\2\2$\u014b\3\2\2\2&\u015c\3\2\2\2(\u0174"+
+		"\3\2\2\2*\u0176\3\2\2\2,\u017a\3\2\2\2.\u017c\3\2\2\2\60\u017f\3\2\2\2"+
+		"\62\u0182\3\2\2\2\64\u0189\3\2\2\2\66\u018b\3\2\2\28\u018e\3\2\2\2:\u0191"+
+		"\3\2\2\2<\u0194\3\2\2\2>\u01a5\3\2\2\2@\u01af\3\2\2\2B\u01b1\3\2\2\2D"+
+		"\u01b5\3\2\2\2F\u01b7\3\2\2\2H\u01b9\3\2\2\2J\u01ca\3\2\2\2L\u01cc\3\2"+
+		"\2\2N\u01ce\3\2\2\2P\u01d0\3\2\2\2R\u01d2\3\2\2\2T\u01d4\3\2\2\2V\u01dd"+
+		"\3\2\2\2X\u01df\3\2\2\2Z\u01e3\3\2\2\2\\\u01e8\3\2\2\2^\u01ed\3\2\2\2"+
+		"`\u01fb\3\2\2\2b\u0210\3\2\2\2d\u0226\3\2\2\2f\u022a\3\2\2\2h\u022c\3"+
+		"\2\2\2j\u022e\3\2\2\2l\u0230\3\2\2\2n\u0232\3\2\2\2p\u0236\3\2\2\2r\u0249"+
+		"\3\2\2\2t\u0255\3\2\2\2v\u026f\3\2\2\2x\u0276\3\2\2\2z\u027b\3\2\2\2|"+
+		"\u0286\3\2\2\2~\u0289\3\2\2\2\u0080\u028c\3\2\2\2\u0082\u029c\3\2\2\2"+
+		"\u0084\u029e\3\2\2\2\u0086\u02a5\3\2\2\2\u0088\u02a9\3\2\2\2\u008a\u02ab"+
+		"\3\2\2\2\u008c\u02b3\3\2\2\2\u008e\u02b5\3\2\2\2\u0090\u02bc\3\2\2\2\u0092"+
+		"\u02be\3\2\2\2\u0094\u02ca\3\2\2\2\u0096\u02d2\3\2\2\2\u0098\u02de\3\2"+
+		"\2\2\u009a\u02e3\3\2\2\2\u009c\u02e5\3\2\2\2\u009e\u02f0\3\2\2\2\u00a0"+
+		"\u02fd\3\2\2\2\u00a2\u031e\3\2\2\2\u00a4\u0320\3\2\2\2\u00a6\u0322\3\2"+
+		"\2\2\u00a8\u032f\3\2\2\2\u00aa\u0332\3\2\2\2\u00ac\u0342\3\2\2\2\u00ae"+
+		"\u0344\3\2\2\2\u00b0\u0347\3\2\2\2\u00b2\u034e\3\2\2\2\u00b4\u0352\3\2"+
+		"\2\2\u00b6\u0358\3\2\2\2\u00b8\u035a\3\2\2\2\u00ba\u036c\3\2\2\2\u00bc"+
+		"\u036e\3\2\2\2\u00be\u0374\3\2\2\2\u00c0\u037c\3\2\2\2\u00c2\u0389\3\2"+
+		"\2\2\u00c4\u038b\3\2\2\2\u00c6\u038d\3\2\2\2\u00c8\u038f\3\2\2\2\u00ca"+
+		"\u0391\3\2\2\2\u00cc\u0393\3\2\2\2\u00ce\u0398\3\2\2\2\u00d0\u039a\3\2"+
+		"\2\2\u00d2\u03a7\3\2\2\2\u00d4\u00d5\5\4\3\2\u00d5\u00d6\7\63\2\2\u00d6"+
+		"\u00d8\3\2\2\2\u00d7\u00d4\3\2\2\2\u00d8\u00d9\3\2\2\2\u00d9\u00d7\3\2"+
+		"\2\2\u00d9\u00da\3\2\2\2\u00da\3\3\2\2\2\u00db\u00e6\5\f\7\2\u00dc\u00e6"+
+		"\5\16\b\2\u00dd\u00e6\5\26\f\2\u00de\u00e6\5\6\4\2\u00df\u00e6\5\34\17"+
+		"\2\u00e0\u00e6\5\32\16\2\u00e1\u00e6\5$\23\2\u00e2\u00e6\5&\24\2\u00e3"+
+		"\u00e6\5 \21\2\u00e4\u00e6\5\"\22\2\u00e5\u00db\3\2\2\2\u00e5\u00dc\3"+
+		"\2\2\2\u00e5\u00dd\3\2\2\2\u00e5\u00de\3\2\2\2\u00e5\u00df\3\2\2\2\u00e5"+
+		"\u00e0\3\2\2\2\u00e5\u00e1\3\2\2\2\u00e5\u00e2\3\2\2\2\u00e5\u00e3\3\2"+
+		"\2\2\u00e5\u00e4\3\2\2\2\u00e6\5\3\2\2\2\u00e7\u00ea\5\b\5\2\u00e8\u00ea"+
+		"\5\n\6\2\u00e9\u00e7\3\2\2\2\u00e9\u00e8\3\2\2\2\u00ea\7\3\2\2\2\u00eb"+
+		"\u00ee\5\30\r\2\u00ec\u00ee\5Z.\2\u00ed\u00eb\3\2\2\2\u00ed\u00ec\3\2"+
+		"\2\2\u00ee\u00f1\3\2\2\2\u00ef\u00f0\7\r\2\2\u00f0\u00f2\5b\62\2\u00f1"+
+		"\u00ef\3\2\2\2\u00f1\u00f2\3\2\2\2\u00f2\t\3\2\2\2\u00f3\u00f6\5\36\20"+
+		"\2\u00f4\u00f6\5\\/\2\u00f5\u00f3\3\2\2\2\u00f5\u00f4\3\2\2\2\u00f6\13"+
+		"\3\2\2\2\u00f7\u00f8\7:\2\2\u00f8\u00f9\7[\2\2\u00f9\u00fa\7\r\2\2\u00fa"+
+		"\u00fb\7\n\2\2\u00fb\u0100\5D#\2\u00fc\u00fd\7\24\2\2\u00fd\u00ff\5D#"+
+		"\2\u00fe\u00fc\3\2\2\2\u00ff\u0102\3\2\2\2\u0100\u00fe\3\2\2\2\u0100\u0101"+
+		"\3\2\2\2\u0101\u0103\3\2\2\2\u0102\u0100\3\2\2\2\u0103\u0104\7\66\2\2"+
+		"\u0104\r\3\2\2\2\u0105\u0106\7\25\2\2\u0106\u0107\7[\2\2\u0107\u010b\7"+
+		"\r\2\2\u0108\u0109\5\22\n\2\u0109\u010a\7\"\2\2\u010a\u010c\3\2\2\2\u010b"+
+		"\u0108\3\2\2\2\u010b\u010c\3\2\2\2\u010c\u010d\3\2\2\2\u010d\u0110\5V"+
+		",\2\u010e\u010f\7\"\2\2\u010f\u0111\5\24\13\2\u0110\u010e\3\2\2\2\u0110"+
+		"\u0111\3\2\2\2\u0111\17\3\2\2\2\u0112\u0113\7F\2\2\u0113\u0118\7[\2\2"+
+		"\u0114\u0115\7\24\2\2\u0115\u0117\7[\2\2\u0116\u0114\3\2\2\2\u0117\u011a"+
+		"\3\2\2\2\u0118\u0116\3\2\2\2\u0118\u0119\3\2\2\2\u0119\u011b\3\2\2\2\u011a"+
+		"\u0118\3\2\2\2\u011b\u011c\7#\2\2\u011c\21\3\2\2\2\u011d\u011e\5\20\t"+
+		"\2\u011e\23\3\2\2\2\u011f\u0120\5\20\t\2\u0120\25\3\2\2\2\u0121\u0122"+
+		"\7?\2\2\u0122\u0123\5b\62\2\u0123\27\3\2\2\2\u0124\u0125\7\31\2\2\u0125"+
+		"\u0126\5V,\2\u0126\u0127\7E\2\2\u0127\u0128\7[\2\2\u0128\31\3\2\2\2\u0129"+
+		"\u012a\7\26\2\2\u012a\u012b\7\23\2\2\u012b\u012c\5\u0096L\2\u012c\u012d"+
+		"\7T\2\2\u012d\u0131\3\2\2\2\u012e\u012f\7\26\2\2\u012f\u0131\5\u0096L"+
+		"\2\u0130\u0129\3\2\2\2\u0130\u012e\3\2\2\2\u0131\33\3\2\2\2\u0132\u0134"+
+		"\78\2\2\u0133\u0135\5\62\32\2\u0134\u0133\3\2\2\2\u0134\u0135\3\2\2\2"+
+		"\u0135\u0138\3\2\2\2\u0136\u0139\5*\26\2\u0137\u0139\5,\27\2\u0138\u0136"+
+		"\3\2\2\2\u0138\u0137\3\2\2\2\u0139\35\3\2\2\2\u013a\u013c\7D\2\2\u013b"+
+		"\u013a\3\2\2\2\u013b\u013c\3\2\2\2\u013c\u013d\3\2\2\2\u013d\u013e\5V"+
+		",\2\u013e\u013f\7E\2\2\u013f\u0142\7[\2\2\u0140\u0141\7\r\2\2\u0141\u0143"+
+		"\5b\62\2\u0142\u0140\3\2\2\2\u0142\u0143\3\2\2\2\u0143\37\3\2\2\2\u0144"+
+		"\u0145\7\21\2\2\u0145\u0146\5\u008aF\2\u0146!\3\2\2\2\u0147\u0148\7[\2"+
+		"\2\u0148\u0149\7\r\2\2\u0149\u014a\5b\62\2\u014a#\3\2\2\2\u014b\u014c"+
+		"\7\64\2\2\u014c\u014d\7[\2\2\u014d\u0156\7\23\2\2\u014e\u0153\5\6\4\2"+
+		"\u014f\u0150\7\24\2\2\u0150\u0152\5\6\4\2\u0151\u014f\3\2\2\2\u0152\u0155"+
+		"\3\2\2\2\u0153\u0151\3\2\2\2\u0153\u0154\3\2\2\2\u0154\u0157\3\2\2\2\u0155"+
+		"\u0153\3\2\2\2\u0156\u014e\3\2\2\2\u0156\u0157\3\2\2\2\u0157\u0158\3\2"+
+		"\2\2\u0158\u0159\7T\2\2\u0159\u015a\7\r\2\2\u015a\u015b\5b\62\2\u015b"+
+		"%\3\2\2\2\u015c\u015e\7)\2\2\u015d\u015f\7\31\2\2\u015e\u015d\3\2\2\2"+
+		"\u015e\u015f\3\2\2\2\u015f\u0160\3\2\2\2\u0160\u0161\5(\25\2\u0161\u016a"+
+		"\7\23\2\2\u0162\u0167\5\6\4\2\u0163\u0164\7\24\2\2\u0164\u0166\5\6\4\2"+
+		"\u0165\u0163\3\2\2\2\u0166\u0169\3\2\2\2\u0167\u0165\3\2\2\2\u0167\u0168"+
+		"\3\2\2\2\u0168\u016b\3\2\2\2\u0169\u0167\3\2\2\2\u016a\u0162\3\2\2\2\u016a"+
+		"\u016b\3\2\2\2\u016b\u016c\3\2\2\2\u016c\u016d\7T\2\2\u016d\u016e\7\r"+
+		"\2\2\u016e\u016f\5b\62\2\u016f\'\3\2\2\2\u0170\u0175\7[\2\2\u0171\u0172"+
+		"\7[\2\2\u0172\u0173\7E\2\2\u0173\u0175\5f\64\2\u0174\u0170\3\2\2\2\u0174"+
+		"\u0171\3\2\2\2\u0175)\3\2\2\2\u0176\u0177\7N\2\2\u0177+\3\2\2\2\u0178"+
+		"\u017b\5.\30\2\u0179\u017b\5\60\31\2\u017a\u0178\3\2\2\2\u017a\u0179\3"+
+		"\2\2\2\u017b-\3\2\2\2\u017c\u017d\7\4\2\2\u017d\u017e\5b\62\2\u017e/\3"+
+		"\2\2\2\u017f\u0180\7\6\2\2\u0180\u0181\5b\62\2\u0181\61\3\2\2\2\u0182"+
+		"\u0183\7\f\2\2\u0183\u0184\5\64\33\2\u0184\63\3\2\2\2\u0185\u018a\5\66"+
+		"\34\2\u0186\u018a\58\35\2\u0187\u018a\5:\36\2\u0188\u018a\5<\37\2\u0189"+
+		"\u0185\3\2\2\2\u0189\u0186\3\2\2\2\u0189\u0187\3\2\2\2\u0189\u0188\3\2"+
+		"\2\2\u018a\65\3\2\2\2\u018b\u018c\7\5\2\2\u018c\u018d\5> \2\u018d\67\3"+
+		"\2\2\2\u018e\u018f\7\20\2\2\u018f\u0190\5> \2\u01909\3\2\2\2\u0191\u0192"+
+		"\7\65\2\2\u0192\u0193\5> \2\u0193;\3\2\2\2\u0194\u0196\7*\2\2\u0195\u0197"+
+		"\7\23\2\2\u0196\u0195\3\2\2\2\u0196\u0197\3\2\2\2\u0197\u0198\3\2\2\2"+
+		"\u0198\u0199\7F\2\2\u0199\u019e\5\64\33\2\u019a\u019b\7\24\2\2\u019b\u019d"+
+		"\5\64\33\2\u019c\u019a\3\2\2\2\u019d\u01a0\3\2\2\2\u019e\u019c\3\2\2\2"+
+		"\u019e\u019f\3\2\2\2\u019f\u01a1\3\2\2\2\u01a0\u019e\3\2\2\2\u01a1\u01a3"+
+		"\7#\2\2\u01a2\u01a4\7T\2\2\u01a3\u01a2\3\2\2\2\u01a3\u01a4\3\2\2\2\u01a4"+
+		"=\3\2\2\2\u01a5\u01a6\7\23\2\2\u01a6\u01a7\5b\62\2\u01a7\u01a8\7\24\2"+
+		"\2\u01a8\u01a9\5@!\2\u01a9\u01aa\7\24\2\2\u01aa\u01ab\5B\"\2\u01ab\u01ac"+
+		"\7\24\2\2\u01ac\u01ad\7\35\2\2\u01ad\u01ae\7T\2\2\u01ae?\3\2\2\2\u01af"+
+		"\u01b0\t\2\2\2\u01b0A\3\2\2\2\u01b1\u01b2\t\3\2\2\u01b2C\3\2\2\2\u01b3"+
+		"\u01b6\5F$\2\u01b4\u01b6\5H%\2\u01b5\u01b3\3\2\2\2\u01b5\u01b4\3\2\2\2"+
+		"\u01b6E\3\2\2\2\u01b7\u01b8\7[\2\2\u01b8G\3\2\2\2\u01b9\u01ba\7[\2\2\u01ba"+
+		"\u01bb\7\23\2\2\u01bb\u01c0\5J&\2\u01bc\u01bd\7\24\2\2\u01bd\u01bf\5J"+
+		"&\2\u01be\u01bc\3\2\2\2\u01bf\u01c2\3\2\2\2\u01c0\u01be\3\2\2\2\u01c0"+
+		"\u01c1\3\2\2\2\u01c1\u01c3\3\2\2\2\u01c2\u01c0\3\2\2\2\u01c3\u01c4\7T"+
+		"\2\2\u01c4I\3\2\2\2\u01c5\u01cb\5L\'\2\u01c6\u01cb\5N(\2\u01c7\u01cb\5"+
+		"P)\2\u01c8\u01cb\5R*\2\u01c9\u01cb\5T+\2\u01ca\u01c5\3\2\2\2\u01ca\u01c6"+
+		"\3\2\2\2\u01ca\u01c7\3\2\2\2\u01ca\u01c8\3\2\2\2\u01ca\u01c9\3\2\2\2\u01cb"+
+		"K\3\2\2\2\u01cc\u01cd\5\u00c8e\2\u01cdM\3\2\2\2\u01ce\u01cf\5\u00caf\2"+
+		"\u01cfO\3\2\2\2\u01d0\u01d1\5\u00ccg\2\u01d1Q\3\2\2\2\u01d2\u01d3\7[\2"+
+		"\2\u01d3S\3\2\2\2\u01d4\u01d5\5\u00c2b\2\u01d5U\3\2\2\2\u01d6\u01de\5"+
+		"\u00c8e\2\u01d7\u01de\5\u00ccg\2\u01d8\u01de\5\u00caf\2\u01d9\u01de\7"+
+		"[\2\2\u01da\u01de\5`\61\2\u01db\u01de\5\u00c2b\2\u01dc\u01de\5X-\2\u01dd"+
+		"\u01d6\3\2\2\2\u01dd\u01d7\3\2\2\2\u01dd\u01d8\3\2\2\2\u01dd\u01d9\3\2"+
+		"\2\2\u01dd\u01da\3\2\2\2\u01dd\u01db\3\2\2\2\u01dd\u01dc\3\2\2\2\u01de"+
+		"W\3\2\2\2\u01df\u01e0\7\7\2\2\u01e0\u01e1\7\60\2\2\u01e1\u01e2\5V,\2\u01e2"+
+		"Y\3\2\2\2\u01e3\u01e4\7-\2\2\u01e4\u01e5\5^\60\2\u01e5\u01e6\7\60\2\2"+
+		"\u01e6\u01e7\5\30\r\2\u01e7[\3\2\2\2\u01e8\u01e9\7-\2\2\u01e9\u01ea\5"+
+		"^\60\2\u01ea\u01eb\7\60\2\2\u01eb\u01ec\5\36\20\2\u01ec]\3\2\2\2\u01ed"+
+		"\u01f7\7F\2\2\u01ee\u01f3\5\u00c2b\2\u01ef\u01f0\7\24\2\2\u01f0\u01f2"+
+		"\5\u00c2b\2\u01f1\u01ef\3\2\2\2\u01f2\u01f5\3\2\2\2\u01f3\u01f1\3\2\2"+
+		"\2\u01f3\u01f4\3\2\2\2\u01f4\u01f8\3\2\2\2\u01f5\u01f3\3\2\2\2\u01f6\u01f8"+
+		"\7\17\2\2\u01f7\u01ee\3\2\2\2\u01f7\u01f6\3\2\2\2\u01f8\u01f9\3\2\2\2"+
+		"\u01f9\u01fa\7#\2\2\u01fa_\3\2\2\2\u01fb\u01fc\7[\2\2\u01fc\u01fd\7\23"+
+		"\2\2\u01fd\u01fe\5z>\2\u01fe\u01ff\7T\2\2\u01ffa\3\2\2\2\u0200\u0211\b"+
+		"\62\1\2\u0201\u0211\5\u0086D\2\u0202\u0211\5r:\2\u0203\u0211\5x=\2\u0204"+
+		"\u0211\5\u00b8]\2\u0205\u0211\5\u0096L\2\u0206\u0211\5\u00aeX\2\u0207"+
+		"\u0211\5\u00aaV\2\u0208\u0211\5\u0080A\2\u0209\u0211\5\u008aF\2\u020a"+
+		"\u0211\5\u0092J\2\u020b\u0211\7^\2\2\u020c\u0211\5\u00d0i\2\u020d\u0211"+
+		"\5\u00ceh\2\u020e\u0211\7[\2\2\u020f\u0211\7K\2\2\u0210\u0200\3\2\2\2"+
+		"\u0210\u0201\3\2\2\2\u0210\u0202\3\2\2\2\u0210\u0203\3\2\2\2\u0210\u0204"+
+		"\3\2\2\2\u0210\u0205\3\2\2\2\u0210\u0206\3\2\2\2\u0210\u0207\3\2\2\2\u0210"+
+		"\u0208\3\2\2\2\u0210\u0209\3\2\2\2\u0210\u020a\3\2\2\2\u0210\u020b\3\2"+
+		"\2\2\u0210\u020c\3\2\2\2\u0210\u020d\3\2\2\2\u0210\u020e\3\2\2\2\u0210"+
+		"\u020f\3\2\2\2\u0211\u0218\3\2\2\2\u0212\u0213\f\r\2\2\u0213\u0214\5\u008c"+
+		"G\2\u0214\u0215\5b\62\16\u0215\u0217\3\2\2\2\u0216\u0212\3\2\2\2\u0217"+
+		"\u021a\3\2\2\2\u0218\u0216\3\2\2\2\u0218\u0219\3\2\2\2\u0219c\3\2\2\2"+
+		"\u021a\u0218\3\2\2\2\u021b\u0227\3\2\2\2\u021c\u021d\7\23\2\2\u021d\u021e"+
+		"\5t;\2\u021e\u021f\7T\2\2\u021f\u0227\3\2\2\2\u0220\u0227\7[\2\2\u0221"+
+		"\u0227\7^\2\2\u0222\u0227\5\u0090I\2\u0223\u0227\5\u00aeX\2\u0224\u0227"+
+		"\5\u00aaV\2\u0225\u0227\5\u0080A\2\u0226\u021b\3\2\2\2\u0226\u021c\3\2"+
+		"\2\2\u0226\u0220\3\2\2\2\u0226\u0221\3\2\2\2\u0226\u0222\3\2\2\2\u0226"+
+		"\u0223\3\2\2\2\u0226\u0224\3\2\2\2\u0226\u0225\3\2\2\2\u0227e\3\2\2\2"+
+		"\u0228\u022b\5h\65\2\u0229\u022b\5j\66\2\u022a\u0228\3\2\2\2\u022a\u0229"+
+		"\3\2\2\2\u022bg\3\2\2\2\u022c\u022d\t\4\2\2\u022di\3\2\2\2\u022e\u022f"+
+		"\t\5\2\2\u022fk\3\2\2\2\u0230\u0231\t\6\2\2\u0231m\3\2\2\2\u0232\u0233"+
+		"\7[\2\2\u0233\u0234\7E\2\2\u0234\u0235\5h\65\2\u0235o\3\2\2\2\u0236\u0237"+
+		"\7[\2\2\u0237\u0238\7E\2\2\u0238\u0239\5j\66\2\u0239q\3\2\2\2\u023a\u023d"+
+		"\5t;\2\u023b\u023e\5h\65\2\u023c\u023e\5n8\2\u023d\u023b\3\2\2\2\u023d"+
+		"\u023c\3\2\2\2\u023e\u023f\3\2\2\2\u023f\u0240\5t;\2\u0240\u024a\3\2\2"+
+		"\2\u0241\u0244\5z>\2\u0242\u0245\5j\66\2\u0243\u0245\5p9\2\u0244\u0242"+
+		"\3\2\2\2\u0244\u0243\3\2\2\2\u0245\u0246\3\2\2\2\u0246\u0247\5z>\2\u0247"+
+		"\u024a\3\2\2\2\u0248\u024a\5|?\2\u0249\u023a\3\2\2\2\u0249\u0241\3\2\2"+
+		"\2\u0249\u0248\3\2\2\2\u024as\3\2\2\2\u024b\u024c\b;\1\2\u024c\u024f\5"+
+		"z>\2\u024d\u0250\5j\66\2\u024e\u0250\5p9\2\u024f\u024d\3\2\2\2\u024f\u024e"+
+		"\3\2\2\2\u0250\u0251\3\2\2\2\u0251\u0252\5z>\2\u0252\u0256\3\2\2\2\u0253"+
+		"\u0256\5|?\2\u0254\u0256\5d\63\2\u0255\u024b\3\2\2\2\u0255\u0253\3\2\2"+
+		"\2\u0255\u0254\3\2\2\2\u0256\u0260\3\2\2\2\u0257\u025a\f\6\2\2\u0258\u025b"+
+		"\5h\65\2\u0259\u025b\5n8\2\u025a\u0258\3\2\2\2\u025a\u0259\3\2\2\2\u025b"+
+		"\u025c\3\2\2\2\u025c\u025d\5t;\7\u025d\u025f\3\2\2\2\u025e\u0257\3\2\2"+
+		"\2\u025f\u0262\3\2\2\2\u0260\u025e\3\2\2\2\u0260\u0261\3\2\2\2\u0261u"+
+		"\3\2\2\2\u0262\u0260\3\2\2\2\u0263\u0270\7[\2\2\u0264\u0270\5\u00ceh\2"+
+		"\u0265\u0270\5\u00d0i\2\u0266\u0270\5\u0090I\2\u0267\u0270\5\u00aeX\2"+
+		"\u0268\u0270\5\u00aaV\2\u0269\u026a\7\23\2\2\u026a\u026b\5z>\2\u026b\u026c"+
+		"\7T\2\2\u026c\u0270\3\2\2\2\u026d\u0270\5\u0080A\2\u026e\u0270\5\u00a4"+
+		"S\2\u026f\u0263\3\2\2\2\u026f\u0264\3\2\2\2\u026f\u0265\3\2\2\2\u026f"+
+		"\u0266\3\2\2\2\u026f\u0267\3\2\2\2\u026f\u0268\3\2\2\2\u026f\u0269\3\2"+
+		"\2\2\u026f\u026d\3\2\2\2\u026f\u026e\3\2\2\2\u0270w\3\2\2\2\u0271\u0277"+
+		"\5~@\2\u0272\u0273\5z>\2\u0273\u0274\5l\67\2\u0274\u0275\5z>\2\u0275\u0277"+
+		"\3\2\2\2\u0276\u0271\3\2\2\2\u0276\u0272\3\2\2\2\u0277y\3\2\2\2\u0278"+
+		"\u0279\b>\1\2\u0279\u027c\5~@\2\u027a\u027c\5v<\2\u027b\u0278\3\2\2\2"+
+		"\u027b\u027a\3\2\2\2\u027c\u0283\3\2\2\2\u027d\u027e\f\4\2\2\u027e\u027f"+
+		"\5l\67\2\u027f\u0280\5z>\5\u0280\u0282\3\2\2\2\u0281\u027d\3\2\2\2\u0282"+
+		"\u0285\3\2\2\2\u0283\u0281\3\2\2\2\u0283\u0284\3\2\2\2\u0284{\3\2\2\2"+
+		"\u0285\u0283\3\2\2\2\u0286\u0287\7V\2\2\u0287\u0288\5b\62\2\u0288}\3\2"+
+		"\2\2\u0289\u028a\7X\2\2\u028a\u028b\5z>\2\u028b\177\3\2\2\2\u028c\u028f"+
+		"\7[\2\2\u028d\u0290\5\u0084C\2\u028e\u0290\5\u0082B\2\u028f\u028d\3\2"+
+		"\2\2\u028f\u028e\3\2\2\2\u0290\u0081\3\2\2\2\u0291\u0292\7\23\2\2\u0292"+
+		"\u0297\5b\62\2\u0293\u0294\7\24\2\2\u0294\u0296\5b\62\2\u0295\u0293\3"+
+		"\2\2\2\u0296\u0299\3\2\2\2\u0297\u0295\3\2\2\2\u0297\u0298\3\2\2\2\u0298"+
+		"\u029a\3\2\2\2\u0299\u0297\3\2\2\2\u029a\u029b\7T\2\2\u029b\u029d\3\2"+
+		"\2\2\u029c\u0291\3\2\2\2\u029c\u029d\3\2\2\2\u029d\u0083\3\2\2\2\u029e"+
+		"\u029f\7\23\2\2\u029f\u02a0\5\u00c0a\2\u02a0\u02a1\7T\2\2\u02a1\u02a2"+
+		"\7\23\2\2\u02a2\u02a3\5b\62\2\u02a3\u02a4\7T\2\2\u02a4\u0085\3\2\2\2\u02a5"+
+		"\u02a6\7\23\2\2\u02a6\u02a7\5b\62\2\u02a7\u02a8\7T\2\2\u02a8\u0087\3\2"+
+		"\2\2\u02a9\u02aa\7[\2\2\u02aa\u0089\3\2\2\2\u02ab\u02ac\7>\2\2\u02ac\u02ad"+
+		"\5\u00d2j\2\u02ad\u02ae\7>\2\2\u02ae\u008b\3\2\2\2\u02af\u02b0\7;\2\2"+
+		"\u02b0\u02b1\7[\2\2\u02b1\u02b4\7;\2\2\u02b2\u02b4\5\u008eH\2\u02b3\u02af"+
+		"\3\2\2\2\u02b3\u02b2\3\2\2\2\u02b4\u008d\3\2\2\2\u02b5\u02b6\t\7\2\2\u02b6"+
+		"\u008f\3\2\2\2\u02b7\u02b8\7[\2\2\u02b8\u02bd\5\u009cO\2\u02b9\u02ba\5"+
+		"\u009cO\2\u02ba\u02bb\5\u009cO\2\u02bb\u02bd\3\2\2\2\u02bc\u02b7\3\2\2"+
+		"\2\u02bc\u02b9\3\2\2\2\u02bd\u0091\3\2\2\2\u02be\u02bf\7B\2\2\u02bf\u02c0"+
+		"\7[\2\2\u02c0\u02c4\7\60\2\2\u02c1\u02c2\5\u0094K\2\u02c2\u02c3\7\63\2"+
+		"\2\u02c3\u02c5\3\2\2\2\u02c4\u02c1\3\2\2\2\u02c5\u02c6\3\2\2\2\u02c6\u02c4"+
+		"\3\2\2\2\u02c6\u02c7\3\2\2\2\u02c7\u02c8\3\2\2\2\u02c8\u02c9\7\36\2\2"+
+		"\u02c9\u0093\3\2\2\2\u02ca\u02cb\5\u0080A\2\u02cb\u02cc\7(\2\2\u02cc\u02cd"+
+		"\5b\62\2\u02cd\u0095\3\2\2\2\u02ce\u02cf\bL\1\2\u02cf\u02d3\5\u00a2R\2"+
+		"\u02d0\u02d3\5\u0098M\2\u02d1\u02d3\5\u00a0Q\2\u02d2\u02ce\3\2\2\2\u02d2"+
+		"\u02d0\3\2\2\2\u02d2\u02d1\3\2\2\2\u02d3\u02d9\3\2\2\2\u02d4\u02d5\f\5"+
+		"\2\2\u02d5\u02d6\7\"\2\2\u02d6\u02d8\5\u0096L\6\u02d7\u02d4\3\2\2\2\u02d8"+
+		"\u02db\3\2\2\2\u02d9\u02d7\3\2\2\2\u02d9\u02da\3\2\2\2\u02da\u0097\3\2"+
+		"\2\2\u02db\u02d9\3\2\2\2\u02dc\u02df\5\u009aN\2\u02dd\u02df\5\u009eP\2"+
+		"\u02de\u02dc\3\2\2\2\u02de\u02dd\3\2\2\2\u02df\u0099\3\2\2\2\u02e0\u02e1"+
+		"\7F\2\2\u02e1\u02e4\7#\2\2\u02e2\u02e4\5\u009cO\2\u02e3\u02e0\3\2\2\2"+
+		"\u02e3\u02e2\3\2\2\2\u02e4\u009b\3\2\2\2\u02e5\u02e6\7F\2\2\u02e6\u02eb"+
+		"\5b\62\2\u02e7\u02e8\7\24\2\2\u02e8\u02ea\5b\62\2\u02e9\u02e7\3\2\2\2"+
+		"\u02ea\u02ed\3\2\2\2\u02eb\u02e9\3\2\2\2\u02eb\u02ec\3\2\2\2\u02ec\u02ee"+
+		"\3\2\2\2\u02ed\u02eb\3\2\2\2\u02ee\u02ef\7#\2\2\u02ef\u009d\3\2\2\2\u02f0"+
+		"\u02f1\7F\2\2\u02f1\u02f6\5b\62\2\u02f2\u02f3\7\24\2\2\u02f3\u02f5\5b"+
+		"\62\2\u02f4\u02f2\3\2\2\2\u02f5\u02f8\3\2\2\2\u02f6\u02f4\3\2\2\2\u02f6"+
+		"\u02f7\3\2\2\2\u02f7\u02f9\3\2\2\2\u02f8\u02f6\3\2\2\2\u02f9\u02fa\7G"+
+		"\2\2\u02fa\u02fb\5\u00c0a\2\u02fb\u02fc\7#\2\2\u02fc\u009f\3\2\2\2\u02fd"+
+		"\u02fe\7=\2\2\u02fe\u0303\5b\62\2\u02ff\u0300\7\24\2\2\u0300\u0302\5b"+
+		"\62\2\u0301\u02ff\3\2\2\2\u0302\u0305\3\2\2\2\u0303\u0301\3\2\2\2\u0303"+
+		"\u0304\3\2\2\2\u0304\u0314\3\2\2\2\u0305\u0303\3\2\2\2\u0306\u0308\7\24"+
+		"\2\2\u0307\u0306\3\2\2\2\u0307\u0308\3\2\2\2\u0308\u0309\3\2\2\2\u0309"+
+		"\u030a\7G\2\2\u030a\u030f\5b\62\2\u030b\u030c\7\24\2\2\u030c\u030e\5b"+
+		"\62\2\u030d\u030b\3\2\2\2\u030e\u0311\3\2\2\2\u030f\u030d\3\2\2\2\u030f"+
+		"\u0310\3\2\2\2\u0310\u0313\3\2\2\2\u0311\u030f\3\2\2\2\u0312\u0307\3\2"+
+		"\2\2\u0313\u0316\3\2\2\2\u0314\u0312\3\2\2\2\u0314\u0315\3\2\2\2\u0315"+
+		"\u0317\3\2\2\2\u0316\u0314\3\2\2\2\u0317\u0318\7%\2\2\u0318\u00a1\3\2"+
+		"\2\2\u0319\u031f\5\u008aF\2\u031a\u031f\7[\2\2\u031b\u031f\5\u00aeX\2"+
+		"\u031c\u031f\5\u0090I\2\u031d\u031f\5\u00a4S\2\u031e\u0319\3\2\2\2\u031e"+
+		"\u031a\3\2\2\2\u031e\u031b\3\2\2\2\u031e\u031c\3\2\2\2\u031e\u031d\3\2"+
+		"\2\2\u031f\u00a3\3\2\2\2\u0320\u0321\5\u0080A\2\u0321\u00a5\3\2\2\2\u0322"+
+		"\u0327\7[\2\2\u0323\u0324\7\24\2\2\u0324\u0326\7[\2\2\u0325\u0323\3\2"+
+		"\2\2\u0326\u0329\3\2\2\2\u0327\u0325\3\2\2\2\u0327\u0328\3\2\2\2\u0328"+
+		"\u032a\3\2\2\2\u0329\u0327\3\2\2\2\u032a\u032b\7R\2\2\u032b\u032d\5\u00b8"+
+		"]\2\u032c\u032e\5\u00a8U\2\u032d\u032c\3\2\2\2\u032d\u032e\3\2\2\2\u032e"+
+		"\u00a7\3\2\2\2\u032f\u0330\7M\2\2\u0330\u0331\5t;\2\u0331\u00a9\3\2\2"+
+		"\2\u0332\u0333\7\'\2\2\u0333\u0334\7\n\2\2\u0334\u0339\5\u00acW\2\u0335"+
+		"\u0336\7\24\2\2\u0336\u0338\5\u00acW\2\u0337\u0335\3\2\2\2\u0338\u033b"+
+		"\3\2\2\2\u0339\u0337\3\2\2\2\u0339\u033a\3\2\2\2\u033a\u033c\3\2\2\2\u033b"+
+		"\u0339\3\2\2\2\u033c\u033d\7\66\2\2\u033d\u033e\7R\2\2\u033e\u033f\5b"+
+		"\62\2\u033f\u00ab\3\2\2\2\u0340\u0343\5\6\4\2\u0341\u0343\5\26\f\2\u0342"+
+		"\u0340\3\2\2\2\u0342\u0341\3\2\2\2\u0343\u00ad\3\2\2\2\u0344\u0345\7\67"+
+		"\2\2\u0345\u0346\5\u00b0Y\2\u0346\u00af\3\2\2\2\u0347\u0348\5b\62\2\u0348"+
+		"\u0349\7+\2\2\u0349\u034c\5b\62\2\u034a\u034d\5\u00b2Z\2\u034b\u034d\5"+
+		"\u00b4[\2\u034c\u034a\3\2\2\2\u034c\u034b\3\2\2\2\u034d\u00b1\3\2\2\2"+
+		"\u034e\u034f\7Q\2\2\u034f\u0350\5b\62\2\u0350\u0351\7\3\2\2\u0351\u00b3"+
+		"\3\2\2\2\u0352\u0353\7\61\2\2\u0353\u0354\5\u00b0Y\2\u0354\u00b5\3\2\2"+
+		"\2\u0355\u0359\5\u00ba^\2\u0356\u0359\5\u00c2b\2\u0357\u0359\5\u00bc_"+
+		"\2\u0358\u0355\3\2\2\2\u0358\u0356\3\2\2\2\u0358\u0357\3\2\2\2\u0359\u00b7"+
+		"\3\2\2\2\u035a\u035b\b]\1\2\u035b\u035c\5\u00b6\\\2\u035c\u0363\3\2\2"+
+		"\2\u035d\u035e\f\3\2\2\u035e\u035f\5\u008eH\2\u035f\u0360\5\u00b8]\4\u0360"+
+		"\u0362\3\2\2\2\u0361\u035d\3\2\2\2\u0362\u0365\3\2\2\2\u0363\u0361\3\2"+
+		"\2\2\u0363\u0364\3\2\2\2\u0364\u00b9\3\2\2\2\u0365\u0363\3\2\2\2\u0366"+
+		"\u0367\7\n\2\2\u0367\u036d\7\66\2\2\u0368\u0369\7\n\2\2\u0369\u036a\5"+
+		"\u00be`\2\u036a\u036b\7\66\2\2\u036b\u036d\3\2\2\2\u036c\u0366\3\2\2\2"+
+		"\u036c\u0368\3\2\2\2\u036d\u00bb\3\2\2\2\u036e\u036f\7\n\2\2\u036f\u0370"+
+		"\5b\62\2\u0370\u0371\7G\2\2\u0371\u0372\5\u00c0a\2\u0372\u0373\7\66\2"+
+		"\2\u0373\u00bd\3\2\2\2\u0374\u0379\5b\62\2\u0375\u0376\7\24\2\2\u0376"+
+		"\u0378\5b\62\2\u0377\u0375\3\2\2\2\u0378\u037b\3\2\2\2\u0379\u0377\3\2"+
+		"\2\2\u0379\u037a\3\2\2\2\u037a\u00bf\3\2\2\2\u037b\u0379\3\2\2\2\u037c"+
+		"\u0381\5\u00a6T\2\u037d\u037e\7\24\2\2\u037e\u0380\5\u00a6T\2\u037f\u037d"+
+		"\3\2\2\2\u0380\u0383\3\2\2\2\u0381\u037f\3\2\2\2\u0381\u0382\3\2\2\2\u0382"+
+		"\u00c1\3\2\2\2\u0383\u0381\3\2\2\2\u0384\u0385\5\u00c4c\2\u0385\u0386"+
+		"\7\13\2\2\u0386\u0387\5\u00c6d\2\u0387\u038a\3\2\2\2\u0388\u038a\7[\2"+
+		"\2\u0389\u0384\3\2\2\2\u0389\u0388\3\2\2\2\u038a\u00c3\3\2\2\2\u038b\u038c"+
+		"\5z>\2\u038c\u00c5\3\2\2\2\u038d\u038e\5z>\2\u038e\u00c7\3\2\2\2\u038f"+
+		"\u0390\7\17\2\2\u0390\u00c9\3\2\2\2\u0391\u0392\7\t\2\2\u0392\u00cb\3"+
+		"\2\2\2\u0393\u0394\7I\2\2\u0394\u00cd\3\2\2\2\u0395\u0399\7\\\2\2\u0396"+
+		"\u0397\7X\2\2\u0397\u0399\7\\\2\2\u0398\u0395\3\2\2\2\u0398\u0396\3\2"+
+		"\2\2\u0399\u00cf\3\2\2\2\u039a\u039b\5\u00ceh\2\u039b\u039c\7A\2\2\u039c"+
+		"\u039d\7\\\2\2\u039d\u00d1\3\2\2\2\u039e\u03a4\n\b\2\2\u039f\u03a4\7Y"+
+		"\2\2\u03a0\u03a4\7A\2\2\u03a1\u03a4\7\16\2\2\u03a2\u03a4\7&\2\2\u03a3"+
+		"\u039e\3\2\2\2\u03a3\u039f\3\2\2\2\u03a3\u03a0\3\2\2\2\u03a3\u03a1\3\2"+
+		"\2\2\u03a3\u03a2\3\2\2\2\u03a4\u03a6\3\2\2\2\u03a5\u03a3\3\2\2\2\u03a6"+
+		"\u03a9\3\2\2\2\u03a7\u03a5\3\2\2\2\u03a7\u03a8\3\2\2\2\u03a8\u00d3\3\2"+
+		"\2\2\u03a9\u03a7\3\2\2\2P\u00d9\u00e5\u00e9\u00ed\u00f1\u00f5\u0100\u010b"+
+		"\u0110\u0118\u0130\u0134\u0138\u013b\u0142\u0153\u0156\u015e\u0167\u016a"+
+		"\u0174\u017a\u0189\u0196\u019e\u01a3\u01b5\u01c0\u01ca\u01dd\u01f3\u01f7"+
+		"\u0210\u0218\u0226\u022a\u023d\u0244\u0249\u024f\u0255\u025a\u0260\u026f"+
+		"\u0276\u027b\u0283\u028f\u0297\u029c\u02b3\u02bc\u02c6\u02d2\u02d9\u02de"+
+		"\u02e3\u02eb\u02f6\u0303\u0307\u030f\u0314\u031e\u0327\u032d\u0339\u0342"+
+		"\u034c\u0358\u0363\u036c\u0379\u0381\u0389\u0398\u03a3\u03a7";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

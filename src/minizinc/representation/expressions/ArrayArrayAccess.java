@@ -40,7 +40,7 @@ public class ArrayArrayAccess extends ArrayAccess {
 	 * @see minizinc.expressions.Expr#subexpressions()
 	 */
 	@Override
-	public List<? extends Expr> subexpressions() {
+	public List<Expr> subexpressions() {
 		List<Expr> newList = new ArrayList<Expr>(array);
 		newList.addAll(super.subexpressions());
 		return newList;

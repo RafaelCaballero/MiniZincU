@@ -1,8 +1,10 @@
 package minizinc.model;
 
-import terms.Term;
+import minizinc.representation.MiniZincRepresentation;
+import minizinc.representation.expressions.Expr;
 
-public class Constraint extends Statement {
+
+public class Constraint extends Statement  implements MiniZincRepresentation {
 	/*
 	 * private TConstraint type;
 	 * 
@@ -13,16 +15,17 @@ public class Constraint extends Statement {
 	 * 
 	 * public void setType(TConstraint type) { this.type = type; }
 	 */
-	private Term t;
+	private Expr t;
 
-	public Constraint(Term t) {
+	public Constraint(Expr t) {
 		super(TStatement.CONSTRAINT);
 		this.t = t;
 	}
 
+	/*
 	public Constraint simplify() {
 		Constraint result = null;
-		Term tp = t.simplify();
+		Expr tp = t.simplify();
 		boolean changed = !t.equals(tp);
 		if (!changed)
 			result = this;
@@ -30,17 +33,18 @@ public class Constraint extends Statement {
 			result = new Constraint(tp).simplify();
 		return result;
 	}
-
-	public Term getTerm() {
+*/
+	public Expr getExpr() {
 		return t;
 	}
 
-	public void setTerm(Term t) {
-		this.t = t;
+	public String toString() {
+		return print();
 	}
 
-	public String toString() {
-		return "constraint " + t.toString();
+	@Override
+	public String print() {
+		return "constraint " + t.print();
 	}
 
 }

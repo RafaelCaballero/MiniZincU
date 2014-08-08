@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import minizinc.antlr4.MiniZincGrammarParser.ShowExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.*;
 import minizinc.model.*;
 import minizinc.representation.expressions.*;
-import minizinc.representation.statement.decls.VarDecl;
+import minizinc.representation.expressions.lists.*;
+import minizinc.representation.expressions.sets.*;
+import minizinc.representation.statement.decls.*;
+import minizinc.representation.types.*;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import terms.*;
+
 
 /**
  * @author rafa
@@ -28,7 +32,7 @@ public class MiniZinc2Java {
 		SOutput so = null;
 		if (has(ctx.listExpr())) {
 			ListExprContext lec = ctx.listExpr();
-			Term t = listExpr(lec);
+			Expr t = listExpr(lec);
 			so = new SOutput(t);
 		} else
 			error("output:  " + ctx.toString());
@@ -37,17 +41,19 @@ public class MiniZinc2Java {
 	}
 
 	/**
-	 * Grammar piece: listExpr: listValue | listExpr '++' expr | oneDimList |
+	 * Grammar piece: listExpr: listValue | listExpr '++' listExpr | oneDimList |
 	 * multiDimList ;
 	 */
-	private static Term listExpr(ListExprContext lec) {
-		Term t = null;
+	private static ListExpr listExpr(ListExprContext lec) {
+		ListExpr t = null;
 		// 4 possibilities according to the grammar
 		if (has(lec.listValue())) {
 			ListValueContext lvc = lec.listValue();
 			t = listValue(lvc);
-		} else if (has(lec.listExpr())) {
-			t = listExpr(lec.listExpr());
+		} else if (has(lec.listExpr(0))) {
+			ListExpr t1 = listExpr(lec.listExpr(0));
+			ListExpr t2 = listExpr(lec.listExpr(1));
+			t = new InfixListExpr("++",t1,t2);
 
 		} else if (has(lec.oneDimList())) {
 			t = oneDimList(lec.oneDimList());
@@ -67,8 +73,8 @@ public class MiniZinc2Java {
 	 * @return Term representation of a one dimension list
 	 * 
 	 */
-	private static Term oneDimList(OneDimListContext oneDimList) {
-		Term t = null; // output value
+	private static Expr oneDimList(OneDimListContext oneDimList) {
+		Expr t = null; // output value
 		if (has(oneDimList.simpleList())) {
 			t = simpleList(oneDimList.simpleList());
 
@@ -85,8 +91,8 @@ public class MiniZinc2Java {
 	 *            the context
 	 * @return A term representation of a simple list
 	 */
-	private static Term simpleList(SimpleListContext simpleList) {
-		Term t = null;
+	private static Expr simpleList(SimpleListContext simpleList) {
+		Expr t = null;
 		return t;
 	}
 
@@ -94,28 +100,25 @@ public class MiniZinc2Java {
 	 * listValue : stringExpr | ID | ifExpr | arrayaccess | showExpr | inDecl |
 	 * functionExpr;
 	 */
-	private static Expr listValue(ListValueContext lvc) {
-		Expr t = null;
+	private static ListExpr listValue(ListValueContext lvc) {
+		ListExpr t = null;
 
 		if (has(lvc.stringExpr())) {
-			t = stringExpr(lvc.stringExpr());
+			t = new ListValue(stringExpr(lvc.stringExpr()));
 		} else if (hasTerminal(lvc.ID())) {
-			t = IDTerm(lvc.ID());
+			t = new ListValue(IDTerm(lvc.ID()));
 		} else if (has(lvc.ifExpr())) {
-			t = ifExpr(lvc.ifExpr());
+			t = new ListValue(ifExpr(lvc.ifExpr())=;
 		} else if (has(lvc.arrayaccess())) {
-			t = arrayaccess(lvc.arrayaccess());
-		} else if (has(lvc.showExpr())) {
-			t = showExpr(lvc.showExpr());
-		} else if (has(lvc.inDecl())) {
-			t = inDecl(lvc.inDecl());
+			t = new ListValue(arrayaccess(lvc.arrayaccess()));
 		} else if (has(lvc.functionExpr())) {
-			t = functionExpr(lvc.functionExpr());
+			t = new ListValue(functionExpr(lvc.functionExpr()));
 		} else
 			error("listValue:  " + lvc.toString());
 
 		return t;
 	}
+
 
 	/**
 	 * ifExpr : 'if' bodyIf ;
@@ -249,8 +252,6 @@ public class MiniZinc2Java {
 			t = ifExpr(ctx.ifExpr());
 		} else if (has(ctx.letExpr())) {
 			t = letExpr(ctx.letExpr());
-		} else if (has(ctx.guardExpr())) {
-			t = guardExpr(ctx.guardExpr());
 		} else if (has(ctx.predOrUnionExpr())) {
 			t = predOrUnionExpr(ctx.predOrUnionExpr());
 		} else if (has(ctx.stringExpr())) {
@@ -280,8 +281,8 @@ public class MiniZinc2Java {
 	 *            grammar context
 	 * @return Term representation
 	 */
-	private static Term arithComplexExpr(ArithComplexExprContext ctx) {
-		Term t = null;
+	private static ArithExpr arithComplexExpr(ArithComplexExprContext ctx) {
+		ArithExpr t = null;
 		if (has(ctx.minusExpr())) {
 			t = minusExpr(ctx.minusExpr());
 		} else if (has(ctx.arithOp2())) {
@@ -290,10 +291,10 @@ public class MiniZinc2Java {
 			if (a0 == null || a1 == null)
 				error("arithComplexExpr (null operand):  " + ctx.toString());
 			else {
-				Term t0 = arithExpr(a0);
-				Term t1 = arithExpr(a1);
+				ArithExpr t0 = arithExpr(a0);
+				ArithExpr t1 = arithExpr(a1);
 				String op = ctx.arithOp2().getText();
-				t = infixArithOp(t0, t1, op);
+				t = infixArithExpr(t0, t1,op);
 			}
 		} else
 			error("arithComplexExpr:  " + ctx.toString());
@@ -314,10 +315,10 @@ public class MiniZinc2Java {
 	 *            grammar context
 	 * @return BoolComplexExpr representation
 	 */
-	private static BoolComplexExpr boolComplexExpr(BoolComplexExprContext ctx) {
-		BoolComplexExpr t = null;
+	private static BoolExpr boolComplexExpr(BoolComplexExprContext ctx) {
+		BoolExpr t = null;
 		if (has(ctx.notExpr())) {
-			t = notComplexBoolExpr(ctx.notExpr());
+			t = notBoolExpr(ctx.notExpr());
 		} else if (ctx.boolExpr().size() == 2) {
 			BoolExprContext b0 = ctx.boolExpr(0);
 			BoolExprContext b1 = ctx.boolExpr(1);
@@ -326,10 +327,10 @@ public class MiniZinc2Java {
 			String op = "";
 			if (has(ctx.boolOp())) {
 				op = ctx.boolOp().getText();
-				t = infixComplexBoolExpr(t0, t1, op);
+				t = infixBoolExpr(t0, t1, op);
 			} else if (has(ctx.qualBoolOp())) {
 				op = ctx.qualBoolOp().getText();
-				t = infixComplexBoolExpr(t0, t1, op);
+				t = infixBoolExpr(t0, t1, op);
 			} else
 				error("boolComplexExpr - unexpected operator " + ctx.toString());
 
@@ -341,10 +342,10 @@ public class MiniZinc2Java {
 			String op = "";
 			if (has(ctx.arithOp())) {
 				op = ctx.arithOp().getText();
-				t = infixArithComplexBoolExpr(t0, t1, op);
+				t = infixArithBoolExpr(t0, t1, op);
 			} else if (has(ctx.qualArithOp())) {
 				op = ctx.qualArithOp().getText();
-				t = infixArithComplexBoolExpr(t0, t1, op);
+				t = infixArithBoolExpr(t0, t1, op);
 			} else
 				error("boolComplexExpr - unexpected operator " + ctx.toString());
 
@@ -438,11 +439,176 @@ public class MiniZinc2Java {
 		} else if (has(ctx.letExpr())) {
 			t = new BoolVal(letExpr(ctx.letExpr()));
 		} else if (has(ctx.predOrUnionExpr())) {
-			t = predOrUnionExpr(ctx.predOrUnionExpr());
-		} else if (has(ctx.guardExpr())) {
-			t = guardExpr(ctx.guardExpr());
+			t = new BoolVal(predOrUnionExpr(ctx.predOrUnionExpr()));
 		} else
 			error("boolVal " + ctx.getText());
+		return t;
+	}
+
+
+
+	/**
+	 * @param ctx 
+	 * @return The Java representation
+	 */
+	private static PredOrUnionExpr predOrUnionExpr(
+			PredOrUnionExprContext ctx) {
+		PredOrUnionExpr t = null;
+		if (hasTerminal(ctx.ID())) {
+			// pred or constructor name
+			ID id = IDTerm(ctx.ID());
+			if (has(ctx.onesection())) {
+				List<Expr> lexpr = ctx.onesection().expr().stream().map(x->expr(x)).collect(Collectors.toList());
+				t = new PredOrUnionExpr(id,lexpr);
+			} else if (has(ctx.twosections())) {
+				List<InDecl> lindecl = ctx.twosections().guard().inDecl().stream().
+						               map(x->inDecl(x)).
+						               collect(Collectors.toList());
+				Expr expr = expr(ctx.twosections().expr());
+				List<Expr> l = new ArrayList<Expr>();
+				l.add(expr);
+				t =  new PredOrUnionExpr(id,lindecl,l);				
+			}
+		} else
+			error("PredOrUnionExpr " + ctx.getText());
+		return t;
+	}
+
+	/**
+	 * A in declaration.
+	 *  * Grammar:<br>
+	 * {@code inDecl : Guard 'in' setExpr whereCond?;} <br><br> 
+	 * @param cxt the context
+	 * @return The Java representation
+	 */
+	private static InDecl inDecl(InDeclContext ctx) {
+		InDecl t = null;
+		if (has(ctx.setExpr())){
+			List<ID> ids = ctx.ID().stream().map(x->IDTerm(x)).collect(Collectors.toList());
+			SetExpr sexpr  = setExpr(ctx.setExpr());
+			if (has(ctx.whereCond())) {
+				BoolExpr bexpr = boolExpr(ctx.whereCond().boolExpr());
+				t = new InDecl(ids,sexpr,bexpr);
+			} else
+				t = new InDecl(ids,sexpr);
+		}	
+		else
+				error("inDecl " + ctx.getText());
+		
+		return t;
+	}
+
+	/**
+	 * Representing MiniZinc sets. Grammar: <br>
+	 *  setExpr : setVal <br>
+	 *           |setExpr infixSetOp setExpr;<br>
+	 *
+	 * @param ctx The context
+	 * @return The Java representation as 
+	 */
+	private static SetExpr setExpr(SetExprContext ctx) {
+		SetExpr r=null;
+		if (has(ctx.setVal())) {
+			r = setVal(ctx.setVal());
+		} else if (has(ctx.infixSetOp())) {
+			String op = ctx.infixSetOp().getText();
+			SetExpr s1 = setExpr(ctx.setExpr(0)); 
+			SetExpr s2 = setExpr(ctx.setExpr(1)); 
+			r = infixSetOp(op,s1,s2);
+		}
+		else
+			error("setExpr " + ctx.getText());
+		
+		return r;
+	}
+
+	
+	/**
+	 * Represents a MiniZinc set expression expressed as an infix operator.<br>
+	 * Grammar: setExpr infixSetOp setExpr <br>
+	 * @param op The operator
+	 * @param s1 First operand
+	 * @param s2 Second operand
+	 * @return
+	 */
+	private static InfixSetOp infixSetOp(String op, SetExpr s1, SetExpr s2) {
+		InfixSetOp r = new InfixSetOp(op,s1,s2);
+		return r;
+	}
+
+	/**
+	 * Set values. Grammar:
+	 * setVal : bracketExpr | range | guardedSet ;<br>
+	 * bracketExpr : '{' '}' | '{'  commaList '}';<br>
+	 * @param ctx
+	 * @return
+	 */
+	private static SetVal setVal(SetValContext ctx) {		
+		SetVal t=null;
+		
+		if (has(ctx.bracketExpr())) 
+			t = bracketExpr(ctx.bracketExpr());
+		else if (has(ctx.range())) 
+			t = rangeSetVal(ctx.range());
+		else if (has(ctx.guardedSet())) {
+			t = guardedSet(ctx.guardedSet());
+		} else 
+			error("setVal " + ctx.getText());
+		
+		return t;
+	}
+
+	/**
+	 * Represents a guarded set. <br> Grammar: <br>
+	 * guardedSet : '{'  expr '|' guard  '}' ;<br>
+	 * guard :  inDecl (',' inDecl)*;<br>
+	 * @param ctx The context
+	 * @return Java representation as a GuardedSet
+	 */
+	private static GuardedSet guardedSet(GuardedSetContext ctx) {
+		GuardedSet r=null;
+		if (has(ctx.expr()) && has(ctx.guard())) {
+				Expr expr = expr(ctx.expr());
+				List<InDecl> lindecl = ctx.guard().inDecl().stream().
+						               map(x->inDecl(x)).collect(Collectors.toList());
+				r = new GuardedSet(expr,lindecl);
+				
+		} else 
+			error("guardedSet " + ctx.getText());
+		return r;
+	}
+
+	/**
+	 * A range as set value. The range can be either from..to or an ID
+	 * @param ctx The context
+	 * @return Java representation
+	 */
+	private static RangeSetVal rangeSetVal(RangeContext ctx) {
+		RangeSetVal r = null;
+		if (hasTerminal(ctx.ID())) {
+			// range defined by the set id
+			ID id = IDTerm(ctx.ID());
+			r = new RangeSetVal(id);
+		} else if (has(ctx.fromR()) && has(ctx.toR())) {
+			ArithExpr from = arithExpr(ctx.fromR().arithExpr());
+			ArithExpr to = arithExpr(ctx.toR().arithExpr());
+			r = new RangeSetVal(from,to);
+			
+		} else			
+			error("Error in rangeSetVal " + ctx.getText());
+
+		return r;
+	}
+
+	private static BracketExpr bracketExpr(BracketExprContext ctx) {
+		BracketExpr t = null;
+		if (has(ctx.commaList())) {
+			List<Expr> lexpr = ctx.commaList().expr().stream().
+								map(x->expr(x)).collect(Collectors.toList());
+			t = new BracketExpr(lexpr);
+		} else 
+			t = new BracketExpr();
+
 		return t;
 	}
 
@@ -508,12 +674,214 @@ public class MiniZinc2Java {
 	 * Obtaining the Java representation of a variable declaration.<br>
 	 * Grammar:<br>
 	 * vardecl : (var | vararray) ('=' expr)?;
-	 * @param vardecl
+	 * @param ctx the context
+	 * @return Java representation as VarDecl
+	 */
+	private static VarDecl vardecl(VardeclContext ctx) {
+		VarDecl t = null;
+		VarContext vctx = null;
+		DimensionsContext dctx = null;
+		
+		if (has(ctx.vararray())) {
+			dctx = ctx.vararray().dimensions();
+			vctx = ctx.vararray().var();
+		} 
+		else if (has(ctx.var())) {
+			vctx = ctx.var();
+		} else 			
+			error("Error in vardecl " + ctx.getText());
+
+		// if no error has been found...
+		if (vctx != null) {
+			if (hasTerminal(vctx.ID())) {
+				// variable name
+				ID id = IDTerm(vctx.ID());
+				
+				// obtain the type
+				Type vt = null;
+				TypenameContext tctx = vctx.typename();
+				Type base = typename(tctx);
+				if (dctx != null) {
+					List<Type> dim = getDimensions(dctx);
+					vt = new TypeArray(dim,base);
+				} else
+					vt = base;
+					
+				if (has(ctx.expr())) {
+					Expr e = expr(ctx.expr());
+				    t = new VarDecl(vt,id,e);
+					
+				} else
+				   t = new VarDecl(vt,id);
+				
+			} else 			
+				error("Error in vardecl;  no id found " + vctx.getText());
+
+		}
+		return t;
+	}
+
+
+	/**
+	 * Obtaining the Java representation of a parameter declaration.<br>
+	 * Grammar:<br>
+	 * pardecl : parameter | pararray;
+	 * pararray : 'array' dimensions 'of'  parameter;
+	 * parameter : 'par'? typename ':'  ID ('=' expr)?;
+	 * @param ctx the context
+	 * @return Java representation as VarDecl
+	 */
+	private static ParDecl pardecl(PardeclContext ctx) {		
+		
+		ParDecl t = null;
+		ParameterContext pctx = null;
+		DimensionsContext dctx = null;
+		
+		if (has(ctx.pararray())) {
+			dctx = ctx.pararray().dimensions();
+			pctx = ctx.pararray().parameter();
+		} 
+		else if (has(ctx.parameter())) {
+			pctx = ctx.parameter();
+		} else 			
+			error("Error in pardecl " + ctx.getText());
+
+		// if no error has been found...
+		if (pctx != null) {
+			if (hasTerminal(pctx.ID())) {
+				// parameter name
+				ID id = IDTerm(pctx.ID());
+				
+				// obtain the type
+				Type vt = null;
+				TypenameContext tctx = pctx.typename();
+				Type base = typename(tctx);
+				if (dctx != null) {
+					List<Type> dim = getDimensions(dctx);
+					vt = new TypeArray(dim,base);
+				} else
+					vt = base;
+					
+				if (has(pctx.expr())) {
+					Expr e = expr(pctx.expr());
+				    t = new ParDecl(vt,id,e);
+					
+				} else
+				   t = new ParDecl(vt,id);
+				
+			} else 			
+				error("Error in pardecl;  no id found " + pctx.getText());
+
+		}
+		return t;
+	}
+
+	/**
+	 * @param dctx the context
+	 * @return The Java Representation
+	 */
+	private static List<Type> getDimensions(DimensionsContext dctx) {
+		List<Type> t = null;
+		// if there are no ranges we assume a unique dimension of type int
+		// if more than one int can be written as dimension the grammar should change!!!
+		if (dctx.range().size()==0) {
+			t = new ArrayList<Type>();
+			t.add(new Rint());
+		} else {
+			t = dctx.range().stream().map(x -> range(x)).collect(Collectors.toList());
+		}
+		
+		return t;
+	}
+
+	/**
+	 * Obtains the representation of a type name as an element of class {@link Type}
+	 * typename : rint
+     *    | rbool
+     *    | rfloat 
+     *    | ID		// for extension types or sets as ranges
+     *    | typedata
+     *    | range
+     *    | typeset
+     *     ;
+	 * @param ctx The context
+	 * @return The Java representation as an object of class  {@link Type} of the typename.
+	 */
+	private static Type typename(TypenameContext ctx) {
+		Type t=null;
+		if (hasTerminal(ctx.ID())) {
+			// type can be a range represented by a set or an extension		
+			ID id = IDTerm(ctx.ID());
+			t = new TypeID(id);			
+		} 
+		else if (has(ctx.rint()))
+			t = new Rint();
+		else if (has(ctx.rfloat()))
+			t = new Rfloat();
+		else if (has(ctx.rbool()))
+			t = new Rbool();
+		else if (has(ctx.typedata())) 
+			t = typedata(ctx.typedata());
+		else if (has(ctx.typeset())) 
+			t = typeset(ctx.typeset());
+		else if (has(ctx.range())) 
+			t = range(ctx.range());
+		else			
+			error("Error in typename " + ctx.getText());
+
+		return t;
+	}
+
+	/**
+	 * Obtains the representation of a MiniZinc range
+	 * @param ctx the context
 	 * @return
 	 */
-	private static VarDecl vardecl(VardeclContext vardecl) {
-		VarDecl t = null;
-		
+	private static TypeRange range(RangeContext ctx) {
+		TypeRange t = null;
+		if (hasTerminal(ctx.ID())) {
+			// range defined by the set id
+			ID id = IDTerm(ctx.ID());
+			t = new TypeRange(id);
+		} else if (has(ctx.fromR()) && has(ctx.toR())) {
+			ArithExpr from = arithExpr(ctx.fromR().arithExpr());
+			ArithExpr to = arithExpr(ctx.toR().arithExpr());
+			t = new TypeRange(from,to);
+			
+		} else			
+			error("Error in range " + ctx.getText());
+
+		return t;
+	}
+
+	private static TypeSet typeset(TypesetContext ctx) {
+		TypeSet t = null;
+		if (has(ctx.typename())) {
+			Type elem = typename(ctx.typename());
+			t = new TypeSet(elem);
+		} 
+		else			
+			error("Error in typeset " + ctx.getText());
+		return t;
+	}
+
+	/**
+	 * A type union of the form  id(expr) with expr an arithmetic expression 
+	 * representing the depth
+	 * @param ctx the context
+	 * @return Java representation
+	 */
+	private static TypeUnion typedata(TypedataContext ctx) {
+		TypeUnion t = null;
+		if (has(ctx.arithExpr()) && hasTerminal(ctx.ID())) {
+			ID id = IDTerm(ctx.ID());
+			ArithExpr e = arithExpr(ctx.arithExpr());
+			t = new TypeUnion(id,e);			
+		}
+		else			
+			error("Error in typedata " + ctx.getText());
+				
+
 		return t;
 	}
 
@@ -608,34 +976,19 @@ public class MiniZinc2Java {
 	 * 
 	 * @param ctx
 	 *            Grammar context
-	 * @return NotComplexBoolExpr representation
+	 * @return NotBoolExpr representation
 	 */
-	private static NotComplexBoolExpr notComplexBoolExpr(NotExprContext ctx) {
-		NotComplexBoolExpr t = null;
+	private static NotBoolExpr notBoolExpr(NotExprContext ctx) {
+		NotBoolExpr t = null;
 		ExprContext e0 = ctx.expr();
 		if (e0 != null) {
-			t = new NotComplexBoolExpr(expr(e0));
+			t = new NotBoolExpr(expr(e0));
 		} else
-			error("NotComplexBoolExpr " + ctx.toString());
+			error("notBoolExpr " + ctx.toString());
 
 		return t;
 	}
 
-	/**
-	 * Arithmetic infix expression as a complex bool expression
-	 * 
-	 * @param t0
-	 *            First operand
-	 * @param t1
-	 *            Second operand
-	 * @param op
-	 *            Operator
-	 * @return InfixArithComplexBoolExpr representation
-	 */
-
-	private static InfixArithComplexBoolExpr infixArithComplexBoolExpr(Expr t0, Expr t1, String op) {
-		return new InfixArithComplexBoolExpr(op, t0, t1);
-	}
 
 	/**
 	 * Arithmetic infix expression as a  bool expression
@@ -664,8 +1017,8 @@ public class MiniZinc2Java {
 	 *            the grammar context
 	 * @return Term representation
 	 */
-	private static Term arithExpr(ArithExprContext ctx) {
-		Term t = null;
+	private static ArithExpr arithExpr(ArithExprContext ctx) {
+		ArithExpr t = null;
 		if (has(ctx.minusExpr())) {
 			t = minusExpr(ctx.minusExpr());
 		} else if (has(ctx.operand())) {
@@ -673,17 +1026,22 @@ public class MiniZinc2Java {
 		} else if (ctx.arithExpr().size() == 2) {
 			ArithExprContext a0 = ctx.arithExpr(0);
 			ArithExprContext a1 = ctx.arithExpr(1);
-			Term t0 = arithExpr(a0);
-			Term t1 = arithExpr(a1);
+			ArithExpr t0 = arithExpr(a0);
+			ArithExpr t1 = arithExpr(a1);
 			if (has(ctx.arithOp2())) {
 				String op = ctx.arithOp2().getText();
-				t = infixArithOp(t0, t1, op);
+				t = infixArithExpr(t0, t1, op);
 			} else
 				error("arithExpr, arithOp2 " + ctx.toString());
 
 		} else
 			error("arithExpr " + ctx.toString());
 		return t;
+	}
+
+	private static InfixArithExpr infixArithExpr(ArithExpr t0, ArithExpr t1,
+			String op) {
+		return new InfixArithExpr(op,t0,t1);
 	}
 
 	/**
@@ -693,31 +1051,18 @@ public class MiniZinc2Java {
 	 *            Grammar context
 	 * @return Term representing the expression
 	 */
-	private static Term minusExpr(MinusExprContext ctx) {
-		Term t = null;
+	private static MinusArithExpr minusExpr(MinusExprContext ctx) {
+		MinusArithExpr t = null;
 		if (has(ctx.arithExpr())) {
 			ArithExprContext a = ctx.arithExpr();
-			Term t0 = arithExpr(a);
-			t = new UnaryExp("-", t0);
+			ArithExpr t0 = arithExpr(a);
+			t = new MinusArithExpr(t0);
 		} else
 			error("minusExpr " + ctx.toString());
 		return t;
 	}
 
-	/**
-	 * Complex Boolean infix expression
-	 * 
-	 * @param t0
-	 *            First operand
-	 * @param t1
-	 *            Second operand
-	 * @param op
-	 *            Operator
-	 * @return InfixComplexBoolExpr representation
-	 */
-	private static InfixComplexBoolExpr infixComplexBoolExpr(BoolExpr  t0, BoolExpr t1, String op) {
-		return new InfixComplexBoolExpr(op, t0, t1);
-	}
+
 
 	/**
 	 * Boolean infix expression
@@ -766,8 +1111,8 @@ public class MiniZinc2Java {
 
 	/******************************************************/
 
-	private static Term stringExpr(StringExprContext ctx) {
-		Term t = null;
+	private static StringC stringExpr(StringExprContext ctx) {
+		StringC t = null;
 		if (has(ctx.string())) {
 			t = stringTerm(ctx);
 		} else
