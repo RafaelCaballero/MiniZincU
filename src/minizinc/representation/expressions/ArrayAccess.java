@@ -24,11 +24,8 @@ public abstract class ArrayAccess extends Expr {
 
 	
 	protected String print(List<Expr> indexes) {
-		// first apply print to all the expressions
-		List<String> ls = indexes.stream().map(x -> x.print()).collect(Collectors.toList());
-		// now join them
-		String s = String.join(",", ls);
-		return "["+s+"]";
+		String s1 = printList(indexes);
+		return "["+s1+"]";
 	}
 
 	/* (non-Javadoc)

@@ -1,7 +1,6 @@
 package minizinc.representation.expressions.sets;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import minizinc.representation.expressions.Expr;
 
@@ -25,8 +24,7 @@ public class BracketExpr extends SetVal {
 
 	@Override
 	public String print() {
-		List<String> selems = elems.stream().map(x->x.print()).collect(Collectors.toList());
-		return "{" + String.join(",", selems) + "}"; 
+		return "{" + printList(elems) + "}"; 
 	}
 
 	@Override

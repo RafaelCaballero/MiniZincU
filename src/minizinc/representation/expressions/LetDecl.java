@@ -7,9 +7,9 @@ import java.util.List;
 
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.SubExpressions;
+import minizinc.representation.statement.Decl;
 import minizinc.representation.statement.Statement;
 import minizinc.representation.statement.constraint.Constraint;
-import minizinc.representation.statement.decls.Decl;
 
 /**
  * Represents let declarations. 

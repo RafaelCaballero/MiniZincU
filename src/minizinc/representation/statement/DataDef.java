@@ -1,21 +1,22 @@
-package minizinc.model;
+package minizinc.representation.statement;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import minizinc.representation.expressions.Expr;
 import datatypes.Tcons;
 import datatypes.Tunion;
 import datatypes.Type;
 
 /*
- * Right-hand side of a data declaration
+ * Data declaration.
  */
-public class SDataDef extends Statement {
+public class DataDef extends Statement {
 	private Tunion dataName;
 	private List<Tcons> cons;
 
-	public SDataDef(String dataName) {
+	public DataDef(String dataName) {
 		super(TStatement.DATA);
 		this.dataName = new Tunion(dataName);
 		cons = new ArrayList<Tcons>();
@@ -74,7 +75,7 @@ public class SDataDef extends Statement {
 			return false;
 		}
 
-		SDataDef c = (SDataDef) obj;
+		DataDef c = (DataDef) obj;
 		return dataName != null && c.dataName != null
 				&& dataName.equals(c.dataName);
 	}
@@ -88,8 +89,9 @@ public class SDataDef extends Statement {
 		return result;
 	}
 
+
 	@Override
-	public String toString() {
+	public String print() {
 		String s = "";
 
 		Iterator<Tcons> it = cons.iterator();
@@ -98,6 +100,12 @@ public class SDataDef extends Statement {
 		}
 
 		return "enum " + dataName.rhsString() + "= {" + s;
+	}
+
+	@Override
+	public List<Expr> subexpressions() {
+		// a data/union declaration contains no subexpressions
+		return null;
 	}
 
 }

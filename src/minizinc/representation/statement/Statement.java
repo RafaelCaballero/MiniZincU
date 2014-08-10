@@ -1,16 +1,22 @@
-/**
- * 
- */
 package minizinc.representation.statement;
 
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.SubExpressions;
 
-/**
- * A MiniZinc statement
- * @author rafa
- *
- */
 public abstract class Statement implements MiniZincRepresentation, SubExpressions {
+	private TStatement type;
 
+	public Statement(TStatement type) {
+		this.type = type;
+	}
+
+	
+	/**
+	 * @return the type
+	 */
+	public TStatement getType() {
+		return type;
+	}
+
+	
 }

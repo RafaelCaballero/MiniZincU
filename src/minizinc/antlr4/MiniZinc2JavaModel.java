@@ -1,7 +1,8 @@
 package minizinc.antlr4;
 
 import minizinc.antlr4.MiniZincGrammarParser.ListExprContext;
-import minizinc.model.*;
+import minizinc.representation.model.*;
+import minizinc.representation.statement.Output;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
@@ -41,7 +42,7 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 */
 	@Override
 	public void exitOutput(@NotNull MiniZincGrammarParser.OutputContext ctx) {
-		SOutput so = MiniZinc2Java.output(ctx);
+		Output so = MiniZinc2Java.output(ctx);
 		m.add(so);
 	}
 

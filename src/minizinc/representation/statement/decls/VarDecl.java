@@ -6,6 +6,8 @@ package minizinc.representation.statement.decls;
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
+import minizinc.representation.statement.Decl;
+import minizinc.representation.statement.TStatement;
 import minizinc.representation.types.Type;
 import minizinc.representation.types.TypeArray;
 
@@ -19,11 +21,11 @@ import minizinc.representation.types.TypeArray;
 public class VarDecl extends Decl {
 	
 	public VarDecl(Type vartype, ID id) {
-		super(vartype, id);
+		super(TStatement.VARDECL,vartype, id);
 	}
 	
 	public VarDecl(Type vartype,ID id,Expr expr) {
-		super(vartype,id,expr);
+		super(TStatement.VARDECL,vartype,id,expr);
 	}
 
 

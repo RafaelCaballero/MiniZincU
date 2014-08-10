@@ -2,8 +2,8 @@
 import minizinc.antlr4.MiniZinc2JavaModel;
 import minizinc.antlr4.MiniZincGrammarLexer;
 import minizinc.antlr4.MiniZincGrammarParser;
-import minizinc.model.Model;
-import minizinc.model.TransformedProgram;
+import minizinc.representation.model.Model;
+import minizinc.representation.model.TransformedProgram;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;

@@ -1,4 +1,4 @@
-package minizinc.model;
+package minizinc.representation.statement;
 
 /**
  * 

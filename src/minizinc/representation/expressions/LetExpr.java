@@ -5,7 +5,6 @@ package minizinc.representation.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import minizinc.representation.TypeName;
 
@@ -36,10 +35,7 @@ public class LetExpr extends Expr {
 	 */
 	@Override
 	public String print() {
-		List<String> ls = decls.stream().map(x -> x.print()).collect(Collectors.toList());
-		// now join them
-		String declsAsS = String.join(",", ls);
-
+		String declsAsS = printList(decls);
 		String s = "let {"+declsAsS+"}"+ expr + " in" + expr.print();
 		return s;
 	}

@@ -1,24 +1,25 @@
-package minizinc.model;
+package minizinc.representation.statement;
 
 import java.util.List;
 
+import minizinc.representation.expressions.Expr;
 import datatypes.Textension;
-import terms.Term;
 
-public class SExtensionDef extends Statement {
+
+public class Extended extends Statement {
 	private Textension dataName;
 	private String baseName;
 	private List<String> left;
 	private List<String> right;
 
-	public SExtensionDef(String name) {
+	public Extended(String name) {
 		super(TStatement.EXTENDED);
 		dataName = new Textension(name);
 		this.baseName = null;
 		left = right = null;
 	}
 
-	public SExtensionDef(String name, String baseName, List<String> left,
+	public Extended(String name, String baseName, List<String> left,
 			List<String> right) {
 		super(TStatement.EXTENDED);
 
@@ -28,7 +29,7 @@ public class SExtensionDef extends Statement {
 		this.right = right;
 	}
 
-	public String toString() {
+	public String print() {
 		String s = "";
 		String sl = listToString(left);
 		String sr = listToString(right);
@@ -147,7 +148,7 @@ public class SExtensionDef extends Statement {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SExtensionDef other = (SExtensionDef) obj;
+		Extended other = (Extended) obj;
 		if (baseName == null) {
 			if (other.baseName != null)
 				return false;
@@ -169,6 +170,14 @@ public class SExtensionDef extends Statement {
 		} else if (!right.equals(other.right))
 			return false;
 		return true;
+	}
+
+
+
+	@Override
+	public List<Expr> subexpressions() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

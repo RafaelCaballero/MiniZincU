@@ -1,8 +1,6 @@
 package minizinc.representation.types;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import minizinc.representation.TypeName;
 
 /**
@@ -43,8 +41,7 @@ public class TypeArray extends Type {
 	 */
 	public String printDimensions(){
 		String s = "array ["; 
-		List<String> dims = dimensions.stream().map(x -> x.print()).collect(Collectors.toList());
-		s += String.join(",", dims);
+		s += printList(dimensions);
 		s+= "] of ";
 		return s;
 		

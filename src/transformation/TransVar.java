@@ -3,8 +3,8 @@ package transformation;
 import java.util.ArrayList;
 import java.util.List;
 
-import minizinc.model.Constraint;
 import minizinc.representation.expressions.BoolC;
+import minizinc.representation.statement.Constraint;
 import terms.Var;
 
 public class TransVar {

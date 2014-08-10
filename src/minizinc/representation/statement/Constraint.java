@@ -1,10 +1,12 @@
-package minizinc.model;
+package minizinc.representation.statement;
 
-import minizinc.representation.MiniZincRepresentation;
+import java.util.Arrays;
+import java.util.List;
+
 import minizinc.representation.expressions.Expr;
 
 
-public class Constraint extends Statement  implements MiniZincRepresentation {
+public class Constraint extends Statement  {
 	/*
 	 * private TConstraint type;
 	 * 
@@ -46,5 +48,13 @@ public class Constraint extends Statement  implements MiniZincRepresentation {
 	public String print() {
 		return "constraint " + t.print();
 	}
+
+	@Override
+	public List<Expr> subexpressions() {
+		// TODO Auto-generated method stub
+		return Arrays.asList(t);
+	}
+
+	
 
 }

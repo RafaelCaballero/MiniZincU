@@ -9,7 +9,7 @@ import minizinc.representation.expressions.*;
 
 /**
  * A list value. Grammar:<br>
- * listValue : stringExpr | ID | ifExpr | arrayaccess | showExpr  | functionExpr;
+ * listValue : stringExpr | ID | ifExpr | arrayaccess ;
  * @author rafa
  *
  */
@@ -43,20 +43,8 @@ public class ListValue extends ListExpr {
 	public ListValue(ArrayAccess e) {
 		this.e = e;
 	}
-	/**
-	 * An show can be a list.
-	 * @param e A ShowExpr representing a list 
-	 */
-	public ListValue(ShowExpr e) {
-		this.e = e;
-	}
-	/**
-	 * A function application can be a list.
-	 * @param e A function application representing a list 
-	 */
-	public ListValue(FunctionExpr e) {
-		this.e = e;
-	}
+
+	
 
 	/* (non-Javadoc)
 	 * @see minizinc.representation.MiniZincRepresentation#print()

@@ -5,8 +5,6 @@ package minizinc.representation.expressions.sets;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.InDecl;
 
@@ -36,8 +34,7 @@ public class GuardedSet extends SetVal {
 	 */
 	@Override
 	public String print() {
-		List<String> lguard = guard.stream().map(x->x.print()).collect(Collectors.toList());
-		return "{" + expr.print() + " | " + String.join(",",lguard) + "}"; 
+		return "{" + expr.print() + " | " + printList(guard) + "}"; 
 	}
 
 	/* (non-Javadoc)

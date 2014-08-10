@@ -1,7 +1,7 @@
 /**
  * 
  */
-package minizinc.representation.statement.decls;
+package minizinc.representation.statement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,6 @@ import minizinc.representation.TypeName;
 import minizinc.representation.Typeable;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
-import minizinc.representation.statement.Statement;
 import minizinc.representation.types.Type;
 
 /**
@@ -23,7 +22,7 @@ import minizinc.representation.types.Type;
  * @author rafa
  *
  */
-public abstract class Decl extends Statement implements Typeable {
+public abstract class Decl extends Statement {
 	/**
 	 *  type of the declared var or par.
 	 */
@@ -40,7 +39,8 @@ public abstract class Decl extends Statement implements Typeable {
 	/**
 	 * Constructor for variable declarations including initializations 
 	 */
-	public Decl(Type decltype,ID id,Expr expr) {
+	public Decl(TStatement tstatement, Type decltype,ID id,Expr expr) {
+		super(tstatement);
 		this.declType = decltype;
 		this.id = id;
 		this.expr = expr;		
@@ -49,7 +49,8 @@ public abstract class Decl extends Statement implements Typeable {
 	/**
 	 * Constructor for variable declarations without initializations 
 	 */
-	public Decl(Type decltype,ID id) {
+	public Decl(TStatement tstatement,Type decltype,ID id) {
+		super(tstatement);
 		this.declType = decltype;
 		this.id = id;
 		this.expr = null;		
@@ -74,12 +75,12 @@ public abstract class Decl extends Statement implements Typeable {
 		return expr!=null;
 	}
 	
-	@Override
-	public TypeName type() {
+
+	public TypeName declType() {
 		return declType.type();
 	}
 	
-	public Type getType() {
+	public Type getDeclType() {
 		return declType;
 	}
 

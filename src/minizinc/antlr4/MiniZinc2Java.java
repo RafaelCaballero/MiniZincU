@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import minizinc.antlr4.MiniZincGrammarParser.ShowExprContext;
+import minizinc.antlr4.MiniZincGrammarParser.ExprContext;
+import minizinc.antlr4.MiniZincGrammarParser.GuardedListContext;
 import minizinc.antlr4.MiniZincGrammarParser.*;
-import minizinc.model.*;
 import minizinc.representation.expressions.*;
 import minizinc.representation.expressions.lists.*;
 import minizinc.representation.expressions.sets.*;
+import minizinc.representation.statement.Output;
 import minizinc.representation.statement.decls.*;
 import minizinc.representation.types.*;
 
@@ -28,12 +29,12 @@ public class MiniZinc2Java {
 	 * Grammar piece: output :'output' '(' listExpr ')' | 'output' listExpr ;
 	 */
 
-	public static SOutput output(MiniZincGrammarParser.OutputContext ctx) {
-		SOutput so = null;
+	public static Output output(MiniZincGrammarParser.OutputContext ctx) {
+		Output so = null;
 		if (has(ctx.listExpr())) {
 			ListExprContext lec = ctx.listExpr();
-			Expr t = listExpr(lec);
-			so = new SOutput(t);
+			ListExpr t = listExpr(lec);
+			so = new Output(t);
 		} else
 			error("output:  " + ctx.toString());
 
@@ -73,8 +74,8 @@ public class MiniZinc2Java {
 	 * @return Term representation of a one dimension list
 	 * 
 	 */
-	private static Expr oneDimList(OneDimListContext oneDimList) {
-		Expr t = null; // output value
+	private static OneDimList oneDimList(OneDimListContext oneDimList) {
+		OneDimList t = null; // output value
 		if (has(oneDimList.simpleList())) {
 			t = simpleList(oneDimList.simpleList());
 
@@ -85,15 +86,49 @@ public class MiniZinc2Java {
 	}
 
 	/**
-	 * Grammar: simpleList : '[' (expr (','expr)*)? (',')? ']';
+	 * A one dim, guarded list.<br>
+	 * Grammar:<br>
+	 * guardedList : '[' (expr (','expr)*) '|'  guard ']' ;
+	 * @param ctx The context.
+	 * @return Representation of the guarded list.
+	 */
+	private static GuardedList guardedList(GuardedListContext ctx) {
+		GuardedList r=null;
+		if (has(ctx.guard()) ) {
+			List<InDecl> indecls = ctx.guard().inDecl().stream().
+            map(x->inDecl(x)).collect(Collectors.toList());
+			List<Expr> exprs = ctx.expr().stream().map(x->expr(x)).collect(Collectors.toList());
+			r = new GuardedList(exprs,indecls);
+		}  else
+			error("guardedList: " + ctx.toString());
+
+		return r;
+	}
+
+	/*
+	private static List<?> applyList(List<?> l, Function object) {
+		return l.stream().map(object).collect(Collectors.toList());
+	}*/
+
+	/**
+	 * Grammar: <br>
+	 * simpleList : '[' ']' | simpleNonEmptyList;
+	 * simpleNonEmptyList : '[' expr(','expr)* ']';
 	 * 
-	 * @param simpleList
+	 * @param ctx
 	 *            the context
 	 * @return A term representation of a simple list
 	 */
-	private static Expr simpleList(SimpleListContext simpleList) {
-		Expr t = null;
-		return t;
+	private static SimpleList simpleList(SimpleListContext ctx) {
+		SimpleList r = null;
+		if (has(ctx.simpleNonEmptyList())) {
+			List<Expr> lexpr = ctx.simpleNonEmptyList().expr().stream().
+					           map(x->expr(x)).collect(Collectors.toList());
+			r = new SimpleList(lexpr);
+		} else {
+			r = new SimpleList();
+		}
+		return r;
 	}
 
 	/**
@@ -414,7 +449,7 @@ public class MiniZinc2Java {
 	/**
 	 * Grammar:<br>
 	 * boolVal : | '(' boolExpr ')' | ID | BOOL | arrayaccess | ifExpr | letExpr
-	 * | predOrUnionExpr | guardExpr ;
+	 * | predOrUnionExpr ;
 	 *
 	 * @param ctx
 	 *            Grammar context
@@ -440,7 +475,8 @@ public class MiniZinc2Java {
 			t = new BoolVal(letExpr(ctx.letExpr()));
 		} else if (has(ctx.predOrUnionExpr())) {
 			t = new BoolVal(predOrUnionExpr(ctx.predOrUnionExpr()));
-		} else
+		}
+		else
 			error("boolVal " + ctx.getText());
 		return t;
 	}

@@ -6,6 +6,8 @@ package minizinc.representation.statement.decls;
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
+import minizinc.representation.statement.Decl;
+import minizinc.representation.statement.TStatement;
 import minizinc.representation.types.Type;
 import minizinc.representation.types.TypeArray;
 
@@ -19,11 +21,11 @@ import minizinc.representation.types.TypeArray;
 public class ParDecl extends Decl {
 	
 	public ParDecl(Type partype, ID id) {
-		super(partype, id);
+		super(TStatement.PARDECL,partype, id);
 	}
 	
 	public ParDecl(Type partype,ID id,Expr expr) {
-		super(partype,id,expr);
+		super(TStatement.PARDECL,partype,id,expr);
 	}
 
 	/* (non-Javadoc)

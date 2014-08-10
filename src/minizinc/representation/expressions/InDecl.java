@@ -70,8 +70,7 @@ public class InDecl implements MiniZincRepresentation, SubExpressions {
 	@Override
 	public String print() {
 		// first the variables
-		List<String> lids = guard.stream().map(x->x.print()).collect(Collectors.toList());
-		String s  = String.join(",", lids);
+		String s  = printList(guard);
 		// now the 'in'
 		s += " in "+setExpr.print();
 		if (where != null)

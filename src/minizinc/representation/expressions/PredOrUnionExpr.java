@@ -5,7 +5,6 @@ package minizinc.representation.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import minizinc.representation.TypeName;
 
@@ -52,8 +51,7 @@ public class PredOrUnionExpr extends Expr{
 
 	@Override
 	public String print() {
-		List<String> sargs = args.stream().map(x->x.print()).collect(Collectors.toList());
-		return id.print()+"("+String.join(",", sargs)+")";
+		return id.print()+"("+printList(args)+")";
 	}
 
 	@Override

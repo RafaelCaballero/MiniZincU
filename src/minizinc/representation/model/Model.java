@@ -1,21 +1,21 @@
 /**
  * 
  */
-package minizinc.model;
+package minizinc.representation.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import minizinc.representation.statement.decls.*;
-
-import org.antlr.v4.runtime.misc.NotNull;
+import minizinc.representation.MiniZincRepresentation;
+import minizinc.representation.statement.*;
+import minizinc.representation.statement.decls.VarDecl;
 
 
 /**
- * @author Rafa Caballero Represents a MiniZinc model
+ * Represents a MiniZinc model. 
+ * @author Rafa Caballero 
  */
-public class Model {
+public class Model implements  MiniZincRepresentation {
 	private List<Statement> stat = new ArrayList<Statement>();
 
 	public void add(Statement s) {
@@ -56,10 +56,10 @@ public class Model {
 	 * var) { this.var = var; }
 	 */
 	@Override
-	public String toString() {
+	public String print() {
 		String s = "";
 		for (Statement st : stat) {
-			s += st.toString() + "\n";
+			s += st.toString() + ";\n";
 		}
 
 		return s;
@@ -77,6 +77,7 @@ public class Model {
 		 * s+= ", "; } s+="]);"; return s;
 		 */
 	}
+
 
 	/**
 	 * Shows all the variables

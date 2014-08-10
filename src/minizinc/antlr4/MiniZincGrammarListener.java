@@ -689,16 +689,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 */
 	void exitOneDimList(@NotNull MiniZincGrammarParser.OneDimListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#functionExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionExpr(@NotNull MiniZincGrammarParser.FunctionExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#functionExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionExpr(@NotNull MiniZincGrammarParser.FunctionExprContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#stringExpr}.
 	 * @param ctx the parse tree
 	 */

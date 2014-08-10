@@ -833,18 +833,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionExpr(@NotNull MiniZincGrammarParser.FunctionExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunctionExpr(@NotNull MiniZincGrammarParser.FunctionExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStringExpr(@NotNull MiniZincGrammarParser.StringExprContext ctx) { }
 	/**
 	 * {@inheritDoc}

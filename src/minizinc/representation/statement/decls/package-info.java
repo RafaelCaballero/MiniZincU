@@ -7,3 +7,4 @@
  *
  */
 package minizinc.representation.statement.decls;
+import minizinc.representation.statement.Decl;
