@@ -6,7 +6,9 @@ package minizinc.representation.expressions;
 import java.util.Arrays;
 import java.util.List;
 
-import terms.Term;
+import minizinc.antlr4.MiniZincGrammarParser.ExprContext;
+import minizinc.antlr4.MiniZincGrammarParser.NotExprContext;
+import minizinc.representation.Parsing;
 
 /**
  * BoolComplexExprssion as a not(e) expression
@@ -38,5 +40,27 @@ public class NotBoolExpr extends BoolExpr {
 	public List<Expr> subexpressions() {
 		return Arrays.asList(e);
 	}
+	
+	/**
+	 * Grammar: <br>
+	 * notExpr : 'not' expr ;
+	 * 
+	 * @param ctx
+	 *            Grammar context
+	 * @return NotBoolExpr representation
+	 */
+	public static NotBoolExpr notBoolExpr(NotExprContext ctx) {
+		NotBoolExpr t = null;
+		ExprContext e0 = ctx.expr();
+		if (e0 != null) {
+			t = new NotBoolExpr(expr(e0));
+		} else
+			Parsing.error("notBoolExpr " + ctx.toString());
+
+		return t;
+	}
+
+
+
 
 }

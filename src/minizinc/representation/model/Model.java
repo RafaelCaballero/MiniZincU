@@ -6,7 +6,10 @@ package minizinc.representation.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.ModelContext;
+import minizinc.antlr4.MiniZincGrammarParser.StatContext;
 import minizinc.representation.MiniZincRepresentation;
+import minizinc.representation.Parsing;
 import minizinc.representation.statement.*;
 import minizinc.representation.statement.decls.VarDecl;
 
@@ -16,8 +19,11 @@ import minizinc.representation.statement.decls.VarDecl;
  * @author Rafa Caballero 
  */
 public class Model implements  MiniZincRepresentation {
-	private List<Statement> stat = new ArrayList<Statement>();
+	protected List<Statement> stat;
 
+	public Model() {
+		stat = new ArrayList<Statement>();
+	}
 	public void add(Statement s) {
 		stat.add(s);
 	}
@@ -76,6 +82,20 @@ public class Model implements  MiniZincRepresentation {
 		 * i<noutput; i++){ Term sh = output.get(i); s += sh; if (i<noutput-1)
 		 * s+= ", "; } s+="]);"; return s;
 		 */
+	}
+
+	/**
+	 * Parses a model.<br>
+	 * Grammar: model: (stat ';')+;
+	 * @param ctx parsing context.
+	 * @return A {@link Model} object representing the MiniZinc model
+	 */
+	public static Model model(ModelContext ctx) {
+		Model m = new Model();
+		// add the statements that form the model
+		ctx.stat().forEach(x->m.add(Statement.statement(x)));
+
+		return m;
 	}
 
 

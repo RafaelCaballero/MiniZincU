@@ -3,9 +3,9 @@ package minizinc.representation.expressions;
 import java.util.Arrays;
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.*;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
-import terms.Term;
-import Path.Path;
 
 public class IfS extends Expr {
 	private Expr Cond;
@@ -121,5 +121,87 @@ public class IfS extends Expr {
 	public TypeName type() {
 		return Exp1.type();
 	}
+	
+	/**
+	 * ifExpr : 'if' bodyIf ;
+	 * 
+	 * @param ctx
+	 *            the expression context
+	 * @return Term representing the if expression
+	 */
+	public static IfS ifExpr(IfExprContext ctx) {
+		IfS t = null;
+		if (Parsing.has(ctx.bodyIf())) {
+			t = bodyIf(ctx.bodyIf());
+		} else
+			Parsing.error("ifExpr:  " + ctx.toString());
+		return t;
+	}
+
+	/**
+	 * bodyIf : expr 'then' expr (elseS | elseifS) ;
+	 * 
+	 * @param ctx
+	 *            the expression context
+	 * @return Term representing the if expression
+	 */
+	private static IfS bodyIf(BodyIfContext ctx) {
+		IfS t = null;
+		ExprContext e0 = ctx.expr(0);
+		ExprContext e1 = ctx.expr(1);
+		Expr t0 = expr(e0);
+		Expr t1 = expr(e1);
+
+		if (Parsing.has(ctx.elseS())) {
+			t = elseS(t0, t1, ctx.elseS());
+		} else if (Parsing.has(ctx.elseifS())) {
+			t = elseifS(t0, t1, ctx.elseifS());
+		} else
+			Parsing.error("bodyIf:  " + ctx.toString());
+		return t;
+	}
+
+	/**
+	 * elseS : 'else' expr 'endif';
+	 * 
+	 * @param t0
+	 *            : if condition
+	 * @param t1
+	 *            : then expression
+	 * @param ctx
+	 *            : expression context
+	 * @return Term representing the elseS expression
+	 */
+	private static IfS elseS(Expr t0, Expr t1, ElseSContext ctx) {
+		IfS t = null;
+		if (Parsing.has(ctx.expr())) {
+			Expr t2 = expr(ctx.expr());
+			t = new IfS(t0, t1, t2);
+		} else
+			Parsing.error("elseS " + ctx.toString());
+		return t;
+	}
+
+	/**
+	 * elseifS : 'elseif' bodyIf;
+	 * 
+	 * @param t0
+	 *            if condition
+	 * @param t1
+	 *            then expression
+	 * @param ctx
+	 *            expression context
+	 * @return Term representing the elseifS expression
+	 */
+	private static IfS elseifS(Expr t0, Expr t1, ElseifSContext ctx) {
+		IfS t = null;
+		if (Parsing.has(ctx.bodyIf())) {
+			Expr t2 = bodyIf(ctx.bodyIf());
+			t = new IfS(t0, t1, t2);
+		} else
+			Parsing.error("elseifS " + ctx.toString());
+		return t;
+	}
+
 
 }

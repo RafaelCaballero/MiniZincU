@@ -5,8 +5,9 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.StringExprContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
-import minizinc.representation.expressions.lists.ListExpr;
 
 /**
  * Representation of a MiniZinc String constant
@@ -44,6 +45,26 @@ public class StringC extends Expr {
 	public TypeName type() {
 		// TODO Auto-generated method stub
 		return TypeName.STRING;
+	}
+
+	/**
+	 * @param ctx
+	 *            the grammar context
+	 * @return a string constant containing the string. The first and last
+	 *         character of the string is '"'
+	 */
+
+	public static StringC stringTerm(StringExprContext ctx) {
+		return new StringC(ctx.getText());
+	}
+
+	public static StringC stringExpr(StringExprContext ctx) {
+		StringC t = null;
+		if (Parsing.has(ctx.string())) {
+			t = stringTerm(ctx);
+		} else
+			Parsing.error("string:  " + ctx.toString());
+		return t;
 	}
 
 	

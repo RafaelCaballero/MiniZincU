@@ -4,8 +4,9 @@
 package minizinc.representation.expressions.lists;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import minizinc.antlr4.MiniZincGrammarParser.SimpleListContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
 
 /**
@@ -16,45 +17,59 @@ import minizinc.representation.expressions.Expr;
  *
  */
 public class SimpleList extends OneDimList {
-	protected List<Expr> elems;
 
 	/**
 	 * Constructor with expressions.
 	 * 
 	 */
 	public SimpleList(List<Expr> elems) {
-		this.elems=elems;
+		super(elems);
 	}
-	
+
+	/**
+	 * Constructor with the elements as a {@link Dimension} object
+	 * 
+	 */
+	public SimpleList(Dimension d) {
+		super(d);
+	}
+
 	/**
 	 * Empty list
 	 */
 	public SimpleList(){
-		elems = null;
+		super();
 	}
 	
-	public boolean isEmptyList(){
-		return elems == null;
-	}
+
 
 	/* (non-Javadoc)
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		String selems="";
-		if (!isEmptyList()) {
-			selems = printList(elems);
-		}
-		return "["+selems+"]";
+		return "["+ printElements()+"]";
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
+	/**
+	 * Grammar: <br>
+	 * simpleList : '[' ']' | simpleNonEmptyList;
+	 * simpleNonEmptyList : '[' expr(','expr)* ']';
+	 * 
+	 * @param ctx
+	 *            the context
+	 * @return A term representation of a simple list
 	 */
-	@Override
-	public List<Expr> subexpressions() {
-		return elems;
+	public static SimpleList simpleList(SimpleListContext ctx) {
+		SimpleList r = null;
+		if (Parsing.has(ctx.simpleNonEmptyList())) {
+			Dimension d= Dimension.dimension(ctx.simpleNonEmptyList().nonEmptyListElems());
+			r = new SimpleList(d);
+		} else {
+			r = new SimpleList();
+		}
+		return r;
 	}
+
 
 }

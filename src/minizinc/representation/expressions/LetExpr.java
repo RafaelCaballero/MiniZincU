@@ -5,7 +5,10 @@ package minizinc.representation.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import minizinc.antlr4.MiniZincGrammarParser.LetExprContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
@@ -59,5 +62,25 @@ public class LetExpr extends Expr {
 		// the type of the expression
 		return expr.type();
 	}
+	
+	/**
+	 * Constructing a let expression. Grammar:<br>
+	 * letExpr : 'let' '{' letDecl   (',' letDecl)* '}' 'in' expr;
+	 * @param ctx the context
+	 * @return the representation as a LetExpr
+	 */
+	public static LetExpr letExpr(LetExprContext ctx) {
+		LetExpr t = null;
+		if (Parsing.has(ctx.expr())) {
+			Expr e = Expr.expr(ctx.expr());
+			List<LetDecl> ldecl = ctx.letDecl().stream().map(x -> LetDecl.letDecl(x)).collect(Collectors.toList());
+			t = new LetExpr(ldecl,e);
+			
+		} else {
+			Parsing.error("Error in letExpr. No expression found " + ctx.getText());
+		}
+		return t;
+	}
+
 
 }

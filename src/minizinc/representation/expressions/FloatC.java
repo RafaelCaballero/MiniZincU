@@ -5,8 +5,8 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.RealContext;
 import minizinc.representation.TypeName;
-import minizinc.representation.expressions.lists.ListExpr;
 
 /**
  * Representation of a MiniZinc float constant
@@ -45,6 +45,16 @@ public class FloatC extends Expr {
 		// TODO Auto-generated method stub
 		return TypeName.FLOAT;
 	}
+	/**
+	 * @param ctx
+	 *            The grammar context
+	 * @return Term representation of a real number constant in MiniZinc
+	 */
+	public static FloatC realTerm(RealContext b) {
+		double d = Double.parseDouble(b.getText());
+		return new FloatC(d);
+	}
+
 
 	
 }

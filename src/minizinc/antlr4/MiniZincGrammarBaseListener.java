@@ -41,18 +41,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgunion(@NotNull MiniZincGrammarParser.ArgunionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgunion(@NotNull MiniZincGrammarParser.ArgunionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterRint(@NotNull MiniZincGrammarParser.RintContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -60,6 +48,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRint(@NotNull MiniZincGrammarParser.RintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNonEmptyListElems(@NotNull MiniZincGrammarParser.NonEmptyListElemsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNonEmptyListElems(@NotNull MiniZincGrammarParser.NonEmptyListElemsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -180,18 +180,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInfixOp(@NotNull MiniZincGrammarParser.InfixOpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterArgint(@NotNull MiniZincGrammarParser.ArgintContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgint(@NotNull MiniZincGrammarParser.ArgintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -468,18 +456,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArithComplexExpr(@NotNull MiniZincGrammarParser.ArithComplexExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterArg(@NotNull MiniZincGrammarParser.ArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArg(@NotNull MiniZincGrammarParser.ArgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -929,18 +905,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgrange(@NotNull MiniZincGrammarParser.ArgrangeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgrange(@NotNull MiniZincGrammarParser.ArgrangeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterReal(@NotNull MiniZincGrammarParser.RealContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -948,18 +912,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReal(@NotNull MiniZincGrammarParser.RealContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterArgfloat(@NotNull MiniZincGrammarParser.ArgfloatContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgfloat(@NotNull MiniZincGrammarParser.ArgfloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1128,18 +1080,6 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArrayaccess(@NotNull MiniZincGrammarParser.ArrayaccessContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterArgbool(@NotNull MiniZincGrammarParser.ArgboolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArgbool(@NotNull MiniZincGrammarParser.ArgboolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

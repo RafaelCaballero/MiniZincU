@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import minizinc.antlr4.MiniZincGrammarParser.InDeclContext;
 import minizinc.representation.MiniZincRepresentation;
+import minizinc.representation.Parsing;
 import minizinc.representation.SubExpressions;
-import minizinc.representation.TypeName;
 import minizinc.representation.expressions.sets.SetExpr;
 
 /**
@@ -78,5 +79,30 @@ public class InDecl implements MiniZincRepresentation, SubExpressions {
 		
 		return s;
 	}
+	
+	/*
+	 * A 'in' declaration.
+	 *  * Grammar:<br>
+	 * {@code inDecl : Guard 'in' setExpr whereCond?;} <br><br> 
+	 * @param cxt the context
+	 * @return The Java representation
+	 */
+	public static InDecl inDecl(InDeclContext ctx) {
+		InDecl t = null;
+		if (Parsing.has(ctx.setExpr())){
+			List<ID> ids = ctx.ID().stream().map(x->ID.IDTerm(x)).collect(Collectors.toList());
+			SetExpr sexpr  = SetExpr.setExpr(ctx.setExpr());
+			if (Parsing.has(ctx.whereCond())) {
+				BoolExpr bexpr = BoolExpr.boolExpr(ctx.whereCond().boolExpr());
+				t = new InDecl(ids,sexpr,bexpr);
+			} else
+				t = new InDecl(ids,sexpr);
+		}	
+		else
+				Parsing.error("inDecl " + ctx.getText());
+		
+		return t;
+	}
+
 
 }

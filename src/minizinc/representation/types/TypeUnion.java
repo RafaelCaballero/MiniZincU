@@ -1,4 +1,6 @@
 package minizinc.representation.types;
+import minizinc.antlr4.MiniZincGrammarParser.TypedataContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.ArithExpr;
 import minizinc.representation.expressions.ID;
@@ -40,6 +42,26 @@ public class TypeUnion extends Type {
 
 	public ArithExpr getE() {
 		return e;
+	}
+
+	/**
+	 * A type union of the form  id(expr) with expr an arithmetic expression 
+	 * representing the depth
+	 * @param ctx the context
+	 * @return Java representation
+	 */
+	public static TypeUnion typedata(TypedataContext ctx) {
+		TypeUnion t = null;
+		if (Parsing.has(ctx.arithExpr()) && Parsing.hasTerminal(ctx.ID())) {
+			ID id = ID.IDTerm(ctx.ID());
+			ArithExpr e = ArithExpr.arithExpr(ctx.arithExpr());
+			t = new TypeUnion(id,e);			
+		}
+		else			
+			Parsing.error("Error in typedata " + ctx.getText());
+				
+
+		return t;
 	}
 
 }

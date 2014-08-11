@@ -2,8 +2,9 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import minizinc.representation.TypeName;
-import terms.Term;
 
 public class ID extends Expr {
 	protected String id;
@@ -68,5 +69,15 @@ public class ID extends Expr {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public static ID IDTerm(TerminalNode id) {
+		return new ID(id.getText());
+	}
+
+	public static ID IDTerm(String id) {
+		return new ID(id);
+	}
+
+
 
 }

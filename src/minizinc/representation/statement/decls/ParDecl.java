@@ -3,6 +3,13 @@
  */
 package minizinc.representation.statement.decls;
 
+import java.util.List;
+
+import minizinc.antlr4.MiniZincGrammarParser.DimensionsContext;
+import minizinc.antlr4.MiniZincGrammarParser.ParameterContext;
+import minizinc.antlr4.MiniZincGrammarParser.PardeclContext;
+import minizinc.antlr4.MiniZincGrammarParser.TypenameContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
@@ -42,6 +49,61 @@ public class ParDecl extends Decl {
 			s =  declType.print() +  ':'  + id.print() ;
 		return s;
 	}
+
+	/**
+	 * Obtaining the Java representation of a parameter declaration.<br>
+	 * Grammar:<br>
+	 * pardecl : parameter | pararray;
+	 * pararray : 'array' dimensions 'of'  parameter;
+	 * parameter : 'par'? typename ':'  ID ('=' expr)?;
+	 * @param ctx the context
+	 * @return Java representation as VarDecl
+	 */
+	public static ParDecl pardecl(PardeclContext ctx) {		
+		
+		ParDecl t = null;
+		ParameterContext pctx = null;
+		DimensionsContext dctx = null;
+		
+		if (Parsing.has(ctx.pararray())) {
+			dctx = ctx.pararray().dimensions();
+			pctx = ctx.pararray().parameter();
+		} 
+		else if (Parsing.has(ctx.parameter())) {
+			pctx = ctx.parameter();
+		} else 			
+			Parsing.error("Error in pardecl " + ctx.getText());
+
+		// if no Parsing.error Parsing.has been found...
+		if (pctx != null) {
+			if (Parsing.hasTerminal(pctx.ID())) {
+				// parameter name
+				ID id = ID.IDTerm(pctx.ID());
+				
+				// obtain the type
+				Type vt = null;
+				TypenameContext tctx = pctx.typename();
+				Type base = Type.typename(tctx);
+				if (dctx != null) {
+					List<Type> dim = getDimensions(dctx);
+					vt = new TypeArray(dim,base);
+				} else
+					vt = base;
+					
+				if (Parsing.has(pctx.expr())) {
+					Expr e = Expr.expr(pctx.expr());
+				    t = new ParDecl(vt,id,e);
+					
+				} else
+				   t = new ParDecl(vt,id);
+				
+			} else 			
+				Parsing.error("Error in pardecl;  no id found " + pctx.getText());
+
+		}
+		return t;
+	}
+
 
 
 }

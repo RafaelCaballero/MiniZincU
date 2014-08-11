@@ -1,10 +1,9 @@
 package minizinc.representation.model;
 
-import datatypes.Type;
-
 import java.util.List;
 
 import minizinc.constraints.*;
+import minizinc.representation.DataDef.Type;
 import minizinc.representation.statement.Constraint;
 import terms.*;
 import transformation.*;

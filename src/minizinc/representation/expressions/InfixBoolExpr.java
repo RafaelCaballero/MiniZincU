@@ -6,7 +6,6 @@ package minizinc.representation.expressions;
 import java.util.Arrays;
 import java.util.List;
 
-import terms.Term;
 
 /**
  * BoolComplexExprssion as a Infix boolean expression
@@ -54,5 +53,21 @@ public class InfixBoolExpr extends BoolExpr {
 	public List<Expr> subexpressions() {
 		return Arrays.asList(e1,e2);
 	}
+
+	/**
+	 * Boolean infix expression
+	 * 
+	 * @param t0
+	 *            First operand
+	 * @param t1
+	 *            Second operand
+	 * @param op
+	 *            Operator
+	 * @return Term representation
+	 */
+	public static InfixBoolExpr infixBoolExpr(BoolExpr  t0, BoolExpr t1, String op) {
+		return new InfixBoolExpr(op, t0, t1);
+	}
+
 
 }

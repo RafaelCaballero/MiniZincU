@@ -5,8 +5,8 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.IntegerContext;
 import minizinc.representation.TypeName;
-import minizinc.representation.expressions.lists.ListExpr;
 
 /**
  * Representation of a MiniZinc integer constant
@@ -45,6 +45,17 @@ public class IntC extends Expr {
 		// TODO Auto-generated method stub
 		return TypeName.INT;
 	}
+	
+	/**
+	 * @param ctx
+	 *            The grammar context
+	 * @return Term representation of a MiniZinc integer constant
+	 */
+	public static IntC integerTerm(IntegerContext b) {
+		int d = Integer.parseInt(b.getText());
+		return new IntC(d);
+	}
+
 
 	
 }

@@ -5,11 +5,16 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.DeclContext;
+import minizinc.antlr4.MiniZincGrammarParser.LetDeclContext;
 import minizinc.representation.MiniZincRepresentation;
+import minizinc.representation.Parsing;
 import minizinc.representation.SubExpressions;
 import minizinc.representation.statement.Decl;
 import minizinc.representation.statement.Statement;
-import minizinc.representation.statement.constraint.Constraint;
+import minizinc.representation.statement.Constraint;
+import minizinc.representation.statement.decls.ParDecl;
+import minizinc.representation.statement.decls.VarDecl;
 
 /**
  * Represents let declarations. 
@@ -49,6 +54,48 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions{
 	public List<Expr> subexpressions() {
 		return statement.subexpressions();
 	}
+	
+	/**
+     * Variable and parameter declarations, including possible initializations.<br>
+     * Grammar<br>
+     * decl : vardecl | pardecl;<br>
+	 * @param ctx
+	 * @return
+	 */
+	public static LetDecl decl(DeclContext ctx) {
+		LetDecl t =null;
+		if (Parsing.has(ctx.vardecl())) {
+			t = new LetDecl(VarDecl.vardecl(ctx.vardecl()));
+		} else if (Parsing.has(ctx.pardecl())) {
+			t = new LetDecl(ParDecl.pardecl(ctx.pardecl()));
+		} else {
+			Parsing.error("Error in decl " + ctx.getText());
+		}
+		return t;
+	}
+	
+	
+	/**
+	 * Let declarations. Grammar:<br>
+	 * letDecl : decl | constraint;
+	 * @param ctx
+	 * @return
+	 */
+	public static LetDecl letDecl(LetDeclContext ctx) {
+		LetDecl t = null;
+		if (Parsing.has(ctx.decl())) {
+			t = decl(ctx.decl());
+			
+		} else if (Parsing.has(ctx.constraint())) {
+		
+		} else {
+			Parsing.error("Error in letDecl " + ctx.getText());
+		}
+		return t;
+	}
+
+
+
 
 
 }

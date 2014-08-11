@@ -3,6 +3,8 @@ package minizinc.representation.statement;
 import java.util.Arrays;
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.ConstraintContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
 
 
@@ -53,6 +55,19 @@ public class Constraint extends Statement  {
 	public List<Expr> subexpressions() {
 		// TODO Auto-generated method stub
 		return Arrays.asList(t);
+	}
+
+	/**
+	 * Returns a new Constraint representing the object parsed in ctx.
+	 * @param ctx Parsing context
+	 * @return A new Constraint
+	 */
+	public static Constraint constraint(ConstraintContext ctx) {
+		Constraint r = null;
+		if (Parsing.has(ctx.expr())) {
+			r = new Constraint(Expr.expr(ctx.expr()));
+		}
+		return r;
 	}
 
 	

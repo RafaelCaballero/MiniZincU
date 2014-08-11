@@ -2,8 +2,9 @@ package minizinc.representation.expressions;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import minizinc.representation.TypeName;
-import Path.Path;
 
 public class BoolC extends Expr {
 	private boolean value;
@@ -67,5 +68,14 @@ public class BoolC extends Expr {
 	public TypeName type() {
 		return TypeName.BOOL;
 	}
+	
+	/**
+	 * @param ctx
+	 * @return Term representation of a boolean constant in MiniZinc
+	 */
+	public static BoolC BOOLTerm(TerminalNode b) {
+		return new BoolC(b.getText().toLowerCase().equals("true"));
+	}
+
 
 }

@@ -47,5 +47,12 @@ public class InfixArithExpr extends ArithExpr {
 		// At the moment just a naive (possibly incorrect) version: the type of an operator
 		return e1.type();
 	}
+	
+	public static InfixArithExpr infixArithExpr(ArithExpr t0, ArithExpr t1,
+			String op) {
+		return new InfixArithExpr(op,t0,t1);
+	}
+
+
 
 }

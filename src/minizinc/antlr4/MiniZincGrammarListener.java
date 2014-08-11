@@ -29,16 +29,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 */
 	void exitSetS(@NotNull MiniZincGrammarParser.SetSContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#argunion}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgunion(@NotNull MiniZincGrammarParser.ArgunionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#argunion}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgunion(@NotNull MiniZincGrammarParser.ArgunionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#rint}.
 	 * @param ctx the parse tree
 	 */
@@ -48,6 +38,16 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRint(@NotNull MiniZincGrammarParser.RintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniZincGrammarParser#nonEmptyListElems}.
+	 * @param ctx the parse tree
+	 */
+	void enterNonEmptyListElems(@NotNull MiniZincGrammarParser.NonEmptyListElemsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniZincGrammarParser#nonEmptyListElems}.
+	 * @param ctx the parse tree
+	 */
+	void exitNonEmptyListElems(@NotNull MiniZincGrammarParser.NonEmptyListElemsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#boolVal}.
 	 * @param ctx the parse tree
@@ -148,16 +148,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInfixOp(@NotNull MiniZincGrammarParser.InfixOpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#argint}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgint(@NotNull MiniZincGrammarParser.ArgintContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#argint}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgint(@NotNull MiniZincGrammarParser.ArgintContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#simpleNonEmptyList}.
 	 * @param ctx the parse tree
@@ -388,16 +378,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArithComplexExpr(@NotNull MiniZincGrammarParser.ArithComplexExprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#arg}.
-	 * @param ctx the parse tree
-	 */
-	void enterArg(@NotNull MiniZincGrammarParser.ArgContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#arg}.
-	 * @param ctx the parse tree
-	 */
-	void exitArg(@NotNull MiniZincGrammarParser.ArgContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#ifExpr}.
 	 * @param ctx the parse tree
@@ -769,16 +749,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 */
 	void exitScons(@NotNull MiniZincGrammarParser.SconsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#argrange}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgrange(@NotNull MiniZincGrammarParser.ArgrangeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#argrange}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgrange(@NotNull MiniZincGrammarParser.ArgrangeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#real}.
 	 * @param ctx the parse tree
 	 */
@@ -788,16 +758,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReal(@NotNull MiniZincGrammarParser.RealContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#argfloat}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgfloat(@NotNull MiniZincGrammarParser.ArgfloatContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#argfloat}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgfloat(@NotNull MiniZincGrammarParser.ArgfloatContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#guardedSet}.
 	 * @param ctx the parse tree
@@ -938,16 +898,6 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArrayaccess(@NotNull MiniZincGrammarParser.ArrayaccessContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiniZincGrammarParser#argbool}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgbool(@NotNull MiniZincGrammarParser.ArgboolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiniZincGrammarParser#argbool}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgbool(@NotNull MiniZincGrammarParser.ArgboolContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#boolOp}.
 	 * @param ctx the parse tree

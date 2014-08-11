@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import minizinc.representation.DataDef.*;
 import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.IfS;
 import minizinc.representation.model.Model;
@@ -11,7 +12,6 @@ import minizinc.representation.statement.Constraint;
 import minizinc.representation.statement.DataDef;
 import Path.Path;
 import terms.*;
-import datatypes.*;
 
 public class Transform {
 	private Model p;
@@ -301,7 +301,7 @@ public class Transform {
 
 	private Term sVari(DataDef d, Var v, int l, int i, int n) throws Exception {
 		Term t = null;
-		Tcons c = d.getCons().get(i);
+		DataCons c = d.getCons().get(i);
 		int m = c.getSubtypes().size();
 		Term sThen;
 

@@ -6,7 +6,10 @@ package minizinc.representation.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.SimpleNonEmptyListContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
+import minizinc.representation.expressions.lists.Dimension;
 
 /**
  * Array access of the form [a1...an][e1...em]
@@ -57,5 +60,28 @@ public class ArrayArrayAccess extends ArrayAccess {
 			t = array.get(0).type();
 		return t;
 	}
+	
+	
+	/**
+	 * Array access of the form [a1...an][e1...em]
+	 * @param ctx1 The array [a1...an]
+	 * @param ctx2 The list of indexes [e1...em]
+	 * @return The Java representation
+	 */
+	public static ArrayArrayAccess arrayarrayaccess(
+			SimpleNonEmptyListContext ctx1,
+			SimpleNonEmptyListContext ctx2) {
+		ArrayArrayAccess t = null;
+		int n = ctx2.nonEmptyListElems().expr().size();
+		if (n!=0) {
+			Dimension array = Dimension.dimension(ctx1.nonEmptyListElems());
+			Dimension indexes = Dimension.dimension(ctx2.nonEmptyListElems());
+			t = new ArrayArrayAccess(array.subexpressions(), indexes.subexpressions());
+		} else Parsing.error("ArrayArrayAccess with 0 indexes " + ctx1.getText() + " | "+ctx2.getText()); 
+
+		return t;
+	}
+
+
 
 }

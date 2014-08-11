@@ -13,11 +13,11 @@ import java.util.List;
  *
  */
 public class InfixArithBoolExpr extends BoolExpr {
-	private Expr e1;
-	private Expr e2;
+	private ArithExpr e1;
+	private ArithExpr e2;
 	private String op;
 
-	public InfixArithBoolExpr(String op, Expr t0, Expr t1) {
+	public InfixArithBoolExpr(String op, ArithExpr t0, ArithExpr t1) {
 		this.e1 = t0;
 		this.e2 = t1;
 		this.op = op;
@@ -38,5 +38,23 @@ public class InfixArithBoolExpr extends BoolExpr {
 	public List<Expr> subexpressions() {
 		return Arrays.asList(e1,e2);
 	}
+	
+	/**
+	 * Arithmetic infix expression as a  bool expression
+	 * 
+	 * @param t0
+	 *            First operand
+	 * @param t1
+	 *            Second operand
+	 * @param op
+	 *            Operator
+	 * @return InfixArithComplexBoolExpr representation
+	 */
+
+	public static InfixArithBoolExpr infixArithBoolExpr(ArithExpr t0, ArithExpr t1, String op) {
+		return new InfixArithBoolExpr(op, t0, t1);
+	}
+
+	
 
 }

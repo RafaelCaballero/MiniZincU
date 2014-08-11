@@ -6,7 +6,8 @@ package minizinc.representation.expressions.sets;
 import java.util.ArrayList;
 import java.util.List;
 
-import minizinc.representation.TypeName;
+import minizinc.antlr4.MiniZincGrammarParser.RangeContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.expressions.*;
 
 /**
@@ -65,5 +66,28 @@ public class RangeSetVal extends SetVal {
 		sub.add(to);
 		return sub;
 	}
+	
+	/**
+	 * A range as set value. The range can be either from..to or an ID
+	 * @param ctx The context
+	 * @return Java representation
+	 */
+	public static RangeSetVal rangeSetVal(RangeContext ctx) {
+		RangeSetVal r = null;
+		if (Parsing.hasTerminal(ctx.ID())) {
+			// range defined by the set id
+			ID id = ID.IDTerm(ctx.ID());
+			r = new RangeSetVal(id);
+		} else if (Parsing.has(ctx.fromR()) && Parsing.has(ctx.toR())) {
+			ArithExpr from = ArithExpr.arithExpr(ctx.fromR().arithExpr());
+			ArithExpr to = ArithExpr.arithExpr(ctx.toR().arithExpr());
+			r = new RangeSetVal(from,to);
+			
+		} else			
+			Parsing.error("Error in rangeSetVal " + ctx.getText());
+
+		return r;
+	}
+
 
 }

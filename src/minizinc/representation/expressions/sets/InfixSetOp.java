@@ -47,4 +47,19 @@ public class InfixSetOp extends SetExpr {
 		return l;
 	}
 
+	
+	/**
+	 * Represents a MiniZinc set expression expressed as an infix operator.<br>
+	 * Grammar: setExpr infixSetOp setExpr <br>
+	 * @param op The operator
+	 * @param s1 First operand
+	 * @param s2 Second operand
+	 * @return
+	 */
+	public static InfixSetOp infixSetOp(String op, SetExpr s1, SetExpr s2) {
+		InfixSetOp r = new InfixSetOp(op,s1,s2);
+		return r;
+	}
+
+
 }

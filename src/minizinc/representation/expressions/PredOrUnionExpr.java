@@ -5,7 +5,10 @@ package minizinc.representation.expressions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import minizinc.antlr4.MiniZincGrammarParser.PredOrUnionExprContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
@@ -68,5 +71,33 @@ public class PredOrUnionExpr extends Expr{
 	public TypeName type() {		
 		return TypeName.PRED_OR_UNION;
 	}
+	
+	/**
+	 * @param ctx 
+	 * @return The Java representation
+	 */
+	public static PredOrUnionExpr predOrUnionExpr(
+			PredOrUnionExprContext ctx) {
+		PredOrUnionExpr t = null;
+		if (Parsing.hasTerminal(ctx.ID())) {
+			// pred or constructor name
+			ID id = ID.IDTerm(ctx.ID());
+			if (Parsing.has(ctx.onesection())) {
+				List<Expr> lexpr = ctx.onesection().expr().stream().map(x->Expr.expr(x)).collect(Collectors.toList());
+				t = new PredOrUnionExpr(id,lexpr);
+			} else if (Parsing.has(ctx.twosections())) {
+				List<InDecl> lindecl = ctx.twosections().guard().inDecl().stream().
+						               map(x->InDecl.inDecl(x)).
+						               collect(Collectors.toList());
+				Expr expr = expr(ctx.twosections().expr());
+				List<Expr> l = new ArrayList<Expr>();
+				l.add(expr);
+				t =  new PredOrUnionExpr(id,lindecl,l);				
+			}
+		} else
+			Parsing.error("PredOrUnionExpr " + ctx.getText());
+		return t;
+	}
+
 
 }

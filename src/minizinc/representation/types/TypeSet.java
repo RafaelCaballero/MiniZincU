@@ -1,4 +1,6 @@
 package minizinc.representation.types;
+import minizinc.antlr4.MiniZincGrammarParser.TypesetContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
@@ -36,5 +38,18 @@ public class TypeSet extends Type {
 		return TypeName.INT;
 		
 	}
+	
+	public static TypeSet typeset(TypesetContext ctx) {
+		TypeSet t = null;
+		if (Parsing.has(ctx.typename())) {
+			Type elem = Type.typename(ctx.typename());
+			t = new TypeSet(elem);
+		} 
+		else			
+			Parsing.error("Error in typeset " + ctx.getText());
+		return t;
+	}
+
+
 
 }

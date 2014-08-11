@@ -3,6 +3,8 @@
  */
 package minizinc.representation.types;
 
+import minizinc.antlr4.MiniZincGrammarParser.RangeContext;
+import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.*;
 
@@ -60,6 +62,28 @@ public class TypeRange extends Type {
 	@Override
 	public TypeName type() {
 		return TypeName.RANGE;
+	}
+
+	/**
+	 * Obtains the representation of a MiniZinc range
+	 * @param ctx the context
+	 * @return
+	 */
+	public static TypeRange range(RangeContext ctx) {
+		TypeRange t = null;
+		if (Parsing.hasTerminal(ctx.ID())) {
+			// range defined by the set id
+			ID id = ID.IDTerm(ctx.ID());
+			t = new TypeRange(id);
+		} else if (Parsing.has(ctx.fromR()) && Parsing.has(ctx.toR())) {
+			ArithExpr from = ArithExpr.arithExpr(ctx.fromR().arithExpr());
+			ArithExpr to = ArithExpr.arithExpr(ctx.toR().arithExpr());
+			t = new TypeRange(from,to);
+			
+		} else			
+			Parsing.error("Error in range " + ctx.getText());
+
+		return t;
 	}
 
 }
