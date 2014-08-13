@@ -45,6 +45,12 @@ public abstract class Type implements MiniZincRepresentation, Typeable {
 
 		return t;
 	}
+	
+	@Override
+	public String toString() {
+		return print();
+	}
+
 
 
 }

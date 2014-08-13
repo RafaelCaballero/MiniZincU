@@ -47,6 +47,7 @@ public class ParDecl extends Decl {
 		}
 		else
 			s =  declType.print() +  ':'  + id.print() ;
+		s += super.print();
 		return s;
 	}
 

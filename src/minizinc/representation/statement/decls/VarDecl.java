@@ -47,7 +47,8 @@ public class VarDecl extends Decl {
 			s = at.printDimensions() + " var " +  at.printBase() +  ':'  + id.print() ; 
 		}
 		else
-			s = "var" + declType.print() +  ':'  + id.print() ;
+			s = "var " + declType.print() +  ':'  + id.print() ;
+		s += super.print();
 		return s;
 	}
 

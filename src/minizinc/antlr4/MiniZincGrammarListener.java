@@ -449,6 +449,16 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 */
 	void exitStat(@NotNull MiniZincGrammarParser.StatContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniZincGrammarParser#varmark}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarmark(@NotNull MiniZincGrammarParser.VarmarkContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniZincGrammarParser#varmark}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarmark(@NotNull MiniZincGrammarParser.VarmarkContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#rfloat}.
 	 * @param ctx the parse tree
 	 */
@@ -498,6 +508,16 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCaseExpr(@NotNull MiniZincGrammarParser.CaseExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniZincGrammarParser#extendsmark}.
+	 * @param ctx the parse tree
+	 */
+	void enterExtendsmark(@NotNull MiniZincGrammarParser.ExtendsmarkContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniZincGrammarParser#extendsmark}.
+	 * @param ctx the parse tree
+	 */
+	void exitExtendsmark(@NotNull MiniZincGrammarParser.ExtendsmarkContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#boolExpr}.
 	 * @param ctx the parse tree

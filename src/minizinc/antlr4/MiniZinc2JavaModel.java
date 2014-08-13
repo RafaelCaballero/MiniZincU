@@ -1,19 +1,20 @@
 package minizinc.antlr4;
 
-import minizinc.antlr4.MiniZincGrammarParser.ListExprContext;
-import minizinc.representation.model.*;
-import minizinc.representation.statement.Output;
+
+
+import minizinc.representation.model.Model;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 
 	private Model model;
+	@SuppressWarnings("unused")
 	private MiniZincGrammarParser parser;
 
-	public MiniZinc2JavaModel(MiniZincGrammarParser parser, Model m) {
+	public MiniZinc2JavaModel(MiniZincGrammarParser parser) {
 		this.parser = parser;
-		this.model = m;
+		this.model = null;
 	}
 
 	/**

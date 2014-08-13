@@ -10,6 +10,8 @@ import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.Parsing;
 import minizinc.representation.SubExpressions;
 import minizinc.representation.Typeable;
+import minizinc.representation.expressions.lists.ListExpr;
+import minizinc.representation.expressions.sets.SetExpr;
 
 /**
  * Java representation of general expressions in MiniZinc.
@@ -70,43 +72,45 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions, Ty
 		if (Parsing.has(ctx.rbracketExpr())) {
 			t = RbracketExpr.rbracketExpr(ctx.rbracketExpr());
 		} else if (Parsing.has(ctx.boolComplexExpr())) {
-			t = boolComplexExpr(ctx.boolComplexExpr());
+			t = BoolComplexExpr.boolComplexExpr(ctx.boolComplexExpr());
 		} else if (Parsing.has(ctx.arithComplexExpr())) {
-			t = arithComplexExpr(ctx.arithComplexExpr());
+			t = ArithExpr.arithComplexExpr(ctx.arithComplexExpr());
 		} else if (Parsing.has(ctx.setExpr())) {
-			t = setExpr(ctx.setExpr());
+			t = SetExpr.setExpr(ctx.setExpr());
 		} else if (Parsing.has(ctx.listExpr())) {
-			t = listExpr(ctx.listExpr());
+			t = ListExpr.listExpr(ctx.listExpr());
 		} else if (Parsing.has(ctx.infixOp())) {
 			ExprContext e0 = ctx.expr(0);
 			ExprContext e1 = ctx.expr(1);
 			Expr t0 = expr(e0);
 			Expr t1 = expr(e1);
-			t = infixExpr(t0, t1, ctx.infixOp());
+			t = InfixExpr.infixExpr(t0, t1, ctx.infixOp());
 		} else if (Parsing.has(ctx.ifExpr())) {
-			t = ifExpr(ctx.ifExpr());
+			t = IfS.ifExpr(ctx.ifExpr());
 		} else if (Parsing.has(ctx.letExpr())) {
-			t = letExpr(ctx.letExpr());
+			t = LetExpr.letExpr(ctx.letExpr());
 		} else if (Parsing.has(ctx.predOrUnionExpr())) {
-			t = predOrUnionExpr(ctx.predOrUnionExpr());
+			t = PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr());
 		} else if (Parsing.has(ctx.stringExpr())) {
-			t = stringExpr(ctx.stringExpr());
+			t = StringC.stringExpr(ctx.stringExpr());
 		} else if (Parsing.has(ctx.caseExpr())) {
-			t = caseExpr(ctx.caseExpr());
+			t = CaseExpr.caseExpr(ctx.caseExpr());
 		} else if (Parsing.hasTerminal(ctx.BOOL())) {
-			t = BOOLTerm(ctx.BOOL());
+			t = BoolC.BOOLTerm(ctx.BOOL());
 		} else if (Parsing.has(ctx.real())) {
-			t = realTerm(ctx.real());
+			t = FloatC.realTerm(ctx.real());
 		} else if (Parsing.has(ctx.integer())) {
-			t = integerTerm(ctx.integer());
+			t = IntC.integerTerm(ctx.integer());
 		} else if (Parsing.hasTerminal(ctx.ID())) {
-			t = IDTerm(ctx.ID());
-		} else if (ctx.toString().equals("_")) {
-			t = IDTerm("_");
+			t = ID.IDTerm(ctx.ID());
+		} else if (ctx.getText().equals("_")) {
+			t = ID.IDTerm("_");
 		} else
 			Parsing.error("expr:  " + ctx.toString());
 		return t;
 	}
+	
+
 
 	
 }

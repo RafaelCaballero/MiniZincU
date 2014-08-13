@@ -6,7 +6,8 @@ import minizinc.representation.expressions.ArithExpr;
 import minizinc.representation.expressions.ID;
 
 /**
- * 
+ * A declaration of a type data/union. 
+ * It is of the form  id(expr) with expr an arithmetic expression.
  * @author rafa
  */
 public class TypeUnion extends Type {

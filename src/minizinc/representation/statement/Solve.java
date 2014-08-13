@@ -9,6 +9,8 @@ import minizinc.antlr4.MiniZincGrammarParser.SolveContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.solve.Annotation;
+import minizinc.representation.solve.Optimize;
+import minizinc.representation.solve.Satisfy;
 
 /**
  * Grammar:<br>
@@ -18,14 +20,7 @@ import minizinc.representation.solve.Annotation;
  */
 public abstract class Solve extends Statement {
 	protected Annotation annotation; 
-	/**
-	 * A solve statement without annotation 
-	 *
-	 */
-	public Solve() {
-		super(TStatement.SOLVE);
-		annotation = null;
-	}
+	
 
 	/**
 	 * A solve statement with annotation 
@@ -53,20 +48,22 @@ public abstract class Solve extends Statement {
 	 */
 	@Override
 	public List<Expr> subexpressions() {
-		// TODO Auto-generated method stub
-		return null;
+		 List<Expr> r = null;
+		if (annotation!=null)
+		   r = annotation.subexpressions();
+		return r;
 	}
 
 	public static Solve solve(SolveContext ctx) {
 		Solve r = null;
 		Annotation a = null;
 		if (Parsing.has(ctx.annotation())) {
-			Annotation a = Annotation.annotation(ctx.annotation());
+			a = Annotation.annotation(ctx.annotation());
 		}
 		if (Parsing.has(ctx.satisfy())) {
 			r = Satisfy.satisfy(a,ctx.satisfy());
 		} else if (Parsing.has(ctx.optimize())) {
-			r = Optimize.optimize(a, ctx.optimize()); 
+			r = Optimize.optimize(a,ctx.optimize()); 
 		}
 		
 		return r;

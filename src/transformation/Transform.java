@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import minizinc.representation.TypeName;
 import minizinc.representation.DataDef.*;
 import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.IfS;
 import minizinc.representation.model.Model;
 import minizinc.representation.statement.Constraint;
 import minizinc.representation.statement.DataDef;
+import minizinc.representation.statement.decls.VarDecl;
+import minizinc.representation.types.TypeUnion;
 import Path.Path;
-import terms.*;
 
 public class Transform {
 	private Model p;
@@ -20,20 +22,16 @@ public class Transform {
 		this.p = p;
 	}
 
-	public Set<String> getPath(Term t) {
-		Set<String> path = null;
 
-		return path;
 
-	}
-
-	public TransVar transvar(Var v) throws Exception {
+	public TransVar transvar(VarDecl v) throws Exception {
 		TransVar result = new TransVar();
 
-		if (v.getT().basic())
+		if (!(v.getDeclType() instanceof TypeUnion))
 			result.getVar().add(v);
 		else {
-			String typename = v.getT().rhsString();
+			TypeUnion t = (TypeUnion) v.getDeclType();
+			String typename = t.getId().print();
 
 			DataDef d = p.getDataByName(typename);
 			if (d == null)

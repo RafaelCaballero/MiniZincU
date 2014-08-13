@@ -53,10 +53,16 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 		else if (has(ctx.solve()))
 			r = Solve.solve(ctx.solve());
 		else if (has(ctx.output()))
-		else if (has(ctx.predicate()))
+			r = Output.output(ctx.output());
+		else if (has(ctx.predicate())) 
+			r = Predicate.predicate(ctx.predicate());
 		else if (has(ctx.function()))
+			r = Function.function(ctx.function());
 		else if (has(ctx.include()))
-		else if (has(ctx.init()))
+			r = Include.include(ctx.include());
+		else if (has(ctx.init())) {
+			r = Init.init(ctx.init());
+		}
 		else 
 			error("Unknown statement: "+ctx.getText());
 			
@@ -64,6 +70,9 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 		return r;
 	}
 
-
+	@Override
+	public String toString() {
+		return print();
+	}
 	
 }

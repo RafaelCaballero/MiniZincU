@@ -26,8 +26,17 @@ public interface MiniZincRepresentation {
 	 * @return
 	 */
 	public default String printList(List<? extends MiniZincRepresentation> lt) {
+		return printList(",", lt);
+	}
+
+	/**
+	 * Return a string as the join of printing elements in a list
+	 * @param lt
+	 * @return
+	 */
+	public default String printList(String sep, List<? extends MiniZincRepresentation> lt) {
 		List<String> l = lt.stream().map(x->x.print()).collect(Collectors.toList());
-		String s = String.join(",", l);
+		String s = String.join(sep, l);
 		return s;
 	}
 

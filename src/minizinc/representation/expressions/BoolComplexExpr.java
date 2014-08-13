@@ -12,6 +12,14 @@ import minizinc.representation.TypeName;
 
 
 /**
+	 * <p>
+	 * Grammar:
+	 * </p>
+	 * boolComplexExpr:<br>
+	 * boolExpr (boolOp|qualBoolOp) boolExpr<br>
+	 * | arithExpr (arithOp|qualArithOp) arithExpr<br>
+	 * | notExpr <br>
+	 * ;<br>
  * @author rafa
  *
  */
@@ -21,16 +29,7 @@ public  abstract class BoolComplexExpr extends Expr {
 		return TypeName.BOOL;
 	}
 	
-	
 	/**
-	 * <p>
-	 * Grammar:
-	 * </p>
-	 * boolComplexExpr:<br>
-	 * boolExpr (boolOp|qualBoolOp) boolExpr<br>
-	 * | arithExpr (arithOp|qualArithOp) arithExpr<br>
-	 * | notExpr <br>
-	 * ;<br>
 	 *
 	 * @param ctx
 	 *            grammar context
@@ -46,7 +45,7 @@ public  abstract class BoolComplexExpr extends Expr {
 			BoolExpr t0 = BoolExpr.boolExpr(b0);
 			BoolExpr t1 = BoolExpr.boolExpr(b1);
 			String op = "";
-			if (PArsing.has(ctx.boolOp())) {
+			if (Parsing.has(ctx.boolOp())) {
 				op = ctx.boolOp().getText();
 				t = InfixBoolExpr.infixBoolExpr(t0, t1, op);
 			} else if (Parsing.has(ctx.qualBoolOp())) {
@@ -58,13 +57,13 @@ public  abstract class BoolComplexExpr extends Expr {
 		} else if (ctx.arithExpr().size() == 2) {
 			ArithExprContext a0 = ctx.arithExpr(0);
 			ArithExprContext a1 = ctx.arithExpr(1);
-			Expr t0 = ArithExpr.arithExpr(a0);
-			Expr t1 = ArithExpr.arithExpr(a1);
+			ArithExpr t0 = ArithExpr.arithExpr(a0);
+			ArithExpr t1 = ArithExpr.arithExpr(a1);
 			String op = "";
 			if (Parsing.has(ctx.arithOp())) {
 				op = ctx.arithOp().getText();
 				t = InfixArithBoolExpr.infixArithBoolExpr(t0, t1, op);
-			} else if (has(ctx.qualArithOp())) {
+			} else if (Parsing.has(ctx.qualArithOp())) {
 				op = ctx.qualArithOp().getText();
 				t = InfixArithBoolExpr.infixArithBoolExpr(t0, t1, op);
 			} else

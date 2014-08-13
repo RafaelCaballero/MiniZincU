@@ -545,6 +545,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVarmark(@NotNull MiniZincGrammarParser.VarmarkContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarmark(@NotNull MiniZincGrammarParser.VarmarkContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRfloat(@NotNull MiniZincGrammarParser.RfloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -600,6 +612,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCaseExpr(@NotNull MiniZincGrammarParser.CaseExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExtendsmark(@NotNull MiniZincGrammarParser.ExtendsmarkContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExtendsmark(@NotNull MiniZincGrammarParser.ExtendsmarkContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

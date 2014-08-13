@@ -39,7 +39,7 @@ public class LetExpr extends Expr {
 	@Override
 	public String print() {
 		String declsAsS = printList(decls);
-		String s = "let {"+declsAsS+"}"+ expr + " in" + expr.print();
+		String s = "let {"+declsAsS+"}"+ " in " + expr.print();
 		return s;
 	}
 

@@ -122,5 +122,12 @@ public abstract class Decl extends Statement {
 		return r;
 	}
 
+	@Override 
+	public String print() {
+		String s = "";
+		if (initialized())
+			s+=" = "+expr.print();
+		return s;
+	}
 
 }

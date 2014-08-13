@@ -73,8 +73,7 @@ public class Operand extends ArithExpr {
 	 */
 	@Override
 	public String print() {
-		// TODO Auto-generated method stub
-		return null;
+		return e.print();
 	}
 
 	/* (non-Javadoc)

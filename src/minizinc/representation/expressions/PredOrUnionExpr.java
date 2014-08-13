@@ -15,8 +15,10 @@ import minizinc.representation.TypeName;
  * This class represents either a predicate call or a term of union type.
  * It is not possible to distinguish both at the syntactic level
  * Grammar:
- * predOrUnionExpr: ID ('('expr (','expr)*')')?;
-
+ * predOrUnionExpr: ID (twosections | onesection) ;
+ * onesection :  ('('expr (','expr)*')')?;
+ * twosections : '(' guard ')' '(' expr ')';
+ *
  * @author rafa
  *
  */
@@ -54,7 +56,13 @@ public class PredOrUnionExpr extends Expr{
 
 	@Override
 	public String print() {
-		return id.print()+"("+printList(args)+")";
+		String s = id.print();
+		if (lindecl!=null) 
+			// two section
+			s+="("+printList(lindecl)+")";
+		s+="("+printList(args)+")";
+
+		return s;
 	}
 
 	@Override

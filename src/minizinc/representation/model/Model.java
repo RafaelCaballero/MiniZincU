@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import minizinc.antlr4.MiniZincGrammarParser.ModelContext;
-import minizinc.antlr4.MiniZincGrammarParser.StatContext;
 import minizinc.representation.MiniZincRepresentation;
-import minizinc.representation.Parsing;
 import minizinc.representation.statement.*;
 import minizinc.representation.statement.decls.VarDecl;
 
@@ -65,7 +63,7 @@ public class Model implements  MiniZincRepresentation {
 	public String print() {
 		String s = "";
 		for (Statement st : stat) {
-			s += st.toString() + ";\n";
+			s += st.print() + ";\n";
 		}
 
 		return s;
@@ -122,4 +120,10 @@ public class Model implements  MiniZincRepresentation {
 	 * 
 	 * public void addOutput(Term t) { this.output.add(t); }
 	 */
+	
+	@Override
+	public String toString() {
+		return print();
+	}
+
 }

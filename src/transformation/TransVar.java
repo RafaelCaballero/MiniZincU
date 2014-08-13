@@ -5,29 +5,42 @@ import java.util.List;
 
 import minizinc.representation.expressions.BoolC;
 import minizinc.representation.statement.Constraint;
-import terms.Var;
+import minizinc.representation.statement.decls.VarDecl;
 
+
+/*
+ * Represents the the transformation of a variable
+ */
 public class TransVar {
-	private List<Var> var = new ArrayList<Var>();
-	Constraint ctr = new Constraint(new BoolC(true));
+	/**
+	 * The variable is transformed into a list of variables
+	 */
+	protected List<VarDecl> var;
+	/**
+	 * The transformation yields new constraints
+	 */
+	protected Constraint ctr;
 
 	public TransVar() {
+		var = new ArrayList<VarDecl>();
+		ctr = new Constraint(new BoolC(true));
 	}
 
-	public TransVar(List<Var> var) {
+	public TransVar(List<VarDecl> var) {
 		this.var = var;
+		ctr = new Constraint(new BoolC(true));
 	}
 
-	public TransVar(List<Var> var, Constraint ctr) {
+	public TransVar(List<VarDecl> var, Constraint ctr) {
 		this.var = var;
 		this.ctr = ctr;
 	}
 
-	public List<Var> getVar() {
+	public List<VarDecl> getVar() {
 		return var;
 	}
 
-	public void setVar(List<Var> var) {
+	public void setVar(List<VarDecl> var) {
 		this.var = var;
 	}
 

@@ -41,6 +41,10 @@ public class Dimension implements MiniZincRepresentation, SubExpressions {
 	public String print() {
 		return printList(exprs);
 	}
+	@Override
+	public String toString() {
+		return print();
+	}
 	
 	/**
 	 * Represents a non-empty sequence of comma separated expressions

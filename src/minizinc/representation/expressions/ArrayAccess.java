@@ -40,7 +40,7 @@ public abstract class ArrayAccess extends Expr {
 	
 	/**
 	 * Array access. Grammar: <br>
-	 * Arrayaccess : ID '[' expr(','expr)* ']' | '[' (expr(','expr)*)? ']' '[' expr(','expr)* ']';
+     * arrayaccess : ID simpleNonEmptyList | simpleNonEmptyList simpleNonEmptyList;
 	 * @param ctx the context
 	 * @return Java representation of the array access
 	 */
@@ -52,7 +52,8 @@ public abstract class ArrayAccess extends Expr {
  
 		} else if (ctx.simpleNonEmptyList().size()==2) {
 			t = ArrayArrayAccess.arrayarrayaccess(ctx.simpleNonEmptyList(0), ctx.simpleNonEmptyList(1));
-		} Parsing.error("arrayaccess " + ctx.getText());
+		}else
+			Parsing.error("arrayaccess " + ctx.getText());
 		
 		return t;
 	}
