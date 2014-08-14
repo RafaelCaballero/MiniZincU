@@ -91,8 +91,6 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions, Ty
 			t = LetExpr.letExpr(ctx.letExpr());
 		} else if (Parsing.has(ctx.predOrUnionExpr())) {
 			t = PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr());
-		} else if (Parsing.has(ctx.stringExpr())) {
-			t = StringC.stringExpr(ctx.stringExpr());
 		} else if (Parsing.has(ctx.caseExpr())) {
 			t = CaseExpr.caseExpr(ctx.caseExpr());
 		} else if (Parsing.hasTerminal(ctx.BOOL())) {
@@ -106,7 +104,7 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions, Ty
 		} else if (ctx.getText().equals("_")) {
 			t = ID.IDTerm("_");
 		} else
-			Parsing.error("expr:  " + ctx.toString());
+			Parsing.error("expr:  " + ctx.getText());
 		return t;
 	}
 	

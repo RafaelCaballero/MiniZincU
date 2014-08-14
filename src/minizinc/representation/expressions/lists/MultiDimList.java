@@ -70,6 +70,7 @@ public class MultiDimList extends ListExpr {
 	 */
 	public static MultiDimList multiDimList(MultiDimListContext ctx) {
 		MultiDimList r = new MultiDimList();
+		//ctx.nonEmptyListElems().forEach(x->System.out.println(x.getText()));
 		ctx.nonEmptyListElems().forEach(x->r.addDim(Dimension.dimension(x)));
 		return r;
 	}

@@ -6,6 +6,7 @@ package minizinc.representation.solve;
 import java.util.ArrayList;
 import java.util.List;
 
+import minizinc.antlr4.MiniZincGrammarParser.ModeAnnotationContext;
 import minizinc.antlr4.MiniZincGrammarParser.SeqSContext;
 import minizinc.representation.expressions.Expr;
 
@@ -66,7 +67,11 @@ public class SetqS extends ModeAnnotation {
 	public static SetqS setS(SeqSContext ctx) {
 		SetqS r = null;
 		List<ModeAnnotation> l = new ArrayList<ModeAnnotation>(); 
-		ctx.modeAnnotation().stream().map(x -> l.add(ModeAnnotation.modeannotation(x)));
+		for ( ModeAnnotationContext x: ctx.modeAnnotation()) {
+			ModeAnnotation ma = ModeAnnotation.modeannotation(x);
+			l.add(ma);
+		}
+		//ctx.modeAnnotation().stream().map(x -> l.add(ModeAnnotation.modeannotation(x)));
 		r = new SetqS(l);
 		return r;
 	}

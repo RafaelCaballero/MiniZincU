@@ -54,5 +54,8 @@ public  class Annotation implements MiniZincRepresentation, SubExpressions {
 		
 	}
 
+	@Override public String toString() {
+		return print();
+	}
 
 }

@@ -21,18 +21,18 @@ public class InfixOp implements MiniZincRepresentation {
 	 * 
 	 */
 	protected ID id;
-	protected String infixSetOp;
+	protected String sop;
 
 	/**
 	 * 
 	 */
 	public InfixOp(ID id) {
 		this.id = id;
-		this.infixSetOp = null;
+		sop = null;
 	}
 	
-	public InfixOp(String infixSetOp) {
-		this.infixSetOp = infixSetOp;
+	public InfixOp(String sop) {
+		this.sop = sop;
 		this.id = null;
 	}
 	
@@ -45,7 +45,7 @@ public class InfixOp implements MiniZincRepresentation {
 	}
 	
 	public String getInfixSetOp() {
-		return infixSetOp;
+		return sop;
 	}
 
 
@@ -55,9 +55,9 @@ public class InfixOp implements MiniZincRepresentation {
 	@Override
 	public String print() {
 		// don't forget the "'"
-		String s = id==null ? infixSetOp : id.print();
+		String s = id==null ? sop : "`"+id.print()+"`";
 		
-		return "'"+s+"'";
+		return s;
 	}
 
 	public static InfixOp infixop(InfixOpContext ctx) {
@@ -67,7 +67,7 @@ public class InfixOp implements MiniZincRepresentation {
 		if (Parsing.hasTerminal(ctx.ID())) {
 			ID id = ID.IDTerm(ctx.ID());
 			r = new InfixOp(id);
-		} if (Parsing.has(ctx.infixSetOp())) {
+		} else if (Parsing.has(ctx.infixSetOp())) {
 			String s = ctx.infixSetOp().getText();
 			r = new InfixOp(s); 
 		} else

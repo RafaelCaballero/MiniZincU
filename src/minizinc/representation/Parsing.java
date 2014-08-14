@@ -27,7 +27,7 @@ public  class Parsing {
 	 * @param error
 	 */
 	public static void error(String error) {
-		String e = "Parser errror. Unexpected " + error;
+		String e = "Parser error. Unexpected " + error;
 		System.out.println(e);
 	}
 

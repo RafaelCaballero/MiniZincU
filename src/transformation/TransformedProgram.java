@@ -3,11 +3,8 @@ package transformation;
 import java.util.List;
 
 import minizinc.constraints.*;
-import minizinc.representation.DataDef.Type;
 import minizinc.representation.model.Model;
 import minizinc.representation.statement.Constraint;
-import terms.*;
-import transformation.*;
 
 public class TransformedProgram extends Model {
 

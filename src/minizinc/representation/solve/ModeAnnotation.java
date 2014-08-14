@@ -24,6 +24,10 @@ public abstract class ModeAnnotation implements MiniZincRepresentation, SubExpre
 		return r;
 	}
 
+	@Override
+	public String toString(){
+		return print();
+	}
 
 
 }
