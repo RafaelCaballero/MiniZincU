@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.InDeclContext;
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.Parsing;
@@ -21,7 +22,7 @@ import minizinc.representation.expressions.sets.SetExpr;
  * @author rafa
  *
  */
-public class InDecl implements MiniZincRepresentation, SubExpressions {
+public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable {
 	/*
 	 * Non-empty list of identifiers
 	 */
@@ -46,16 +47,6 @@ public class InDecl implements MiniZincRepresentation, SubExpressions {
 		this.where = where;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = new ArrayList<Expr>();
-		r.add(setExpr);
-		if (where != null) r.add(where);
-		return r;
-	}
 	
 	/**
 	 * Indicates if the declaration contains a where section.
@@ -104,5 +95,68 @@ public class InDecl implements MiniZincRepresentation, SubExpressions {
 		return t;
 	}
 
+	@Override
+	public  InDecl clone() {
+		InDecl r = null;
+		List<ID> guardp=null;
+		SetExpr setExprp= setExpr==null ? null : setExpr.clone();
+		BoolExpr wherep = where ==null ? null : where.clone();
+		if (guard!=null){
+			guardp = new ArrayList<ID>();
+			for (ID id:guard) 
+				guardp.add(id.clone());			
+		}
+		r = new InDecl(guardp,setExprp,wherep);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((guard == null) ? 0 : guard.hashCode());
+		result = prime * result + ((setExpr == null) ? 0 : setExpr.hashCode());
+		result = prime * result + ((where == null) ? 0 : where.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		InDecl other = (InDecl) obj;
+		if (guard == null) {
+			if (other.guard != null)
+				return false;
+		} else if (!guard.equals(other.guard))
+			return false;
+		if (setExpr == null) {
+			if (other.setExpr != null)
+				return false;
+		} else if (!setExpr.equals(other.setExpr))
+			return false;
+		if (where == null) {
+			if (other.where != null)
+				return false;
+		} else if (!where.equals(other.where))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		List<ID> guard2 = this.applyTransformerList(t, guard);
+		SetExpr setExpr2 = this.applyTransformer(t, setExpr);
+		BoolExpr where2 = this.applyTransformer(t, where);
+		
+		guard = guard2;
+		setExpr = setExpr2;
+		where = where2;
+		
+	}
 
 }

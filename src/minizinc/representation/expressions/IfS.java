@@ -1,8 +1,6 @@
 package minizinc.representation.expressions;
 
-import java.util.Arrays;
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.*;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -54,11 +52,6 @@ public class IfS extends Expr {
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,11 +62,6 @@ public class IfS extends Expr {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -106,10 +94,6 @@ public class IfS extends Expr {
 		return "if (" + Cond + ") then " + Exp1 + " else " + Exp2 + " endif";
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		return Arrays.asList(Cond, Exp1, Exp2);
-	}
 
 	/**
 	 * Returns the type of the if statement. Observe that both the then and the
@@ -201,6 +185,28 @@ public class IfS extends Expr {
 		} else
 			Parsing.error("elseifS " + ctx.toString());
 		return t;
+	}
+
+	@Override
+	public IfS clone() {
+		IfS r = null;
+		Expr Condp = Cond==null ? null : Cond.clone();
+		Expr Exp1p = Exp1 == null ? null : Exp1.clone();
+		Expr Exp2p = Exp2 == null ? null : Exp2.clone();;
+		r = new IfS(Condp, Exp1p, Exp2p);
+		return r;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr Condp = this.applyTransformer(t, Cond);
+		Expr Exp1p = this.applyTransformer(t, Exp1);
+		Expr Exp2p = this.applyTransformer(t, Exp2);
+		
+		Cond = Condp;
+		Exp1 = Exp1p;
+		Exp2 = Exp2p;
+		
 	}
 
 

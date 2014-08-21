@@ -1,9 +1,10 @@
 package minizinc.representation.expressions;
 
-import java.util.List;
+
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import transformation.ExprTransformer;
 import minizinc.representation.TypeName;
 
 public class ID extends Expr {
@@ -19,6 +20,9 @@ public class ID extends Expr {
 		this.id = id;
 	}
 
+	public ID clone() {
+		return new ID(id);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -52,14 +56,6 @@ public class ID extends Expr {
 	}
 
 
-	/**
-	 * No subexpression
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		return null;
-	}
-
 
 	/**
 	 * We cannot determine the type
@@ -76,6 +72,11 @@ public class ID extends Expr {
 
 	public static ID IDTerm(String id) {
 		return new ID(id);
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {		
+		// no subexpressions
 	}
 
 

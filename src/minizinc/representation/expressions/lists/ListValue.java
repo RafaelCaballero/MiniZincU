@@ -3,8 +3,8 @@
  */
 package minizinc.representation.expressions.lists;
 
-import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ListValueContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.*;
@@ -65,14 +65,7 @@ public class ListValue extends ListExpr {
 		return e.print();
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		return e.subexpressions();
-	}
-	
+
 	public Expr getExpr() {
 		return e;
 	}
@@ -98,6 +91,62 @@ public class ListValue extends ListExpr {
 			Parsing.error("listValue:  " + lvc.toString());
 
 		return t;
+	}
+	@Override
+	public ListValue clone() {
+		ListValue r=null;
+		if (e instanceof StringC) {
+			StringC ep = e==null ? null : ((StringC) e).clone();
+			r = new ListValue(ep);
+		}
+		if (e instanceof ID) {
+			ID ep = e==null ? null : ((ID) e).clone();
+			r = new ListValue(ep);
+		}
+		if (e instanceof IfS) {
+			IfS ep = e==null ? null : ((IfS) e).clone();
+			r = new ListValue(ep);
+		}
+		if (e instanceof ArrayAccess) {
+			ArrayAccess ep = e==null ? null : ((ArrayAccess) e).clone();
+			r = new ListValue(ep);
+		}
+		
+		if (e instanceof PredOrUnionExpr) {
+			PredOrUnionExpr ep = e==null ? null : ((PredOrUnionExpr) e).clone();
+			r = new ListValue(ep);
+		}
+		return r;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((e == null) ? 0 : e.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ListValue other = (ListValue) obj;
+		if (e == null) {
+			if (other.e != null)
+				return false;
+		} else if (!e.equals(other.e))
+			return false;
+		return true;
+	}
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr e2 = this.applyTransformer(t, e);
+		
+		e=e2;
+		
 	}
 
 }

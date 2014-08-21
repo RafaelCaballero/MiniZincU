@@ -3,12 +3,12 @@ package transformation;
 import java.util.List;
 
 import minizinc.constraints.*;
-import minizinc.representation.model.Model;
+import minizinc.representation.model.BasicModel;
 import minizinc.representation.statement.Constraint;
 
-public class TransformedProgram extends Model {
+public class TransformedProgram extends BasicModel {
 
-	public TransformedProgram(Model p) throws Exception {
+	public TransformedProgram(BasicModel p) throws Exception {
 		List<Var> lv = p.getVar();
 		List<Constraint> ctrs = p.getCtrs();
 

@@ -36,6 +36,7 @@ public abstract class SetVal extends SetExpr {
 		return t;
 	}
 
-
+	@Override
+	public abstract SetVal clone();
 
 }

@@ -1,7 +1,10 @@
 package minizinc.representation.types;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import minizinc.representation.TypeName;
+import minizinc.representation.expressions.Expr;
 
 /**
  * A type array is defined by:
@@ -77,6 +80,66 @@ public class TypeArray extends Type {
 	@Override
 	public TypeName type() {
 		return TypeName.ARRAY;
+	}
+
+	@Override
+	public TypeArray clone() {
+		TypeArray r = null;
+		// private List<Type> dimensions;
+		List<Type> dimensionsp = null;
+		//private Type base; 
+		Type basep = null;
+		if (dimensions!=null) {
+			dimensionsp = new ArrayList<Type>();
+			for(Type t:dimensions) {
+				dimensionsp.add(t.clone());
+			}
+		}
+		
+		if (base!=null)
+			basep = base.clone();
+		
+		r = new TypeArray(dimensionsp, basep);
+
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((base == null) ? 0 : base.hashCode());
+		result = prime * result
+				+ ((dimensions == null) ? 0 : dimensions.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TypeArray other = (TypeArray) obj;
+		if (base == null) {
+			if (other.base != null)
+				return false;
+		} else if (!base.equals(other.base))
+			return false;
+		if (dimensions == null) {
+			if (other.dimensions != null)
+				return false;
+		} else if (!dimensions.equals(other.dimensions))
+			return false;
+		return true;
+	}
+
+	@Override
+	public Expr zero() {
+		// TODO. Zero of an array?
+		return null;
 	}
 
 }

@@ -68,5 +68,7 @@ public abstract class ArithExpr extends Expr {
 		return t;
 	}
 
+	@Override 
+	public abstract ArithExpr clone();
 
 }

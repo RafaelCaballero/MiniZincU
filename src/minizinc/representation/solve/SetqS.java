@@ -76,4 +76,43 @@ public class SetqS extends ModeAnnotation {
 		return r;
 	}
 
+	@Override
+	public SetqS clone() {
+		SetqS r = null;
+		List<ModeAnnotation> map=null;
+		if (ma!=null) {
+			map = new ArrayList<ModeAnnotation>();
+			for (ModeAnnotation m:ma){
+				map.add(m.clone());
+			}
+		}
+		r = new SetqS(map);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ma == null) ? 0 : ma.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SetqS other = (SetqS) obj;
+		if (ma == null) {
+			if (other.ma != null)
+				return false;
+		} else if (!ma.equals(other.ma))
+			return false;
+		return true;
+	}
+
 }

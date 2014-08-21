@@ -3,8 +3,7 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.IntegerContext;
 import minizinc.representation.TypeName;
 
@@ -33,13 +32,7 @@ public class IntC extends Expr {
 		return value+"";
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		return null;
-	}
+
 	@Override
 	public TypeName type() {
 		// TODO Auto-generated method stub
@@ -54,6 +47,36 @@ public class IntC extends Expr {
 	public static IntC integerTerm(IntegerContext b) {
 		int d = Integer.parseInt(b.getText());
 		return new IntC(d);
+	}
+	@Override
+	public IntC clone() {
+		
+		return new IntC(value);
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + value;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IntC other = (IntC) obj;
+		if (value != other.value)
+			return false;
+		return true;
+	}
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

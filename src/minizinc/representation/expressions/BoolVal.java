@@ -3,8 +3,9 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.List;
 
+
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.BoolValContext;
 import minizinc.representation.Parsing;
 
@@ -43,7 +44,7 @@ public  class BoolVal extends BoolExpr {
 	}
 
 	
-	public Expr getExpr(Expr e) {
+	public Expr getExpr() {
 		return e;
 	}
 
@@ -53,9 +54,12 @@ public  class BoolVal extends BoolExpr {
 	}
 
 	@Override
-	public List<Expr> subexpressions() {
-		return e.subexpressions();
+	public void subexpressions(ExprTransformer t) {
+		Expr ep =  applyTransformer(t,e);
+		if (ep!=null)
+			e=ep;
 	}
+
 	
 
 	/**
@@ -91,6 +95,65 @@ public  class BoolVal extends BoolExpr {
 		else
 			Parsing.error("boolVal " + ctx.getText());
 		return t;
+	}
+
+	@Override
+	public BoolExpr clone() {
+		BoolVal r = null;
+		if (e instanceof RbracketExpr) {		
+			RbracketExpr ep = (e==null ? null : ((RbracketExpr)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof ID) {		
+			ID ep = (e==null ? null : ((ID)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof BoolC) {		
+			BoolC ep = (e==null ? null : ((BoolC)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof ArrayAccess) {		
+			ArrayAccess ep = (e==null ? null : ((ArrayAccess)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof IfS) {		
+			IfS ep = (e==null ? null : ((IfS)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof LetExpr) {		
+			LetExpr ep = (e==null ? null : ((LetExpr)e).clone());
+			r = new BoolVal(ep);
+		}
+		if (e instanceof PredOrUnionExpr) {		
+			PredOrUnionExpr ep = (e==null ? null : ((PredOrUnionExpr)e).clone());
+			r = new BoolVal(ep);
+		}
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((e == null) ? 0 : e.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BoolVal other = (BoolVal) obj;
+		if (e == null) {
+			if (other.e != null)
+				return false;
+		} else if (!e.equals(other.e))
+			return false;
+		return true;
 	}
 
 

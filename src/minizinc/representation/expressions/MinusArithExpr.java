@@ -3,9 +3,8 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ArithExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.MinusExprContext;
 import minizinc.representation.Parsing;
@@ -36,15 +35,6 @@ public class MinusArithExpr extends ArithExpr {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> l = new ArrayList<Expr>();
-		l.add(expr);
-		return l;
-	}
 
 	/* (non-Javadoc)
 	 * @see minizinc.representation.Typeable#type()
@@ -70,6 +60,47 @@ public class MinusArithExpr extends ArithExpr {
 		} else
 			Parsing.error("minusExpr " + ctx.toString());
 		return t;
+	}
+
+	@Override
+	public MinusArithExpr clone() {
+		MinusArithExpr r = null;
+		Expr exprp = expr==null  ? null : expr.clone();
+		r = new MinusArithExpr(exprp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((expr == null) ? 0 : expr.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MinusArithExpr other = (MinusArithExpr) obj;
+		if (expr == null) {
+			if (other.expr != null)
+				return false;
+		} else if (!expr.equals(other.expr))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr expr2 = this.applyTransformer(t, expr);
+		
+		expr=expr2;
+		
 	}
 
 

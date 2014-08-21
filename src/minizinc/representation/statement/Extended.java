@@ -3,9 +3,9 @@ package minizinc.representation.statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ExtendedContext;
 import minizinc.representation.Parsing;
-import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 import minizinc.representation.types.Type;
 
@@ -39,6 +39,35 @@ public class Extended extends Statement {
 		this.baseType =  baseName;
 		this.left = left;
 		this.right = right;
+	}
+	
+	@Override
+	public Extended clone() {
+		Extended r = null;
+		ID dataNamep;
+		Type baseTypep=null;
+		List<ID> leftp=null;
+		List<ID> rightp=null;
+		
+		dataNamep = dataName.clone();
+		if (baseType!=null) 
+			baseTypep = baseType.clone();
+		if (left!=null) {
+			leftp = new ArrayList<ID>();
+			for (ID l:left) 
+				leftp.add(l.clone());
+			
+			
+		}
+		if (right!=null) {
+			rightp = new ArrayList<ID>();
+			for (ID ri:right) {
+				rightp.add(ri.clone());
+			}
+
+		}
+		r = new Extended(dataNamep,baseTypep,leftp,rightp);
+		return r;
 	}
 
 	public String print() {
@@ -86,12 +115,6 @@ public class Extended extends Statement {
 	}
 
 
-	@Override
-	public List<Expr> subexpressions() {
-		// no subexpressions
-		return null;
-	}
-
 	public static Extended extended(ExtendedContext ctx) {
 		Extended r = null;
 		List<ID> left = new ArrayList<ID>();
@@ -107,6 +130,61 @@ public class Extended extends Statement {
 			
 		} else Parsing.error("Wrong Extended statement: "+ctx.getText());
 		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((baseType == null) ? 0 : baseType.hashCode());
+		result = prime * result
+				+ ((dataName == null) ? 0 : dataName.hashCode());
+		result = prime * result + ((left == null) ? 0 : left.hashCode());
+		result = prime * result + ((right == null) ? 0 : right.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Extended other = (Extended) obj;
+		if (baseType == null) {
+			if (other.baseType != null)
+				return false;
+		} else if (!baseType.equals(other.baseType))
+			return false;
+		if (dataName == null) {
+			if (other.dataName != null)
+				return false;
+		} else if (!dataName.equals(other.dataName))
+			return false;
+		if (left == null) {
+			if (other.left != null)
+				return false;
+		} else if (!left.equals(other.left))
+			return false;
+		if (right == null) {
+			if (other.right != null)
+				return false;
+		} else if (!right.equals(other.right))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ID dataName2 = this.applyTransformer(t,dataName);
+		List<ID> left2 = this.applyTransformerList(t, left);
+		List<ID> right2 = this.applyTransformerList(t, right);
+		dataName = dataName2;
+		left = left2;
+		right = right2;		
 	}
 
 }

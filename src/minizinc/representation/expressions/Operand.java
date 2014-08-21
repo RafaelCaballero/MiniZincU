@@ -3,8 +3,9 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.List;
 
+
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.OperandContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -37,7 +38,7 @@ public class Operand extends ArithExpr {
 	 *  An arithmetic expression between brackets is an operand
 	 */
 	public Operand(ArithExpr e) {
-		// TODO Auto-generated constructor stub
+		this.e = e;
 	}
 
 	public Operand(IntC e) {
@@ -68,6 +69,10 @@ public class Operand extends ArithExpr {
 		this.e = e;
 	}
 
+	public Expr getExpr() {
+		return e;
+	}
+	
 	/* (non-Javadoc)
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
@@ -76,14 +81,13 @@ public class Operand extends ArithExpr {
 		return e.print();
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
 	@Override
-	public List<Expr> subexpressions() {
-		// TODO Auto-generated method stub
-		return null;
+	public void subexpressions(ExprTransformer t) {
+		Expr ep =  applyTransformer(t,e);
+		if (ep!=null)
+			e=ep;
 	}
+
 
 	/* (non-Javadoc)
 	 * @see minizinc.representation.Typeable#type()
@@ -121,6 +125,74 @@ public class Operand extends ArithExpr {
 		else if (Parsing.has(ctx.predOrUnionExpr()))
 			op = new Operand(PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr()));
 		return op;
+	}
+
+	@Override
+	public Operand clone() {
+		Operand r = null;
+		if (e instanceof ID) {
+			ID exprp = e==null  ? null : ((ID)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof ArithExpr) {
+			ArithExpr exprp = e==null  ? null : ((ArithExpr)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof IntC) {
+			IntC exprp = e==null  ? null : ((IntC)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof FloatC) {
+			FloatC exprp = e==null  ? null : ((FloatC)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof ArrayAccess) {
+			ArrayAccess exprp = e==null  ? null : ((ArrayAccess)e).clone();
+			r = new Operand(exprp);
+		}		
+		if (e instanceof IfS) {
+			IfS exprp = e==null  ? null : ((IfS)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof RbracketExpr) {
+			RbracketExpr exprp = e==null  ? null : ((RbracketExpr)e).clone();
+			r = new Operand(exprp);
+		}
+		if (e instanceof LetExpr) {
+			LetExpr exprp = e==null  ? null : ((LetExpr)e).clone();
+			r = new Operand(exprp);
+		}
+
+		if (e instanceof PredOrUnionExpr) {
+			PredOrUnionExpr exprp = e==null  ? null : ((PredOrUnionExpr)e).clone();
+			r = new Operand(exprp);
+		}
+		return r;	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((e == null) ? 0 : e.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Operand other = (Operand) obj;
+		if (e == null) {
+			if (other.e != null)
+				return false;
+		} else if (!e.equals(other.e))
+			return false;
+		return true;
 	}
 
 

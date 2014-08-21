@@ -1,12 +1,9 @@
 package minizinc.representation.statement;
 
-import java.util.Arrays;
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser;
 import minizinc.antlr4.MiniZincGrammarParser.ListExprContext;
 import minizinc.representation.Parsing;
-import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.lists.ListExpr;
 
 
@@ -18,7 +15,7 @@ import minizinc.representation.expressions.lists.ListExpr;
  *
  */
 public class Output extends Statement {
-	ListExpr exprs = null;
+	protected ListExpr exprs = null;
 
 	public Output(ListExpr exprs) {
 		super(TStatement.OUTPUT);
@@ -30,11 +27,11 @@ public class Output extends Statement {
 		String s = "output("+sexpr+")";
 		return s;
 	}
-
-	@Override
-	public List<Expr> subexpressions() {
-		return Arrays.asList(exprs);
+	
+	public ListExpr getListExprs(){
+		return exprs;
 	}
+
 	
 	/**
 	 * Grammar piece: output :'output' '(' listExpr ')' | 'output' listExpr ;
@@ -50,6 +47,46 @@ public class Output extends Statement {
 			Parsing.error("output:  " + ctx.toString());
 
 		return so;
+	}
+
+	@Override
+	public Output clone() {
+		Output r = null;
+		ListExpr exprsp = exprs==null ? null : exprs.clone();
+		r = new Output(exprsp);	
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((exprs == null) ? 0 : exprs.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Output other = (Output) obj;
+		if (exprs == null) {
+			if (other.exprs != null)
+				return false;
+		} else if (!exprs.equals(other.exprs))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ListExpr exprs2 = this.applyTransformer(t, exprs);
+		exprs = exprs2;
+		
 	}
 
 

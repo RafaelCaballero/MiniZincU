@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.PredOrUnionExprContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -65,15 +66,6 @@ public class PredOrUnionExpr extends Expr{
 		return s;
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = new ArrayList<Expr>();
-		args.forEach(x->r.add(x));
-		if (lindecl!=null) 
-			lindecl.forEach(x -> x.subexpressions().forEach(y -> r.add(y)));
-		
-		return r;
-	}
 
 	@Override
 	public TypeName type() {		
@@ -105,6 +97,85 @@ public class PredOrUnionExpr extends Expr{
 		} else
 			Parsing.error("PredOrUnionExpr " + ctx.getText());
 		return t;
+	}
+
+	@Override
+	public PredOrUnionExpr clone() {
+		PredOrUnionExpr r = null;
+		ID idp = id==null ? null : id.clone();
+		List<InDecl> lindeclp = null;
+		List<Expr> argsp = null;
+		if (lindecl!=null) {
+			lindeclp = new ArrayList<InDecl>();
+			for (InDecl i:lindecl)
+				lindeclp.add(i.clone());
+		}
+		if (args != null) {
+			argsp = new ArrayList<Expr>();
+			for (Expr e: args) 
+				argsp.add(e.clone());
+		}
+		r = new  PredOrUnionExpr( idp, lindeclp, argsp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((args == null) ? 0 : args.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lindecl == null) ? 0 : lindecl.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PredOrUnionExpr other = (PredOrUnionExpr) obj;
+		if (args == null) {
+			if (other.args != null)
+				return false;
+		} else if (!args.equals(other.args))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lindecl == null) {
+			if (other.lindecl != null)
+				return false;
+		} else if (!lindecl.equals(other.lindecl))
+			return false;
+		return true;
+	}
+
+	public ID getId() {
+		return id;
+	}
+
+	public List<Expr> getArgs() {
+		return args;
+	}
+
+	public List<InDecl> getLindecl() {
+		return lindecl;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ID id2 = this.applyTransformer(t, id);
+		List<Expr> args2 = this.applyTransformerList(t, args);
+		
+		args= args2;
+		id = id2;
+		
 	}
 
 

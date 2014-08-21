@@ -3,10 +3,10 @@ package minizinc.representation.statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.DataContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.DataDef.DataCons;
-import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 import minizinc.representation.types.Type;
 
@@ -26,6 +26,11 @@ public class DataDef extends Statement {
 		cons = new ArrayList<DataCons>();
 	}
 
+	public DataDef(ID dataName, List<DataCons> cons) {
+		super(TStatement.DATA);
+		this.dataName =  dataName;
+		this.cons =  cons;
+	}
 
 
 	public void add(DataCons c) {
@@ -77,11 +82,7 @@ public class DataDef extends Statement {
 		return "enum " + dataName.print() + "= {" + s + "}";
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		// no subexpression in a data definition
-		return null;
-	}
+
 
 	/**
 	 * A new sata statement representing an union type.
@@ -102,6 +103,67 @@ public class DataDef extends Statement {
 			Parsing.error("Missing ID in data type definition! "+ctx.getText());
 		
 		return r;
+	}
+
+
+
+	@Override
+	public DataDef clone() { 
+		DataDef r = null;
+		
+		// protected ID dataName;
+		ID idp = dataName == null ? null : dataName.clone();
+		
+		// protected List<DataCons> cons;
+		List<DataCons> consp = null;
+		if (cons != null) {
+			consp = new ArrayList<DataCons>();
+		
+			for (DataCons c:consp) 
+				consp.add(c.clone());
+			
+		}
+		r = new DataDef(idp,consp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((cons == null) ? 0 : cons.hashCode());
+		result = prime * result
+				+ ((dataName == null) ? 0 : dataName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DataDef other = (DataDef) obj;
+		if (cons == null) {
+			if (other.cons != null)
+				return false;
+		} else if (!cons.equals(other.cons))
+			return false;
+		if (dataName == null) {
+			if (other.dataName != null)
+				return false;
+		} else if (!dataName.equals(other.dataName))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ID dataName2 = this.applyTransformer(t, dataName);
+		dataName = dataName2;
+		
 	}
 
 }

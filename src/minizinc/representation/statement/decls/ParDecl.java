@@ -105,6 +105,16 @@ public class ParDecl extends Decl {
 		return t;
 	}
 
+	@Override
+	public ParDecl clone() {
+		ParDecl r = null;
+		Type declTypep = declType==null ? null : declType.clone();
+		ID idp = id==null ? null : id.clone();
+		Expr exprp = expr==null ? null : expr.clone();
+		r = new ParDecl(declTypep,idp,exprp);
+		return r;
+	}
+
 
 
 }

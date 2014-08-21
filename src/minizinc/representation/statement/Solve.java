@@ -3,11 +3,10 @@
  */
 package minizinc.representation.statement;
 
-import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.SolveContext;
 import minizinc.representation.Parsing;
-import minizinc.representation.expressions.Expr;
 import minizinc.representation.solve.Annotation;
 import minizinc.representation.solve.Optimize;
 import minizinc.representation.solve.Satisfy;
@@ -43,17 +42,6 @@ public abstract class Solve extends Statement {
 		return s;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		 List<Expr> r = null;
-		if (annotation!=null)
-		   r = annotation.subexpressions();
-		return r;
-	}
-
 	public static Solve solve(SolveContext ctx) {
 		Solve r = null;
 		Annotation a = null;
@@ -67,6 +55,42 @@ public abstract class Solve extends Statement {
 		}
 		
 		return r;
+	}
+	
+	@Override
+	public abstract Solve clone();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((annotation == null) ? 0 : annotation.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Solve other = (Solve) obj;
+		if (annotation == null) {
+			if (other.annotation != null)
+				return false;
+		} else if (!annotation.equals(other.annotation))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Annotation annotation2 = this.applyTransformer2(t, annotation);
+		annotation = annotation2;
+		
 	}
 
 }

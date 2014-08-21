@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.GuardedSetContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -41,16 +42,7 @@ public class GuardedSet extends SetVal {
 		return "{" + expr.print() + " | " + printList(guard) + "}"; 
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = new ArrayList<Expr>();
-		r.add(expr);
-		guard.stream().map(x->x.subexpressions().stream().map(y->r.add(y)));
-		return r;
-	}
+
 	
 	/**
 	 * Represents a guarded set. <br> Grammar: <br>
@@ -71,6 +63,62 @@ public class GuardedSet extends SetVal {
 		} else 
 			Parsing.error("guardedSet " + ctx.getText());
 		return r;
+	}
+
+	@Override
+	public GuardedSet clone() {
+		GuardedSet r = null;
+		Expr exprp = expr==null ? null : expr.clone();
+		List<InDecl> guardp=null;
+		if (guard!=null){
+			guardp = new ArrayList<InDecl>();
+			for (InDecl indec:guard) 
+				guardp.add(indec.clone());						
+		}
+					
+		r = new GuardedSet(exprp,guardp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((expr == null) ? 0 : expr.hashCode());
+		result = prime * result + ((guard == null) ? 0 : guard.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GuardedSet other = (GuardedSet) obj;
+		if (expr == null) {
+			if (other.expr != null)
+				return false;
+		} else if (!expr.equals(other.expr))
+			return false;
+		if (guard == null) {
+			if (other.guard != null)
+				return false;
+		} else if (!guard.equals(other.guard))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr expr2 = this.applyTransformer(t, expr);
+		List<InDecl> guard2 = this.applyTransformerList2(t, guard);
+		
+		expr = expr2;
+		guard = guard2;
+		
 	}
 
 

@@ -74,4 +74,5 @@ public  abstract class BoolComplexExpr extends Expr {
 		return t;
 	}
 
+	public abstract BoolComplexExpr clone();
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.CaseExprContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -41,13 +42,14 @@ public class CaseExpr extends Expr {
 	}
 
 	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
+	 * @see minizinc.expressions.Expr#subexpressions()
 	 */
 	@Override
-	public List<Expr> subexpressions() {
-		 List<Expr> r = new ArrayList<Expr>();
-		 branches.forEach(x->x.subexpressions().forEach(y->r.add(y)));
-		 return r;
+	public void subexpressions(ExprTransformer t) {
+		List<Branch> branches2 = applyTransformerList2(t,branches);
+		ID id2 = applyTransformer(t,id);
+		this.branches = branches2;
+		this.id = id2;
 	}
 
 	/* (non-Javadoc)
@@ -76,6 +78,52 @@ public class CaseExpr extends Expr {
 			Parsing.error("caseExpr missing ID "+ctx.getText());
 			
 		return r;
+	}
+
+	@Override
+	public CaseExpr clone() {
+		CaseExpr r = null;
+		ID idp = id==null ? null : id.clone();
+		List<Branch> branchesp = null;
+		if (branches!=null) {
+			branchesp = new ArrayList<Branch>();
+			for (Branch b:branches)
+				branchesp.add(b.clone());
+		}
+		r = new CaseExpr(idp,branchesp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((branches == null) ? 0 : branches.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CaseExpr other = (CaseExpr) obj;
+		if (branches == null) {
+			if (other.branches != null)
+				return false;
+		} else if (!branches.equals(other.branches))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

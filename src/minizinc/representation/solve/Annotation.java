@@ -3,13 +3,12 @@
  */
 package minizinc.representation.solve;
 
-import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.AnnotationContext;
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.Parsing;
 import minizinc.representation.SubExpressions;
-import minizinc.representation.expressions.Expr;
 
 /**
  * annotation : '::' modeAnnotation;
@@ -19,7 +18,7 @@ import minizinc.representation.expressions.Expr;
  * @author rafa
  *
  */
-public  class Annotation implements MiniZincRepresentation, SubExpressions {
+public  class Annotation implements MiniZincRepresentation, SubExpressions, Cloneable {
 	protected ModeAnnotation ma;
 
 	/**
@@ -36,10 +35,6 @@ public  class Annotation implements MiniZincRepresentation, SubExpressions {
 		return "::"+ma.print();
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		return ma.subexpressions();
-	}
 	
 	public static Annotation annotation(AnnotationContext ctx) {
 		Annotation r = null;
@@ -57,5 +52,43 @@ public  class Annotation implements MiniZincRepresentation, SubExpressions {
 	@Override public String toString() {
 		return print();
 	}
+	@Override 
+	public Annotation clone(){
+		Annotation r = null;
+		ModeAnnotation map = ma==null ? null : ma.clone();
+		r = new Annotation(map);
+		return r;
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ma == null) ? 0 : ma.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Annotation other = (Annotation) obj;
+		if (ma == null) {
+			if (other.ma != null)
+				return false;
+		} else if (!ma.equals(other.ma))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ModeAnnotation ma2 = this.applyTransformer2(t, ma);
+		ma = ma2;
+		
+	}
 }

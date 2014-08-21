@@ -1,9 +1,8 @@
 package minizinc.representation.expressions;
 
-import java.util.List;
-
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import transformation.ExprTransformer;
 import minizinc.representation.TypeName;
 
 public class BoolC extends Expr {
@@ -22,11 +21,6 @@ public class BoolC extends Expr {
 	}
 
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,11 +29,6 @@ public class BoolC extends Expr {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -60,8 +49,8 @@ public class BoolC extends Expr {
 	}
 
 	@Override
-	public List<Expr> subexpressions() {
-		return null;
+	public void subexpressions(ExprTransformer t) {
+		return ;
 	}
 
 	@Override
@@ -75,6 +64,12 @@ public class BoolC extends Expr {
 	 */
 	public static BoolC BOOLTerm(TerminalNode b) {
 		return new BoolC(b.getText().toLowerCase().equals("true"));
+	}
+
+	@Override
+	public BoolC clone() {
+		// TODO Auto-generated method stub
+		return new BoolC(value);
 	}
 
 

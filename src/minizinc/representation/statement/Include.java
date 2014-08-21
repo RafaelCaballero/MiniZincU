@@ -3,11 +3,12 @@
  */
 package minizinc.representation.statement;
 
-import java.util.List;
 
+
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.IncludeContext;
 import minizinc.representation.Parsing;
-import minizinc.representation.expressions.Expr;
+
 import minizinc.representation.expressions.StringC;
 
 /**
@@ -34,14 +35,7 @@ public class Include extends Statement {
 		return "include "+s;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		// an include has no subexpressions
-		return null;
-	}
+
 
 	/**
 	 * Parses an include statements.
@@ -56,6 +50,46 @@ public class Include extends Statement {
 		} else 
 			Parsing.error("Include :"+ctx.getText());
 		return r;
+	}
+
+	@Override
+	public Include clone() {
+		Include r = null; 
+		StringC sp = s==null? null : s.clone();
+		r = new Include(sp);	
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((s == null) ? 0 : s.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Include other = (Include) obj;
+		if (s == null) {
+			if (other.s != null)
+				return false;
+		} else if (!s.equals(other.s))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		StringC s2 = this.applyTransformer(t, s);
+		s=s2;
+		
 	}
 
 }

@@ -3,9 +3,7 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.Arrays;
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ArithExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.BoolExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.ExprContext;
@@ -33,11 +31,6 @@ public class RbracketExpr extends Expr {
 	@Override
 	public String print() {
 		return "("+e.print()+")";
-	}
-
-	@Override
-	public List<Expr> subexpressions() {
-		return Arrays.asList(e);
 	}
 
 
@@ -88,6 +81,50 @@ public class RbracketExpr extends Expr {
 		RbracketExpr t = null;
 		t = new RbracketExpr(ArithExpr.arithExpr(ctx));
 		return t;
+	}
+
+
+	@Override
+	public RbracketExpr clone() {
+		RbracketExpr r= null;
+		Expr ep = e==null ? null : e.clone();
+		r = new RbracketExpr(ep);	
+		return r;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((e == null) ? 0 : e.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RbracketExpr other = (RbracketExpr) obj;
+		if (e == null) {
+			if (other.e != null)
+				return false;
+		} else if (!e.equals(other.e))
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr e2 = this.applyTransformer(t, e);
+		e= e2;
+		
 	}
 
 

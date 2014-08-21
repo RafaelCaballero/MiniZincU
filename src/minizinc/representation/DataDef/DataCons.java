@@ -18,7 +18,7 @@ import minizinc.representation.types.Type;
  * 
  * Important: the equality uses only the name of the constructor, not is subtypes 
  */
-public class DataCons implements MiniZincRepresentation {
+public class DataCons implements MiniZincRepresentation, Cloneable {
 	private ID cons;
 	private List<Type> subtypes;
 
@@ -55,6 +55,9 @@ public class DataCons implements MiniZincRepresentation {
 		return s;
 	}
 
+	public ID getID() {
+		return cons;
+	}
 	/**
 	 * A constructor without arguments
 	 */
@@ -118,6 +121,8 @@ public class DataCons implements MiniZincRepresentation {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cons == null) ? 0 : cons.hashCode());
+		result = prime * result
+				+ ((subtypes == null) ? 0 : subtypes.hashCode());
 		return result;
 	}
 
@@ -135,9 +140,33 @@ public class DataCons implements MiniZincRepresentation {
 				return false;
 		} else if (!cons.equals(other.cons))
 			return false;
+		if (subtypes == null) {
+			if (other.subtypes != null)
+				return false;
+		} else if (!subtypes.equals(other.subtypes))
+			return false;
 		return true;
 	}
 
+	@Override
+	public DataCons clone() { 
+		DataCons r = null;
+		ID consp = cons == null ? null : cons.clone();
+		
+		List<Type> subtypesp = null;
+		if (subtypes!= null) {
+			subtypesp = new ArrayList<Type>();
+			for (Type s:subtypes) 
+				subtypesp.add(s.clone());
+			
+		}
+		r = new DataCons(consp,subtypesp);
+		return r;
+	}
 	
+	@Override
+	public String toString() {
+		return print();
+	}
 
 }

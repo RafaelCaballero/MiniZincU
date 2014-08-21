@@ -41,6 +41,18 @@ public class MiniZincGrammarBaseListener implements MiniZincGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterOpOrID(@NotNull MiniZincGrammarParser.OpOrIDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpOrID(@NotNull MiniZincGrammarParser.OpOrIDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRint(@NotNull MiniZincGrammarParser.RintContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -24,6 +24,15 @@ public class TypeRange extends Type {
 	private ArithExpr from;
 	private ArithExpr to;
 	private ID setID;
+	
+	/**
+	 * complete constructor
+	 */
+	public TypeRange(ArithExpr from,ArithExpr to, ID setID) {
+		this.from = from;
+		this.to = to;
+		this.setID = setID;
+	}
 	/**
 	 * First constructor from..to
 	 */
@@ -31,6 +40,15 @@ public class TypeRange extends Type {
 		this.setID=null;
 		this.from = from;
 		this.to = to;
+	}
+
+	/**
+	 * from..to given as two integers
+	 */
+	public TypeRange(int from, int to) {
+		this.setID=null;
+		this.from = new Operand(new IntC(from));
+		this.to = new Operand(new IntC(to));
 	}
 
 	/**
@@ -84,6 +102,56 @@ public class TypeRange extends Type {
 			Parsing.error("Error in range " + ctx.getText());
 
 		return t;
+	}
+	@Override
+	public TypeRange clone() {
+		TypeRange r = null;
+		
+		ArithExpr fromp= from==null ? null : from.clone();
+		ArithExpr top=  to==null ? null : to.clone();
+		ID setIDp=  setID == null ? null : setID.clone();		
+	
+		r = new TypeRange(fromp,top,setIDp);
+		return r;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + ((setID == null) ? 0 : setID.hashCode());
+		result = prime * result + ((to == null) ? 0 : to.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TypeRange other = (TypeRange) obj;
+		if (from == null) {
+			if (other.from != null)
+				return false;
+		} else if (!from.equals(other.from))
+			return false;
+		if (setID == null) {
+			if (other.setID != null)
+				return false;
+		} else if (!setID.equals(other.setID))
+			return false;
+		if (to == null) {
+			if (other.to != null)
+				return false;
+		} else if (!to.equals(other.to))
+			return false;
+		return true;
+	}
+	@Override
+	public Expr zero() {
+		return from;
 	}
 
 }

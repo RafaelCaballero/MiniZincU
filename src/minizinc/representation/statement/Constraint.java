@@ -1,8 +1,8 @@
 package minizinc.representation.statement;
 
-import java.util.Arrays;
-import java.util.List;
 
+
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ConstraintContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -51,11 +51,6 @@ public class Constraint extends Statement  {
 		return "constraint " + t.print();
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		// TODO Auto-generated method stub
-		return Arrays.asList(t);
-	}
 
 	/**
 	 * Returns a new Constraint representing the object parsed in ctx.
@@ -70,6 +65,47 @@ public class Constraint extends Statement  {
 		return r;
 	}
 
+	@Override
+	public Constraint clone() {
+		Constraint r = null;
+		Expr tp = t.clone();
+		r = new Constraint(tp);
+		return r;
+		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((t == null) ? 0 : t.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Constraint other = (Constraint) obj;
+		if (t == null) {
+			if (other.t != null)
+				return false;
+		} else if (!t.equals(other.t))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer tr) {
+		Expr t2 = this.applyTransformer(tr, t);
+		t = t2;
+	}
+
+	
 	
 
 }

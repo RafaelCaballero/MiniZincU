@@ -2,13 +2,13 @@ package minizinc.antlr4;
 
 
 
-import minizinc.representation.model.Model;
+import minizinc.representation.model.SplitModel;
 
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 
-	private Model model;
+	private SplitModel model;
 	@SuppressWarnings("unused")
 	private MiniZincGrammarParser parser;
 
@@ -29,10 +29,10 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	 */
 	@Override
 	public void exitModel(@NotNull MiniZincGrammarParser.ModelContext ctx) {
-		model = Model.model(ctx);
+		model = SplitModel.model(ctx);
 	}
 
-	public Model getModel() {
+	public SplitModel getModel() {
 		return model;
 	}
 	

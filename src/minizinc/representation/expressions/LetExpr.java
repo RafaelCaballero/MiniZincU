@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.LetExprContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -43,16 +44,6 @@ public class LetExpr extends Expr {
 		return s;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.expressions.Expr#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr > lnew = new ArrayList<Expr>();
-		decls.forEach(x -> x.subexpressions().forEach(y ->  lnew.add(y)));                                  
-		lnew.add(expr);		
-		return lnew;		
-	}
 
 	/* (non-Javadoc)
 	 * @see minizinc.expressions.Expr#type()
@@ -80,6 +71,61 @@ public class LetExpr extends Expr {
 			Parsing.error("Error in letExpr. No expression found " + ctx.getText());
 		}
 		return t;
+	}
+
+	@Override
+	public LetExpr clone() {
+		LetExpr r = null;
+		List<LetDecl> declsp = null;
+		Expr exprp = expr==null ? null : expr.clone();
+		if (decls!=null){
+			declsp = new ArrayList<LetDecl>();
+			for (LetDecl l:decls) 
+				declsp.add(l.clone());
+		}
+		r = new LetExpr(declsp, exprp);
+		return r;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((decls == null) ? 0 : decls.hashCode());
+		result = prime * result + ((expr == null) ? 0 : expr.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LetExpr other = (LetExpr) obj;
+		if (decls == null) {
+			if (other.decls != null)
+				return false;
+		} else if (!decls.equals(other.decls))
+			return false;
+		if (expr == null) {
+			if (other.expr != null)
+				return false;
+		} else if (!expr.equals(other.expr))
+			return false;
+		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		List<LetDecl> decls2 = this.applyTransformerList2(t, decls);
+		Expr expr2 = this.applyTransformer(t, expr);
+		
+		decls = decls2;
+		expr = expr2;
+		
 	}
 
 

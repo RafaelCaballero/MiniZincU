@@ -4,9 +4,10 @@ import minizinc.antlr4.MiniZincGrammarParser.TypenameContext;
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.Parsing;
 import minizinc.representation.Typeable;
+import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 
-public abstract class Type implements MiniZincRepresentation, Typeable {
+public abstract class Type implements MiniZincRepresentation, Typeable, Cloneable {
 
 	/**
 	 * Obtains the representation of a type name as an element of class {@link Type}
@@ -51,6 +52,18 @@ public abstract class Type implements MiniZincRepresentation, Typeable {
 		return print();
 	}
 
-
+	@Override
+	public abstract Type clone();
+	
+	@Override
+	public abstract int hashCode();
+	
+	@Override
+	public abstract boolean equals(Object o);
+	
+	/**
+	 * @return An arbitrary constant of this type which is call the zero of the type 
+	 */
+	public abstract Expr zero();
 
 }

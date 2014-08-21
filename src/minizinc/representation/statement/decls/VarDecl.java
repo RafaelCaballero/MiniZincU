@@ -11,12 +11,16 @@ import minizinc.antlr4.MiniZincGrammarParser.VarContext;
 import minizinc.antlr4.MiniZincGrammarParser.VardeclContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
+import minizinc.representation.expressions.ArithExpr;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
+import minizinc.representation.expressions.IntC;
+import minizinc.representation.expressions.Operand;
 import minizinc.representation.statement.Decl;
 import minizinc.representation.statement.TStatement;
 import minizinc.representation.types.Type;
 import minizinc.representation.types.TypeArray;
+import minizinc.representation.types.TypeUnion;
 
 /**
  * Represents a variable declaration, maybe including an initialization.
@@ -26,6 +30,10 @@ import minizinc.representation.types.TypeArray;
  *
  */
 public class VarDecl extends Decl {
+
+	public VarDecl(Type vartype, String id) {
+		super(TStatement.VARDECL,vartype, new ID(id));
+	}
 	
 	public VarDecl(Type vartype, ID id) {
 		super(TStatement.VARDECL,vartype, id);
@@ -103,7 +111,35 @@ public class VarDecl extends Decl {
 		return t;
 	}
 
+	@Override
+	public VarDecl clone() {
+		VarDecl r = null;
+		Type declTypep = declType==null ? null : declType.clone();
+		ID idp = id==null ? null : id.clone();
+		Expr exprp = expr==null ? null : expr.clone();
+		r = new VarDecl(declTypep,idp,exprp);
+		return r;
+	}
 
-
-
+	/**
+	 * This method is only valid for union variable declarations
+	 * @return
+	 */
+	public int getLevel() {
+		int r=-1;
+		if (declType instanceof TypeUnion) {
+			TypeUnion t = (TypeUnion) declType;
+			// get the expression indicating the level
+			ArithExpr e = t.getE();
+			// at the moment only integer constants are allowed
+			if (e instanceof Operand){
+				Expr exp = ((Operand)e).getExpr();
+				if (exp instanceof IntC) {
+					r = ((IntC) exp).get();
+				}
+			}
+			
+		}
+		return r;
+	}
 }

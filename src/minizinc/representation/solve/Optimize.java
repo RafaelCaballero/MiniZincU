@@ -3,9 +3,7 @@
  */
 package minizinc.representation.solve;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.OptimizeContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -31,14 +29,6 @@ public class Optimize extends Solve {
 		return super.print()+" "+maxmin + " " +expr.print();
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = super.subexpressions();
-		if (r == null) 
-			r = new ArrayList<Expr>();
-		r.add(expr);			
-		return r;
-	}
 
 	public static Optimize optimize(Annotation a, OptimizeContext ctx) {
 		Optimize r = null;
@@ -63,4 +53,50 @@ public class Optimize extends Solve {
 
 		return r;
 	}
+	@Override
+	public Optimize clone() {
+		Optimize r = null;
+		Annotation ap = this.annotation==null ? null : this.annotation.clone(); 	
+		Expr exprp = expr == null ? null : expr.clone();
+		String maxminp = maxmin;
+		r = new Optimize(ap,maxminp,exprp);
+		return r;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((expr == null) ? 0 : expr.hashCode());
+		result = prime * result + ((maxmin == null) ? 0 : maxmin.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Optimize other = (Optimize) obj;
+		if (expr == null) {
+			if (other.expr != null)
+				return false;
+		} else if (!expr.equals(other.expr))
+			return false;
+		if (maxmin == null) {
+			if (other.maxmin != null)
+				return false;
+		} else if (!maxmin.equals(other.maxmin))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		super.subexpressions(t);
+		Expr expr2 = this.applyTransformer(t, expr);
+		expr = expr2;
+	}
+
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.DeclContext;
 import minizinc.antlr4.MiniZincGrammarParser.DimensionsContext;
 import minizinc.representation.Parsing;
@@ -26,6 +27,8 @@ import minizinc.representation.types.TypeRange;
  * In both cases the structure is similar: a type, an id and a possible initialization.
  *
  * This abstract class contains the initialization expression, which can be null.
+ * It is important to notice that equals only uses the identifier; we assume that 
+ * all the declarations use different names.
  * @author rafa
  *
  */
@@ -63,7 +66,16 @@ public abstract class Decl extends Statement {
 		this.expr = null;		
 	}
 
+	/**
+	 * get the identifier
+	 */
+	public ID getID(){
+		return id;
+	}
 	
+	public Expr getExpr() {
+		return expr;
+	}
 	/* (non-Javadoc)
 	 * @see minizinc.expressions.SubExpressions#subexpressions()
 	 */
@@ -127,7 +139,53 @@ public abstract class Decl extends Statement {
 		String s = "";
 		if (initialized())
 			s+=" = "+expr.print();
-		return s;
+		return s;		
 	}
+	
+	@Override
+	public abstract Decl clone();
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Decl other = (Decl) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		ID id2 = this.applyTransformer(t, id);
+		Expr expr2 = this.applyTransformer(t, expr);
+		
+		id = id2;
+		expr = expr2;
+	}
+
+		
 
 }

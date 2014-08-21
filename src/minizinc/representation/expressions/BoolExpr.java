@@ -70,6 +70,8 @@ public abstract class BoolExpr extends Expr {
 
 		return t;
 	}
-
+	
+	@Override
+	public abstract BoolExpr clone();
 
 }

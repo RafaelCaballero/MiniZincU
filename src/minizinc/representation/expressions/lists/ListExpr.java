@@ -58,6 +58,8 @@ public abstract class ListExpr extends Expr {
 		return t;
 	}
 
+	@Override
+	public abstract ListExpr clone();
 
 
 

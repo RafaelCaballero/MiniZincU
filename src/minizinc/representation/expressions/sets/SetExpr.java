@@ -55,5 +55,7 @@ public abstract class SetExpr extends Expr {
 		return r;
 	}
 
+	@Override
+	public abstract SetExpr clone();
 
 }

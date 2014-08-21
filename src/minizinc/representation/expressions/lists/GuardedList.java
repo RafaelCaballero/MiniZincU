@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.GuardedListContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -42,16 +43,6 @@ public class GuardedList extends OneDimList {
 		return s;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> l  = new ArrayList<Expr>();
-		super.subexpressions().forEach(x -> l.add(x));
-		indecls.forEach(x -> x.subexpressions().forEach(y -> l.add(y)));
-		return l;
-	}
 	
 	/**
 	 * A one dim, guarded list.<br>
@@ -71,6 +62,50 @@ public class GuardedList extends OneDimList {
 			Parsing.error("guardedList: " + ctx.toString());
 
 		return r;
+	}
+	@Override
+	public GuardedList clone() {
+		GuardedList r=null;
+		List<InDecl> indeclsp=null;
+		if (indecls!=null) {
+			indeclsp = new ArrayList<InDecl>();
+			for (InDecl i:indecls) 
+				indeclsp.add(i.clone());
+		}
+		Dimension dimp = this.dim==null ? null : dim.clone();
+		r = new GuardedList(dimp, indeclsp);
+		return r;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((indecls == null) ? 0 : indecls.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GuardedList other = (GuardedList) obj;
+		if (indecls == null) {
+			if (other.indecls != null)
+				return false;
+		} else if (!indecls.equals(other.indecls))
+			return false;
+		return true;
+	}
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		List<InDecl> indecls2 = this.applyTransformerList2(t, indecls);
+		indecls = indecls2;
+		super.subexpressions(t);
+
+		
 	}
 
 

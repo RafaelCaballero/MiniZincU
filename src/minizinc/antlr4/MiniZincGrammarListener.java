@@ -29,6 +29,16 @@ public interface MiniZincGrammarListener extends ParseTreeListener {
 	 */
 	void exitSetS(@NotNull MiniZincGrammarParser.SetSContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniZincGrammarParser#opOrID}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpOrID(@NotNull MiniZincGrammarParser.OpOrIDContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniZincGrammarParser#opOrID}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpOrID(@NotNull MiniZincGrammarParser.OpOrIDContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniZincGrammarParser#rint}.
 	 * @param ctx the parse tree
 	 */

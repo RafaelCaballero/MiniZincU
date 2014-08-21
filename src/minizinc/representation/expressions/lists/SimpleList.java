@@ -5,6 +5,7 @@ package minizinc.representation.expressions.lists;
 
 import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.SimpleListContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -69,6 +70,20 @@ public class SimpleList extends OneDimList {
 			r = new SimpleList();
 		}
 		return r;
+	}
+
+	@Override
+	public SimpleList clone() {
+		SimpleList r = null;
+		Dimension dimp = dim==null ? null : dim.clone();
+		r = new SimpleList(dimp);
+		return r;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		super.subexpressions(t);
+		
 	}
 
 

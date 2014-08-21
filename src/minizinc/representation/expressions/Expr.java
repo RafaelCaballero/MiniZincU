@@ -3,8 +3,6 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.List;
-
 import minizinc.antlr4.MiniZincGrammarParser.ExprContext;
 import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.Parsing;
@@ -20,18 +18,9 @@ import minizinc.representation.expressions.sets.SetExpr;
  * @author rafa
  *
  */
-public abstract class Expr implements MiniZincRepresentation, SubExpressions, Typeable {
+public abstract class Expr implements MiniZincRepresentation, SubExpressions, Typeable, Cloneable {
 	
 
-	/**
-	 * Checking if an expression is atomic. Examples of atomic subexpressions are
-	 * integers, variables, ....
-	 * @return true if this is an atomic subexpression
-	 */
-	public boolean atomic() {
-		List<? extends Expr> l =  subexpressions();
-		return l ==null || l.size()==0;
-	}
 	
 	@Override
 	public String toString() {
@@ -108,7 +97,16 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions, Ty
 		return t;
 	}
 	
+	@Override
+	public abstract Expr clone();
 
-
+	@Override
+	public abstract boolean equals(Object e);
 	
+	@Override
+	public abstract int hashCode(); 	
+	
+	public Expr simplify() {
+		return this;
+	}
 }

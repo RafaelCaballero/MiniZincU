@@ -3,9 +3,13 @@ import minizinc.antlr4.MiniZinc2JavaModel;
 import minizinc.antlr4.MiniZincGrammarLexer;
 import minizinc.antlr4.MiniZincGrammarParser;
 import minizinc.representation.model.Model;
+import minizinc.representation.model.SplitModel;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
+import transformation.ExtTrans;
+import transformation.TransVarModel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,8 +24,28 @@ public class MiniZincU {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		Model pu = loadFile(args);
-		System.out.println(pu.print());
+		SplitModel pu = loadFile(args);
+		TransVarModel tv = new TransVarModel(pu);
+		System.out.println(tv.print());
+		
+
+		/**
+		Model o1 = null;
+		if (pu.containsExtensions()) {
+			ExtTrans et  = new ExtTrans(pu);
+			et.transform();
+			o1 = et.getOutput();
+		}
+		else o1 = pu;
+		**/
+		
+
+		/*
+		while (pu.containsExtensions()) {
+			ExtTrans et  = new ExtTrans(pu);
+			et.transform();
+		}
+		*/
 		// TransformedProgram tp = new TransformedProgram(pu);
 		// System.out.println(tp);
 
@@ -36,7 +60,7 @@ public class MiniZincU {
 
 	}
 
-	private static Model loadFile(String[] args) throws Exception {
+	private static SplitModel loadFile(String[] args) throws Exception {
 
 		String inputFile = null;
 		if (args.length > 0) {

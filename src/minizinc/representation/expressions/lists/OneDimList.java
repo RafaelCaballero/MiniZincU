@@ -5,6 +5,7 @@ package minizinc.representation.expressions.lists;
 
 import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.OneDimListContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
@@ -58,14 +59,6 @@ public  abstract class OneDimList extends ListExpr {
 		return null;
 	}
 
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = null;
-		if (dim!=null)
-			r = dim.subexpressions();
-		return r;
-	}
-
 	/**
 	 * Grammar:<br>
 	 * oneDimList : simpleList | guardedList ;
@@ -85,5 +78,41 @@ public  abstract class OneDimList extends ListExpr {
 		}
 		return t;
 	}
+	
+	@Override
+	public abstract OneDimList clone();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dim == null) ? 0 : dim.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OneDimList other = (OneDimList) obj;
+		if (dim == null) {
+			if (other.dim != null)
+				return false;
+		} else if (!dim.equals(other.dim))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Dimension dim2 = this.applyTransformer2(t, dim);
+		dim = dim2;
+		
+	}
+
 
 }
