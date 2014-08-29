@@ -6,9 +6,10 @@ package minizinc.representation.solve;
 import java.util.ArrayList;
 import java.util.List;
 
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ModeAnnotationContext;
 import minizinc.antlr4.MiniZincGrammarParser.SeqSContext;
-import minizinc.representation.expressions.Expr;
+
 
 /**
  * Grammar:
@@ -42,17 +43,7 @@ public class SetqS extends ModeAnnotation {
 		ma.add(n);
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		List<Expr> r = new  ArrayList<Expr>();
-		if (ma!=null) {
-			ma.stream().map(x->x.subexpressions().stream().map(y->r.add(y)));
-		}
-		return r;
-	}
+
 	
 	@Override
 	public String print() { 
@@ -113,6 +104,14 @@ public class SetqS extends ModeAnnotation {
 		} else if (!ma.equals(other.ma))
 			return false;
 		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		List<ModeAnnotation> ma2 = this.applyTransformerList2(t, ma);
+		ma = ma2;
+
+		
 	}
 
 }

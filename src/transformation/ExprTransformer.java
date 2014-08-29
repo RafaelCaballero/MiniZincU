@@ -3,15 +3,15 @@
  */
 package transformation;
 
-import minizinc.representation.expressions.*;
+
+import minizinc.representation.expressions.Expr;
 
 /**
  * A model transformer is a model that includes a model transformation.
- * In fact the model does not transform itself but generates its transformation.
  * @author rafa
  *
  */
-public interface ExprTransformer  {
+public interface ExprTransformer {
 	
 
 	/**
@@ -19,6 +19,7 @@ public interface ExprTransformer  {
 	 * The previous value of the output model, if exists, is lost.
 	 * The input model is not modified.
 	 */
-	public <T extends Expr> T transform(T e);
+	public  Expr transform(Expr input);
+
 
 }

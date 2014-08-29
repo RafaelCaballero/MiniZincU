@@ -100,8 +100,8 @@ public class InfixSetOp extends SetExpr {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		SetExpr e1p = this.applyTransformer(t, e1);
-		SetExpr e2p = this.applyTransformer(t, e2);
+		SetExpr e1p = this.applyTransformer2(t, e1);
+		SetExpr e2p = this.applyTransformer2(t, e2);
 		
 		e1 = e1p;
 		e2 = e2p;

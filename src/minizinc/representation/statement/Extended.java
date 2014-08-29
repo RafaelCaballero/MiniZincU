@@ -179,9 +179,9 @@ public class Extended extends Statement {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ID dataName2 = this.applyTransformer(t,dataName);
-		List<ID> left2 = this.applyTransformerList(t, left);
-		List<ID> right2 = this.applyTransformerList(t, right);
+		ID dataName2 = this.applyTransformer2(t,dataName);
+		List<ID> left2 = this.applyTransformerList2(t, left);
+		List<ID> right2 = this.applyTransformerList2(t, right);
 		dataName = dataName2;
 		left = left2;
 		right = right2;		

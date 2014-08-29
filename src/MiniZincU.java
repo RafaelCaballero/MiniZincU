@@ -2,13 +2,14 @@
 import minizinc.antlr4.MiniZinc2JavaModel;
 import minizinc.antlr4.MiniZincGrammarLexer;
 import minizinc.antlr4.MiniZincGrammarParser;
-import minizinc.representation.model.Model;
 import minizinc.representation.model.SplitModel;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
-import transformation.ExtTrans;
+import transformation.TransDataExprModel;
+import transformation.TransDataModel;
+import transformation.TransShowModel;
 import transformation.TransVarModel;
 
 import java.io.File;
@@ -25,8 +26,24 @@ public class MiniZincU {
 	 */
 	public static void main(String[] args) throws Exception {
 		SplitModel pu = loadFile(args);
-		TransVarModel tv = new TransVarModel(pu);
-		System.out.println(tv.print());
+		//System.out.println(pu);
+
+		// eliminate expressions including data 
+		TransDataExprModel tdexp = new TransDataExprModel(pu); 
+
+		
+		TransShowModel ts = new TransShowModel(tdexp); 
+		//System.out.println(ts.print());
+		
+		// Transform union variables
+		TransVarModel tv = new TransVarModel(ts);
+
+
+		// eliminate the data section
+		TransDataModel td = new TransDataModel(tv);
+		
+		System.out.println(td.print());
+		
 		
 
 		/**

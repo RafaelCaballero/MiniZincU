@@ -47,7 +47,7 @@ public class CaseExpr extends Expr {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		List<Branch> branches2 = applyTransformerList2(t,branches);
-		ID id2 = applyTransformer(t,id);
+		ID id2 = applyTransformer2(t,id);
 		this.branches = branches2;
 		this.id = id2;
 	}

@@ -14,12 +14,13 @@ import transformation.ExprTransformer;
  * @author rafa
  *
  */
-public interface SubExpressions {
+public interface SubExpressions{
 	/**
 	 * Applies a transformer to all the subexpressions, substituting the subexpressions
 	 * by the new subexpressions provided by the transformer
+	 * @return 
 	 */
-	public void subexpressions(ExprTransformer t);
+	public  void subexpressions(ExprTransformer t);
 	
 	/**
 	 * Applies the transformer to an expression.
@@ -27,11 +28,13 @@ public interface SubExpressions {
 	 * @param e Any expression.
 	 * @return t.transform(e.subexpressions(t)) if e!=null. Otherwise null;
 	 */
-	public default <T extends Expr> T applyTransformer(ExprTransformer t, T e) {
-		T r=null;
+	public default  Expr applyTransformer(ExprTransformer t, Expr e) {
+		Expr r=null;
 		if (e!=null) { 
 			e.subexpressions(t);
-			r=t.transform(e);
+			r=(Expr) t.transform(e);
+			if (r==null)
+				r = e;
 		}
 		return r;
 	}
@@ -64,12 +67,12 @@ public interface SubExpressions {
 	 * <li> {@code t.transform(e.get(i)) } if {@code t.transform(e.get(i))!==null }
 	 * </ul>   
 	 */
-	public default <T extends Expr> List<T> applyTransformerList(ExprTransformer t, List<T> e) {
-		List<T> r=new ArrayList<T>();
+	public default  List<Expr> applyTransformerList(ExprTransformer t, List<Expr> e) {
+		List<Expr> r=new ArrayList<Expr>();
 		if (e!=null && e.size()>0) {
 			for(int i=0; i<e.size(); i++) {
-				T exp = e.get(i);
-				T expp = applyTransformer(t,exp);
+				Expr exp = e.get(i);
+				Expr expp = applyTransformer(t,exp);
 				r.add(expp);
 			}
 		}
@@ -86,7 +89,7 @@ public interface SubExpressions {
 	 * The different with {@link applyTransformerList} is that here the transformation is not applied 
 	 * to the elements of the list themselves, which do not need to be expressions.
 	 */
-	public default <T extends SubExpressions> List<T> applyTransformerList2(ExprTransformer t, List<T> e) {
+	public default  <T extends SubExpressions>  List<T> applyTransformerList2(ExprTransformer t, List<T> e) {
 		List<T> r= new ArrayList<T>();
 		if (e!=null && e.size()>0) {
 			for(int i=0; i<e.size(); i++) {

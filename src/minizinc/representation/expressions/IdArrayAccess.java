@@ -109,7 +109,7 @@ public class IdArrayAccess extends ArrayAccess {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		super.subexpressions(t);
-		ID id2 = this.applyTransformer(t, id);
+		ID id2 = this.applyTransformer2(t, id);
 		id = id2;
 	}
 

@@ -89,8 +89,8 @@ public class InfixListExpr extends ListExpr {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ListExpr e1p = this.applyTransformer(t, e1);
-		ListExpr e2p = this.applyTransformer(t, e2);
+		ListExpr e1p = this.applyTransformer2(t, e1);
+		ListExpr e2p = this.applyTransformer2(t, e2);
 		e1 = e1p;
 		e2 = e2p;
 	}

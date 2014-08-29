@@ -9,6 +9,8 @@ import java.util.List;
 import minizinc.antlr4.MiniZincGrammarParser.ModelContext;
 import minizinc.antlr4.MiniZincGrammarParser.StatContext;
 import minizinc.representation.Parsing;
+import minizinc.representation.DataDef.DataCons;
+import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.InfixExpr;
@@ -23,6 +25,7 @@ import minizinc.representation.statement.decls.VarDecl;
  *
  */
 public class SplitModel extends Model {
+	 protected List<Comment> comment;
 	 protected List<DataDef> data;
 	 protected List<Constraint> constraint;
 	 protected List<Decl> decl;
@@ -55,6 +58,7 @@ public class SplitModel extends Model {
 		 this.output = output;
 		 this.predicate = predicate;
 		 this.solve = solve;
+		 this.comment = new ArrayList<Comment>();
 	 }
 			           
 	 
@@ -69,6 +73,7 @@ public class SplitModel extends Model {
 		output = new ArrayList<Output>();
 		predicate = new ArrayList<Predicate>();
 		solve = new ArrayList<Solve>();
+		comment = new ArrayList<Comment>();
 	 }
 
 
@@ -93,10 +98,18 @@ public class SplitModel extends Model {
 				addOutput((Output) s);
 			else if (s instanceof Solve)
 				addSolve((Solve)s);
+			else if (s instanceof Comment)
+				addComment((Comment)s);
 			else Parsing.error("Unexpected statatement "+s.print());
 
 	 }
-	 public void addData(DataDef data) {
+	 private void addComment(Comment s) {
+		this.comment.add(s);
+		
+	}
+
+
+	public void addData(DataDef data) {
 		 this.data.add(data);
 	 }
 	 
@@ -133,31 +146,13 @@ public class SplitModel extends Model {
 		 return data;
 	 }
 
-	 /**
-	  * Returns a list with the concatenation of the print() method applied to
-	  * all the elements of the list. This is preceded by the comment indicated in
-	  * {@link comment}. If the list is null the string will be ""
-	  * @param comment Comment preceding the print
-	  * @param ls The list of statements. Can be null or empty
-	  * @return if {@link ls} is null or empty, the empty string. 
-	  * Otherwise the print of the comment followed by the prints of the elements 
-	  * and a "\n".
-	  */
-	private String printStatements(String comment, List<? extends Statement> ls) {
-		String s="";
-		if (ls != null && ls.size()>0) {
-			s += new Comment(comment);
-			for (Statement x:ls) 
-				s+=x.print()+";\n";
-			s+="\n";
-		}
-		return s;
-	}
 	@Override
 	public String print() {
 		String s = "";
 		s += new Comment("MiniZinc Model parsed using Antlr4");
 		s += new Comment("Rafael Caballero, 2014\n\n\n");
+
+		s += printStatements("",comment);
 
 		s += printStatements("Include Section",include);
 		s += printStatements("Extensions Section",extended);
@@ -453,8 +448,26 @@ public class SplitModel extends Model {
 				
 		return r;
 	}
+
+
+	@Override
+	public DataConsData getDataByConsName(String consname) {
+		DataConsData r = null;
+		if (data!=null)
+		for (DataDef d:data) {
+			int i=1;
+			for (DataCons dc:d.getCons()) 
+				if (dc.getID().print().equals(consname)) {
+					r = new DataConsData(d,dc,i);
+				}
+				else i++;				   			
+		}
+		return r;
+	}
 	
-	
+
+
+
 
 
 }

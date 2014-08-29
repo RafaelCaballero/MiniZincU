@@ -84,7 +84,7 @@ public class Output extends Statement {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ListExpr exprs2 = this.applyTransformer(t, exprs);
+		ListExpr exprs2 = this.applyTransformer2(t, exprs);
 		exprs = exprs2;
 		
 	}

@@ -9,6 +9,11 @@ public class IfS extends Expr {
 	private Expr Cond;
 	private Expr Exp1;
 	private Expr Exp2;
+	
+	/**
+	 * Used only for pretty printing
+	 */
+	private static int countspc=0;
 
 	public IfS(Expr cond, Expr exp1, Expr exp2) {
 		Cond = cond;
@@ -91,10 +96,20 @@ public class IfS extends Expr {
 
 	@Override
 	public String print() {
-		return "if (" + Cond + ") then " + Exp1 + " else " + Exp2 + " endif";
+		int n = countspc;
+		String s = print(n);
+		countspc = n;
+		return s;
 	}
+	
+	@Override
+	public String print(int n) {
+	   return nSpc(n)+"if (" + Cond.print() + ") \n" +
+			  nSpc(n)+"then \n" + Exp1.print(n+5) + "\n"+
+			  nSpc(n)+"else \n" + Exp2.print(n+5) + "\n"+
+			  nSpc(n)+"endif";
 
-
+	}
 	/**
 	 * Returns the type of the if statement. Observe that both the then and the
 	 * else must have the same type, but we don't check that and simply return 

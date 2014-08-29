@@ -43,6 +43,18 @@ public class PredOrUnionExpr extends Expr{
 	}
 
 	/**
+	 * This is a one section predorunion, that is: <br>
+	 * id(arg1...argn).
+	 * @param id : name of the predicate as String
+	 * @param args : a list with only one element, the expr
+	 */
+	public PredOrUnionExpr(String id,  List<Expr> args) {
+		this.id = new ID(id);
+		this.args = args;
+		lindecl = null;
+	}
+
+	/**
 	 * Two sections preodorunion:<br>
 	 * id(var in setexpr....)(expr)
 	 * @param id : name of the predicate
@@ -170,7 +182,7 @@ public class PredOrUnionExpr extends Expr{
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ID id2 = this.applyTransformer(t, id);
+		ID id2 = this.applyTransformer2(t, id);
 		List<Expr> args2 = this.applyTransformerList(t, args);
 		
 		args= args2;

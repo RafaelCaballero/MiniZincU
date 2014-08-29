@@ -118,13 +118,37 @@ public class InfixBoolExpr extends BoolExpr {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		 BoolExpr e1p = this.applyTransformer(t, e1);
-		 BoolExpr e2p = this.applyTransformer(t, e2) ;
+		 BoolExpr e1p = this.applyTransformer2(t, e1);
+		 BoolExpr e2p = this.applyTransformer2(t, e2) ;
 		 
 		 e1 = e1p;
 		 e2 = e2p;
 
 		
+	}
+
+
+	/**
+	 * @return the e1
+	 */
+	public BoolExpr getE1() {
+		return e1;
+	}
+
+
+	/**
+	 * @return the op
+	 */
+	public String getOp() {
+		return op;
+	}
+
+
+	/**
+	 * @return the e2
+	 */
+	public BoolExpr getE2() {
+		return e2;
 	}
 
 

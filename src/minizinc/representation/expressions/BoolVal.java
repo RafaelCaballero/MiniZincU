@@ -156,5 +156,12 @@ public  class BoolVal extends BoolExpr {
 		return true;
 	}
 
+	/**
+	 * @return the e
+	 */
+	public Expr getE() {
+		return e;
+	}
+
 
 }

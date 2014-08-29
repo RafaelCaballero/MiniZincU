@@ -66,7 +66,7 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		 PredOrUnionExpr pattern2 = this.applyTransformer2(t, pattern);
-		 ID idpattern2 = this.applyTransformer(t, idpattern);
+		 ID idpattern2 = this.applyTransformer2(t, idpattern);
 		 Expr expr2 = this.applyTransformer(t, expr);
 		 this.pattern = pattern2;
 		 this.idpattern = idpattern2;

@@ -60,6 +60,7 @@ public class InfixExpr extends Expr {
 		this.op = new InfixOp(string);
 	}
 
+
 	/* (non-Javadoc)
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
@@ -143,6 +144,20 @@ public class InfixExpr extends Expr {
 	public void subexpressions(ExprTransformer t) {
 		List<Expr> e2 = this.applyTransformerList(t, e);
 		e = e2;
+	}
+
+	/**
+	 * @return the e
+	 */
+	public List<Expr> getE() {
+		return e;
+	}
+
+	/**
+	 * @return the op
+	 */
+	public InfixOp getOp() {
+		return op;
 	}
 
 }

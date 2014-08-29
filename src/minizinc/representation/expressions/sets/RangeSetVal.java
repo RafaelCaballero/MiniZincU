@@ -140,9 +140,9 @@ public class RangeSetVal extends SetVal {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ArithExpr from2 = this.applyTransformer(t, from);
-		ArithExpr to2 = this.applyTransformer(t, to);
-		ID setID2 = this.applyTransformer(t, setID);
+		ArithExpr from2 = this.applyTransformer2(t, from);
+		ArithExpr to2 = this.applyTransformer2(t, to);
+		ID setID2 = this.applyTransformer2(t, setID);
 		to=to2;
 		from=from2;		
 		setID=setID2;

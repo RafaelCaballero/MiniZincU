@@ -1,8 +1,6 @@
 package minizinc.representation.solve;
 
-import java.util.Arrays;
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.RestSContext;
 import minizinc.representation.expressions.Expr;
 
@@ -29,10 +27,6 @@ public  class Selection extends ModeAnnotation {
 	public String print() {
 		return name+'(' + expr.print() + "," + vc + "," + cc +
 				     "," + " complete" + ")"; 
-	}
-	@Override
-	public List<Expr> subexpressions() {
-		return Arrays.asList(expr);
 	}
 
 	public static Selection selection(String name, RestSContext ctx) {
@@ -96,6 +90,12 @@ public  class Selection extends ModeAnnotation {
 		} else if (!vc.equals(other.vc))
 			return false;
 		return true;
+	}
+
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		Expr expr2 = this.applyTransformer(t, expr);
+		expr = expr2;
 	}
 	
 	

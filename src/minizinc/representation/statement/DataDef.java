@@ -161,7 +161,7 @@ public class DataDef extends Statement {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ID dataName2 = this.applyTransformer(t, dataName);
+		ID dataName2 = this.applyTransformer2(t, dataName);
 		dataName = dataName2;
 		
 	}

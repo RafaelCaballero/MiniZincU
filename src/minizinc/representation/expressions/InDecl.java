@@ -149,9 +149,9 @@ public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		List<ID> guard2 = this.applyTransformerList(t, guard);
-		SetExpr setExpr2 = this.applyTransformer(t, setExpr);
-		BoolExpr where2 = this.applyTransformer(t, where);
+		List<ID> guard2 = this.applyTransformerList2(t, guard);
+		SetExpr setExpr2 = this.applyTransformer2(t, setExpr);
+		BoolExpr where2 = this.applyTransformer2(t, where);
 		
 		guard = guard2;
 		setExpr = setExpr2;

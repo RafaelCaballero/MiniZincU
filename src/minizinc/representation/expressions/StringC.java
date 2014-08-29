@@ -3,8 +3,7 @@
  */
 package minizinc.representation.expressions;
 
-import java.util.List;
-
+import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.StringExprContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
@@ -34,13 +33,7 @@ public class StringC extends Expr {
 		return value;
 	}
 
-	/* (non-Javadoc)
-	 * @see minizinc.representation.SubExpressions#subexpressions()
-	 */
-	@Override
-	public List<Expr> subexpressions() {
-		return null;
-	}
+
 	@Override
 	public TypeName type() {
 		// TODO Auto-generated method stub
@@ -92,6 +85,11 @@ public class StringC extends Expr {
 		} else if (!value.equals(other.value))
 			return false;
 		return true;
+	}
+	@Override
+	public void subexpressions(ExprTransformer t) {
+		// nothing to do
+		
 	}
 
 	
