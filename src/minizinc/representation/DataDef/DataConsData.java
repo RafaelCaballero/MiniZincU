@@ -3,7 +3,6 @@
  */
 package minizinc.representation.DataDef;
 
-import minizinc.representation.MiniZincRepresentation;
 import minizinc.representation.statement.DataDef;
 
 /**

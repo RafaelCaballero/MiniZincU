@@ -18,7 +18,7 @@ import minizinc.representation.types.TypeUnion;
  * @author rafa
  *
  */
-public class TransVarModel extends SplitModel implements Cloneable{
+public class TransVarModel extends SplitModel {
 	protected List<TransVar> l;
 	
 	 /**
@@ -57,13 +57,15 @@ public class TransVarModel extends SplitModel implements Cloneable{
 				 } else
 				 {
 					 decl.remove(i);
-					 for (VarDecl nv:tv.getVar()) 
-						 decl.add(nv);
-					 // now the constraints
-					 constraint.add(tv.getCtr());
-					 // the initialization constraint is optional, check if exists
-					 if (tv.getInit()!=null)
-						 constraint.add(tv.getCtr());
+					 decl.addAll(tv.getVar());
+					 decl.addAll(tv.getVarb());
+					 constraint.addAll(tv.getCtr());
+					 // the boolean variable that represents all the constraints 
+					 // is the last constraint that remains to be added
+					 if (tv.getVarb()!=null && tv.getVarb().size()>0){
+						 Constraint c = new Constraint(tv.getVarb().get(0).getID());
+						 constraint.add(c);
+					 }
 						 
 					 l.add(tv);
 				 }
@@ -73,17 +75,6 @@ public class TransVarModel extends SplitModel implements Cloneable{
 		 }
 	 }
 
-	 public TransVarModel clone() {
-		 TransVarModel r = null;
-		 SplitModel sp = super.clone();
-		 List<TransVar> lp=null;
-		 if (l!=null) {
-			 lp = new ArrayList<TransVar>();
-			 for (TransVar x:l)
-				 lp.add(x.clone());
-		 }
-		 r = new TransVarModel(sp,lp);
-		 return r;
-	 }
+
 
 }
