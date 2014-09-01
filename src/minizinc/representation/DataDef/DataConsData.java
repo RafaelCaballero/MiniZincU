@@ -45,5 +45,10 @@ public class DataConsData{
 			
 		return r;
 	}
+	
+	@Override
+	public String toString() {
+		return "Datadef: "+def+" . Cons: " + cons + ". Pos: "+position; 
+	}
 
 }

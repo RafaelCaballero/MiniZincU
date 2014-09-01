@@ -453,14 +453,13 @@ public class SplitModel extends Model {
 	@Override
 	public DataConsData getDataByConsName(String consname) {
 		DataConsData r = null;
-		if (data!=null)
-		for (DataDef d:data) {
-			int i=1;
-			for (DataCons dc:d.getCons()) 
-				if (dc.getID().print().equals(consname)) {
-					r = new DataConsData(d,dc,i);
-				}
-				else i++;				   			
+		if (data!=null) {
+			int n = data.size();
+			DataDef d = null;
+		    for(int i=0; i<n && r==null; i++) {
+		    	d = data.get(i);
+		    	r = d.getDataByConsName(consname);
+		    }
 		}
 		return r;
 	}

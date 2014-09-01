@@ -6,6 +6,7 @@ package transformation;
 import java.util.List;
 
 import minizinc.representation.DataDef.DataConsData;
+import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.BoolExpr;
 import minizinc.representation.expressions.BoolVal;
 import minizinc.representation.expressions.Expr;
@@ -90,7 +91,7 @@ public class DataExprTransformer  implements ExprTransformer{
 		return r;
 	}
 
-	private Expr transformEqual(String op, Expr e1, Expr e2) {
+	public Expr transformEqual(String op, Expr e1, Expr e2) {
 		Expr r = null;
 		
 		VarDecl v1=null;
@@ -112,46 +113,135 @@ public class DataExprTransformer  implements ExprTransformer{
 				v2 = isUnionVar((ID)e2);
 
 		// next for 0-arity preds
-		if (e1 instanceof ID) 
+		if (e1 instanceof ID && isUnionVar((ID)e1)==null) 
 			if (v1==null)
 				   d1 = isConstructedTerm((ID)e1);
 			else if (v2==null) 
 				   d2 = isConstructedTerm((ID)e1);	
 		
-		if (e2 instanceof ID)
+		if (e2 instanceof ID && isUnionVar((ID)e2)==null)
 			if (v2==null) 
 				d2 = isConstructedTerm((ID)e2);
 
 		// finally, constructed terms
 		if (e1 instanceof PredOrUnionExpr)
 			if (v1==null && d1==null){
-			   d1 = isConstructedTerm((PredOrUnionExpr)e1);
+			   //d1 = isConstructedTerm((PredOrUnionExpr)e1);
 			   ped1 = (PredOrUnionExpr)e1;
 			}
 			else {
-				   d2 = isConstructedTerm((PredOrUnionExpr)e1);
+				 //  d2 = isConstructedTerm((PredOrUnionExpr)e1);
 				   ped2 = (PredOrUnionExpr)e1;
 			}			
 		if (e2 instanceof PredOrUnionExpr) { 
-			d2 = isConstructedTerm((PredOrUnionExpr)e2);
+			//d2 = isConstructedTerm((PredOrUnionExpr)e2);
 			    ped2 = (PredOrUnionExpr)e2;
 		}
 		
-		// call the appropriate method 
-		if (v1!=null)
-			if (v2!=null){
-				DataEqualTransformer d = new DataEqualTransformer(m);
-				r = d.equalVars(v1, v2);
-			}
 				
-				
-		if (r!=null && op.equals("!=")){
+		r =  callEqTransformer(v1,v2,d1,d2,ped1,ped2);		
+		if (r!=null && op.equals("!="))
 			r = new NotBoolExpr(r);
 				
-			}
+			
 		
 		return r;
 	}
+
+	/**
+	 * This version already has a variable declaration as parameter
+	 * @param op
+	 * @param e1
+	 * @param e2
+	 * @return
+	 */
+	public Expr transformEqual(String op, VarDecl e1, Expr e2) {
+		Expr r = null;
+		
+		VarDecl v1=e1;
+		VarDecl v2=null;
+		PredOrUnionExpr ped1=null;
+		PredOrUnionExpr ped2=null;
+
+		DataConsData d1=null;
+		DataConsData d2=null;
+		
+		if (!(v1.getDeclType() instanceof TypeUnion))
+			// it must be an standard type; just generate the equality/disequality
+			r = new InfixExpr(op,e1.getID(),e2);
+		else {	
+			// first look for variables
+			if (e2 instanceof ID) 
+				v2 = isUnionVar((ID)e2);
+
+			if (e2 instanceof ID && isUnionVar((ID)e2)==null)
+				if (v2==null) 
+					d2 = isConstructedTerm((ID)e2);
+
+			if (e2 instanceof PredOrUnionExpr)  
+				//d2 = isConstructedTerm((PredOrUnionExpr)e2);
+			    ped2 = (PredOrUnionExpr)e2;
+		
+		
+				
+			r =  callEqTransformer(v1,v2,d1,d2,ped1,ped2);
+			if (r!=null && op.equals("!="))
+				r = new NotBoolExpr(r);
+
+		}
+									
+		return r;
+	}
+
+	/**
+	 * Calls to the appropriate transformer.
+	 * Rules:
+	 * <ol> 
+	 * <li>Of the six values only are different from null.
+	 * <li>if v1!=null then either v2, d2 or ped2 is different from null.
+	 * 
+	 *  </ol>
+	 * @param ped2  S
+	 * @param ped1 First constructed term
+	 * @param d2 Second constant
+	 * @param d1 First constant
+	 * @param v2  Second variable
+	 * @param v1 First variable 
+	 */
+	private Expr callEqTransformer(VarDecl v1, VarDecl v2, 
+			                       DataConsData d1, DataConsData d2, PredOrUnionExpr ped1, PredOrUnionExpr ped2) {
+		Expr r = null;
+		DataEqualTransformer d = new DataEqualTransformer(m);
+		// First case: the first one is a variable 
+		if (v1!=null){
+			// the second one is also a variable
+			if (v2!=null){
+				r = d.trEqual(this,v1, v2);
+			} else
+				// the second one is a constant
+				if (d2 != null)
+					r = d.trEqual(this,v1, d2);
+				else // this is the only possibility
+					if (ped2 != null)
+						r = d.trEqual(this,v1, ped2);
+		} else { // no variable around 
+			if (d1!=null) {
+				if (d2!=null)
+					r = d.trEqual(this,d1, d2);
+				else 
+					// constant and constructed term...it doesn't work
+					if (ped2!=null)
+						r = new BoolC(false);
+			} else // the only possibility
+				r = d.trEqual(this,ped1, ped2);
+		}
+			
+			
+		if (r==null)
+			r = new BoolC(false);
+		return r;
+	}
+	
 	/**
 	 * The parameter is a constructed dataterm?
 	 * @param e PredOrUnionExpr to check 
@@ -189,6 +279,10 @@ public class DataExprTransformer  implements ExprTransformer{
 		return s!=null && (s.equals("=") || s.equals("==") || s.equals("!=")); 
 	}
 	
+	/**
+	 * @param id
+	 * @return The variable declaration is it is of type union, null otherwise 
+	 */
 	private VarDecl isUnionVar(ID id) {
 		VarDecl r=null;
 		VarDecl v = m.getVarByName(id);

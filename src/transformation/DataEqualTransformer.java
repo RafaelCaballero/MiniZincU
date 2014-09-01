@@ -10,8 +10,12 @@ import java.util.Map;
 
 import minizinc.representation.Parsing;
 import minizinc.representation.DataDef.DataCons;
+import minizinc.representation.DataDef.DataConsData;
+import minizinc.representation.expressions.And;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.InfixExpr;
+import minizinc.representation.expressions.IntC;
+import minizinc.representation.expressions.PredOrUnionExpr;
 import minizinc.representation.model.SplitModel;
 import minizinc.representation.statement.DataDef;
 import minizinc.representation.statement.decls.VarDecl;
@@ -35,7 +39,14 @@ public class DataEqualTransformer {
 		this.m = m;
 	}
 	
-	public Expr equalVars(VarDecl v1, VarDecl v2) {
+	/**
+	 * v1 = v2.
+	 * @param dataExprTransformer 
+	 * @param v1
+	 * @param v2
+	 * @return The translation of this expression.
+	 */
+	public Expr trEqual(DataExprTransformer dataExprTransformer, VarDecl v1, VarDecl v2) {
 		Expr r=null;
 		TypeUnion t1 = null;
 		TypeUnion t2 = null;
@@ -167,4 +178,97 @@ public class DataEqualTransformer {
 			}
 		}
 	} // end method
+
+	/** 
+	* v = c, with v a data variable, c a constructor.
+	 * @param dataExprTransformer 
+	* @return Transformation of this equality, null if the data are not compatible.
+	*/
+	public Expr trEqual(DataExprTransformer dataExprTransformer, VarDecl v1, DataConsData d2) {
+		Expr r=null;
+		TypeUnion t1 = null;
+		
+		String s2 = d2.getDef().getDataName();
+		if (v1.getDeclType() instanceof TypeUnion) 
+			t1 = (TypeUnion) v1.getDeclType();
+		
+		// the same type
+		if (t1!=null && s2!=null && t1.getId().print().equals(s2)) {
+			r = varEqualCons(v1,d2);
+		}
+
+         
+		return r;
+	}
+
+	private Expr varEqualCons(VarDecl v1, DataConsData d2) {
+		return new InfixExpr("=", v1.getID(), new IntC(d2.getPosition()) );
+	}
+	/** 
+	* v = c(t1....tn), with v a data variable, c a constructor.
+	* @return Transformation of this equality, null if the data are not compatible.
+	*/
+	public Expr trEqual(DataExprTransformer tr, VarDecl v1, PredOrUnionExpr ped2) {
+		Expr r=null;
+		TypeUnion t1 = null;
+		if (v1.getDeclType() instanceof TypeUnion) { 
+			t1 = (TypeUnion) v1.getDeclType();
+			List<VarDecl> lv1 = getVars(v1);
+			DataDef d = m.getDataByName(t1.getId().print());
+			if (d!=null) {
+				// constructor data
+			   DataConsData da = d.getDataByConsName(ped2.getId().print());
+			   if (da!=null) {
+				   Expr r1 = varEqualCons(v1,da);
+				   List<Expr> andList = new ArrayList<Expr>();
+				   if (r1!=null)
+				      andList.add(r1);
+				   // now get all the variables that are first level descendants
+				   // of v1 when it takes the value of the constructor in da
+				   String prefix = v1.getID().print()+"_"+da.getPosition()+"_";
+				   boolean letsgo = true; // becomes false is some argument cannot be transformed
+				   for (VarDecl aux:lv1) {
+					   String s = aux.getID().print(); 
+					   if (s.startsWith(prefix) && !s.substring(prefix.length()).contains("_")) {
+						   // a first level child found
+						   String order = s.substring(prefix.length());
+						   int norder = Integer.parseInt(order);
+						   // the variable indexes start at 1, but Java lists at 0!
+						   Expr enorder= ped2.getArgs().get(norder-1);
+						   Expr rnorder = tr.transformEqual("=", aux, enorder);
+						   if (rnorder != null)
+						      andList.add(rnorder);
+						   else 
+							   letsgo = false;
+					   }
+					   
+				   }
+				   
+				   // every ok? then create the result.
+				   if (letsgo && andList!=null) 
+					   if (andList.size()==1)
+						   r = andList.get(0);
+					   else 
+						   r = new And(andList);
+			   }
+			}
+		}	
+		return r;
+	}
+
+	public Expr trEqual(DataExprTransformer dataExprTransformer,DataConsData d1, DataConsData d2) {
+		Expr r=null;
+		String s1 = d1.getDef().getDataName();
+		String s2 = d2.getDef().getDataName();
+		if (s1.equals(s2)) 
+			r = new InfixExpr("=",new IntC(d1.getPosition()), new IntC(d2.getPosition()));
+		
+		return r;
+	}
+
+	public Expr trEqual(DataExprTransformer tr, PredOrUnionExpr ped1,
+			PredOrUnionExpr ped2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

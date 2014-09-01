@@ -7,6 +7,7 @@ import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.DataContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.DataDef.DataCons;
+import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.ID;
 import minizinc.representation.types.Type;
 
@@ -43,6 +44,18 @@ public class DataDef extends Statement {
 			if (cp.getCons().equals(name))
 				c = cp;
 		return c;
+	}
+
+	public DataConsData getDataByConsName(String consname) {
+		DataConsData r = null;
+			int i=1;
+			for (DataCons dc:this.getCons()) 
+				if (dc.getID().print().equals(consname)) {
+					r = new DataConsData(this,dc,i);
+				}
+				else i++;				   			
+		
+		return r;
 	}
 
 	/** 
