@@ -55,6 +55,14 @@ public class Predicate extends Statement {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @return Predicate name as a qualified name
+	 */
+	public QualName getQualName() {
+		return new QualName(id);
+	}
+
 	public static Predicate predicate(PredicateContext ctx) {
 		Predicate r = null;
 		List<Decl> decls = new ArrayList<Decl>();

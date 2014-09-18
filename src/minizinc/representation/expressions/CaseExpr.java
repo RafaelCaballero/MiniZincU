@@ -126,4 +126,18 @@ public class CaseExpr extends Expr {
 		return true;
 	}
 
+	/**
+	 * @return the id
+	 */
+	public ID getId() {
+		return id;
+	}
+
+	/**
+	 * @return the branches
+	 */
+	public List<Branch> getBranches() {
+		return branches;
+	}
+
 }

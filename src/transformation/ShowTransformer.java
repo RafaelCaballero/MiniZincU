@@ -50,7 +50,10 @@ public class ShowTransformer implements ExprTransformer {
 						ID id = (ID) la.get(0);
 						// get the variable declaration and check if it is a data
 						VarDecl v = m.getVarByName(id);
-						r = transShow(v);		
+						if (v != null)
+						   r = transShow(v);
+						else 
+							Parsing.error("Unexpected variable name: "+id+ " ("+e+")");
 					}
 				}
 			}
@@ -80,7 +83,10 @@ public class ShowTransformer implements ExprTransformer {
 				r = sVar(v,d,level);
 			}
 		} else
-			r = new PredOrUnionExpr("show",Arrays.asList(v.getID()));
+	//		if (v!=null)
+			    r = new PredOrUnionExpr("show",Arrays.asList(v.getID()));
+//			else 
+//				Parsing.error("non-declared variable ");
 		return r;
 	}
 

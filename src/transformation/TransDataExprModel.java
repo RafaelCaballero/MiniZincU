@@ -42,9 +42,5 @@ public class TransDataExprModel extends SplitModel {
 		
 		
 	}
-	
-
-	
-
 
 }

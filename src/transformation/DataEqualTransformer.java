@@ -12,6 +12,7 @@ import minizinc.representation.Parsing;
 import minizinc.representation.DataDef.DataCons;
 import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.And;
+import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.InfixExpr;
 import minizinc.representation.expressions.IntC;
@@ -55,30 +56,35 @@ public class DataEqualTransformer {
 		if (v2.getDeclType() instanceof TypeUnion) 
 			t2 = (TypeUnion) v2.getDeclType();
 
-		if (t1!=null && t2!=null && t1.getId().equals(t2.getId())) {	
-			List<VarDecl> lv1 = getVars(v1);
-			List<VarDecl> lv2 = getVars(v2);
+		if (t1!=null && t2!=null && t1.getId().equals(t2.getId())) {
+			// ensure that both declaration use the minimum of the two levels
+			// useful for increasing efficiency
+			int minlevel = Math.min(v1.getLevel(), v2.getLevel());
+			TypeUnion tb = new TypeUnion(t1.getId(), minlevel);
+			VarDecl v1b = new VarDecl(tb, v1.getID());
+			VarDecl v2b = new VarDecl(tb, v2.getID());
+			
+			// obtain the  list of auxiliary variables
+			List<VarDecl> lv1 = getVars(v1b);
+			List<VarDecl> lv2 = getVars(v2b);
 			HashMap<String, VarDecl> hm1=getHash(lv1);
 			HashMap<String, VarDecl> hm2=getHash(lv2);
 		
 			List<Expr> eqs = new ArrayList<Expr>();
-			HashMap<String, VarDecl> map;
-		
-
 
 			for (Map.Entry<String, VarDecl> entry : hm1.entrySet()) {
 				String s = entry.getKey();
 				VarDecl vd1 = entry.getValue();
 				VarDecl vd2 = hm2.get(s);
 				if (vd2 != null) {
-					InfixExpr i = new InfixExpr("==", vd1.getID(), vd2.getID() );
+					InfixExpr i = new InfixExpr("=", vd1.getID(), vd2.getID() );
 					eqs.add(i);
 				}
 			}
 		
 			if (!(eqs==null || eqs.size()==0))
 				// finally, the conjunction of all the equalities is the solution
-				r = new InfixExpr("/\\",eqs);
+				r = new And(eqs);
 		}
 		return r;
 	}
@@ -266,9 +272,56 @@ public class DataEqualTransformer {
 		return r;
 	}
 
+	/**
+	 * An equality c(t1...tn)=c'(t1'...tn')
+	 * @param tr The transformer, used for recursive calls.
+	 * @param ped1 First term.
+	 * @param ped2 Second term.
+	 * @return The transformation into MiniZinc
+	 */
 	public Expr trEqual(DataExprTransformer tr, PredOrUnionExpr ped1,
 			PredOrUnionExpr ped2) {
-		// TODO Auto-generated method stub
-		return null;
+		Expr r = null;
+		if (ped1!=null && ped2!=null) {
+			// constructor data
+			   DataConsData da1 = m.getDataByConsName(ped1.getId().print());
+			   DataConsData da2 = m.getDataByConsName(ped2.getId().print());
+			   if (da1!=null && da2!=null &&
+				   da1.getDef().getDataName().equals(
+				   da2.getDef().getDataName()) && 
+				   da1.getCons().getID().print().equals(
+				   da2.getCons().getID().print())  &&
+				   da1.getPosition() == da2.getPosition())	                         
+				{
+				   // what a wonderful world, they are rooted by the same constr.
+				   DataCons dcons = da1.getCons();
+				   if (dcons.getSubtypes()==null)
+					   r = new BoolC(true);
+				   else if (ped1.getArgs()!=null && ped2.getArgs()!=null){
+					   // ensure that all the arguments are equal
+					   List<Expr> le = new ArrayList<Expr>();
+					   boolean isok=true; // at the moment
+					   int n = dcons.getSubtypes().size();
+					   for (int i=0; isok && i<n; i++){
+						   Expr e1 = ped1.getArgs().get(i);
+						   Expr e2 = ped2.getArgs().get(i);
+						   if (e1!=null && e2!=null) {
+							   Expr ri = tr.transformRecEqual("=", e1, e2);
+							   if (ri!=null)
+								   le.add(ri);
+							   else 
+								   isok = false;
+						   }
+						   else 
+							   isok = false;
+					   } // for
+					   if (isok)
+						   r = new And(le);
+				   }
+				   
+				}
+
+		}
+		return r;
 	}
 }

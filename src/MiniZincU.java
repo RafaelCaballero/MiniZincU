@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.*;
 
 import transformation.TransDataExprModel;
 import transformation.TransDataModel;
+import transformation.TransRecursiveModel;
 import transformation.TransShowModel;
 import transformation.TransVarModel;
 
@@ -27,9 +28,17 @@ public class MiniZincU {
 	public static void main(String[] args) throws Exception {
 		SplitModel pu = loadFile(args);
 		//System.out.println(pu);
+		
+		System.out.println(transformUnion(pu));
 
+	}
+	
+	private static TransDataModel transformUnion(SplitModel p) {
+		// recursive calls deserves an special initial treatment
+		TransRecursiveModel trec = new TransRecursiveModel(p);
+		
 		// eliminate expressions including data 
-		TransDataExprModel tdexp = new TransDataExprModel(pu); 
+		TransDataExprModel tdexp = new TransDataExprModel(trec); 
 
 		
 		TransShowModel ts = new TransShowModel(tdexp); 
@@ -41,40 +50,8 @@ public class MiniZincU {
 
 		// eliminate the data section
 		TransDataModel td = new TransDataModel(tv);
+		return td;
 		
-		System.out.println(td.print());
-		
-		
-
-		/**
-		Model o1 = null;
-		if (pu.containsExtensions()) {
-			ExtTrans et  = new ExtTrans(pu);
-			et.transform();
-			o1 = et.getOutput();
-		}
-		else o1 = pu;
-		**/
-		
-
-		/*
-		while (pu.containsExtensions()) {
-			ExtTrans et  = new ExtTrans(pu);
-			et.transform();
-		}
-		*/
-		// TransformedProgram tp = new TransformedProgram(pu);
-		// System.out.println(tp);
-
-		// ExampleStack p = new ExampleStack();
-		// ExampleTree p = new ExampleTree();
-		// TransformedProgram tp = new TransformedProgram(p);
-		// tp.showVars();
-
-		// System.out.println(tp);
-		// System.out.println("Number of vars: "+tp.getVar().size());
-		// System.out.println(pu);
-
 	}
 
 	private static SplitModel loadFile(String[] args) throws Exception {

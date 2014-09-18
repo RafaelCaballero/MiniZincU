@@ -9,6 +9,7 @@ import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.BoolExpr;
 import minizinc.representation.expressions.BoolVal;
+import minizinc.representation.expressions.CaseExpr;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.InfixArithExpr;
@@ -38,6 +39,7 @@ public class DataExprTransformer  implements ExprTransformer{
 	public Expr transform(Expr e) {
 		Expr r = null;
 		
+		// possibilities for finding equality of !=
 		boolean isInfixBoolExpr = e instanceof InfixBoolExpr;
 		boolean isInfixExpr = e instanceof InfixExpr;  
 		boolean isInfixArithExpr = e instanceof InfixArithExpr;
@@ -48,6 +50,11 @@ public class DataExprTransformer  implements ExprTransformer{
 		else if (isInfixArithExpr)
 			r = infixArithExpr((InfixArithExpr) e);
 		
+		// detecting case statements
+		if (e instanceof CaseExpr) {
+			r = caseExpr((CaseExpr) e);
+		}
+		
 		/*
 		VarDecl v = null;
 		DataEqualTransformer de = new DataEqualTransformer(m);
@@ -56,6 +63,19 @@ public class DataExprTransformer  implements ExprTransformer{
 		    System.out.println(x.print(10));
 		System.out.println("******");
         */
+		return r;
+	}
+
+
+	/**
+	 * Transforms a case expression
+	 * @param e The case expression
+	 * @return Its transformation
+	 */
+	private Expr caseExpr(CaseExpr e) {
+		Expr r=null;
+		CaseTransformer d = new CaseTransformer(m,e);
+		r = d.transform();
 		return r;
 	}
 
@@ -89,6 +109,32 @@ public class DataExprTransformer  implements ExprTransformer{
 		}
 		
 		return r;
+	}
+
+	/**
+	 * In a recursive call the parameters can be also standard types
+	 */
+	public Expr transformRecEqual(String op,Expr e1, Expr e2) {
+		Expr r = null;
+		boolean b1 =false; // true if e1 is a union var, or a union constructed term
+		boolean b2 =false; // true if e1 is a union var, or a union constructed term
+		
+		if (e1 instanceof ID) 
+			b1 = (isUnionVar((ID)e1) != null) || (isConstructedTerm((ID)e1)!=null);
+		if (e2 instanceof ID) 
+			b2 = (isUnionVar((ID)e2) != null) || (isConstructedTerm((ID)e2)!=null);
+		
+		if (e1 instanceof PredOrUnionExpr)
+            b1 = true;
+		if (e2 instanceof PredOrUnionExpr)
+            b2 = true;
+		
+		if (b1 || b2)
+			r = transformEqual(op,  e1,  e2);
+		else 
+			r = new InfixExpr("=",e1,e2);
+		return r;
+		
 	}
 
 	public Expr transformEqual(String op, Expr e1, Expr e2) {

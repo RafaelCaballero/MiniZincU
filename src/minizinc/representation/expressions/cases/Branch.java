@@ -94,7 +94,7 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 			PredOrUnionExpr p = PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr());
 			Expr expr = Expr.expr(ctx.expr());
 			r = new Branch(p,expr);
-		} if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.expr()) ) { 
+		} else if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.expr()) ) { 
 			ID id =  ID.IDTerm(ctx.ID());
 			Expr expr = Expr.expr(ctx.expr());
 			r = new Branch(id,expr);
@@ -148,6 +148,12 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 		} else if (!pattern.equals(other.pattern))
 			return false;
 		return true;
+	}
+	/**
+	 * @return the idpattern
+	 */
+	public ID getIdpattern() {
+		return idpattern;
 	}
 
 }
