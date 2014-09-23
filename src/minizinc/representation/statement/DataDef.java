@@ -46,6 +46,12 @@ public class DataDef extends Statement {
 		return c;
 	}
 
+	
+	/**
+	 * Get the data associated to the constructor.
+	 * @param consname Name of the constructor
+	 * @return A {@link DataConsData} value, or null if consname is not a constructor of this type.
+	 */
 	public DataConsData getDataByConsName(String consname) {
 		DataConsData r = null;
 			int i=1;

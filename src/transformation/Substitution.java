@@ -39,12 +39,31 @@ public class Substitution implements ExprTransformer  {
 			decl = decls.get(i);
 			expr = largs.get(i);
 			name = decl.getID().print();
-			binding.put(name, expr);
+			put(name,expr);
+			
 		}		
 		
 	}
 
-
+	
+	/**
+	 * Constructor representing the identity substitution 
+	 */
+	public Substitution() {
+		this.binding = null;
+	}
+	
+	
+	/**
+	 * A new binding (name, expr).
+	 * @param name String with the variable name.
+	 * @param expr Value
+	 */
+	public void put(String name, Expr expr) {
+		if (binding ==null) 
+			binding = new HashMap<String, Expr>();
+		binding.put(name, expr);
+	}
 
 
 	/* (non-Javadoc)

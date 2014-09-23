@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import minizinc.representation.Parsing;
+import minizinc.representation.expressions.CaseExpr;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.PredOrUnionExpr;
 import minizinc.representation.model.SplitModel;
+import minizinc.representation.statement.Decl;
+import minizinc.representation.statement.Function;
 import minizinc.representation.statement.Predicate;
 
 /**
@@ -67,18 +70,38 @@ public class  RecTransformer implements ExprTransformer {
 			}
 			
 			if (li!=null) {
-				// get the predicate definition
-				Predicate p = m.getPredicate().get(li.get(0));
-				// we work with a copy of the body...yes, I am afraid I am using clone
-				r = p.getBody().clone();
+
+				List<Decl> ldecl;
+				if (isRecPred) {
+					// get the predicate definition
+					Predicate p = m.getPredicate().get(li.get(0));
+					// we work with a copy of the body...yes, I am afraid I am using clone
+					r = p.getBody().clone();
+					ldecl = p.getDecls();
+				} else  {
+					// get the predicate definition
+					Function f = m.getFunction().get(li.get(0));
+					// we work with a copy of the body...yes, I am afraid I am using clone
+					r = f.getBody().clone();
+					ldecl = f.getDecls();
+				}
+				int nargs = ldecl.size();
+					
 				List<Expr> largs = apply.getArgs();
-				if (largs.size() != p.getDecls().size())
+				if (largs.size() != nargs)
 					Parsing.error(" number of arguments in call does not match predicate definition ("+input.print()+")");
 				else {					
 					// create the substitution
-					Substitution s = new Substitution(p.getDecls(),largs);
+					Substitution s = new Substitution(ldecl,largs);
 					// apply the substitution
 					r.subexpressions(s);
+
+					// if r is a CaseExpr now we need to replace the local variable to avoid infinity recursive calls 
+					if (r instanceof CaseExpr) {
+						CaseTransformer ct = new CaseTransformer(m, (CaseExpr) r);
+						r = ct.transform();
+					}
+					
 					// now eliminate the calls in the predicate definition
 					r.subexpressions(this);
 				}

@@ -6,6 +6,8 @@ package minizinc.representation.DataDef;
 import minizinc.representation.statement.DataDef;
 
 /**
+ * Data for a constructor in a an union type. It includes the data definition, the data of the constructor and the position
+ * of the constructor in the user union definition (in textual order) 
  * @author rafa
  *
  */
@@ -14,7 +16,8 @@ public class DataConsData{
 	protected DataCons cons;
 	protected int position;
 	/**
-	 * 
+	 * Constructs a DataConsData value from the data definition, the data defining the constructor and 
+	 * the position of the constructor in the user definition.
 	 */
 	public DataConsData(DataDef def, DataCons cons, int position ) {
 		this.def = def;

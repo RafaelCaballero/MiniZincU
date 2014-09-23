@@ -72,10 +72,10 @@ public class TransRecursiveModel extends SplitModel {
 				f = function.get(i);
 				checkrecursivity(recfunc, unionfunc, f, null,f.getName(),i, f.getDecls());
 					}
-		
-		// now unfold the calls to this predicates/functions.
-		
 
+		// TODO: find  the transitive closure of the functions/predicates calling any function in unionpred or unionfunc
+		
+		// now unfold the calls to this predicates/functions.		
 		RecTransformer det = new RecTransformer(this,recpred,unionpred,recfunc,unionfunc);
 		applyTransformer(det,constraint);
 		applyTransformer(det,decl);

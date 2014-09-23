@@ -9,7 +9,7 @@ public class And extends InfixExpr {
 		super("/\\", e1,e2);
 	}
 
-	public And(List<Expr> e) {
+	public And(List<? extends Expr> e) {
 		super("/\\", e);
 	}
 

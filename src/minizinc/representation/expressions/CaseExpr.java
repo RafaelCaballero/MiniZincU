@@ -23,13 +23,13 @@ import minizinc.representation.expressions.cases.Branch;
  *
  */
 public class CaseExpr extends Expr {
-	protected ID id;
+	protected Expr id;
 	protected List<Branch> branches;
 	/**
 	 * 
 	 */
-	public CaseExpr(ID id, List<Branch> branches) {
-		this.id = id;
+	public CaseExpr(Expr idp, List<Branch> branches) {
+		this.id = idp;
 		this.branches = branches;
 	}
 
@@ -47,7 +47,7 @@ public class CaseExpr extends Expr {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		List<Branch> branches2 = applyTransformerList2(t,branches);
-		ID id2 = applyTransformer2(t,id);
+		Expr id2 =  applyTransformer(t, id);
 		this.branches = branches2;
 		this.id = id2;
 	}
@@ -83,7 +83,7 @@ public class CaseExpr extends Expr {
 	@Override
 	public CaseExpr clone() {
 		CaseExpr r = null;
-		ID idp = id==null ? null : id.clone();
+		Expr idp = id==null ? null : id.clone();
 		List<Branch> branchesp = null;
 		if (branches!=null) {
 			branchesp = new ArrayList<Branch>();
@@ -129,7 +129,7 @@ public class CaseExpr extends Expr {
 	/**
 	 * @return the id
 	 */
-	public ID getId() {
+	public Expr getId() {
 		return id;
 	}
 

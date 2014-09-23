@@ -19,7 +19,7 @@ import minizinc.representation.expressions.PredOrUnionExpr;
  * A case expression branch. With grammar
  * caseBranch : predOrUnionExpr '-->' expr;  
  * @author rafa
- *
+ * @see CaseExpr
  */
 public class Branch implements SubExpressions, MiniZincRepresentation, Typeable, Cloneable {
 	protected PredOrUnionExpr pattern;

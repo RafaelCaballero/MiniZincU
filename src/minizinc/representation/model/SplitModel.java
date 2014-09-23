@@ -9,7 +9,6 @@ import java.util.List;
 import minizinc.antlr4.MiniZincGrammarParser.ModelContext;
 import minizinc.antlr4.MiniZincGrammarParser.StatContext;
 import minizinc.representation.Parsing;
-import minizinc.representation.DataDef.DataCons;
 import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;

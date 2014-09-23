@@ -44,7 +44,7 @@ public class InfixExpr extends Expr {
 	/**
 	 * constructor for more than two operands 
 	 */
-	public InfixExpr(InfixOp op, List<Expr> le) {
+	public InfixExpr(InfixOp op, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
 		for (Expr expr:le) 
 			this.e.add(expr.simplify());
@@ -53,7 +53,7 @@ public class InfixExpr extends Expr {
 	/**
 	 * constructor for more than two operands 
 	 */
-	public InfixExpr(String string, List<Expr> le) {
+	public InfixExpr(String string, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
 		for (Expr expr:le) 
 			this.e.add(expr.simplify());
