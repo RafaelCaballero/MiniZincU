@@ -9,36 +9,40 @@ import minizinc.representation.TypeName;
 
 /**
  * Representation of a MiniZinc integer constant
+ * 
  * @author rafa
  *
  */
 public class IntC extends Expr {
 	protected int value;
+
 	/**
 	 * Constructs the representation of a MiniZinc String constant.
 	 */
 	public IntC(int value) {
 		this.value = value;
 	}
+
 	public int get() {
 		return value;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return value+"";
+		return value + "";
 	}
-
 
 	@Override
 	public TypeName type() {
 		// TODO Auto-generated method stub
 		return TypeName.INT;
 	}
-	
+
 	/**
 	 * @param ctx
 	 *            The grammar context
@@ -48,11 +52,13 @@ public class IntC extends Expr {
 		int d = Integer.parseInt(b.getText());
 		return new IntC(d);
 	}
+
 	@Override
 	public IntC clone() {
-		
+
 		return new IntC(value);
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,6 +66,7 @@ public class IntC extends Expr {
 		result = prime * result + value;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,12 +80,11 @@ public class IntC extends Expr {
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-
-	
 }

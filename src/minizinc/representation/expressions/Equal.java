@@ -11,6 +11,7 @@ public class Equal extends InfixExpr {
 
 	/**
 	 * Represents e1=e2
+	 * 
 	 * @param e1
 	 * @param e2
 	 */

@@ -15,14 +15,13 @@ import minizinc.representation.expressions.ID;
 /**
  * Represents a predicate definition. Grammar:<br>
  * predicate : 'predicate' ID'(' (decl(','decl)*)? ')' '=' expr;
+ * 
  * @author rafa
  *
  */
-public class Predicate extends Statement {
+public class Predicate extends Procedure {
 	protected ID id;
-	protected List<Decl> decls;
-	protected Expr expr;
-	
+
 	/**
 	 * @param type
 	 */
@@ -33,24 +32,17 @@ public class Predicate extends Statement {
 		this.expr = expr;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "predicate "+id.print()+"("+printList(decls)+")" + "=\n" + expr.print();
+		return "predicate " + id.print() + "(" + printList(decls) + ")" + "=\n"
+				+ expr.print();
 	}
 
-
-	
-	public List<Decl> getDecls() {
-		return decls;
-	}
-	
-	public Expr getBody() {
-		return expr;
-	}
-	
 	public ID getName() {
 		return id;
 	}
@@ -71,27 +63,27 @@ public class Predicate extends Statement {
 			ID id = ID.IDTerm(ctx.ID());
 			Expr expr = Expr.expr(ctx.expr());
 			// now the list of local declarations
-			ctx.decl().stream().allMatch(x->decls.add(Decl.decl(x)));
-			r = new Predicate(id,decls,expr);
+			ctx.decl().stream().allMatch(x -> decls.add(Decl.decl(x)));
+			r = new Predicate(id, decls, expr);
 		} else
-			Parsing.error("predicate : "+ctx.getText());
+			Parsing.error("predicate : " + ctx.getText());
 		return r;
 	}
 
 	@Override
 	public Predicate clone() {
 		Predicate r = null;
-		ID idp = id==null ? null : id.clone();
+		ID idp = id == null ? null : id.clone();
 		List<Decl> declsp = null;
-		Expr exprp = expr==null ? null : expr.clone();
-		if (decls!=null){
+		Expr exprp = expr == null ? null : expr.clone();
+		if (decls != null) {
 			declsp = new ArrayList<Decl>();
-			for (Decl d: decls) {
+			for (Decl d : decls) {
 				declsp.add(d.clone());
 			}
 		}
 		// TODO Auto-generated method stub
-		r = new Predicate(idp,declsp,exprp);	
+		r = new Predicate(idp, declsp, exprp);
 		return r;
 	}
 
@@ -135,13 +127,13 @@ public class Predicate extends Statement {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		ID id2 = this.applyTransformer2(t, id);
-		List<Decl> decls2 = this.applyTransformerList2(t,decls);
+		List<Decl> decls2 = this.applyTransformerList2(t, decls);
 		Expr expr2 = this.applyTransformer(t, expr);
-		
+
 		id = id2;
 		decls = decls2;
 		expr = expr2;
-				
+
 	}
 
 }

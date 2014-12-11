@@ -11,56 +11,61 @@ public abstract class ArrayAccess extends Expr {
 	 * At least a list with one or more expressions acting as indexes
 	 */
 	protected List<Expr> indexes;
-	
+
 	public ArrayAccess(List<Expr> indexes) {
 		this.indexes = indexes;
 	}
-	
+
 	public List<Expr> getIndexes() {
 		return indexes;
 	}
-	
+
 	@Override
 	public String print() {
 		return print(indexes);
 	}
 
-	
 	protected String print(List<Expr> indexes) {
 		String s1 = printList(indexes);
-		return "["+s1+"]";
+		return "[" + s1 + "]";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.expressions.Expr#subexpressions()
 	 */
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		List<Expr> l = applyTransformerList(t,indexes);
-		if (l!=null)
+		List<Expr> l = applyTransformerList(t, indexes);
+		if (l != null)
 			indexes = l;
 	}
-	
+
 	/**
 	 * Array access. Grammar: <br>
-     * arrayaccess : ID simpleNonEmptyList | simpleNonEmptyList simpleNonEmptyList;
-	 * @param ctx the context
+	 * arrayaccess : ID simpleNonEmptyList | simpleNonEmptyList
+	 * simpleNonEmptyList;
+	 * 
+	 * @param ctx
+	 *            the context
 	 * @return Java representation of the array access
 	 */
 	public static ArrayAccess arrayaccess(ArrayaccessContext ctx) {
-		ArrayAccess t=null;
-		if (Parsing.hasTerminal(ctx.ID()) && ctx.simpleNonEmptyList().size()==1) {
+		ArrayAccess t = null;
+		if (Parsing.hasTerminal(ctx.ID())
+				&& ctx.simpleNonEmptyList().size() == 1) {
 			ID id = ID.IDTerm(ctx.ID());
-			t = IdArrayAccess.idarrayaccess(id,ctx.simpleNonEmptyList(0));
- 
-		} else if (ctx.simpleNonEmptyList().size()==2) {
-			t = ArrayArrayAccess.arrayarrayaccess(ctx.simpleNonEmptyList(0), ctx.simpleNonEmptyList(1));
-		}else
+			t = IdArrayAccess.idarrayaccess(id, ctx.simpleNonEmptyList(0));
+
+		} else if (ctx.simpleNonEmptyList().size() == 2) {
+			t = ArrayArrayAccess.arrayarrayaccess(ctx.simpleNonEmptyList(0),
+					ctx.simpleNonEmptyList(1));
+		} else
 			Parsing.error("arrayaccess " + ctx.getText());
-		
+
 		return t;
 	}
-
 
 	@Override
 	public abstract ArrayAccess clone();

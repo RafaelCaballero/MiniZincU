@@ -15,18 +15,20 @@ import minizinc.representation.TypeName;
 /**
  * Representation of MiniZinc let expressions.<br>
  * Grammar<br>
- *  letExpr : 'let' '{' letDecl   (',' letDecl)* '}' 'in' expr;
-*
+ * letExpr : 'let' '{' letDecl (',' letDecl)* '}' 'in' expr;
+ *
  * @author rafa
  *
  */
 public class LetExpr extends Expr {
 	private List<LetDecl> decls;
 	private Expr expr;
-	
+
 	/**
-	 * @param decls List of local declarations
-	 * @param expr expression to evaluate in the context
+	 * @param decls
+	 *            List of local declarations
+	 * @param expr
+	 *            expression to evaluate in the context
 	 */
 	public LetExpr(List<LetDecl> decls, Expr expr) {
 		this.decls = decls;
@@ -34,18 +36,21 @@ public class LetExpr extends Expr {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
 		String declsAsS = printList(decls);
-		String s = "let {"+declsAsS+"}"+ " in " + expr.print();
+		String s = "let {" + declsAsS + "}" + " in " + expr.print();
 		return s;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.expressions.Expr#type()
 	 */
 	@Override
@@ -53,22 +58,26 @@ public class LetExpr extends Expr {
 		// the type of the expression
 		return expr.type();
 	}
-	
+
 	/**
 	 * Constructing a let expression. Grammar:<br>
-	 * letExpr : 'let' '{' letDecl   (',' letDecl)* '}' 'in' expr;
-	 * @param ctx the context
+	 * letExpr : 'let' '{' letDecl (',' letDecl)* '}' 'in' expr;
+	 * 
+	 * @param ctx
+	 *            the context
 	 * @return the representation as a LetExpr
 	 */
 	public static LetExpr letExpr(LetExprContext ctx) {
 		LetExpr t = null;
 		if (Parsing.has(ctx.expr())) {
 			Expr e = Expr.expr(ctx.expr());
-			List<LetDecl> ldecl = ctx.letDecl().stream().map(x -> LetDecl.letDecl(x)).collect(Collectors.toList());
-			t = new LetExpr(ldecl,e);
-			
+			List<LetDecl> ldecl = ctx.letDecl().stream()
+					.map(x -> LetDecl.letDecl(x)).collect(Collectors.toList());
+			t = new LetExpr(ldecl, e);
+
 		} else {
-			Parsing.error("Error in letExpr. No expression found " + ctx.getText());
+			Parsing.error("Error in letExpr. No expression found "
+					+ ctx.getText());
 		}
 		return t;
 	}
@@ -77,10 +86,10 @@ public class LetExpr extends Expr {
 	public LetExpr clone() {
 		LetExpr r = null;
 		List<LetDecl> declsp = null;
-		Expr exprp = expr==null ? null : expr.clone();
-		if (decls!=null){
+		Expr exprp = expr == null ? null : expr.clone();
+		if (decls != null) {
 			declsp = new ArrayList<LetDecl>();
-			for (LetDecl l:decls) 
+			for (LetDecl l : decls)
 				declsp.add(l.clone());
 		}
 		r = new LetExpr(declsp, exprp);
@@ -122,11 +131,10 @@ public class LetExpr extends Expr {
 	public void subexpressions(ExprTransformer t) {
 		List<LetDecl> decls2 = this.applyTransformerList2(t, decls);
 		Expr expr2 = this.applyTransformer(t, expr);
-		
+
 		decls = decls2;
 		expr = expr2;
-		
-	}
 
+	}
 
 }

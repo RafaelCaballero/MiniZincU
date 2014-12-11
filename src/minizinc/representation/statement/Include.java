@@ -3,8 +3,6 @@
  */
 package minizinc.representation.statement;
 
-
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.IncludeContext;
 import minizinc.representation.Parsing;
@@ -12,13 +10,15 @@ import minizinc.representation.Parsing;
 import minizinc.representation.expressions.StringC;
 
 /**
- * Represents a MiniZinc include statement with grammar:
- * include : 'include' stringExpr;
+ * Represents a MiniZinc include statement with grammar: include : 'include'
+ * stringExpr;
+ * 
  * @author rafa
  *
  */
 public class Include extends Statement {
 	protected StringC s;
+
 	/**
 	 * @param type
 	 */
@@ -27,19 +27,21 @@ public class Include extends Statement {
 		this.s = s;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "include "+s;
+		return "include " + s;
 	}
-
-
 
 	/**
 	 * Parses an include statements.
-	 * @param ctx The Antl4-grammar context
+	 * 
+	 * @param ctx
+	 *            The Antl4-grammar context
 	 * @return An Include object r representing the MiniZinc include statement
 	 */
 	public static Include include(IncludeContext ctx) {
@@ -47,16 +49,16 @@ public class Include extends Statement {
 		if (Parsing.has(ctx.stringExpr())) {
 			StringC s = StringC.stringExpr(ctx.stringExpr());
 			r = new Include(s);
-		} else 
-			Parsing.error("Include :"+ctx.getText());
+		} else
+			Parsing.error("Include :" + ctx.getText());
 		return r;
 	}
 
 	@Override
 	public Include clone() {
-		Include r = null; 
-		StringC sp = s==null? null : s.clone();
-		r = new Include(sp);	
+		Include r = null;
+		StringC sp = s == null ? null : s.clone();
+		r = new Include(sp);
 		return r;
 	}
 
@@ -88,8 +90,8 @@ public class Include extends Statement {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		StringC s2 = this.applyTransformer2(t, s);
-		s=s2;
-		
+		s = s2;
+
 	}
 
 }

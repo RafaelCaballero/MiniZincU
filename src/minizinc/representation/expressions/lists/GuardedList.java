@@ -16,7 +16,8 @@ import minizinc.representation.expressions.InDecl;
 /**
  * A one dim, guarded list.<br>
  * Grammar:<br>
- * guardedList : '[' (expr (','expr)*) '|'  guard ']' ;
+ * guardedList : '[' (expr (','expr)*) '|' guard ']' ;
+ * 
  * @author Rafa Caballero
  *
  */
@@ -27,55 +28,61 @@ public class GuardedList extends OneDimList {
 		super(exprs);
 		this.indecls = indecls;
 	}
+
 	public GuardedList(Dimension d, List<InDecl> indecls) {
 		super(d);
 		this.indecls = indecls;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
 		String s1 = printElements();
 		String s2 = printList(indecls);
-		String s = "[" +s1 + " | " + s2 + "]";
+		String s = "[" + s1 + " | " + s2 + "]";
 		return s;
 	}
 
-	
 	/**
 	 * A one dim, guarded list.<br>
 	 * Grammar:<br>
-	 * guardedList : '[' (expr (','expr)*) '|'  guard ']' ;
-	 * @param ctx The context.
+	 * guardedList : '[' (expr (','expr)*) '|' guard ']' ;
+	 * 
+	 * @param ctx
+	 *            The context.
 	 * @return Representation of the guarded list.
 	 */
 	public static GuardedList guardedList(GuardedListContext ctx) {
-		GuardedList r=null;
-		if (Parsing.has(ctx.guard()) ) {
-			List<InDecl> indecls = ctx.guard().inDecl().stream().
-            map(x->InDecl.inDecl(x)).collect(Collectors.toList());
+		GuardedList r = null;
+		if (Parsing.has(ctx.guard())) {
+			List<InDecl> indecls = ctx.guard().inDecl().stream()
+					.map(x -> InDecl.inDecl(x)).collect(Collectors.toList());
 			Dimension d = Dimension.dimension(ctx.nonEmptyListElems());
-			r = new GuardedList(d,indecls);
-		}  else
+			r = new GuardedList(d, indecls);
+		} else
 			Parsing.error("guardedList: " + ctx.toString());
 
 		return r;
 	}
+
 	@Override
 	public GuardedList clone() {
-		GuardedList r=null;
-		List<InDecl> indeclsp=null;
-		if (indecls!=null) {
+		GuardedList r = null;
+		List<InDecl> indeclsp = null;
+		if (indecls != null) {
 			indeclsp = new ArrayList<InDecl>();
-			for (InDecl i:indecls) 
+			for (InDecl i : indecls)
 				indeclsp.add(i.clone());
 		}
-		Dimension dimp = this.dim==null ? null : dim.clone();
+		Dimension dimp = this.dim == null ? null : dim.clone();
 		r = new GuardedList(dimp, indeclsp);
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,6 +90,7 @@ public class GuardedList extends OneDimList {
 		result = prime * result + ((indecls == null) ? 0 : indecls.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -99,15 +107,13 @@ public class GuardedList extends OneDimList {
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		List<InDecl> indecls2 = this.applyTransformerList2(t, indecls);
 		indecls = indecls2;
 		super.subexpressions(t);
 
-		
 	}
-
-
 
 }

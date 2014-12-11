@@ -11,12 +11,13 @@ import minizinc.representation.expressions.*;
 /**
  * A type range. In principle two forms are possible
  * <ol>
- * <li> from..to
- * <li> ID , with id a set constant identifier
+ * <li>from..to
+ * <li>ID , with id a set constant identifier
  * </ol>
  * However the second possibility requires a semantic checking of id as a set.
- * Otherwise it is ambiguous and the id can be also an extension type,
- * which can correspond to the {@link TypeID} class.
+ * Otherwise it is ambiguous and the id can be also an extension type, which can
+ * correspond to the {@link TypeID} class.
+ * 
  * @author rafa
  *
  */
@@ -24,20 +25,21 @@ public class TypeRange extends Type {
 	private ArithExpr from;
 	private ArithExpr to;
 	private ID setID;
-	
+
 	/**
 	 * complete constructor
 	 */
-	public TypeRange(ArithExpr from,ArithExpr to, ID setID) {
+	public TypeRange(ArithExpr from, ArithExpr to, ID setID) {
 		this.from = from;
 		this.to = to;
 		this.setID = setID;
 	}
+
 	/**
 	 * First constructor from..to
 	 */
-	public TypeRange(ArithExpr from,ArithExpr to) {
-		this.setID=null;
+	public TypeRange(ArithExpr from, ArithExpr to) {
+		this.setID = null;
 		this.from = from;
 		this.to = to;
 	}
@@ -46,7 +48,7 @@ public class TypeRange extends Type {
 	 * from..to given as two integers
 	 */
 	public TypeRange(int from, int to) {
-		this.setID=null;
+		this.setID = null;
 		this.from = new Operand(new IntC(from));
 		this.to = new Operand(new IntC(to));
 	}
@@ -55,26 +57,30 @@ public class TypeRange extends Type {
 	 * Second constructor
 	 */
 	public TypeRange(ID setID) {
-		this.setID= setID;
+		this.setID = setID;
 		this.from = null;
 		this.to = null;
 	}
-	
+
 	public boolean isFromToRange() {
-		return setID==null;
+		return setID == null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		String s=null;
-		s = isFromToRange() ?  from.print() + ".." + to.print() : setID.print();
+		String s = null;
+		s = isFromToRange() ? from.print() + ".." + to.print() : setID.print();
 		return s;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
@@ -84,7 +90,9 @@ public class TypeRange extends Type {
 
 	/**
 	 * Obtains the representation of a MiniZinc range
-	 * @param ctx the context
+	 * 
+	 * @param ctx
+	 *            the context
 	 * @return
 	 */
 	public static TypeRange range(RangeContext ctx) {
@@ -96,24 +104,26 @@ public class TypeRange extends Type {
 		} else if (Parsing.has(ctx.fromR()) && Parsing.has(ctx.toR())) {
 			ArithExpr from = ArithExpr.arithExpr(ctx.fromR().arithExpr());
 			ArithExpr to = ArithExpr.arithExpr(ctx.toR().arithExpr());
-			t = new TypeRange(from,to);
-			
-		} else			
+			t = new TypeRange(from, to);
+
+		} else
 			Parsing.error("Error in range " + ctx.getText());
 
 		return t;
 	}
+
 	@Override
 	public TypeRange clone() {
 		TypeRange r = null;
-		
-		ArithExpr fromp= from==null ? null : from.clone();
-		ArithExpr top=  to==null ? null : to.clone();
-		ID setIDp=  setID == null ? null : setID.clone();		
-	
-		r = new TypeRange(fromp,top,setIDp);
+
+		ArithExpr fromp = from == null ? null : from.clone();
+		ArithExpr top = to == null ? null : to.clone();
+		ID setIDp = setID == null ? null : setID.clone();
+
+		r = new TypeRange(fromp, top, setIDp);
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -123,6 +133,7 @@ public class TypeRange extends Type {
 		result = prime * result + ((to == null) ? 0 : to.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,6 +160,7 @@ public class TypeRange extends Type {
 			return false;
 		return true;
 	}
+
 	@Override
 	public Expr zero() {
 		return from;

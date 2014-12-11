@@ -10,29 +10,33 @@ import minizinc.representation.TypeName;
 
 /**
  * Representation of a MiniZinc String constant
+ * 
  * @author rafa
  *
  */
 public class StringC extends Expr {
 	protected String value;
+
 	/**
 	 * Constructs the representation of a MiniZinc String constant.
 	 */
 	public StringC(String value) {
 		this.value = value;
 	}
+
 	public String get() {
 		return value;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
 		return value;
 	}
-
 
 	@Override
 	public TypeName type() {
@@ -59,10 +63,12 @@ public class StringC extends Expr {
 			Parsing.error("string:  " + ctx.toString());
 		return t;
 	}
+
 	@Override
 	public StringC clone() {
 		return new StringC(value);
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,6 +76,7 @@ public class StringC extends Expr {
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,11 +93,11 @@ public class StringC extends Expr {
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		// nothing to do
-		
+
 	}
 
-	
 }

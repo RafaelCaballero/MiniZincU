@@ -3,42 +3,46 @@
  */
 package minizinc.representation.expressions;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.RealContext;
 import minizinc.representation.TypeName;
 
 /**
  * Representation of a MiniZinc float constant
+ * 
  * @author rafa
  *
  */
 public class FloatC extends Expr {
 	protected double value;
+
 	/**
 	 * Constructs the representation of a MiniZinc String constant.
 	 */
 	public FloatC(double value) {
 		this.value = value;
 	}
+
 	public double get() {
 		return value;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return value+"";
+		return value + "";
 	}
-
 
 	@Override
 	public TypeName type() {
 		// TODO Auto-generated method stub
 		return TypeName.FLOAT;
 	}
+
 	/**
 	 * @param ctx
 	 *            The grammar context
@@ -48,11 +52,13 @@ public class FloatC extends Expr {
 		double d = Double.parseDouble(b.getText());
 		return new FloatC(d);
 	}
+
 	@Override
 	public FloatC clone() {
-		
+
 		return new FloatC(value);
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,6 +68,7 @@ public class FloatC extends Expr {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -76,12 +83,11 @@ public class FloatC extends Expr {
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		// no subexpressions
-		
+
 	}
 
-
-	
 }

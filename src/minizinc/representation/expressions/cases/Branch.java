@@ -3,7 +3,6 @@
  */
 package minizinc.representation.expressions.cases;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.CaseBranchContext;
 import minizinc.representation.MiniZincRepresentation;
@@ -16,24 +15,27 @@ import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.PredOrUnionExpr;
 
 /**
- * A case expression branch. With grammar
- * caseBranch : predOrUnionExpr '-->' expr;  
+ * A case expression branch. With grammar caseBranch : predOrUnionExpr '-->'
+ * expr;
+ * 
  * @author rafa
  * @see CaseExpr
  */
-public class Branch implements SubExpressions, MiniZincRepresentation, Typeable, Cloneable {
+public class Branch implements SubExpressions, MiniZincRepresentation,
+		Typeable, Cloneable {
 	protected PredOrUnionExpr pattern;
 	protected ID idpattern;
 	protected Expr expr;
-	
+
 	/**
 	 * complete constructor
 	 */
-	public Branch(PredOrUnionExpr pattern,ID idpattern,Expr expr){
+	public Branch(PredOrUnionExpr pattern, ID idpattern, Expr expr) {
 		this.pattern = pattern;
 		this.idpattern = idpattern;
 		this.expr = expr;
 	}
+
 	/**
 	 * Constructor with pattern of the form cons(arg1...argn)
 	 */
@@ -52,26 +54,36 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 		this.idpattern = id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return pattern.print()+"-->" + expr.print();
+		String s = (pattern != null ? pattern.print() : idpattern.print())
+				+ "-->" + expr.print();
+		return s;
 	}
 
-	/* (non-Javadoc)
+	@Override
+	public String toString() {
+		return print();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.SubExpressions#subexpressions()
 	 */
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		 PredOrUnionExpr pattern2 = this.applyTransformer2(t, pattern);
-		 ID idpattern2 = this.applyTransformer2(t, idpattern);
-		 Expr expr2 = this.applyTransformer(t, expr);
-		 this.pattern = pattern2;
-		 this.idpattern = idpattern2;
-		 this.expr = expr2;
-		
+		PredOrUnionExpr pattern2 = this.applyTransformer2(t, pattern);
+		ID idpattern2 = this.applyTransformer2(t, idpattern);
+		Expr expr2 = this.applyTransformer(t, expr);
+		this.pattern = pattern2;
+		this.idpattern = idpattern2;
+		this.expr = expr2;
 
 	}
 
@@ -90,29 +102,30 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 
 	public static Branch branch(CaseBranchContext ctx) {
 		Branch r = null;
-		if (Parsing.has(ctx.predOrUnionExpr()) && Parsing.has(ctx.expr()) ) {
-			PredOrUnionExpr p = PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr());
+		if (Parsing.has(ctx.predOrUnionExpr()) && Parsing.has(ctx.expr())) {
+			PredOrUnionExpr p = PredOrUnionExpr.predOrUnionExpr(ctx
+					.predOrUnionExpr());
 			Expr expr = Expr.expr(ctx.expr());
-			r = new Branch(p,expr);
-		} else if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.expr()) ) { 
-			ID id =  ID.IDTerm(ctx.ID());
+			r = new Branch(p, expr);
+		} else if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.expr())) {
+			ID id = ID.IDTerm(ctx.ID());
 			Expr expr = Expr.expr(ctx.expr());
-			r = new Branch(id,expr);
-		}
-		else
-			Parsing.error("Branch "+ctx.getText());
+			r = new Branch(id, expr);
+		} else
+			Parsing.error("Branch " + ctx.getText());
 		return r;
 	}
-	
+
 	@Override
-	public Branch clone(){
-		Branch r=null;
-		PredOrUnionExpr patternp = pattern==null ? null : pattern.clone();
-		ID idpatternp = idpattern==null ? null : idpattern.clone();
-		Expr exprp = expr==null ? null : expr.clone();
-		r = new Branch(patternp,idpatternp,exprp);
+	public Branch clone() {
+		Branch r = null;
+		PredOrUnionExpr patternp = pattern == null ? null : pattern.clone();
+		ID idpatternp = idpattern == null ? null : idpattern.clone();
+		Expr exprp = expr == null ? null : expr.clone();
+		r = new Branch(patternp, idpatternp, exprp);
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -123,6 +136,7 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 		result = prime * result + ((pattern == null) ? 0 : pattern.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,6 +163,7 @@ public class Branch implements SubExpressions, MiniZincRepresentation, Typeable,
 			return false;
 		return true;
 	}
+
 	/**
 	 * @return the idpattern
 	 */

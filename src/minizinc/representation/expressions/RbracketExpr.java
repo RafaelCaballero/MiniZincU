@@ -19,20 +19,20 @@ import minizinc.representation.TypeName;
  */
 public class RbracketExpr extends Expr {
 	private Expr e;
+
 	/**
-	 * @param source The expression found between round brackets
+	 * @param source
+	 *            The expression found between round brackets
 	 */
 	public RbracketExpr(Expr source) {
 		e = source;
 
 	}
 
-
 	@Override
 	public String print() {
-		return "("+e.print()+")";
+		return "(" + e.print() + ")";
 	}
-
 
 	@Override
 	public TypeName type() {
@@ -55,7 +55,7 @@ public class RbracketExpr extends Expr {
 			Parsing.error("rbracketExpr " + ctx.getText());
 		return t;
 	}
-	
+
 	/**
 	 * Expression between round brackets rbracketBoolExpr : '(' boolExpr ')';
 	 * 
@@ -69,9 +69,8 @@ public class RbracketExpr extends Expr {
 		return t;
 	}
 
-	
 	/**
-	 * Expression between round brackets  : '(' ArtihExpr ')';
+	 * Expression between round brackets : '(' ArtihExpr ')';
 	 * 
 	 * @param ctx
 	 *            grammar context
@@ -83,15 +82,13 @@ public class RbracketExpr extends Expr {
 		return t;
 	}
 
-
 	@Override
 	public RbracketExpr clone() {
-		RbracketExpr r= null;
-		Expr ep = e==null ? null : e.clone();
-		r = new RbracketExpr(ep);	
+		RbracketExpr r = null;
+		Expr ep = e == null ? null : e.clone();
+		r = new RbracketExpr(ep);
 		return r;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -100,7 +97,6 @@ public class RbracketExpr extends Expr {
 		result = prime * result + ((e == null) ? 0 : e.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -119,13 +115,11 @@ public class RbracketExpr extends Expr {
 		return true;
 	}
 
-
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Expr e2 = this.applyTransformer(t, e);
-		e= e2;
-		
-	}
+		e = e2;
 
+	}
 
 }

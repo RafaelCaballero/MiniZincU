@@ -9,10 +9,10 @@ import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.sets.BracketExpr;
 
 /**
- *  An ID as a typename. It can be 
+ * An ID as a typename. It can be
  * <ol>
- * <li> An extension name in extended MiniZinc
- * <li> A range determined by the name of a set.
+ * <li>An extension name in extended MiniZinc
+ * <li>A range determined by the name of a set.
  * <ol>
  *
  * @author rafa
@@ -20,7 +20,7 @@ import minizinc.representation.expressions.sets.BracketExpr;
  */
 public class TypeID extends Type {
 	private ID id;
-	
+
 	/**
 	 * Constructor: name of the type
 	 */
@@ -28,7 +28,9 @@ public class TypeID extends Type {
 		this.id = id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -36,7 +38,9 @@ public class TypeID extends Type {
 		return id.print();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
@@ -51,9 +55,9 @@ public class TypeID extends Type {
 	@Override
 	public TypeID clone() {
 		TypeID r = null;
-	    ID idp = id.clone();
+		ID idp = id.clone();
 
-	    r = new TypeID(idp); 
+		r = new TypeID(idp);
 		// TODO Auto-generated method stub
 		return r;
 	}

@@ -1,14 +1,11 @@
 package minizinc.representation.statement;
 
-
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ConstraintContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.Expr;
 
-
-public class Constraint extends Statement  {
+public class Constraint extends Statement {
 	/*
 	 * private TConstraint type;
 	 * 
@@ -27,17 +24,10 @@ public class Constraint extends Statement  {
 	}
 
 	/*
-	public Constraint simplify() {
-		Constraint result = null;
-		Expr tp = t.simplify();
-		boolean changed = !t.equals(tp);
-		if (!changed)
-			result = this;
-		else
-			result = new Constraint(tp).simplify();
-		return result;
-	}
-*/
+	 * public Constraint simplify() { Constraint result = null; Expr tp =
+	 * t.simplify(); boolean changed = !t.equals(tp); if (!changed) result =
+	 * this; else result = new Constraint(tp).simplify(); return result; }
+	 */
 	public Expr getExpr() {
 		return t;
 	}
@@ -51,10 +41,11 @@ public class Constraint extends Statement  {
 		return "constraint " + t.print();
 	}
 
-
 	/**
 	 * Returns a new Constraint representing the object parsed in ctx.
-	 * @param ctx Parsing context
+	 * 
+	 * @param ctx
+	 *            Parsing context
 	 * @return A new Constraint
 	 */
 	public static Constraint constraint(ConstraintContext ctx) {
@@ -71,7 +62,7 @@ public class Constraint extends Statement  {
 		Expr tp = t.clone();
 		r = new Constraint(tp);
 		return r;
-		
+
 	}
 
 	@Override
@@ -104,8 +95,5 @@ public class Constraint extends Statement  {
 		Expr t2 = this.applyTransformer(tr, t);
 		t = t2;
 	}
-
-	
-	
 
 }

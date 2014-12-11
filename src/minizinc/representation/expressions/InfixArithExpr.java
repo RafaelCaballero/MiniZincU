@@ -3,14 +3,13 @@
  */
 package minizinc.representation.expressions;
 
-
-
 import transformation.ExprTransformer;
 import minizinc.representation.TypeName;
 
 /**
- * A bool expression of the form e1 op e2, with e1 and e2 arithmetic expressions and op 
- * a relational operator (<,<=...).
+ * A bool expression of the form e1 op e2, with e1 and e2 arithmetic expressions
+ * and op a relational operator (<,<=...).
+ * 
  * @author rafa
  *
  */
@@ -25,36 +24,37 @@ public class InfixArithExpr extends ArithExpr {
 		this.op = op;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return e1.print() + " "+op+" "+e2.print();
+		return e1.print() + " " + op + " " + e2.print();
 	}
-
-
 
 	@Override
 	public TypeName type() {
 		// this can be complex in the type of expressions
-		// At the moment just a naive (possibly incorrect) version: the type of an operator
+		// At the moment just a naive (possibly incorrect) version: the type of
+		// an operator
 		return e1.type();
 	}
-	
+
 	public static InfixArithExpr infixArithExpr(ArithExpr t0, ArithExpr t1,
 			String op) {
-		return new InfixArithExpr(op,t0,t1);
+		return new InfixArithExpr(op, t0, t1);
 	}
 
 	@Override
 	public InfixArithExpr clone() {
 		InfixArithExpr r = null;
-		Expr e1p = e1==null? null : e1.clone();
-		Expr e2p = e2==null ? null : e2.clone();
-		String opp=op;
-		r = new InfixArithExpr(opp,e1p,e2p);	
-		return r;	
+		Expr e1p = e1 == null ? null : e1.clone();
+		Expr e2p = e2 == null ? null : e2.clone();
+		String opp = op;
+		r = new InfixArithExpr(opp, e1p, e2p);
+		return r;
 	}
 
 	@Override
@@ -98,11 +98,9 @@ public class InfixArithExpr extends ArithExpr {
 	public void subexpressions(ExprTransformer t) {
 		Expr e1p = this.applyTransformer(t, e1);
 		Expr e2p = this.applyTransformer(t, e2);
-		
+
 		e1 = e1p;
 		e2 = e2p;
 	}
-
-
 
 }

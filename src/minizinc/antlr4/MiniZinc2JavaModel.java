@@ -1,7 +1,5 @@
 package minizinc.antlr4;
 
-
-
 import minizinc.representation.model.SplitModel;
 
 import org.antlr.v4.runtime.misc.NotNull;
@@ -33,7 +31,8 @@ public class MiniZinc2JavaModel extends MiniZincGrammarBaseListener {
 	}
 
 	public SplitModel getModel() {
+		// System.out.println(model);
 		return model;
 	}
-	
+
 }

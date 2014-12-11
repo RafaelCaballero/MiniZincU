@@ -3,39 +3,30 @@
  */
 package minizinc.representation.expressions;
 
-
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.OperandContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
- * operand : ID 
- *   | integer 
- *   | real
- *   |  arrayaccess 
- *   | ifExpr 
- *   | letExpr 
- *   |  '('arithExpr ')'
- *   | predOrUnionExpr 
- *   ;
+ * operand : ID | integer | real | arrayaccess | ifExpr | letExpr | '('arithExpr
+ * ')' | predOrUnionExpr ;
  *
  * @author rafa
  *
  */
 public class Operand extends ArithExpr {
 	protected Expr e;
-	
+
 	/**
-	 *  An ID is an operand
+	 * An ID is an operand
 	 */
 	public Operand(ID e) {
 		this.e = e;
 	}
 
 	/**
-	 *  An arithmetic expression between brackets is an operand
+	 * An arithmetic expression between brackets is an operand
 	 */
 	public Operand(ArithExpr e) {
 		this.e = e;
@@ -64,7 +55,7 @@ public class Operand extends ArithExpr {
 	public Operand(LetExpr e) {
 		this.e = e;
 	}
-	
+
 	public Operand(PredOrUnionExpr e) {
 		this.e = e;
 	}
@@ -72,8 +63,10 @@ public class Operand extends ArithExpr {
 	public Expr getExpr() {
 		return e;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -83,13 +76,14 @@ public class Operand extends ArithExpr {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		Expr ep =  applyTransformer(t,e);
-		if (ep!=null)
-			e=ep;
+		Expr ep = applyTransformer(t, e);
+		if (ep != null)
+			e = ep;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
@@ -97,33 +91,33 @@ public class Operand extends ArithExpr {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/**
 	 * Parses an arithmetic expression operand.
+	 * 
 	 * @param ctx
 	 * @return
 	 */
 	public static Operand operand(OperandContext ctx) {
 		Operand op = null;
-		if (Parsing.hasTerminal(ctx.ID())){
+		if (Parsing.hasTerminal(ctx.ID())) {
 			op = new Operand(ID.IDTerm(ctx.ID()));
-		} 
-		else if (Parsing.has(ctx.integer()))
+		} else if (Parsing.has(ctx.integer()))
 			op = new Operand(IntC.integerTerm(ctx.integer()));
 		else if (Parsing.has(ctx.real()))
 			op = new Operand(FloatC.realTerm(ctx.real()));
-		else if (Parsing.has(ctx.arrayaccess())) 
+		else if (Parsing.has(ctx.arrayaccess()))
 			op = new Operand(ArrayAccess.arrayaccess(ctx.arrayaccess()));
 		else if (Parsing.has(ctx.ifExpr()))
 			op = new Operand(IfS.ifExpr(ctx.ifExpr()));
 		else if (Parsing.has(ctx.letExpr()))
 			op = new Operand(LetExpr.letExpr(ctx.letExpr()));
-		else if (Parsing.has(ctx.arithExpr())){
-			RbracketExpr re = RbracketExpr.rbracketArithExpr(ctx.arithExpr()); 
+		else if (Parsing.has(ctx.arithExpr())) {
+			RbracketExpr re = RbracketExpr.rbracketArithExpr(ctx.arithExpr());
 			op = new Operand(re);
-		}
-		else if (Parsing.has(ctx.predOrUnionExpr()))
-			op = new Operand(PredOrUnionExpr.predOrUnionExpr(ctx.predOrUnionExpr()));
+		} else if (Parsing.has(ctx.predOrUnionExpr()))
+			op = new Operand(PredOrUnionExpr.predOrUnionExpr(ctx
+					.predOrUnionExpr()));
 		return op;
 	}
 
@@ -131,43 +125,44 @@ public class Operand extends ArithExpr {
 	public Operand clone() {
 		Operand r = null;
 		if (e instanceof ID) {
-			ID exprp = e==null  ? null : ((ID)e).clone();
+			ID exprp = e == null ? null : ((ID) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof ArithExpr) {
-			ArithExpr exprp = e==null  ? null : ((ArithExpr)e).clone();
+			ArithExpr exprp = e == null ? null : ((ArithExpr) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof IntC) {
-			IntC exprp = e==null  ? null : ((IntC)e).clone();
+			IntC exprp = e == null ? null : ((IntC) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof FloatC) {
-			FloatC exprp = e==null  ? null : ((FloatC)e).clone();
+			FloatC exprp = e == null ? null : ((FloatC) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof ArrayAccess) {
-			ArrayAccess exprp = e==null  ? null : ((ArrayAccess)e).clone();
+			ArrayAccess exprp = e == null ? null : ((ArrayAccess) e).clone();
 			r = new Operand(exprp);
-		}		
+		}
 		if (e instanceof IfS) {
-			IfS exprp = e==null  ? null : ((IfS)e).clone();
+			IfS exprp = e == null ? null : ((IfS) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof RbracketExpr) {
-			RbracketExpr exprp = e==null  ? null : ((RbracketExpr)e).clone();
+			RbracketExpr exprp = e == null ? null : ((RbracketExpr) e).clone();
 			r = new Operand(exprp);
 		}
 		if (e instanceof LetExpr) {
-			LetExpr exprp = e==null  ? null : ((LetExpr)e).clone();
+			LetExpr exprp = e == null ? null : ((LetExpr) e).clone();
 			r = new Operand(exprp);
 		}
 
 		if (e instanceof PredOrUnionExpr) {
-			PredOrUnionExpr exprp = e==null  ? null : ((PredOrUnionExpr)e).clone();
+			PredOrUnionExpr exprp = e == null ? null : ((PredOrUnionExpr) e)
+					.clone();
 			r = new Operand(exprp);
 		}
-		return r;	
+		return r;
 	}
 
 	@Override
@@ -195,7 +190,4 @@ public class Operand extends ArithExpr {
 		return true;
 	}
 
-
 }
-
-	

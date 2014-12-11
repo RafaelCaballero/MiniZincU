@@ -6,11 +6,10 @@ import minizinc.antlr4.MiniZincGrammarParser.ListExprContext;
 import minizinc.representation.Parsing;
 import minizinc.representation.expressions.lists.ListExpr;
 
-
 /**
  * Representation of an output statement in MiniZinc. Grammar:<br>
- * output :'output' '(' listExpr ')' | 'output'  listExpr ;
-
+ * output :'output' '(' listExpr ')' | 'output' listExpr ;
+ * 
  * @author rafa
  *
  */
@@ -24,15 +23,14 @@ public class Output extends Statement {
 
 	public String print() {
 		String sexpr = exprs.print();
-		String s = "output("+sexpr+")";
+		String s = "output(" + sexpr + ")";
 		return s;
 	}
-	
-	public ListExpr getListExprs(){
+
+	public ListExpr getListExprs() {
 		return exprs;
 	}
 
-	
 	/**
 	 * Grammar piece: output :'output' '(' listExpr ')' | 'output' listExpr ;
 	 */
@@ -52,8 +50,8 @@ public class Output extends Statement {
 	@Override
 	public Output clone() {
 		Output r = null;
-		ListExpr exprsp = exprs==null ? null : exprs.clone();
-		r = new Output(exprsp);	
+		ListExpr exprsp = exprs == null ? null : exprs.clone();
+		r = new Output(exprsp);
 		return r;
 	}
 
@@ -86,8 +84,7 @@ public class Output extends Statement {
 	public void subexpressions(ExprTransformer t) {
 		ListExpr exprs2 = this.applyTransformer2(t, exprs);
 		exprs = exprs2;
-		
-	}
 
+	}
 
 }

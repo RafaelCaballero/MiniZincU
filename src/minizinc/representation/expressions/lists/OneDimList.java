@@ -12,44 +12,49 @@ import minizinc.representation.expressions.Expr;
 
 /**
  * List with one dimension.<br>
- * Grammar: oneDimList :  simpleList | guardedList  ;
+ * Grammar: oneDimList : simpleList | guardedList ;
+ * 
  * @author rafa
  *
  */
-public  abstract class OneDimList extends ListExpr {
+public abstract class OneDimList extends ListExpr {
 	protected Dimension dim;
 
 	/**
-	 * Constructs an empty one dimension list. 
+	 * Constructs an empty one dimension list.
 	 */
 	public OneDimList() {
 		dim = null;
 	}
 
 	/**
-	 * Constructs a one dimension list. 
-	 * @param exprs Elements of the list as a list of Expr values.
+	 * Constructs a one dimension list.
+	 * 
+	 * @param exprs
+	 *            Elements of the list as a list of Expr values.
 	 */
-	public OneDimList( List<Expr> exprs) {
+	public OneDimList(List<Expr> exprs) {
 		dim = new Dimension(exprs);
 	}
-	
+
 	/**
-	 * Constructs a one dimension list. 
-	 * @param exprs Elements of the list as a {@link Dimension} value.
+	 * Constructs a one dimension list.
+	 * 
+	 * @param exprs
+	 *            Elements of the list as a {@link Dimension} value.
 	 */
-	public OneDimList( Dimension dim) {
+	public OneDimList(Dimension dim) {
 		this.dim = dim;
 	}
-	
+
 	protected String printElements() {
 		String s = "";
-		if (dim!=null)
-			s+= dim.print();
+		if (dim != null)
+			s += dim.print();
 		return s;
 	}
-	
-	public boolean isEmptyList(){
+
+	public boolean isEmptyList() {
 		return dim == null;
 	}
 
@@ -78,7 +83,7 @@ public  abstract class OneDimList extends ListExpr {
 		}
 		return t;
 	}
-	
+
 	@Override
 	public abstract OneDimList clone();
 
@@ -106,13 +111,12 @@ public  abstract class OneDimList extends ListExpr {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Dimension dim2 = this.applyTransformer2(t, dim);
 		dim = dim2;
-		
-	}
 
+	}
 
 }

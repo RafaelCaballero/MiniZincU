@@ -11,12 +11,13 @@ import minizinc.representation.expressions.*;
 /**
  * A type range. In principle two forms are possible
  * <ol>
- * <li> from..to
- * <li> ID , with id a set constant identifier
+ * <li>from..to
+ * <li>ID , with id a set constant identifier
  * </ol>
  * However the second possibility requires a semantic checking of id as a set.
- * Otherwise it is ambiguous and the id can be also an extension type,
- * which can correspond to the {@link TypeID} class.
+ * Otherwise it is ambiguous and the id can be also an extension type, which can
+ * correspond to the {@link TypeID} class.
+ * 
  * @author rafa
  *
  */
@@ -28,8 +29,8 @@ public class RangeSetVal extends SetVal {
 	/**
 	 * complete constructor from..to
 	 */
-	public RangeSetVal(ArithExpr from,ArithExpr to, ID setID) {
-		this.setID= setID;
+	public RangeSetVal(ArithExpr from, ArithExpr to, ID setID) {
+		this.setID = setID;
 		this.from = from;
 		this.to = to;
 	}
@@ -37,8 +38,8 @@ public class RangeSetVal extends SetVal {
 	/**
 	 * First constructor from..to
 	 */
-	public RangeSetVal(ArithExpr from,ArithExpr to) {
-		this.setID=null;
+	public RangeSetVal(ArithExpr from, ArithExpr to) {
+		this.setID = null;
 		this.from = from;
 		this.to = to;
 	}
@@ -47,29 +48,32 @@ public class RangeSetVal extends SetVal {
 	 * Second constructor
 	 */
 	public RangeSetVal(ID setID) {
-		this.setID= setID;
+		this.setID = setID;
 		this.from = null;
 		this.to = null;
 	}
-	
+
 	public boolean isFromToRange() {
-		return setID==null;
+		return setID == null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		String s=null;
-		s = isFromToRange() ?  from.print() + ".." + to.print() : setID.print();
+		String s = null;
+		s = isFromToRange() ? from.print() + ".." + to.print() : setID.print();
 		return s;
 	}
 
-	
 	/**
 	 * A range as set value. The range can be either from..to or an ID
-	 * @param ctx The context
+	 * 
+	 * @param ctx
+	 *            The context
 	 * @return Java representation
 	 */
 	public static RangeSetVal rangeSetVal(RangeContext ctx) {
@@ -81,9 +85,9 @@ public class RangeSetVal extends SetVal {
 		} else if (Parsing.has(ctx.fromR()) && Parsing.has(ctx.toR())) {
 			ArithExpr from = ArithExpr.arithExpr(ctx.fromR().arithExpr());
 			ArithExpr to = ArithExpr.arithExpr(ctx.toR().arithExpr());
-			r = new RangeSetVal(from,to);
-			
-		} else			
+			r = new RangeSetVal(from, to);
+
+		} else
 			Parsing.error("Error in rangeSetVal " + ctx.getText());
 
 		return r;
@@ -92,11 +96,11 @@ public class RangeSetVal extends SetVal {
 	@Override
 	public RangeSetVal clone() {
 		RangeSetVal r = null;
-		
+
 		ArithExpr fromp = from == null ? null : from.clone();
 		ArithExpr top = to == null ? null : to.clone();
-		ID setIDp = setID==null ? null : setID.clone();
-		r = new RangeSetVal(fromp,top,setIDp);
+		ID setIDp = setID == null ? null : setID.clone();
+		r = new RangeSetVal(fromp, top, setIDp);
 		return r;
 
 	}
@@ -143,12 +147,10 @@ public class RangeSetVal extends SetVal {
 		ArithExpr from2 = this.applyTransformer2(t, from);
 		ArithExpr to2 = this.applyTransformer2(t, to);
 		ID setID2 = this.applyTransformer2(t, setID);
-		to=to2;
-		from=from2;		
-		setID=setID2;
+		to = to2;
+		from = from2;
+		setID = setID2;
 
-		
 	}
-
 
 }

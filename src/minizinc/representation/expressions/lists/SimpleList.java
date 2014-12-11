@@ -38,24 +38,24 @@ public class SimpleList extends OneDimList {
 	/**
 	 * Empty list
 	 */
-	public SimpleList(){
+	public SimpleList() {
 		super();
 	}
-	
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "["+ printElements()+"]";
+		return "[" + printElements() + "]";
 	}
 
 	/**
 	 * Grammar: <br>
-	 * simpleList : '[' ']' | simpleNonEmptyList;
-	 * simpleNonEmptyList : '[' expr(','expr)* ']';
+	 * simpleList : '[' ']' | simpleNonEmptyList; simpleNonEmptyList : '['
+	 * expr(','expr)* ']';
 	 * 
 	 * @param ctx
 	 *            the context
@@ -64,7 +64,8 @@ public class SimpleList extends OneDimList {
 	public static SimpleList simpleList(SimpleListContext ctx) {
 		SimpleList r = null;
 		if (Parsing.has(ctx.simpleNonEmptyList())) {
-			Dimension d= Dimension.dimension(ctx.simpleNonEmptyList().nonEmptyListElems());
+			Dimension d = Dimension.dimension(ctx.simpleNonEmptyList()
+					.nonEmptyListElems());
 			r = new SimpleList(d);
 		} else {
 			r = new SimpleList();
@@ -75,7 +76,7 @@ public class SimpleList extends OneDimList {
 	@Override
 	public SimpleList clone() {
 		SimpleList r = null;
-		Dimension dimp = dim==null ? null : dim.clone();
+		Dimension dimp = dim == null ? null : dim.clone();
 		r = new SimpleList(dimp);
 		return r;
 	}
@@ -83,8 +84,7 @@ public class SimpleList extends OneDimList {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		super.subexpressions(t);
-		
-	}
 
+	}
 
 }

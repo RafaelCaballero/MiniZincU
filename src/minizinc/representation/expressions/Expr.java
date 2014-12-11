@@ -12,25 +12,22 @@ import minizinc.representation.expressions.lists.ListExpr;
 import minizinc.representation.expressions.sets.SetExpr;
 
 /**
- * Java representation of general expressions in MiniZinc.
- * It is an abstract class. All the particular expressions extend this class.
+ * Java representation of general expressions in MiniZinc. It is an abstract
+ * class. All the particular expressions extend this class.
  * 
  * @author rafa
  *
  */
-public abstract class Expr implements MiniZincRepresentation, SubExpressions, Typeable, Cloneable {
-	
+public abstract class Expr implements MiniZincRepresentation, SubExpressions,
+		Typeable, Cloneable {
 
-	
 	@Override
 	public String toString() {
 		return print();
 	}
-	
-	
+
 	/**
-	 * Parses an expression 
-	 * Grammar for expressions:
+	 * Parses an expression Grammar for expressions:
 	 * <p>
 	 * expr:
 	 * </p>
@@ -96,16 +93,16 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions, Ty
 			Parsing.error("expr:  " + ctx.getText());
 		return t;
 	}
-	
+
 	@Override
 	public abstract Expr clone();
 
 	@Override
 	public abstract boolean equals(Object e);
-	
+
 	@Override
-	public abstract int hashCode(); 	
-	
+	public abstract int hashCode();
+
 	public Expr simplify() {
 		return this;
 	}

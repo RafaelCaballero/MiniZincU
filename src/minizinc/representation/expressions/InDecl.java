@@ -17,20 +17,23 @@ import minizinc.representation.expressions.sets.SetExpr;
 /**
  * Represents MiniZinc declarations used in guards.<br>
  * Grammar:<br>
- * {@code inDecl : Guard 'in' setExpr whereCond?;} <br><br>
+ * {@code inDecl : Guard 'in' setExpr whereCond?;} <br>
+ * <br>
  * 
  * @author rafa
  *
  */
-public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable {
+public class InDecl implements MiniZincRepresentation, SubExpressions,
+		Cloneable {
 	/*
 	 * Non-empty list of identifiers
 	 */
 	protected List<ID> guard;
 	protected SetExpr setExpr;
 	protected BoolExpr where;
+
 	/**
-	 * Constructor for in decl without where section 
+	 * Constructor for in decl without where section
 	 */
 	public InDecl(List<ID> guard, SetExpr setExpr) {
 		this.guard = guard;
@@ -39,7 +42,7 @@ public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable
 	}
 
 	/**
-	 * Constructor for in decl with where section 
+	 * Constructor for in decl with where section
 	 */
 	public InDecl(List<ID> guard, SetExpr setExpr, BoolExpr where) {
 		this.guard = guard;
@@ -47,66 +50,69 @@ public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable
 		this.where = where;
 	}
 
-	
 	/**
 	 * Indicates if the declaration contains a where section.
+	 * 
 	 * @return true if there is a where section, false otherwise
 	 */
 	public boolean hasWhere() {
 		return where != null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
 		// first the variables
-		String s  = printList(guard);
+		String s = printList(guard);
 		// now the 'in'
-		s += " in "+setExpr.print();
+		s += " in " + setExpr.print();
 		if (where != null)
-			s += " where "+where.print();
-		
+			s += " where " + where.print();
+
 		return s;
 	}
-	
+
 	/*
-	 * A 'in' declaration.
-	 *  * Grammar:<br>
-	 * {@code inDecl : Guard 'in' setExpr whereCond?;} <br><br> 
+	 * A 'in' declaration. * Grammar:<br> {@code inDecl : Guard 'in' setExpr
+	 * whereCond?;} <br><br>
+	 * 
 	 * @param cxt the context
+	 * 
 	 * @return The Java representation
 	 */
 	public static InDecl inDecl(InDeclContext ctx) {
 		InDecl t = null;
-		if (Parsing.has(ctx.setExpr())){
-			List<ID> ids = ctx.ID().stream().map(x->ID.IDTerm(x)).collect(Collectors.toList());
-			SetExpr sexpr  = SetExpr.setExpr(ctx.setExpr());
+		if (Parsing.has(ctx.setExpr())) {
+			List<ID> ids = ctx.ID().stream().map(x -> ID.IDTerm(x))
+					.collect(Collectors.toList());
+			SetExpr sexpr = SetExpr.setExpr(ctx.setExpr());
 			if (Parsing.has(ctx.whereCond())) {
 				BoolExpr bexpr = BoolExpr.boolExpr(ctx.whereCond().boolExpr());
-				t = new InDecl(ids,sexpr,bexpr);
+				t = new InDecl(ids, sexpr, bexpr);
 			} else
-				t = new InDecl(ids,sexpr);
-		}	
-		else
-				Parsing.error("inDecl " + ctx.getText());
-		
+				t = new InDecl(ids, sexpr);
+		} else
+			Parsing.error("inDecl " + ctx.getText());
+
 		return t;
 	}
 
 	@Override
-	public  InDecl clone() {
+	public InDecl clone() {
 		InDecl r = null;
-		List<ID> guardp=null;
-		SetExpr setExprp= setExpr==null ? null : setExpr.clone();
-		BoolExpr wherep = where ==null ? null : where.clone();
-		if (guard!=null){
+		List<ID> guardp = null;
+		SetExpr setExprp = setExpr == null ? null : setExpr.clone();
+		BoolExpr wherep = where == null ? null : where.clone();
+		if (guard != null) {
 			guardp = new ArrayList<ID>();
-			for (ID id:guard) 
-				guardp.add(id.clone());			
+			for (ID id : guard)
+				guardp.add(id.clone());
 		}
-		r = new InDecl(guardp,setExprp,wherep);
+		r = new InDecl(guardp, setExprp, wherep);
 		return r;
 	}
 
@@ -152,11 +158,11 @@ public class InDecl implements MiniZincRepresentation, SubExpressions, Cloneable
 		List<ID> guard2 = this.applyTransformerList2(t, guard);
 		SetExpr setExpr2 = this.applyTransformer2(t, setExpr);
 		BoolExpr where2 = this.applyTransformer2(t, where);
-		
+
 		guard = guard2;
 		setExpr = setExpr2;
 		where = where2;
-		
+
 	}
 
 }

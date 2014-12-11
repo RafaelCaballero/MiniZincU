@@ -33,20 +33,20 @@ public class DataCons implements MiniZincRepresentation, Cloneable {
 	}
 
 	public DataCons(ID cons, List<Type> subtypes) {
-		this.cons =  cons;
+		this.cons = cons;
 		this.subtypes = subtypes;
 	}
 
 	public DataCons(String consName) {
-		this.cons =  ID.IDTerm(consName);
+		this.cons = ID.IDTerm(consName);
 		this.subtypes = null;
-		
+
 	}
 
 	@Override
 	public String print() {
 		String s = "";
-		if (subtypes != null) 
+		if (subtypes != null)
 			s = printList(subtypes);
 		if (s.equals(""))
 			s = cons.print();
@@ -58,15 +58,17 @@ public class DataCons implements MiniZincRepresentation, Cloneable {
 	public ID getID() {
 		return cons;
 	}
+
 	/**
 	 * A constructor without arguments
 	 */
 	public boolean isConstant() {
-		return subtypes==null || subtypes.size()==0; 
+		return subtypes == null || subtypes.size() == 0;
 	}
-	
+
 	/**
 	 * Constructor identifier.
+	 * 
 	 * @return Constructor identifier as a String.
 	 */
 	public String getCons() {
@@ -81,38 +83,39 @@ public class DataCons implements MiniZincRepresentation, Cloneable {
 		this.subtypes = subtypes;
 	}
 
-
-
 	/**
-	 * List of arguments in a data definition constraint. 
+	 * List of arguments in a data definition constraint.
+	 * 
 	 * @param ctx
 	 * @return
 	 */
 	public static DataCons tcons(ConstrContext ctx) {
 		DataCons r = null;
-		ID cons=null;
-		List<Type> l = new ArrayList<Type>(); 
+		ID cons = null;
+		List<Type> l = new ArrayList<Type>();
 		if (Parsing.has(ctx.scons())) {
 			if (Parsing.hasTerminal(ctx.scons().ID())) {
 				cons = ID.IDTerm(ctx.scons().ID());
 			} else
-				Parsing.error("ID constructor missing (scons) "+ctx.getText()) ;
-		} if (Parsing.has(ctx.tcons())) {
+				Parsing.error("ID constructor missing (scons) " + ctx.getText());
+		}
+		if (Parsing.has(ctx.tcons())) {
 			if (Parsing.hasTerminal(ctx.tcons().ID())) {
-				cons = ID.IDTerm(ctx.tcons().ID());				
+				cons = ID.IDTerm(ctx.tcons().ID());
 				ctx.tcons().typename().forEach(x -> l.add(Type.typename(x)));
 			} else
-				Parsing.error("ID constructor missing (tcons) "+ctx.getText()) ;			
+				Parsing.error("ID constructor missing (tcons) " + ctx.getText());
 		}
-		
+
 		// if there is no error
-		if (cons!=null  )
+		if (cons != null)
 			// no arguments
-			if (l==null || l.size()==0)
+			if (l == null || l.size() == 0)
 				r = new DataCons(cons);
-			else // arguments
-				r = new DataCons(cons,l);
-		
+			else
+				// arguments
+				r = new DataCons(cons, l);
+
 		return r;
 	}
 
@@ -149,21 +152,21 @@ public class DataCons implements MiniZincRepresentation, Cloneable {
 	}
 
 	@Override
-	public DataCons clone() { 
+	public DataCons clone() {
 		DataCons r = null;
 		ID consp = cons == null ? null : cons.clone();
-		
+
 		List<Type> subtypesp = null;
-		if (subtypes!= null) {
+		if (subtypes != null) {
 			subtypesp = new ArrayList<Type>();
-			for (Type s:subtypes) 
+			for (Type s : subtypes)
 				subtypesp.add(s.clone());
-			
+
 		}
-		r = new DataCons(consp,subtypesp);
+		r = new DataCons(consp, subtypesp);
 		return r;
 	}
-	
+
 	@Override
 	public String toString() {
 		return print();

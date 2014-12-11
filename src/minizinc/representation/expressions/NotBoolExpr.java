@@ -10,23 +10,23 @@ import minizinc.representation.Parsing;
 
 /**
  * BoolComplexExprssion as a not(e) expression
+ * 
  * @author rafa
  *
  */
 public class NotBoolExpr extends BoolExpr {
-	
-	private Expr e;
 
-	
+	private Expr e;
 
 	/**
 	 * Constructor for not(e)
-	 * @param e the negated expression
+	 * 
+	 * @param e
+	 *            the negated expression
 	 */
-	public NotBoolExpr (Expr e) {
+	public NotBoolExpr(Expr e) {
 		this.e = e;
 	}
-
 
 	@Override
 	public String print() {
@@ -34,7 +34,6 @@ public class NotBoolExpr extends BoolExpr {
 
 	}
 
-	
 	/**
 	 * Grammar: <br>
 	 * notExpr : 'not' expr ;
@@ -54,15 +53,13 @@ public class NotBoolExpr extends BoolExpr {
 		return t;
 	}
 
-
 	@Override
 	public NotBoolExpr clone() {
 		NotBoolExpr r = null;
-		Expr exprp = e==null  ? null : e.clone();
+		Expr exprp = e == null ? null : e.clone();
 		r = new NotBoolExpr(exprp);
-		return r;	
+		return r;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -71,7 +68,6 @@ public class NotBoolExpr extends BoolExpr {
 		result = prime * result + ((e == null) ? 0 : e.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,15 +86,11 @@ public class NotBoolExpr extends BoolExpr {
 		return true;
 	}
 
-
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		Expr e2 =this.applyTransformer(t, e);
+		Expr e2 = this.applyTransformer(t, e);
 		e = e2;
-		
+
 	}
-
-
-
 
 }

@@ -11,21 +11,21 @@ import minizinc.antlr4.MiniZincGrammarParser.InfixOpContext;
 import minizinc.representation.TypeName;
 
 /**
- * An infix expression with Grammar:
- *    expr infixOp expr
+ * An infix expression with Grammar: expr infixOp expr
  *
  * @author rafa
  *
  */
 public class InfixExpr extends Expr {
 	/**
-	 * List of expressions combined by the operand. 
-	 * We allow more than two operands.
+	 * List of expressions combined by the operand. We allow more than two
+	 * operands.
 	 */
 	protected List<Expr> e;
 	protected InfixOp op;
+
 	/**
-	 * constructor 
+	 * constructor
 	 */
 	public InfixExpr(InfixOp op, Expr e1, Expr e2) {
 		e = new ArrayList<Expr>();
@@ -42,46 +42,50 @@ public class InfixExpr extends Expr {
 	}
 
 	/**
-	 * constructor for more than two operands 
+	 * constructor for more than two operands
 	 */
 	public InfixExpr(InfixOp op, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
-		for (Expr expr:le) 
+		for (Expr expr : le)
 			this.e.add(expr.simplify());
 		this.op = op;
 	}
+
 	/**
-	 * constructor for more than two operands 
+	 * constructor for more than two operands
 	 */
 	public InfixExpr(String string, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
-		for (Expr expr:le) 
+		for (Expr expr : le)
 			this.e.add(expr.simplify());
 		this.op = new InfixOp(string);
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
 		List<Expr> le = new ArrayList<Expr>();
-		for (Expr expr:e) {
+		for (Expr expr : e) {
 			Expr ep = expr.simplify();
 			le.add(ep);
 		}
 		e = le;
-		return printList(" "+op.print()+" ",e);
+		return printList(" " + op.print() + " ", e);
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
 	public TypeName type() {
-		// TODO at the moment I assume the type is the type of the first operand...
+		// TODO at the moment I assume the type is the type of the first
+		// operand...
 		// which many times is wrong
 		return e.get(0).type();
 	}
@@ -89,24 +93,24 @@ public class InfixExpr extends Expr {
 	public static InfixExpr infixExpr(Expr t0, Expr t1, InfixOpContext ctx) {
 		InfixExpr r = null;
 		InfixOp infixop = InfixOp.infixop(ctx);
-		r = new InfixExpr(infixop,t0,t1);
-		
+		r = new InfixExpr(infixop, t0, t1);
+
 		return r;
 	}
 
 	@Override
 	public InfixExpr clone() {
 		InfixExpr r = null;
-		List<Expr> ep=null;
-		if (e!=null) {
+		List<Expr> ep = null;
+		if (e != null) {
 			ep = new ArrayList<Expr>();
-			for (Expr exp:e) 
+			for (Expr exp : e)
 				ep.add(exp.clone());
-			
+
 		}
-		InfixOp opp=op==null ? null : op.clone();
-		r = new InfixExpr(opp,e);	
-		return r;		
+		InfixOp opp = op == null ? null : op.clone();
+		r = new InfixExpr(opp, e);
+		return r;
 	}
 
 	@Override

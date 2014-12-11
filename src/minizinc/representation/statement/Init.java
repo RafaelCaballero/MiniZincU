@@ -3,7 +3,6 @@
  */
 package minizinc.representation.statement;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.InitContext;
 import minizinc.representation.Parsing;
@@ -11,14 +10,15 @@ import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 
 /**
- * Represents a MiniZinc initialization, with grammar:
- * init : ID '=' expr; 
+ * Represents a MiniZinc initialization, with grammar: init : ID '=' expr;
+ * 
  * @author rafa
  *
  */
 public class Init extends Statement {
 	protected ID id;
-	protected  Expr expr;
+	protected Expr expr;
+
 	/**
 	 * @param type
 	 */
@@ -26,43 +26,45 @@ public class Init extends Statement {
 		super(TStatement.INIT);
 		this.id = id;
 		this.expr = expr;
-		
+
 	}
-	
+
 	public ID getID() {
 		return id;
 	}
-	
+
 	public Expr getExpr() {
 		return expr;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return id.print()+"="+expr.print();
+		return id.print() + "=" + expr.print();
 	}
-
 
 	public static Init init(InitContext ctx) {
 		Init r = null;
 		if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.expr())) {
 			ID id = ID.IDTerm(ctx.ID());
 			Expr expr = Expr.expr(ctx.expr());
-			r = new Init(id,expr);
+			r = new Init(id, expr);
 		} else
-			Parsing.error("Init "+ctx.getText());
+			Parsing.error("Init " + ctx.getText());
 		return r;
 	}
 
 	@Override
 	public Init clone() {
 		Init r = null;
-		ID idp = id==null ? null : id.clone();;
-		Expr exprp = expr==null ? null : expr.clone();	
-		r = new Init(idp,exprp);
+		ID idp = id == null ? null : id.clone();
+		;
+		Expr exprp = expr == null ? null : expr.clone();
+		r = new Init(idp, exprp);
 		return r;
 	}
 
@@ -101,11 +103,10 @@ public class Init extends Statement {
 	public void subexpressions(ExprTransformer t) {
 		ID id2 = this.applyTransformer2(t, id);
 		Expr expr2 = this.applyTransformer(t, expr);
-		
+
 		id = id2;
 		expr = expr2;
-		
-		
+
 	}
 
 }

@@ -9,11 +9,11 @@ public class IfS extends Expr {
 	private Expr Cond;
 	private Expr Exp1;
 	private Expr Exp2;
-	
+
 	/**
 	 * Used only for pretty printing
 	 */
-	private static int countspc=0;
+	private static int countspc = 0;
 
 	public IfS(Expr cond, Expr exp1, Expr exp2) {
 		Cond = cond;
@@ -22,15 +22,10 @@ public class IfS extends Expr {
 	}
 
 	/*
-	@Override
-	public Term simplify() {
-		Term condp = Cond.simplify();
-		Term exp1p = Exp1.simplify();
-		Term exp2p = Exp2.simplify();
-		return new IfS(condp, exp1p, exp2p);
-	}
-    */
-
+	 * @Override public Term simplify() { Term condp = Cond.simplify(); Term
+	 * exp1p = Exp1.simplify(); Term exp2p = Exp2.simplify(); return new
+	 * IfS(condp, exp1p, exp2p); }
+	 */
 
 	public Expr getCond() {
 		return Cond;
@@ -55,7 +50,6 @@ public class IfS extends Expr {
 	public void setExp2(Expr exp2) {
 		Exp2 = exp2;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -101,26 +95,27 @@ public class IfS extends Expr {
 		countspc = n;
 		return s;
 	}
-	
+
 	@Override
 	public String print(int n) {
-	   return nSpc(n)+"if (" + Cond.print() + ") \n" +
-			  nSpc(n)+"then \n" + Exp1.print(n+5) + "\n"+
-			  nSpc(n)+"else \n" + Exp2.print(n+5) + "\n"+
-			  nSpc(n)+"endif";
+		return nSpc(n) + "if (" + Cond.print() + ") \n" + nSpc(n) + "then \n"
+				+ Exp1.print(n + 5) + "\n" + nSpc(n) + "else \n"
+				+ Exp2.print(n + 5) + "\n" + nSpc(n) + "endif";
 
 	}
+
 	/**
 	 * Returns the type of the if statement. Observe that both the then and the
-	 * else must have the same type, but we don't check that and simply return 
+	 * else must have the same type, but we don't check that and simply return
 	 * the if part.
+	 * 
 	 * @return The type of the Then Expression
 	 */
 	@Override
 	public TypeName type() {
 		return Exp1.type();
 	}
-	
+
 	/**
 	 * ifExpr : 'if' bodyIf ;
 	 * 
@@ -205,9 +200,10 @@ public class IfS extends Expr {
 	@Override
 	public IfS clone() {
 		IfS r = null;
-		Expr Condp = Cond==null ? null : Cond.clone();
+		Expr Condp = Cond == null ? null : Cond.clone();
 		Expr Exp1p = Exp1 == null ? null : Exp1.clone();
-		Expr Exp2p = Exp2 == null ? null : Exp2.clone();;
+		Expr Exp2p = Exp2 == null ? null : Exp2.clone();
+		;
 		r = new IfS(Condp, Exp1p, Exp2p);
 		return r;
 	}
@@ -217,12 +213,11 @@ public class IfS extends Expr {
 		Expr Condp = this.applyTransformer(t, Cond);
 		Expr Exp1p = this.applyTransformer(t, Exp1);
 		Expr Exp2p = this.applyTransformer(t, Exp2);
-		
+
 		Cond = Condp;
 		Exp1 = Exp1p;
 		Exp2 = Exp2p;
-		
-	}
 
+	}
 
 }

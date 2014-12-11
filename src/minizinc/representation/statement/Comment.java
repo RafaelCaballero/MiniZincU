@@ -1,10 +1,10 @@
 package minizinc.representation.statement;
 
-
 import transformation.ExprTransformer;
 
 public class Comment extends Statement {
 	protected String msg;
+
 	public Comment(String msg) {
 		super(TStatement.COMMENT);
 		this.msg = msg;
@@ -12,10 +12,8 @@ public class Comment extends Statement {
 
 	@Override
 	public String print() {
-		return "% "+msg+"\n";
+		return "% " + msg + "\n";
 	}
-
-
 
 	@Override
 	public Comment clone() {
@@ -50,7 +48,7 @@ public class Comment extends Statement {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		// no subexpressions
-		
+
 	}
 
 }

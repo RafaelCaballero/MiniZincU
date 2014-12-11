@@ -3,7 +3,6 @@
  */
 package minizinc.representation.statement;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.SolveContext;
 import minizinc.representation.Parsing;
@@ -14,15 +13,15 @@ import minizinc.representation.solve.Satisfy;
 /**
  * Grammar:<br>
  * solve : 'solve' (annotation)? (satisfy | optimize);
+ * 
  * @author rafa
  *
  */
 public abstract class Solve extends Statement {
-	protected Annotation annotation; 
-	
+	protected Annotation annotation;
 
 	/**
-	 * A solve statement with annotation 
+	 * A solve statement with annotation
 	 *
 	 */
 	public Solve(Annotation annotation) {
@@ -30,15 +29,17 @@ public abstract class Solve extends Statement {
 		this.annotation = annotation;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		String s =  "solve ";
+		String s = "solve ";
 		// add the annotation if there is any
 		if (annotation != null)
-			s+=annotation.print();
+			s += annotation.print();
 		return s;
 	}
 
@@ -49,14 +50,14 @@ public abstract class Solve extends Statement {
 			a = Annotation.annotation(ctx.annotation());
 		}
 		if (Parsing.has(ctx.satisfy())) {
-			r = Satisfy.satisfy(a,ctx.satisfy());
+			r = Satisfy.satisfy(a, ctx.satisfy());
 		} else if (Parsing.has(ctx.optimize())) {
-			r = Optimize.optimize(a,ctx.optimize()); 
+			r = Optimize.optimize(a, ctx.optimize());
 		}
-		
+
 		return r;
 	}
-	
+
 	@Override
 	public abstract Solve clone();
 
@@ -85,12 +86,12 @@ public abstract class Solve extends Statement {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Annotation annotation2 = this.applyTransformer2(t, annotation);
 		annotation = annotation2;
-		
+
 	}
 
 }

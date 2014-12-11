@@ -3,17 +3,16 @@
  */
 package minizinc.representation.expressions;
 
-
 import transformation.ExprTransformer;
-
 
 /**
  * BoolComplexExprssion as a Infix boolean expression
+ * 
  * @author rafa
  *
  */
 public class InfixBoolExpr extends BoolExpr {
-	
+
 	/**
 	 * left operand
 	 */
@@ -27,13 +26,15 @@ public class InfixBoolExpr extends BoolExpr {
 	 */
 	private BoolExpr e2;
 
-	
-
 	/**
 	 * Constructor for infix boolean expression e1 op e2
-	 * @param op operator
-	 * @param e1 left operand
-	 * @param e2 right operand
+	 * 
+	 * @param op
+	 *            operator
+	 * @param e1
+	 *            left operand
+	 * @param e2
+	 *            right operand
 	 */
 	public InfixBoolExpr(String op, BoolExpr e1, BoolExpr e2) {
 		this.op = op;
@@ -41,14 +42,12 @@ public class InfixBoolExpr extends BoolExpr {
 		this.e2 = e2;
 	}
 
-
 	@Override
 	public String print() {
 		// TODO Auto-generated method stub
-		return e1.toString()+" "+op+" "+e2.toString();
+		return e1.toString() + " " + op + " " + e2.toString();
 
 	}
-
 
 	/**
 	 * Boolean infix expression
@@ -61,21 +60,20 @@ public class InfixBoolExpr extends BoolExpr {
 	 *            Operator
 	 * @return Term representation
 	 */
-	public static InfixBoolExpr infixBoolExpr(BoolExpr  t0, BoolExpr t1, String op) {
+	public static InfixBoolExpr infixBoolExpr(BoolExpr t0, BoolExpr t1,
+			String op) {
 		return new InfixBoolExpr(op, t0, t1);
 	}
-
 
 	@Override
 	public InfixBoolExpr clone() {
 		InfixBoolExpr r = null;
-		BoolExpr e1p = e1==null? null : e1.clone();
-		BoolExpr e2p = e2==null ? null : e2.clone();
-		String opp=op;
-		r = new InfixBoolExpr(opp,e1p,e2p);	
-		return r;	
+		BoolExpr e1p = e1 == null ? null : e1.clone();
+		BoolExpr e2p = e2 == null ? null : e2.clone();
+		String opp = op;
+		r = new InfixBoolExpr(opp, e1p, e2p);
+		return r;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -86,7 +84,6 @@ public class InfixBoolExpr extends BoolExpr {
 		result = prime * result + ((op == null) ? 0 : op.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -115,18 +112,15 @@ public class InfixBoolExpr extends BoolExpr {
 		return true;
 	}
 
-
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		 BoolExpr e1p = this.applyTransformer2(t, e1);
-		 BoolExpr e2p = this.applyTransformer2(t, e2) ;
-		 
-		 e1 = e1p;
-		 e2 = e2p;
+		BoolExpr e1p = this.applyTransformer2(t, e1);
+		BoolExpr e2p = this.applyTransformer2(t, e2);
 
-		
+		e1 = e1p;
+		e2 = e2p;
+
 	}
-
 
 	/**
 	 * @return the e1
@@ -135,7 +129,6 @@ public class InfixBoolExpr extends BoolExpr {
 		return e1;
 	}
 
-
 	/**
 	 * @return the op
 	 */
@@ -143,13 +136,11 @@ public class InfixBoolExpr extends BoolExpr {
 		return op;
 	}
 
-
 	/**
 	 * @return the e2
 	 */
 	public BoolExpr getE2() {
 		return e2;
 	}
-
 
 }

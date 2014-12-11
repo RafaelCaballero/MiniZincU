@@ -1,4 +1,3 @@
-
 import minizinc.antlr4.MiniZinc2JavaModel;
 import minizinc.antlr4.MiniZincGrammarLexer;
 import minizinc.antlr4.MiniZincGrammarParser;
@@ -17,7 +16,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-
 public class MiniZincU {
 
 	/**
@@ -27,31 +25,30 @@ public class MiniZincU {
 	 */
 	public static void main(String[] args) throws Exception {
 		SplitModel pu = loadFile(args);
-		//System.out.println(pu);
-		
-		System.out.println(transformUnion(pu));
+		if (pu != null)
+			// System.out.println(pu);
+			System.out.println(transformUnion(pu));
 
 	}
-	
-	private static TransDataModel transformUnion(SplitModel p) {
-		// recursive calls deserves an special initial treatment
-		TransRecursiveModel trec = new TransRecursiveModel(p);
-		
-		// eliminate expressions including data 
-		TransDataExprModel tdexp = new TransDataExprModel(trec); 
 
-		
-		TransShowModel ts = new TransShowModel(tdexp); 
-		//System.out.println(ts.print());
-		
+	private static TransDataModel transformUnion(SplitModel p) {
+		// recursive calls and predicates including case statements deserve an
+		// special initial treatment
+		TransRecursiveModel trec = new TransRecursiveModel(p);
+
+		// eliminate expressions including data
+		TransDataExprModel tdexp = new TransDataExprModel(trec);
+
+		TransShowModel ts = new TransShowModel(tdexp);
+		// System.out.println(ts.print());
+
 		// Transform union variables
 		TransVarModel tv = new TransVarModel(ts);
-
 
 		// eliminate the data section
 		TransDataModel td = new TransDataModel(tv);
 		return td;
-		
+
 	}
 
 	private static SplitModel loadFile(String[] args) throws Exception {
@@ -65,8 +62,10 @@ public class MiniZincU {
 			if (!f.exists()) {
 				System.out.println("File " + inputFile + " not found!");
 			}
-		} else
-			throw new Exception("Please specify MiniZinc input file");
+		} else {
+			System.out.println("Please specify a MiniZinc input file (.mzn)");
+			return null;
+		}
 		InputStream is = System.in;
 		if (inputFile != null)
 			is = new FileInputStream(inputFile);

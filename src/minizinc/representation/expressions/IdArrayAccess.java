@@ -14,64 +14,72 @@ import minizinc.representation.expressions.lists.Dimension;
 
 /**
  * ArrayAccess of the form id[e1...en]
+ * 
  * @author rafa
  *
  */
 public class IdArrayAccess extends ArrayAccess {
 	private ID id;
 
-
 	public IdArrayAccess(ID id, List<Expr> indexes) {
 		super(indexes);
 		this.id = id;
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		String s = id.print()+super.print();
+		String s = id.print() + super.print();
 		return s;
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.expressions.Expr#type()
 	 */
 	@Override
 	public TypeName type() {
-		// TODO it should be the type of the elements of the array referenced by ID
+		// TODO it should be the type of the elements of the array referenced by
+		// ID
 		return null;
 	}
-	
+
 	/**
 	 * Array access of the form id[e1...en]
-	 * @param id The identifier, already in Java format
-	 * @param ctx list of indexes
+	 * 
+	 * @param id
+	 *            The identifier, already in Java format
+	 * @param ctx
+	 *            list of indexes
 	 * @return The Java representation
 	 */
 	public static IdArrayAccess idarrayaccess(ID id,
 			SimpleNonEmptyListContext ctx) {
 		IdArrayAccess t = null;
 		int n = ctx.nonEmptyListElems().expr().size();
-		if (n!=0) {
+		if (n != 0) {
 			Dimension indexes = Dimension.dimension(ctx.nonEmptyListElems());
 			t = new IdArrayAccess(id, indexes.getExprs());
-		} else Parsing.error("IdArrayAccess (Id: "+id+") with 0 indexes " + ctx.getText()); 
+		} else
+			Parsing.error("IdArrayAccess (Id: " + id + ") with 0 indexes "
+					+ ctx.getText());
 		return t;
 	}
 
 	@Override
 	public IdArrayAccess clone() {
 		IdArrayAccess r = null;
-		ID idp= id==null ? null : id.clone();
-		List<Expr> indexesp=null;
-		if (indexes!=null) {
+		ID idp = id == null ? null : id.clone();
+		List<Expr> indexesp = null;
+		if (indexes != null) {
 			indexesp = new ArrayList<Expr>();
-			for (Expr e:indexes) 
+			for (Expr e : indexes)
 				indexesp.add(e.clone());
 		}
 		r = new IdArrayAccess(idp, indexesp);
@@ -103,7 +111,9 @@ public class IdArrayAccess extends ArrayAccess {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.expressions.Expr#subexpressions()
 	 */
 	@Override
@@ -112,7 +122,5 @@ public class IdArrayAccess extends ArrayAccess {
 		ID id2 = this.applyTransformer2(t, id);
 		id = id2;
 	}
-
-
 
 }

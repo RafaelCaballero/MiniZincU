@@ -20,7 +20,6 @@ public class BoolC extends Expr {
 		this.value = value;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,14 +49,14 @@ public class BoolC extends Expr {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		return ;
+		return;
 	}
 
 	@Override
 	public TypeName type() {
 		return TypeName.BOOL;
 	}
-	
+
 	/**
 	 * @param ctx
 	 * @return Term representation of a boolean constant in MiniZinc
@@ -71,6 +70,5 @@ public class BoolC extends Expr {
 		// TODO Auto-generated method stub
 		return new BoolC(value);
 	}
-
 
 }

@@ -1,21 +1,21 @@
 package minizinc.representation;
 
-
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
  * Classes that represent MiniZinc terms in Java
+ * 
  * @author rafa
  *
  */
-public  class Parsing {
-	
-	public static  boolean has(ParserRuleContext ctx) {
+public class Parsing {
+
+	public static boolean has(ParserRuleContext ctx) {
 		return ctx != null;
 	}
 
-	public static  boolean hasTerminal(TerminalNode ctx) {
+	public static boolean hasTerminal(TerminalNode ctx) {
 		return ctx != null;
 	}
 

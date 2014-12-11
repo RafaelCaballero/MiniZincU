@@ -7,46 +7,43 @@ import minizinc.representation.Typeable;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.ID;
 
-public abstract class Type implements MiniZincRepresentation, Typeable, Cloneable {
+public abstract class Type implements MiniZincRepresentation, Typeable,
+		Cloneable {
 
 	/**
-	 * Obtains the representation of a type name as an element of class {@link Type}
-	 * typename : rint
-     *    | rbool
-     *    | rfloat 
-     *    | ID		// for extension types or sets as ranges
-     *    | typedata
-     *    | range
-     *    | typeset
-     *     ;
-	 * @param ctx The context
-	 * @return The Java representation as an object of class  {@link Type} of the typename.
+	 * Obtains the representation of a type name as an element of class
+	 * {@link Type} typename : rint | rbool | rfloat | ID // for extension types
+	 * or sets as ranges | typedata | range | typeset ;
+	 * 
+	 * @param ctx
+	 *            The context
+	 * @return The Java representation as an object of class {@link Type} of the
+	 *         typename.
 	 */
 	public static Type typename(TypenameContext ctx) {
-		Type t=null;
+		Type t = null;
 		if (Parsing.hasTerminal(ctx.ID())) {
-			// type can be a range represented by a set or an extension		
+			// type can be a range represented by a set or an extension
 			ID id = ID.IDTerm(ctx.ID());
-			t = new TypeID(id);			
-		} 
-		else if (Parsing.has(ctx.rint()))
+			t = new TypeID(id);
+		} else if (Parsing.has(ctx.rint()))
 			t = new Rint();
 		else if (Parsing.has(ctx.rfloat()))
 			t = new Rfloat();
 		else if (Parsing.has(ctx.rbool()))
 			t = new Rbool();
-		else if (Parsing.has(ctx.typedata())) 
+		else if (Parsing.has(ctx.typedata()))
 			t = TypeUnion.typedata(ctx.typedata());
-		else if (Parsing.has(ctx.typeset())) 
+		else if (Parsing.has(ctx.typeset()))
 			t = TypeSet.typeset(ctx.typeset());
-		else if (Parsing.has(ctx.range())) 
+		else if (Parsing.has(ctx.range()))
 			t = TypeRange.range(ctx.range());
-		else			
+		else
 			Parsing.error("Error in typename " + ctx.getText());
 
 		return t;
 	}
-	
+
 	@Override
 	public String toString() {
 		return print();
@@ -54,15 +51,16 @@ public abstract class Type implements MiniZincRepresentation, Typeable, Cloneabl
 
 	@Override
 	public abstract Type clone();
-	
+
 	@Override
 	public abstract int hashCode();
-	
+
 	@Override
 	public abstract boolean equals(Object o);
-	
+
 	/**
-	 * @return An arbitrary constant of this type which is call the zero of the type 
+	 * @return An arbitrary constant of this type which is call the zero of the
+	 *         type
 	 */
 	public abstract Expr zero();
 

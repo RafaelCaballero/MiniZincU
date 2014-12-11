@@ -1,4 +1,5 @@
 package minizinc.representation.types;
+
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.BoolC;
 import minizinc.representation.expressions.Expr;
@@ -10,8 +11,9 @@ import minizinc.representation.expressions.Expr;
  */
 public class Rbool extends Type {
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -19,13 +21,15 @@ public class Rbool extends Type {
 		return "bool";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
 	public TypeName type() {
 		return TypeName.BOOL;
-		
+
 	}
 
 	@Override
@@ -33,22 +37,22 @@ public class Rbool extends Type {
 		// TODO Auto-generated method stub
 		return new Rbool();
 	}
-	
+
 	@Override
-	public  int hashCode(){
+	public int hashCode() {
 		final int prime = 31;
 		return prime;
 	}
-	
+
 	@Override
-	public  boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-        return true;
+		return true;
 	}
 
 	@Override
@@ -56,6 +60,5 @@ public class Rbool extends Type {
 		// TODO Auto-generated method stub
 		return new BoolC(false);
 	}
-
 
 }

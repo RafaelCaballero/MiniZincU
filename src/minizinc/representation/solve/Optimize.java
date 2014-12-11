@@ -11,24 +11,25 @@ import minizinc.representation.statement.Solve;
 
 /**
  * A satisfationp problem
+ * 
  * @author rafa
  *
  */
 public class Optimize extends Solve {
 	protected Expr expr;
 	protected String maxmin;
-	
+
 	public Optimize(Annotation a, String maxmin, Expr expr) {
 		super(a);
 		this.maxmin = maxmin;
 		this.expr = expr;
-		
-	}
-	@Override
-	public String print() {
-		return super.print()+" "+maxmin + " " +expr.print();
+
 	}
 
+	@Override
+	public String print() {
+		return super.print() + " " + maxmin + " " + expr.print();
+	}
 
 	public static Optimize optimize(Annotation a, OptimizeContext ctx) {
 		Optimize r = null;
@@ -36,32 +37,37 @@ public class Optimize extends Solve {
 		if (Parsing.has(ctx.maximize())) {
 			if (Parsing.has(ctx.maximize().expr())) {
 				e = Expr.expr(ctx.maximize().expr());
-				r = new Optimize(a,"maximize",e);
-			}
-			else 
-				Parsing.error("optimize: missing expr to maximize "+ctx.getText());
-			
+				r = new Optimize(a, "maximize", e);
+			} else
+				Parsing.error("optimize: missing expr to maximize "
+						+ ctx.getText());
+
 		} else if (Parsing.has(ctx.minimize())) {
 			if (Parsing.has(ctx.minimize().expr())) {
 				e = Expr.expr(ctx.minimize().expr());
-				r = new Optimize(a,"minimize",e);
-				
-			} else 
-				Parsing.error("optimize: missing expr to minimize "+ctx.getText());
-		} 	else 
-			Parsing.error("optimize: neither maximize nor minimize "+ctx.getText());
+				r = new Optimize(a, "minimize", e);
+
+			} else
+				Parsing.error("optimize: missing expr to minimize "
+						+ ctx.getText());
+		} else
+			Parsing.error("optimize: neither maximize nor minimize "
+					+ ctx.getText());
 
 		return r;
 	}
+
 	@Override
 	public Optimize clone() {
 		Optimize r = null;
-		Annotation ap = this.annotation==null ? null : this.annotation.clone(); 	
+		Annotation ap = this.annotation == null ? null : this.annotation
+				.clone();
 		Expr exprp = expr == null ? null : expr.clone();
 		String maxminp = maxmin;
-		r = new Optimize(ap,maxminp,exprp);
+		r = new Optimize(ap, maxminp, exprp);
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,6 +76,7 @@ public class Optimize extends Solve {
 		result = prime * result + ((maxmin == null) ? 0 : maxmin.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -91,7 +98,7 @@ public class Optimize extends Solve {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		super.subexpressions(t);

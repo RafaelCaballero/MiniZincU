@@ -14,10 +14,9 @@ import minizinc.representation.TypeName;
 import minizinc.representation.expressions.cases.Branch;
 
 /**
- * Represents a case expression. Used for union/data types.
- * Grammar:
- * caseExpr   : 'case' ID 'of' (caseBranch ';')+ 'endcase';
- * caseBranch : predOrUnionExpr '-->' expr;  
+ * Represents a case expression. Used for union/data types. Grammar: caseExpr :
+ * 'case' ID 'of' (caseBranch ';')+ 'endcase'; caseBranch : predOrUnionExpr
+ * '-->' expr;
  * 
  * @author rafa
  *
@@ -25,6 +24,7 @@ import minizinc.representation.expressions.cases.Branch;
 public class CaseExpr extends Expr {
 	protected Expr id;
 	protected List<Branch> branches;
+
 	/**
 	 * 
 	 */
@@ -33,64 +33,73 @@ public class CaseExpr extends Expr {
 		this.branches = branches;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "case "+id.print()+" of "+ printList(";",branches)+ " endcase";
+		return "case " + id.print() + " of " + printList(";", branches)
+				+ " endcase";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.expressions.Expr#subexpressions()
 	 */
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		List<Branch> branches2 = applyTransformerList2(t,branches);
-		Expr id2 =  applyTransformer(t, id);
+		List<Branch> branches2 = applyTransformerList2(t, branches);
+		Expr id2 = applyTransformer(t, id);
 		this.branches = branches2;
 		this.id = id2;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
 	public TypeName type() {
-		TypeName t =null;
-		// we return the type of the expression in the first branch 
-		if (branches!=null && branches.size()>0) 
+		TypeName t = null;
+		// we return the type of the expression in the first branch
+		if (branches != null && branches.size() > 0)
 			t = branches.get(0).type();
-		
+
 		return t;
 	}
 
 	public static CaseExpr caseExpr(CaseExprContext ctx) {
 		CaseExpr r = null;
 		if (Parsing.hasTerminal(ctx.ID())) {
-			if (ctx.caseBranch().size()>0) {
-				ID id =  ID.IDTerm(ctx.ID());
-				List<Branch> l = ctx.caseBranch().stream().map(x->Branch.branch(x)).collect(Collectors.toList());
-				r = new CaseExpr(id,l);
-			} else 
-				Parsing.error("caseExpr, no branches "+ctx.getText());
-		} else 
-			Parsing.error("caseExpr missing ID "+ctx.getText());
-			
+			if (ctx.caseBranch().size() > 0) {
+				ID id = ID.IDTerm(ctx.ID());
+				List<Branch> l = ctx.caseBranch().stream()
+						.map(x -> Branch.branch(x))
+						.collect(Collectors.toList());
+				r = new CaseExpr(id, l);
+			} else
+				Parsing.error("caseExpr, no branches " + ctx.getText());
+		} else
+			Parsing.error("caseExpr missing ID " + ctx.getText());
+
 		return r;
 	}
 
 	@Override
 	public CaseExpr clone() {
 		CaseExpr r = null;
-		Expr idp = id==null ? null : id.clone();
+		Expr idp = id == null ? null : id.clone();
 		List<Branch> branchesp = null;
-		if (branches!=null) {
+		if (branches != null) {
 			branchesp = new ArrayList<Branch>();
-			for (Branch b:branches)
+			for (Branch b : branches)
 				branchesp.add(b.clone());
 		}
-		r = new CaseExpr(idp,branchesp);
+		r = new CaseExpr(idp, branchesp);
 		return r;
 	}
 

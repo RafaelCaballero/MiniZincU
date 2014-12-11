@@ -1,4 +1,5 @@
 package minizinc.representation.types;
+
 import minizinc.representation.TypeName;
 import minizinc.representation.expressions.Expr;
 import minizinc.representation.expressions.IntC;
@@ -10,8 +11,9 @@ import minizinc.representation.expressions.IntC;
  */
 public class Rint extends Type {
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -19,13 +21,15 @@ public class Rint extends Type {
 		return "int";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
 	public TypeName type() {
 		return TypeName.INT;
-		
+
 	}
 
 	@Override
@@ -34,20 +38,20 @@ public class Rint extends Type {
 	}
 
 	@Override
-	public  int hashCode(){
+	public int hashCode() {
 		final int prime = 31;
 		return prime;
 	}
-	
+
 	@Override
-	public  boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-        return true;
+		return true;
 	}
 
 	@Override

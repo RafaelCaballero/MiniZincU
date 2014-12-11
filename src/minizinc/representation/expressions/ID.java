@@ -1,7 +1,5 @@
 package minizinc.representation.expressions;
 
-
-
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import transformation.ExprTransformer;
@@ -49,13 +47,10 @@ public class ID extends Expr {
 		return result;
 	}
 
-
 	@Override
 	public String print() {
 		return id;
 	}
-
-
 
 	/**
 	 * We cannot determine the type
@@ -65,7 +60,7 @@ public class ID extends Expr {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public static ID IDTerm(TerminalNode id) {
 		return new ID(id.getText());
 	}
@@ -75,10 +70,8 @@ public class ID extends Expr {
 	}
 
 	@Override
-	public void subexpressions(ExprTransformer t) {		
+	public void subexpressions(ExprTransformer t) {
 		// no subexpressions
 	}
-
-
 
 }

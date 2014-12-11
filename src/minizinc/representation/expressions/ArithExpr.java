@@ -1,6 +1,5 @@
 package minizinc.representation.expressions;
 
-
 import minizinc.antlr4.MiniZincGrammarParser.ArithComplexExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.ArithExprContext;
 import minizinc.representation.Parsing;
@@ -56,19 +55,20 @@ public abstract class ArithExpr extends Expr {
 			ArithExprContext a0 = ctx.arithExpr(0);
 			ArithExprContext a1 = ctx.arithExpr(1);
 			if (a0 == null || a1 == null)
-				Parsing.error("arithComplexExpr (null operand):  " + ctx.toString());
+				Parsing.error("arithComplexExpr (null operand):  "
+						+ ctx.toString());
 			else {
 				ArithExpr t0 = ArithExpr.arithExpr(a0);
 				ArithExpr t1 = ArithExpr.arithExpr(a1);
 				String op = ctx.arithOp2().getText();
-				t = InfixArithExpr.infixArithExpr(t0, t1,op);
+				t = InfixArithExpr.infixArithExpr(t0, t1, op);
 			}
 		} else
 			Parsing.error("arithComplexExpr:  " + ctx.toString());
 		return t;
 	}
 
-	@Override 
+	@Override
 	public abstract ArithExpr clone();
 
 }

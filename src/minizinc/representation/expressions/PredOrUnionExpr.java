@@ -13,30 +13,32 @@ import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
- * This class represents either a predicate call or a term of union type.
- * It is not possible to distinguish both at the syntactic level
- * Grammar:
- * predOrUnionExpr: ID (twosections | onesection) ;
- * onesection :  ('('expr (','expr)*')')?;
- * twosections : '(' guard ')' '(' expr ')';
+ * This class represents either a predicate call or a term of union type. It is
+ * not possible to distinguish both at the syntactic level Grammar:
+ * predOrUnionExpr: ID (twosections | onesection) ; onesection : ('('expr
+ * (','expr)*')')?; twosections : '(' guard ')' '(' expr ')';
  *
  * @author rafa
  *
  */
-public class PredOrUnionExpr extends Expr{
+public class PredOrUnionExpr extends Expr {
 	protected ID id;
 	protected List<Expr> args;
 	/**
 	 * declaration of local variables; used in two sections arguments
 	 */
-	protected List<InDecl> lindecl; 
+	protected List<InDecl> lindecl;
+
 	/**
 	 * This is a one section predorunion, that is: <br>
 	 * id(arg1...argn)
-	 * @param id : name of the predicate
-	 * @param args : a list with only one element, the expr
+	 * 
+	 * @param id
+	 *            : name of the predicate
+	 * @param args
+	 *            : a list with only one element, the expr
 	 */
-	public PredOrUnionExpr(ID id,  List<Expr> args) {
+	public PredOrUnionExpr(ID id, List<Expr> args) {
 		this.id = id;
 		this.args = args;
 		lindecl = null;
@@ -45,10 +47,13 @@ public class PredOrUnionExpr extends Expr{
 	/**
 	 * This is a one section predorunion, that is: <br>
 	 * id(arg1...argn).
-	 * @param id : name of the predicate as String
-	 * @param args : a list with only one element, the expr
+	 * 
+	 * @param id
+	 *            : name of the predicate as String
+	 * @param args
+	 *            : a list with only one element, the expr
 	 */
-	public PredOrUnionExpr(String id,  List<Expr> args) {
+	public PredOrUnionExpr(String id, List<Expr> args) {
 		this.id = new ID(id);
 		this.args = args;
 		lindecl = null;
@@ -57,9 +62,13 @@ public class PredOrUnionExpr extends Expr{
 	/**
 	 * Two sections preodorunion:<br>
 	 * id(var in setexpr....)(expr)
-	 * @param id : name of the predicate
-	 * @param lindecl : local declarations
-	 * @param args : a list with only one element, the expr
+	 * 
+	 * @param id
+	 *            : name of the predicate
+	 * @param lindecl
+	 *            : local declarations
+	 * @param args
+	 *            : a list with only one element, the expr
 	 */
 	public PredOrUnionExpr(ID id, List<InDecl> lindecl, List<Expr> args) {
 		this.id = id;
@@ -70,41 +79,40 @@ public class PredOrUnionExpr extends Expr{
 	@Override
 	public String print() {
 		String s = id.print();
-		if (lindecl!=null) 
+		if (lindecl != null)
 			// two section
-			s+="("+printList(lindecl)+")";
-		s+="("+printList(args)+")";
+			s += "(" + printList(lindecl) + ")";
+		s += "(" + printList(args) + ")";
 
 		return s;
 	}
 
-
 	@Override
-	public TypeName type() {		
+	public TypeName type() {
 		return TypeName.PRED_OR_UNION;
 	}
-	
+
 	/**
-	 * @param ctx 
+	 * @param ctx
 	 * @return The Java representation
 	 */
-	public static PredOrUnionExpr predOrUnionExpr(
-			PredOrUnionExprContext ctx) {
+	public static PredOrUnionExpr predOrUnionExpr(PredOrUnionExprContext ctx) {
 		PredOrUnionExpr t = null;
 		if (Parsing.hasTerminal(ctx.ID())) {
 			// pred or constructor name
 			ID id = ID.IDTerm(ctx.ID());
 			if (Parsing.has(ctx.onesection())) {
-				List<Expr> lexpr = ctx.onesection().expr().stream().map(x->Expr.expr(x)).collect(Collectors.toList());
-				t = new PredOrUnionExpr(id,lexpr);
+				List<Expr> lexpr = ctx.onesection().expr().stream()
+						.map(x -> Expr.expr(x)).collect(Collectors.toList());
+				t = new PredOrUnionExpr(id, lexpr);
 			} else if (Parsing.has(ctx.twosections())) {
-				List<InDecl> lindecl = ctx.twosections().guard().inDecl().stream().
-						               map(x->InDecl.inDecl(x)).
-						               collect(Collectors.toList());
+				List<InDecl> lindecl = ctx.twosections().guard().inDecl()
+						.stream().map(x -> InDecl.inDecl(x))
+						.collect(Collectors.toList());
 				Expr expr = expr(ctx.twosections().expr());
 				List<Expr> l = new ArrayList<Expr>();
 				l.add(expr);
-				t =  new PredOrUnionExpr(id,lindecl,l);				
+				t = new PredOrUnionExpr(id, lindecl, l);
 			}
 		} else
 			Parsing.error("PredOrUnionExpr " + ctx.getText());
@@ -114,20 +122,20 @@ public class PredOrUnionExpr extends Expr{
 	@Override
 	public PredOrUnionExpr clone() {
 		PredOrUnionExpr r = null;
-		ID idp = id==null ? null : id.clone();
+		ID idp = id == null ? null : id.clone();
 		List<InDecl> lindeclp = null;
 		List<Expr> argsp = null;
-		if (lindecl!=null) {
+		if (lindecl != null) {
 			lindeclp = new ArrayList<InDecl>();
-			for (InDecl i:lindecl)
+			for (InDecl i : lindecl)
 				lindeclp.add(i.clone());
 		}
 		if (args != null) {
 			argsp = new ArrayList<Expr>();
-			for (Expr e: args) 
+			for (Expr e : args)
 				argsp.add(e.clone());
 		}
-		r = new  PredOrUnionExpr( idp, lindeclp, argsp);
+		r = new PredOrUnionExpr(idp, lindeclp, argsp);
 		return r;
 	}
 
@@ -184,11 +192,10 @@ public class PredOrUnionExpr extends Expr{
 	public void subexpressions(ExprTransformer t) {
 		ID id2 = this.applyTransformer2(t, id);
 		List<Expr> args2 = this.applyTransformerList(t, args);
-		
-		args= args2;
-		id = id2;
-		
-	}
 
+		args = args2;
+		id = id2;
+
+	}
 
 }

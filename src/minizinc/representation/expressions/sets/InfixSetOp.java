@@ -3,13 +3,12 @@
  */
 package minizinc.representation.expressions.sets;
 
-
-
 import transformation.ExprTransformer;
 
 /**
  * Represents a MiniZinc set expression expressed as an infix operator.<br>
  * Grammar: setExpr infixSetOp setExpr <br>
+ * 
  * @author rafa
  *
  */
@@ -17,6 +16,7 @@ public class InfixSetOp extends SetExpr {
 	protected SetExpr e1;
 	protected SetExpr e2;
 	protected String op;
+
 	/**
 	 * Constructor.
 	 * 
@@ -27,36 +27,41 @@ public class InfixSetOp extends SetExpr {
 		this.e2 = e2;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return e1.print() + " "+op+" "+e2.print();
+		return e1.print() + " " + op + " " + e2.print();
 	}
 
-
-	
 	/**
 	 * Represents a MiniZinc set expression expressed as an infix operator.<br>
 	 * Grammar: setExpr infixSetOp setExpr <br>
-	 * @param op The operator
-	 * @param s1 First operand
-	 * @param s2 Second operand
+	 * 
+	 * @param op
+	 *            The operator
+	 * @param s1
+	 *            First operand
+	 * @param s2
+	 *            Second operand
 	 * @return
 	 */
 	public static InfixSetOp infixSetOp(String op, SetExpr s1, SetExpr s2) {
-		InfixSetOp r = new InfixSetOp(op,s1,s2);
+		InfixSetOp r = new InfixSetOp(op, s1, s2);
 		return r;
 	}
 
 	@Override
 	public InfixSetOp clone() {
-		InfixSetOp r=null;
-		SetExpr e1p = e1==null ? null : e1.clone();
-		SetExpr e2p = e2==null ? null : e2.clone();;
+		InfixSetOp r = null;
+		SetExpr e1p = e1 == null ? null : e1.clone();
+		SetExpr e2p = e2 == null ? null : e2.clone();
+		;
 		String opp = op;
-		r = new InfixSetOp(opp,e1p,e2p);
+		r = new InfixSetOp(opp, e1p, e2p);
 		return r;
 
 	}
@@ -102,13 +107,10 @@ public class InfixSetOp extends SetExpr {
 	public void subexpressions(ExprTransformer t) {
 		SetExpr e1p = this.applyTransformer2(t, e1);
 		SetExpr e2p = this.applyTransformer2(t, e2);
-		
+
 		e1 = e1p;
 		e2 = e2p;
-	
 
-		
 	}
-
 
 }

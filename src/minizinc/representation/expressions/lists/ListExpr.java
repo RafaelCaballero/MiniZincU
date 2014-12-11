@@ -10,13 +10,13 @@ import minizinc.representation.TypeName;
 import minizinc.representation.expressions.Expr;
 
 /**
- * Main class representing lists. It is an abstract class used just to inherit and 
- * to determine the type.<br>
+ * Main class representing lists. It is an abstract class used just to inherit
+ * and to determine the type.<br>
  * Grammar:<br>
- * listExpr: listValue<br> 
- *         | listExpr '++' listExpr<br>
- *         | oneDimList <br>
- *         | multiDimList ;<br>
+ * listExpr: listValue<br>
+ * | listExpr '++' listExpr<br>
+ * | oneDimList <br>
+ * | multiDimList ;<br>
  *
  * 
  * @author rafa
@@ -24,8 +24,9 @@ import minizinc.representation.expressions.Expr;
  */
 public abstract class ListExpr extends Expr {
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
@@ -33,10 +34,10 @@ public abstract class ListExpr extends Expr {
 		// TODO Auto-generated method stub
 		return TypeName.LIST;
 	}
-	
+
 	/**
-	 * Grammar piece: listExpr: listValue | listExpr '++' listExpr | oneDimList |
-	 * multiDimList ;
+	 * Grammar piece: listExpr: listValue | listExpr '++' listExpr | oneDimList
+	 * | multiDimList ;
 	 */
 	public static ListExpr listExpr(ListExprContext lec) {
 		ListExpr t = null;
@@ -47,7 +48,7 @@ public abstract class ListExpr extends Expr {
 		} else if (Parsing.has(lec.listExpr(0))) {
 			ListExpr t1 = listExpr(lec.listExpr(0));
 			ListExpr t2 = listExpr(lec.listExpr(1));
-			t = new InfixListExpr("++",t1,t2);
+			t = new InfixListExpr("++", t1, t2);
 
 		} else if (Parsing.has(lec.oneDimList())) {
 			t = OneDimList.oneDimList(lec.oneDimList());
@@ -60,7 +61,5 @@ public abstract class ListExpr extends Expr {
 
 	@Override
 	public abstract ListExpr clone();
-
-
 
 }

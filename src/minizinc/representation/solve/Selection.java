@@ -5,47 +5,49 @@ import minizinc.antlr4.MiniZincGrammarParser.RestSContext;
 import minizinc.representation.expressions.Expr;
 
 /**
- * Corresponds to a simple selection annotation with grammar:
- * restS : '(' expr ',' varchoice ',' constrainchoice ',' 'complete' ')';
+ * Corresponds to a simple selection annotation with grammar: restS : '(' expr
+ * ',' varchoice ',' constrainchoice ',' 'complete' ')';
+ * 
  * @author rafa
  *
  */
-public  class Selection extends ModeAnnotation {
+public class Selection extends ModeAnnotation {
 	protected String name;
 	protected Expr expr;
 	protected String vc;
 	protected String cc;
-	
+
 	public Selection(String name, Expr expr, String vc, String cc) {
 		this.name = name;
 		this.expr = expr;
 		this.vc = vc;
-		this.cc = cc; 
+		this.cc = cc;
 	}
-	
+
 	@Override
 	public String print() {
-		return name+'(' + expr.print() + "," + vc + "," + cc +
-				     "," + " complete" + ")"; 
+		return name + '(' + expr.print() + "," + vc + "," + cc + ","
+				+ " complete" + ")";
 	}
 
 	public static Selection selection(String name, RestSContext ctx) {
-		Selection s = null;      
+		Selection s = null;
 		Expr e = Expr.expr(ctx.expr());
 		String vc = ctx.varchoice().getText();
 		String cc = ctx.constrainchoice().getText();
-		s = new Selection(name,e,vc,cc);
+		s = new Selection(name, e, vc, cc);
 		return s;
 	}
 
 	@Override
 	public Selection clone() {
-		Selection r=null;
-		String namep = name;;
-		Expr exprp = expr==null ? null : expr.clone();
-		String vcp=vc;
-		String ccp=cc;
-		r = new Selection(namep,exprp,vcp,ccp);
+		Selection r = null;
+		String namep = name;
+		;
+		Expr exprp = expr == null ? null : expr.clone();
+		String vcp = vc;
+		String ccp = cc;
+		r = new Selection(namep, exprp, vcp, ccp);
 		return r;
 	}
 
@@ -97,8 +99,5 @@ public  class Selection extends ModeAnnotation {
 		Expr expr2 = this.applyTransformer(t, expr);
 		expr = expr2;
 	}
-	
-	
-	
 
 }

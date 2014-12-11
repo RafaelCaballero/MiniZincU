@@ -15,11 +15,10 @@ import minizinc.representation.expressions.InfixOp;
  *
  */
 
-
-class OpOrID  implements MiniZincRepresentation, Cloneable {
+class OpOrID implements MiniZincRepresentation, Cloneable {
 	protected ID id;
 	protected String op;
-	
+
 	public OpOrID(ID id) {
 		this.id = id;
 		op = null;
@@ -28,8 +27,9 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 	public OpOrID(String op) {
 		this.id = null;
 		this.op = op;
-		
+
 	}
+
 	public OpOrID(ID idp, String opp) {
 		this.id = idp;
 		this.op = opp;
@@ -37,16 +37,15 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 	}
 
 	public OpOrID(InfixOp op2) {
-		if (op2.isID()){
+		if (op2.isID()) {
 			this.id = op2.getID();
 			this.op = null;
-			
+
 		} else {
 			this.id = null;
 			this.op = op2.getInfixSetOp();
 
 		}
-			
 
 	}
 
@@ -59,33 +58,37 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 		OpOrID r = null;
 		if (Parsing.hasTerminal(ctx.ID())) {
 			ID id = ID.IDTerm(ctx.ID());
-			r = new OpOrID(id); 
+			r = new OpOrID(id);
 		} else if (Parsing.has(ctx.op())) {
 			String op = ctx.op().getText();
 			r = new OpOrID(op);
-		} else Parsing.error("OpOrID "+ctx.getText());
-		
+		} else
+			Parsing.error("OpOrID " + ctx.getText());
+
 		return r;
 	}
+
 	@Override
 	public String print() {
 		String s = id == null ? op : id.print();
 		return s;
 	}
-	
-    @Override 
-    public OpOrID clone(){
-    	OpOrID r=null;
-    
+
+	@Override
+	public OpOrID clone() {
+		OpOrID r = null;
+
 		ID idp = id == null ? null : id.clone();
 		String opp = op;
-    		
-    	r = new OpOrID(idp,opp);
-    	return r;
 
-    }
+		r = new OpOrID(idp, opp);
+		return r;
 
-	/* (non-Javadoc)
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -97,7 +100,9 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -122,95 +127,101 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 		return true;
 	}
 }
- public class QualName implements MiniZincRepresentation, Cloneable {
-	 protected OpOrID opid1;
-	 protected OpOrID opid2;
-	 protected boolean extendsmark;
-		
+
+public class QualName implements MiniZincRepresentation, Cloneable {
+	protected OpOrID opid1;
+	protected OpOrID opid2;
+	protected boolean extendsmark;
+
 	/**
-	 * Constructor for names of the fom id1 extendsmark id2 or id1:id2 
+	 * Constructor for names of the fom id1 extendsmark id2 or id1:id2
+	 * 
 	 * @param id12
 	 * @param id22
 	 * @param b
 	 */
 	public QualName(OpOrID opid1, OpOrID opid2, boolean b) {
 		extendsmark = b;
-		this.opid1=opid1;
-		this.opid2 = opid2;		
+		this.opid1 = opid1;
+		this.opid2 = opid2;
 	}
 
 	public QualName(InfixOp op) {
 		extendsmark = false;
-		this.opid1=new OpOrID(op);
-		this.opid2 = null;		
+		this.opid1 = new OpOrID(op);
+		this.opid2 = null;
 	}
 
 	public QualName(OpOrID op) {
 		extendsmark = false;
-		this.opid1=new OpOrID(op);
-		this.opid2 = null;		
+		this.opid1 = new OpOrID(op);
+		this.opid2 = null;
 	}
 
 	public QualName(ID id) {
 		extendsmark = false;
-		this.opid1= new OpOrID(id);
-		this.opid2 = null;		
+		this.opid1 = new OpOrID(id);
+		this.opid2 = null;
 	}
 
 	@Override
 	public String print() {
 		String s;
-		if (opid2==null && !extendsmark)
+		if (opid2 == null && !extendsmark)
 			s = opid1.print();
-		else			
-	       s = opid1.print()+(extendsmark ? " extends " : ":")+opid2.print();
-		
+		else
+			s = opid1.print() + (extendsmark ? " extends " : ":")
+					+ opid2.print();
+
 		return s;
 	}
-		
+
 	/**
 	 * Parser of qualname. Grammar:<br>
-	 * qualName : ID |  ID':'opOrID | opOrID extendsmark opOrID;<br>
-     *varmark : 'var';<br>
-     *extendsmark : 'extends';<br>
-     *opOrID : op | ID;<br>
-	 * @param ctx Parsing context.
+	 * qualName : ID | ID':'opOrID | opOrID extendsmark opOrID;<br>
+	 * varmark : 'var';<br>
+	 * extendsmark : 'extends';<br>
+	 * opOrID : op | ID;<br>
+	 * 
+	 * @param ctx
+	 *            Parsing context.
 	 * @return Representation
 	 */
 	public static QualName qualName(QualNameContext ctx) {
 		QualName r = null;
 		if (Parsing.hasTerminal(ctx.ID())) {
 			ID id1 = ID.IDTerm(ctx.ID());
-			OpOrID oid1 = new OpOrID(id1);				
-			if (ctx.opOrID().size()==1) {
-				OpOrID oid2 = OpOrID.opOrID(ctx.opOrID(0));				
-				r = new QualName(oid1,oid2,false);
+			OpOrID oid1 = new OpOrID(id1);
+			if (ctx.opOrID().size() == 1) {
+				OpOrID oid2 = OpOrID.opOrID(ctx.opOrID(0));
+				r = new QualName(oid1, oid2, false);
 			} else
-				r = new QualName(oid1);			
-		} else if (ctx.opOrID().size()==2) {
-				OpOrID oid1 = OpOrID.opOrID(ctx.opOrID(0));				
-				OpOrID oid2 = OpOrID.opOrID(ctx.opOrID(1));				
-				r = new QualName(oid1,oid2,true);
-			}
-			else
-				Parsing.error("QualName, unexpected opOrID number: "+ctx.opOrID().size()+"("+ ctx.getText()+" )"); 	
+				r = new QualName(oid1);
+		} else if (ctx.opOrID().size() == 2) {
+			OpOrID oid1 = OpOrID.opOrID(ctx.opOrID(0));
+			OpOrID oid2 = OpOrID.opOrID(ctx.opOrID(1));
+			r = new QualName(oid1, oid2, true);
+		} else
+			Parsing.error("QualName, unexpected opOrID number: "
+					+ ctx.opOrID().size() + "(" + ctx.getText() + " )");
 
-		
 		return r;
-		
+
 	}
-	
+
 	@Override
 	public QualName clone() {
-		QualName  r=null; 
-		OpOrID opid1p =  opid1 == null ? null : opid1.clone();
-		OpOrID opid2p =  opid2 == null ? null : opid2.clone(); 
-		boolean extendsmarkp = extendsmark; 
-		r = new QualName(opid1p,opid2p,extendsmarkp);
+		QualName r = null;
+		OpOrID opid1p = opid1 == null ? null : opid1.clone();
+		OpOrID opid2p = opid2 == null ? null : opid2.clone();
+		boolean extendsmarkp = extendsmark;
+		r = new QualName(opid1p, opid2p, extendsmarkp);
 		return r;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -223,7 +234,9 @@ class OpOrID  implements MiniZincRepresentation, Cloneable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

@@ -8,32 +8,34 @@ import java.util.stream.Collectors;
  */
 
 /**
- * Classes implementing this interface ensure that they return a String representation which 
- * is valid for MiniZinc
+ * Classes implementing this interface ensure that they return a String
+ * representation which is valid for MiniZinc
+ * 
  * @author rafa
  *
  */
 public interface MiniZincRepresentation {
-	
+
 	/**
 	 * @return A string representation in a valid format for MiniZinc compiler
 	 */
 	public String print();
 
 	/**
-	 * @return A string representation in a valid format for MiniZinc compiler preceded 
-	 * by n blank spaces
+	 * @return A string representation in a valid format for MiniZinc compiler
+	 *         preceded by n blank spaces
 	 */
 	public default String print(int n) {
-		return nSpc(n)+print();
+		return nSpc(n) + print();
 	}
-	
+
 	public default String nSpc(int n) {
 		return new String(new char[n]).replace("\0", " ");
 	}
 
 	/**
 	 * Return a string as the join of printing elements in a list
+	 * 
 	 * @param lt
 	 * @return
 	 */
@@ -43,11 +45,14 @@ public interface MiniZincRepresentation {
 
 	/**
 	 * Return a string as the join of printing elements in a list
+	 * 
 	 * @param lt
 	 * @return
 	 */
-	public default String printList(String sep, List<? extends MiniZincRepresentation> lt) {
-		List<String> l = lt.stream().map(x->x.print()).collect(Collectors.toList());
+	public default String printList(String sep,
+			List<? extends MiniZincRepresentation> lt) {
+		List<String> l = lt.stream().map(x -> x.print())
+				.collect(Collectors.toList());
 		String s = String.join(sep, l);
 		return s;
 	}

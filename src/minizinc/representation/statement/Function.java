@@ -14,20 +14,19 @@ import minizinc.representation.expressions.Expr;
 /**
  * Represents a predicate definition. Grammar:<br>
  * function : 'function' varmark? qualName '(' (decl(','decl)*)? ')' '=' expr;
+ * 
  * @author rafa
  *
  */
-public class Function extends Statement {
+public class Function extends Procedure {
 	protected boolean varmark;
 	protected QualName qualName;
-	protected List<Decl> decls;
-	protected Expr expr;
-	
+
 	/**
 	 * Constructs the representation of a MiniZinc function
 	 */
-	public Function(boolean varmark, QualName qualName,
-					List<Decl> decls, Expr expr) {
+	public Function(boolean varmark, QualName qualName, List<Decl> decls,
+			Expr expr) {
 		super(TStatement.FUNCTION);
 		this.varmark = varmark;
 		this.qualName = qualName;
@@ -35,27 +34,22 @@ public class Function extends Statement {
 		this.expr = expr;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "function "+
-	            (varmark ? "var "  : "") +
-	            qualName.print()+"("+printList(decls)+")" + "=\n" + expr.print();
+		return "function " + (varmark ? "var " : "") + qualName.print() + "("
+				+ printList(decls) + ")" + "=\n" + expr.print();
 	}
 
-
-	
-	public List<Decl> getDecls() {
-		return decls;
-	}
-	
-	public Expr getBody() {
-		return expr;
-	}
-	
 	public QualName getName() {
+		return qualName;
+	}
+
+	public QualName getQualName() {
 		return qualName;
 	}
 
@@ -66,11 +60,11 @@ public class Function extends Statement {
 		if (Parsing.has(ctx.qualName()) && Parsing.has(ctx.expr())) {
 			QualName qualName = QualName.qualName(ctx.qualName());
 			Expr expr = Expr.expr(ctx.expr());
-			boolean varmark=Parsing.has(ctx.varmark());
-			r = new Function(varmark,qualName,decls,expr);	
-			
+			boolean varmark = Parsing.has(ctx.varmark());
+			r = new Function(varmark, qualName, decls, expr);
+
 		} else
-			Parsing.error("function : "+ctx.getText());
+			Parsing.error("function : " + ctx.getText());
 
 		return r;
 	}
@@ -78,18 +72,18 @@ public class Function extends Statement {
 	@Override
 	public Function clone() {
 		Function r = null;
-		boolean varmarkp=varmark;
-		QualName qualNamep=qualName == null ? null : qualName.clone();
+		boolean varmarkp = varmark;
+		QualName qualNamep = qualName == null ? null : qualName.clone();
 		List<Decl> declsp = null;
 		Expr exprp = expr == null ? null : expr.clone();
-		if (decls!=null) {
-			declsp  = new ArrayList<Decl>();
-			for (Decl d:decls) 
+		if (decls != null) {
+			declsp = new ArrayList<Decl>();
+			for (Decl d : decls)
 				declsp.add(d.clone());
-			
+
 		}
-			
-		r = new Function(varmarkp,qualNamep,declsp,exprp);
+
+		r = new Function(varmarkp, qualNamep, declsp, exprp);
 		return r;
 	}
 
@@ -138,11 +132,10 @@ public class Function extends Statement {
 	public void subexpressions(ExprTransformer t) {
 		List<Decl> decls2 = this.applyTransformerList2(t, decls);
 		Expr expr2 = this.applyTransformer(t, expr);
-		
+
 		decls = decls2;
 		expr = expr2;
 
-		
 	}
 
 }

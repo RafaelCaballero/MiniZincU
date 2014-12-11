@@ -3,8 +3,6 @@
  */
 package minizinc.representation.expressions;
 
-
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.DeclContext;
 import minizinc.antlr4.MiniZincGrammarParser.LetDeclContext;
@@ -18,29 +16,33 @@ import minizinc.representation.statement.decls.ParDecl;
 import minizinc.representation.statement.decls.VarDecl;
 
 /**
- * Represents let declarations. 
- * Grammar: <br>
- * letDecl : decl | constraint; 
+ * Represents let declarations. Grammar: <br>
+ * letDecl : decl | constraint;
+ * 
  * @author rafa
  *
  */
-public class LetDecl   implements MiniZincRepresentation, SubExpressions, Cloneable{
+public class LetDecl implements MiniZincRepresentation, SubExpressions,
+		Cloneable {
 	private Statement statement;
-	
+
 	/**
-	 * Constructor: this let declaration is a variable declaration 
+	 * Constructor: this let declaration is a variable declaration
 	 */
 	public LetDecl(Decl st) {
 		statement = st;
 	}
+
 	/**
-	 * Constructor: this let declaration is a constraint declaration 
+	 * Constructor: this let declaration is a constraint declaration
 	 */
 	public LetDecl(Constraint cte) {
 		statement = cte;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -48,16 +50,16 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions, Clonea
 		return statement.print();
 	}
 
-
 	/**
-     * Variable and parameter declarations, including possible initializations.<br>
-     * Grammar<br>
-     * decl : vardecl | pardecl;<br>
+	 * Variable and parameter declarations, including possible initializations.<br>
+	 * Grammar<br>
+	 * decl : vardecl | pardecl;<br>
+	 * 
 	 * @param ctx
 	 * @return
 	 */
 	public static LetDecl decl(DeclContext ctx) {
-		LetDecl t =null;
+		LetDecl t = null;
 		if (Parsing.has(ctx.vardecl())) {
 			t = new LetDecl(VarDecl.vardecl(ctx.vardecl()));
 		} else if (Parsing.has(ctx.pardecl())) {
@@ -67,11 +69,11 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions, Clonea
 		}
 		return t;
 	}
-	
-	
+
 	/**
 	 * Let declarations. Grammar:<br>
 	 * letDecl : decl | constraint;
+	 * 
 	 * @param ctx
 	 * @return
 	 */
@@ -79,30 +81,32 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions, Clonea
 		LetDecl t = null;
 		if (Parsing.has(ctx.decl())) {
 			t = decl(ctx.decl());
-			
+
 		} else if (Parsing.has(ctx.constraint())) {
-		
+
 		} else {
 			Parsing.error("Error in letDecl " + ctx.getText());
 		}
 		return t;
 	}
 
-
 	@Override
 	public LetDecl clone() {
-		LetDecl r=null;
+		LetDecl r = null;
 		if (statement instanceof Decl) {
-			Decl statementp = statement==null ? null : ((Decl)statement).clone();
+			Decl statementp = statement == null ? null : ((Decl) statement)
+					.clone();
 			r = new LetDecl(statementp);
 		}
 		if (statement instanceof Constraint) {
-			Constraint statementp = statement==null ? null : ((Constraint)statement).clone();
+			Constraint statementp = statement == null ? null
+					: ((Constraint) statement).clone();
 			r = new LetDecl(statementp);
 		}
 
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,6 +115,7 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions, Clonea
 				+ ((statement == null) ? 0 : statement.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -127,12 +132,12 @@ public class LetDecl   implements MiniZincRepresentation, SubExpressions, Clonea
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Statement statement2 = this.applyTransformer2(t, statement);
 		statement = statement2;
-		
-	}
 
+	}
 
 }

@@ -3,7 +3,6 @@
  */
 package minizinc.representation.expressions.lists;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ListValueContext;
 import minizinc.representation.Parsing;
@@ -12,51 +11,66 @@ import minizinc.representation.expressions.*;
 /**
  * A list value. Grammar:<br>
  * listValue : stringExpr | ID | ifExpr | arrayaccess | predOrUnionExpr;
+ * 
  * @author rafa
  *
  */
 public class ListValue extends ListExpr {
 	protected Expr e;
+
 	/**
 	 * A String literal is a valid list
-	 * @param e A string literal
+	 * 
+	 * @param e
+	 *            A string literal
 	 */
 	public ListValue(StringC e) {
 		this.e = e;
 	}
+
 	/**
 	 * An Id can be a list.
-	 * @param e An id representing a list 
+	 * 
+	 * @param e
+	 *            An id representing a list
 	 */
 	public ListValue(ID e) {
 		this.e = e;
 	}
+
 	/**
 	 * An If expression can be a list.
-	 * @param e An if expression representing a list 
+	 * 
+	 * @param e
+	 *            An if expression representing a list
 	 */
 	public ListValue(IfS e) {
 		this.e = e;
 	}
+
 	/**
 	 * An arrayaccess can be a list.
-	 * @param e An ArrayAccess representing a list 
+	 * 
+	 * @param e
+	 *            An ArrayAccess representing a list
 	 */
 	public ListValue(ArrayAccess e) {
 		this.e = e;
 	}
 
 	/**
-	 * An function can return a list. 
-	 * @param e An ArrayAccess representing a list 
+	 * An function can return a list.
+	 * 
+	 * @param e
+	 *            An ArrayAccess representing a list
 	 */
 	public ListValue(PredOrUnionExpr e) {
 		this.e = e;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -65,14 +79,13 @@ public class ListValue extends ListExpr {
 		return e.print();
 	}
 
-
 	public Expr getExpr() {
 		return e;
 	}
 
 	/**
 	 * Grammar:<br>
-	 * listValue : stringExpr | ID | ifExpr | arrayaccess |  predOrUnionExpr ;
+	 * listValue : stringExpr | ID | ifExpr | arrayaccess | predOrUnionExpr ;
 	 */
 	public static ListExpr listValue(ListValueContext lvc) {
 		ListExpr t = null;
@@ -86,38 +99,42 @@ public class ListValue extends ListExpr {
 		} else if (Parsing.has(lvc.arrayaccess())) {
 			t = new ListValue(ArrayAccess.arrayaccess(lvc.arrayaccess()));
 		} else if (Parsing.has(lvc.predOrUnionExpr())) {
-			t = new ListValue(PredOrUnionExpr.predOrUnionExpr(lvc.predOrUnionExpr()));
+			t = new ListValue(PredOrUnionExpr.predOrUnionExpr(lvc
+					.predOrUnionExpr()));
 		} else
 			Parsing.error("listValue:  " + lvc.toString());
 
 		return t;
 	}
+
 	@Override
 	public ListValue clone() {
-		ListValue r=null;
+		ListValue r = null;
 		if (e instanceof StringC) {
-			StringC ep = e==null ? null : ((StringC) e).clone();
+			StringC ep = e == null ? null : ((StringC) e).clone();
 			r = new ListValue(ep);
 		}
 		if (e instanceof ID) {
-			ID ep = e==null ? null : ((ID) e).clone();
+			ID ep = e == null ? null : ((ID) e).clone();
 			r = new ListValue(ep);
 		}
 		if (e instanceof IfS) {
-			IfS ep = e==null ? null : ((IfS) e).clone();
+			IfS ep = e == null ? null : ((IfS) e).clone();
 			r = new ListValue(ep);
 		}
 		if (e instanceof ArrayAccess) {
-			ArrayAccess ep = e==null ? null : ((ArrayAccess) e).clone();
+			ArrayAccess ep = e == null ? null : ((ArrayAccess) e).clone();
 			r = new ListValue(ep);
 		}
-		
+
 		if (e instanceof PredOrUnionExpr) {
-			PredOrUnionExpr ep = e==null ? null : ((PredOrUnionExpr) e).clone();
+			PredOrUnionExpr ep = e == null ? null : ((PredOrUnionExpr) e)
+					.clone();
 			r = new ListValue(ep);
 		}
 		return r;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,6 +142,7 @@ public class ListValue extends ListExpr {
 		result = prime * result + ((e == null) ? 0 : e.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -141,12 +159,13 @@ public class ListValue extends ListExpr {
 			return false;
 		return true;
 	}
+
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Expr e2 = this.applyTransformer(t, e);
-		
-		e=e2;
-		
+
+		e = e2;
+
 	}
 
 }

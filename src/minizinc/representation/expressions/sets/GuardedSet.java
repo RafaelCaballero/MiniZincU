@@ -16,8 +16,8 @@ import minizinc.representation.expressions.InDecl;
 /**
  * A GuardedSet. <br>
  * Grammar:<br>
- * guardedSet : '{'  expr '|' guard  '}' ;<br>
- * guard :  inDecl (',' inDecl)*;<br>
+ * guardedSet : '{' expr '|' guard '}' ;<br>
+ * guard : inDecl (',' inDecl)*;<br>
  *
  * @author rafa
  *
@@ -25,42 +25,45 @@ import minizinc.representation.expressions.InDecl;
 public class GuardedSet extends SetVal {
 	protected Expr expr;
 	protected List<InDecl> guard;
+
 	/**
 	 * Constructor-
-	 *  
+	 * 
 	 */
 	public GuardedSet(Expr expr, List<InDecl> guard) {
 		this.expr = expr;
 		this.guard = guard;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return "{" + expr.print() + " | " + printList(guard) + "}"; 
+		return "{" + expr.print() + " | " + printList(guard) + "}";
 	}
 
-
-	
 	/**
-	 * Represents a guarded set. <br> Grammar: <br>
-	 * guardedSet : '{'  expr '|' guard  '}' ;<br>
-	 * guard :  inDecl (',' inDecl)*;<br>
-	 * @param ctx The context
+	 * Represents a guarded set. <br>
+	 * Grammar: <br>
+	 * guardedSet : '{' expr '|' guard '}' ;<br>
+	 * guard : inDecl (',' inDecl)*;<br>
+	 * 
+	 * @param ctx
+	 *            The context
 	 * @return Java representation as a GuardedSet
 	 */
 	public static GuardedSet guardedSet(GuardedSetContext ctx) {
-		GuardedSet r=null;
+		GuardedSet r = null;
 		if (Parsing.has(ctx.expr()) && Parsing.has(ctx.guard())) {
-				Expr expr = Expr.expr(ctx.expr());
-				List<InDecl> lindecl = ctx.guard().inDecl().stream().
-						               map(x->InDecl.inDecl(x)).collect(Collectors.toList());
-				r = new GuardedSet(expr,lindecl);
-				
-				
-		} else 
+			Expr expr = Expr.expr(ctx.expr());
+			List<InDecl> lindecl = ctx.guard().inDecl().stream()
+					.map(x -> InDecl.inDecl(x)).collect(Collectors.toList());
+			r = new GuardedSet(expr, lindecl);
+
+		} else
 			Parsing.error("guardedSet " + ctx.getText());
 		return r;
 	}
@@ -68,15 +71,15 @@ public class GuardedSet extends SetVal {
 	@Override
 	public GuardedSet clone() {
 		GuardedSet r = null;
-		Expr exprp = expr==null ? null : expr.clone();
-		List<InDecl> guardp=null;
-		if (guard!=null){
+		Expr exprp = expr == null ? null : expr.clone();
+		List<InDecl> guardp = null;
+		if (guard != null) {
 			guardp = new ArrayList<InDecl>();
-			for (InDecl indec:guard) 
-				guardp.add(indec.clone());						
+			for (InDecl indec : guard)
+				guardp.add(indec.clone());
 		}
-					
-		r = new GuardedSet(exprp,guardp);
+
+		r = new GuardedSet(exprp, guardp);
 		return r;
 	}
 
@@ -115,12 +118,10 @@ public class GuardedSet extends SetVal {
 	public void subexpressions(ExprTransformer t) {
 		Expr expr2 = this.applyTransformer(t, expr);
 		List<InDecl> guard2 = this.applyTransformerList2(t, guard);
-		
+
 		expr = expr2;
 		guard = guard2;
-		
+
 	}
-
-
 
 }

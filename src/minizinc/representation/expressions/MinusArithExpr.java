@@ -3,7 +3,6 @@
  */
 package minizinc.representation.expressions;
 
-
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ArithExprContext;
 import minizinc.antlr4.MiniZincGrammarParser.MinusExprContext;
@@ -11,14 +10,14 @@ import minizinc.representation.Parsing;
 import minizinc.representation.TypeName;
 
 /**
- * Grammar:
- * minusExpr      :  '-'  arithExpr ;
+ * Grammar: minusExpr : '-' arithExpr ;
  *
  * @author rafa
  *
  */
 public class MinusArithExpr extends ArithExpr {
 	private Expr expr;
+
 	/**
 	 * Constructor
 	 */
@@ -26,7 +25,9 @@ public class MinusArithExpr extends ArithExpr {
 		this.expr = expr;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.MiniZincRepresentation#print()
 	 */
 	@Override
@@ -35,15 +36,16 @@ public class MinusArithExpr extends ArithExpr {
 
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.Typeable#type()
 	 */
 	@Override
 	public TypeName type() {
 		return expr.type();
 	}
-	
+
 	/**
 	 * minusExpr : '-' arithExpr ;
 	 * 
@@ -65,7 +67,7 @@ public class MinusArithExpr extends ArithExpr {
 	@Override
 	public MinusArithExpr clone() {
 		MinusArithExpr r = null;
-		Expr exprp = expr==null  ? null : expr.clone();
+		Expr exprp = expr == null ? null : expr.clone();
 		r = new MinusArithExpr(exprp);
 		return r;
 	}
@@ -98,13 +100,9 @@ public class MinusArithExpr extends ArithExpr {
 	@Override
 	public void subexpressions(ExprTransformer t) {
 		Expr expr2 = this.applyTransformer(t, expr);
-		
-		expr=expr2;
-		
+
+		expr = expr2;
+
 	}
-
-
-
-
 
 }

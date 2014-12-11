@@ -6,38 +6,39 @@ import static minizinc.representation.Parsing.has;
 import static minizinc.representation.Parsing.error;
 import minizinc.representation.SubExpressions;
 
-
-public abstract class Statement implements MiniZincRepresentation, SubExpressions, Cloneable {
+public abstract class Statement implements MiniZincRepresentation,
+		SubExpressions, Cloneable {
 	private TStatement type;
 
 	public Statement(TStatement type) {
 		this.type = type;
 	}
 
-	
 	/**
 	 * @return the type
 	 */
 	public TStatement getType() {
 		return type;
 	}
-	
+
 	/**
-	 * Parses a MiniZinc statement and returns a new object that represents the particular
-	 * statement.
+	 * Parses a MiniZinc statement and returns a new object that represents the
+	 * particular statement.
 	 * <p>
 	 * MiniZinc grammar for statements:<br>
-	 * stat: data  // union types<br>
-     *| extended // extended types<br>
-     *| constraint<br>
-     *| decl<br>
-     *| solve<br>
-     *| output<br>
-     *| predicate<br>
-     *| function<br>
-     *| include<br>
-     *| init<br>
-	 * @param ctx The context.
+	 * stat: data // union types<br>
+	 * | extended // extended types<br>
+	 * | constraint<br>
+	 * | decl<br>
+	 * | solve<br>
+	 * | output<br>
+	 * | predicate<br>
+	 * | function<br>
+	 * | include<br>
+	 * | init<br>
+	 * 
+	 * @param ctx
+	 *            The context.
 	 * @return A new statement.
 	 */
 	public static Statement statement(StatContext ctx) {
@@ -54,7 +55,7 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 			r = Solve.solve(ctx.solve());
 		else if (has(ctx.output()))
 			r = Output.output(ctx.output());
-		else if (has(ctx.predicate())) 
+		else if (has(ctx.predicate()))
 			r = Predicate.predicate(ctx.predicate());
 		else if (has(ctx.function()))
 			r = Function.function(ctx.function());
@@ -62,23 +63,19 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 			r = Include.include(ctx.include());
 		else if (has(ctx.init())) {
 			r = Init.init(ctx.init());
-		}
-		else 
-			error("Unknown statement: "+ctx.getText());
-			
-			
+		} else
+			error("Unknown statement: " + ctx.getText());
+
 		return r;
 	}
-
 
 	@Override
 	public String toString() {
 		return print();
 	}
-	
+
 	@Override
 	public abstract Statement clone();
-
 
 	@Override
 	public int hashCode() {
@@ -87,7 +84,6 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -102,6 +98,5 @@ public abstract class Statement implements MiniZincRepresentation, SubExpression
 			return false;
 		return true;
 	}
-	
-	
+
 }

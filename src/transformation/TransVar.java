@@ -21,7 +21,6 @@ import minizinc.representation.types.TypeID;
 import minizinc.representation.types.TypeRange;
 import minizinc.representation.types.TypeUnion;
 
-
 /*
  * Represents the the transformation of a variable
  */
@@ -45,23 +44,22 @@ public class TransVar {
 		this.v = v;
 		var = new ArrayList<VarDecl>();
 		varb = new ArrayList<VarDecl>();
-		ctr =  new ArrayList<Constraint>();
+		ctr = new ArrayList<Constraint>();
 		transvar(p);
 	}
 
-
-	public TransVar(VarDecl vp, List<VarDecl> varp,  List<VarDecl> varb, 
-			        List<Constraint> ctrp) {
+	public TransVar(VarDecl vp, List<VarDecl> varp, List<VarDecl> varb,
+			List<Constraint> ctrp) {
 		this.v = vp;
 		this.var = varp;
 		this.varb = varb;
 		this.ctr = ctrp;
 	}
 
-
 	public List<VarDecl> getVar() {
 		return var;
 	}
+
 	public List<VarDecl> getVarb() {
 		return varb;
 	}
@@ -74,14 +72,13 @@ public class TransVar {
 		return ctr;
 	}
 
-
 	@Override
 	public String toString() {
 		String s = var.toString();
 		String sb = varb.toString();
-		return v.print()+"-> ("+s + ", "+sb+") |" + ctr.toString();
+		return v.print() + "-> (" + s + ", " + sb + ") |" + ctr.toString();
 	}
-	
+
 	public void transvar(Model p) {
 		if ((v.getDeclType() instanceof TypeUnion)) {
 			TypeUnion t = (TypeUnion) v.getDeclType();
@@ -91,61 +88,63 @@ public class TransVar {
 			if (d == null)
 				Parsing.error("Unexpected union type name " + typename);
 			else
-				transvarAux(p,d);
-			
+				transvarAux(p, d);
+
 			// introduce the possible initialization as a constraint
 			Expr e = v.getExpr();
-			if (e!=null) {
+			if (e != null) {
 				InfixExpr eq = new InfixExpr(new InfixOp("="), v.getID(), e);
 				ctr.add(new Constraint(eq));
 			}
 
-		} else 
+		} else
 			// if is of standard type is transformed into itself
 			var.add(v);
-	
 
 	}
 
-	private void transvarAux(Model p, DataDef d)  {
+	private void transvarAux(Model p, DataDef d) {
 		int size = d.getCons().size();
-		TypeRange newt = new TypeRange(1, size); 
-		VarDecl nv = new VarDecl(newt,v.getID());
+		TypeRange newt = new TypeRange(1, size);
+		VarDecl nv = new VarDecl(newt, v.getID());
 		getVar().add(nv);
 		// companion boolean variable
-		VarDecl nvb = new VarDecl(new Rbool(),v.getID()+"_b");
+		VarDecl nvb = new VarDecl(new Rbool(), v.getID() + "_b");
 		int varbpos = getVarb().size();
 		getVarb().add(nvb);
 
 		if (v.getLevel() <= 0) {
 			List<Expr> lt = new ArrayList<Expr>();
-			// if the level is 0 it only can be a constant; 
+			// if the level is 0 it only can be a constant;
 			// generate the constraints ensuring that
 			for (int i = 0; i < size; i++) {
 				List<Type> subtypes = d.getCons().get(i).getSubtypes();
-				int nconst = subtypes==null ? 0 : subtypes.size();
-				// in the level 0 the variable cannot take the index of any non-constant cosntructor 
+				int nconst = subtypes == null ? 0 : subtypes.size();
+				// in the level 0 the variable cannot take the index of any
+				// non-constant cosntructor
 				if (nconst > 0) {
 					IntC iplus1 = new IntC(i + 1);
-					InfixExpr neq = new InfixExpr(new InfixOp("!="), 
-							             nv.getID(), iplus1);
+					InfixExpr neq = new InfixExpr(new InfixOp("!="),
+							nv.getID(), iplus1);
 					lt.add(neq);
 				}
 			}
-			if (lt!=null && lt.size()>0) {
-			   And beand = new And(lt);
-			   InfixExpr ie = new InfixExpr("=",nvb.getID(),new RbracketExpr(beand));
+			if (lt != null && lt.size() > 0) {
+				And beand = new And(lt);
+				InfixExpr ie = new InfixExpr("=", nvb.getID(),
+						new RbracketExpr(beand));
 
-			   ctr.add(new Constraint(ie));
+				ctr.add(new Constraint(ie));
 			} else
-				// no constraint added; them the boolean variable is not necessary!
+				// no constraint added; them the boolean variable is not
+				// necessary!
 				getVarb().remove(varbpos);
 
 		} else {
 			// n>0
 
 			// recursive calls
-			List<List<TransVar>> recursive = recursiveCalls(p,v, d, size);
+			List<List<TransVar>> recursive = recursiveCalls(p, v, d, size);
 
 			List<Expr> bigCtrl = new ArrayList<Expr>();
 			// create Transvar
@@ -164,18 +163,22 @@ public class TransVar {
 					getVar().addAll(lnv);
 					List<VarDecl> lnvb = j.getVarb();
 					getVarb().addAll(lnvb);
-					
+
 					ctr.addAll(j.getCtr());
 					List<Expr> czl = new ArrayList<Expr>();
 					for (VarDecl vz : j.getVar()) {
-						InfixExpr zeq = new InfixExpr("=", vz.getID(), vz.getDeclType().zero());
+						InfixExpr zeq = new InfixExpr("=", vz.getID(), vz
+								.getDeclType().zero());
 						czl.add(zeq);
 
 					}
 					And cz = new And(czl);
 					c1Auxl.add(cz);
-					if (lnvb!=null && lnvb.size()>0)
-						c2Auxl.add(lnvb.get(0).getID()); // the constraint corresponds to the first variable 
+					if (lnvb != null && lnvb.size() > 0)
+						c2Auxl.add(lnvb.get(0).getID()); // the constraint
+															// corresponds to
+															// the first
+															// variable
 				}
 
 				And c1Aux = new And(c1Auxl);
@@ -193,36 +196,36 @@ public class TransVar {
 						c = c1;
 					else
 						c = c2;
-					
+
 					bigCtrl.add(c);
-				} 
+				}
 			}
-			if (bigCtrl!=null && bigCtrl.size()>0) {
+			if (bigCtrl != null && bigCtrl.size() > 0) {
 				And bigCtre = new And(bigCtrl);
-				InfixExpr ie = new InfixExpr("=",nvb.getID(),new RbracketExpr(bigCtre));
-				Constraint bigCtr = new Constraint(ie/*.simplify()*/);
+				InfixExpr ie = new InfixExpr("=", nvb.getID(),
+						new RbracketExpr(bigCtre));
+				Constraint bigCtr = new Constraint(ie/* .simplify() */);
 				ctr.add(bigCtr);
-			} else 
-				// no constraint added; them the boolean variable is not necessary!
+			} else
+				// no constraint added; them the boolean variable is not
+				// necessary!
 				getVarb().remove(varbpos);
-			
 
 		}
 
 	}
 
-
 	public static String newVarName(String name, int i, int j) {
 		return name + "_" + i + "_" + j;
 	}
 
-	private List<List<TransVar>> recursiveCalls(Model p, VarDecl v, DataDef d, int size)
-			 {
+	private List<List<TransVar>> recursiveCalls(Model p, VarDecl v, DataDef d,
+			int size) {
 		List<List<TransVar>> result = new ArrayList<List<TransVar>>();
 		int l = v.getLevel() - 1;
 		for (int i = 0; i < size; i++) {
-			List<Type> subtypes =  d.getCons().get(i).getSubtypes();
-			int nconst = subtypes==null ? 0 : subtypes.size();
+			List<Type> subtypes = d.getCons().get(i).getSubtypes();
+			int nconst = subtypes == null ? 0 : subtypes.size();
 			List<TransVar> auxrec = new ArrayList<TransVar>();
 			for (int j = 0; j < nconst; j++) {
 				String newname = newVarName(v.getID().print(), (i + 1), (j + 1));
@@ -231,31 +234,29 @@ public class TransVar {
 					TypeID tid = (TypeID) t;
 					// is this type a data type?
 					DataDef def = p.getDataByName(tid.getId().print());
-					if (def==null) {
+					if (def == null) {
 						// it is not a data name
-						VarDecl varaux = new VarDecl(t,newname);
-						TransVar x = new TransVar(varaux,p);
+						VarDecl varaux = new VarDecl(t, newname);
+						TransVar x = new TransVar(varaux, p);
 						auxrec.add(x);
-					} else { // a recursive type 
-						TypeUnion tu = new TypeUnion(tid.getId(),l);
-						VarDecl varaux = new VarDecl(tu,newname);
-						TransVar x = new TransVar(varaux,p);
+					} else { // a recursive type
+						TypeUnion tu = new TypeUnion(tid.getId(), l);
+						VarDecl varaux = new VarDecl(tu, newname);
+						TransVar x = new TransVar(varaux, p);
 						auxrec.add(x);
 					}
-						
+
 				} else {
 					// it is not a data name
-					VarDecl varaux = new VarDecl(t,newname);
-					TransVar x = new TransVar(varaux,p);
+					VarDecl varaux = new VarDecl(t, newname);
+					TransVar x = new TransVar(varaux, p);
 					auxrec.add(x);
-					
+
 				}
 			}
 			result.add(auxrec);
 		}
 		return result;
 	}
-
-	
 
 }

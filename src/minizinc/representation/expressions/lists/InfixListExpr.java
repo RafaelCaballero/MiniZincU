@@ -3,13 +3,13 @@
  */
 package minizinc.representation.expressions.lists;
 
-
 import transformation.ExprTransformer;
 import minizinc.representation.TypeName;
 
 /**
- * A list expression of the form e1 op e2, with e1 and e2 lists expressions and op 
- * an operator like "++"
+ * A list expression of the form e1 op e2, with e1 and e2 lists expressions and
+ * op an operator like "++"
+ * 
  * @author rafa
  *
  */
@@ -24,29 +24,32 @@ public class InfixListExpr extends ListExpr {
 		this.op = op;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.MiniZincRepresentation#print()
 	 */
 	@Override
 	public String print() {
-		return e1.print() + " "+op+" "+e2.print();
+		return e1.print() + " " + op + " " + e2.print();
 	}
-
 
 	@Override
 	public TypeName type() {
 		// this can be complex in the type of expressions
-		// At the moment just a naive (possibly incorrect) version: the type of an operator
+		// At the moment just a naive (possibly incorrect) version: the type of
+		// an operator
 		return e1.type();
 	}
 
 	@Override
 	public InfixListExpr clone() {
 		InfixListExpr r = null;
-		ListExpr e1p = e1==null ? null : e1.clone();
-		ListExpr e2p = e2==null ? null : e2.clone(); ;
+		ListExpr e1p = e1 == null ? null : e1.clone();
+		ListExpr e2p = e2 == null ? null : e2.clone();
+		;
 		String opp = op;
-		r = new InfixListExpr(opp,e1p,e2p);
+		r = new InfixListExpr(opp, e1p, e2p);
 		return r;
 	}
 

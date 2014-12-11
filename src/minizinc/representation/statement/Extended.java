@@ -14,7 +14,7 @@ import minizinc.representation.types.Type;
  * listExtended : '[' ID(',' ID)* ']';<br>
  * preExt : listExtended;<br>
  * postExt : listExtended;<br>
-
+ * 
  * @author rafa
  *
  */
@@ -31,49 +31,47 @@ public class Extended extends Statement {
 		left = right = null;
 	}
 
-	public Extended(ID name, Type baseName, List<ID> left,
-			List<ID> right) {
+	public Extended(ID name, Type baseName, List<ID> left, List<ID> right) {
 		super(TStatement.EXTENDED);
 
 		dataName = name;
-		this.baseType =  baseName;
+		this.baseType = baseName;
 		this.left = left;
 		this.right = right;
 	}
-	
+
 	@Override
 	public Extended clone() {
 		Extended r = null;
 		ID dataNamep;
-		Type baseTypep=null;
-		List<ID> leftp=null;
-		List<ID> rightp=null;
-		
+		Type baseTypep = null;
+		List<ID> leftp = null;
+		List<ID> rightp = null;
+
 		dataNamep = dataName.clone();
-		if (baseType!=null) 
+		if (baseType != null)
 			baseTypep = baseType.clone();
-		if (left!=null) {
+		if (left != null) {
 			leftp = new ArrayList<ID>();
-			for (ID l:left) 
+			for (ID l : left)
 				leftp.add(l.clone());
-			
-			
+
 		}
-		if (right!=null) {
+		if (right != null) {
 			rightp = new ArrayList<ID>();
-			for (ID ri:right) {
+			for (ID ri : right) {
 				rightp.add(ri.clone());
 			}
 
 		}
-		r = new Extended(dataNamep,baseTypep,leftp,rightp);
+		r = new Extended(dataNamep, baseTypep, leftp, rightp);
 		return r;
 	}
 
 	public String print() {
 		String s = "";
-		String sl = "["+printList(left)+"]";
-		String sr = "["+printList(right)+"]";
+		String sl = "[" + printList(left) + "]";
+		String sr = "[" + printList(right) + "]";
 
 		s = "extended " + dataName.print() + " = " + sl
 				+ (sl.length() == 0 ? "" : "++") + baseType.print()
@@ -82,14 +80,12 @@ public class Extended extends Statement {
 		return s;
 	}
 
-
 	/**
 	 * @return the dataName
 	 */
 	public String getDataName() {
 		return dataName.print();
 	}
-
 
 	/**
 	 * @return the baseName
@@ -98,14 +94,12 @@ public class Extended extends Statement {
 		return baseType.print();
 	}
 
-
 	/**
 	 * @return the left
 	 */
 	public List<ID> getLeft() {
 		return left;
 	}
-
 
 	/**
 	 * @return the right
@@ -114,21 +108,23 @@ public class Extended extends Statement {
 		return right;
 	}
 
-
 	public static Extended extended(ExtendedContext ctx) {
 		Extended r = null;
 		List<ID> left = new ArrayList<ID>();
 		List<ID> right = new ArrayList<ID>();
 
-		if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.typename()) && 
-				Parsing.has(ctx.preExt()) &&	Parsing.has(ctx.postExt()) ) {
+		if (Parsing.hasTerminal(ctx.ID()) && Parsing.has(ctx.typename())
+				&& Parsing.has(ctx.preExt()) && Parsing.has(ctx.postExt())) {
 			ID id = ID.IDTerm(ctx.ID());
 			Type basetype = Type.typename(ctx.typename());
-			ctx.preExt().listExtended().ID().forEach(x -> left.add(ID.IDTerm(x)));
-			ctx.preExt().listExtended().ID().forEach(x -> right.add(ID.IDTerm(x)));
-			r = new Extended(id,basetype,left,right);
-			
-		} else Parsing.error("Wrong Extended statement: "+ctx.getText());
+			ctx.preExt().listExtended().ID()
+					.forEach(x -> left.add(ID.IDTerm(x)));
+			ctx.preExt().listExtended().ID()
+					.forEach(x -> right.add(ID.IDTerm(x)));
+			r = new Extended(id, basetype, left, right);
+
+		} else
+			Parsing.error("Wrong Extended statement: " + ctx.getText());
 		return r;
 	}
 
@@ -179,12 +175,12 @@ public class Extended extends Statement {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ID dataName2 = this.applyTransformer2(t,dataName);
+		ID dataName2 = this.applyTransformer2(t, dataName);
 		List<ID> left2 = this.applyTransformerList2(t, left);
 		List<ID> right2 = this.applyTransformerList2(t, right);
 		dataName = dataName2;
 		left = left2;
-		right = right2;		
+		right = right2;
 	}
 
 }
