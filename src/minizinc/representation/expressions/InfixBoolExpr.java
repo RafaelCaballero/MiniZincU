@@ -142,5 +142,36 @@ public class InfixBoolExpr extends BoolExpr {
 	public BoolExpr getE2() {
 		return e2;
 	}
+	
+	/* (non-Javadoc)
+	 * @see minizinc.representation.expressions.Expr#simplify()
+	 */
+	@Override
+	public Expr simplify() {		
+		Expr r = this;
+		
+		// if the operator is and / or then rely on this classes for simplification
+		if (op.equals("/\\")) {
+			And eAnd = new And(e1,e2); 
+			r = eAnd.simplify();
+		}
+		else if (op.equals("\\/")) {
+			Or eOr = new Or(e1,e2); 
+			r = eOr.simplify();
+		} else if (op.equals("->")) {
+			Imply eImply = new Imply(e1,e2); 
+			r = eImply.simplify();
+		} 
+		else {
+			
+			// in principle only the subexpressions can be simplified
+			Expr e1s = e1.simplify();
+			Expr e2s = e2.simplify();
+			if (!e1s.equals(e1) || ! e2s.equals(e2)) 
+				r = new InfixExpr(op,e1s,e2s);
+		
+		}
+		return r;
+	}
 
 }

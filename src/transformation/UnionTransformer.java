@@ -114,6 +114,8 @@ public class UnionTransformer implements ExprTransformer {
 
 					// now eliminate the calls in the predicate definition
 					r.subexpressions(this);
+					
+					
 				}
 			}
 		}

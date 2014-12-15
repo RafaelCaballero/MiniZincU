@@ -62,6 +62,7 @@ public class CaseTransformer {
 				// the result is the and of all the transformed expressions
 				r = new Or(le);
 		}
+		//System.out.println(r.print());
 		return r;
 	}
 
@@ -147,11 +148,12 @@ public class CaseTransformer {
 			// ped is a pattern
 			PatternMatching pm = new PatternMatching(m, v, ped);
 			if (pm.fail())
-				r = new BoolC(true);
+				r = new BoolC(false);  // former true with the -> transformation
 			else {
 				Substitution s = pm.getSubstitution();
 				Expr exprSubs = expr.applyTransformer(s, expr);
 				Expr cond = pm.getMatchingExpression();
+				//System.out.println(cond.print());
 				r = new And(cond, exprSubs);
 
 			}

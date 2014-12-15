@@ -11,10 +11,12 @@ public class And extends InfixExpr {
 
 	public And(Expr e1, Expr e2) {
 		super("/\\", e1, e2);
+		simplify();
 	}
 
 	public And(List<? extends Expr> e) {
 		super("/\\", e);
+		simplify();
 	}
 
 	@Override
@@ -37,7 +39,9 @@ public class And extends InfixExpr {
 
 			// simplify elements
 			for (int j = 0; j < e.size(); j++) {
-				Expr exp = e.get(j).simplify();
+				// simplify the j-th element
+				Expr expj = e.get(j);
+				Expr exp = expj.simplify();
 				if (!exp.equals(e.get(j))) {
 					e.add(j, exp);
 					e.remove(j + 1);
@@ -77,7 +81,7 @@ public class And extends InfixExpr {
 				BoolC lv = (BoolC) es;
 				if (lv.getValue() == false)
 					r = true;
-			}
+			} 
 		}
 
 		return r;

@@ -32,14 +32,15 @@ public class MiniZincU {
 	}
 
 	private static TransDataModel transformUnion(SplitModel p) {
+		// eliminate expressions including data
+		TransDataExprModel tdexp = new TransDataExprModel(p);
+
 		// recursive calls and predicates including case statements deserve an
 		// special initial treatment
-		TransRecursiveModel trec = new TransRecursiveModel(p);
+		TransRecursiveModel trec = new TransRecursiveModel(tdexp);
 
-		// eliminate expressions including data
-		TransDataExprModel tdexp = new TransDataExprModel(trec);
 
-		TransShowModel ts = new TransShowModel(tdexp);
+		TransShowModel ts = new TransShowModel(trec);
 		// System.out.println(ts.print());
 
 		// Transform union variables

@@ -38,7 +38,8 @@ public class Constraint extends Statement {
 
 	@Override
 	public String print() {
-		return "constraint " + t.print();
+		Expr e = t.simplify();
+		return "constraint " + e.print();
 	}
 
 	/**

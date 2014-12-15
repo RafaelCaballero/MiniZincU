@@ -164,5 +164,14 @@ public class BoolVal extends BoolExpr {
 	public Expr getE() {
 		return e;
 	}
+	
+	/* (non-Javadoc)
+	 * @see minizinc.representation.expressions.Expr#simplify()
+	 */
+	@Override
+	public Expr simplify() {
+		Expr r = e.simplify();
+		return r;
+	}
 
 }

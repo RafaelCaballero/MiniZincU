@@ -121,5 +121,26 @@ public class RbracketExpr extends Expr {
 		e = e2;
 
 	}
+	
+	public Expr getExprInside() {
+		return e;
+	}
+	
+	/* (non-Javadoc)
+	 * @see minizinc.representation.expressions.Expr#simplify()
+	 */
+	@Override
+	public Expr simplify() {
+		Expr r = this;
+		Expr es = e.simplify();
+		if (isBasic(es))
+			r = es;
+		else 
+			if (!e.equals(es)) {
+				r = new RbracketExpr(es);
+			}
+		return r;
+	}
+
 
 }

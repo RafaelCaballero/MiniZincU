@@ -68,14 +68,83 @@ public class InfixExpr extends Expr {
 	 */
 	@Override
 	public String print() {
-		List<Expr> le = new ArrayList<Expr>();
-		for (Expr expr : e) {
-			Expr ep = expr.simplify();
-			le.add(ep);
-		}
+		List<Expr> le = simplifyList(e);
 		e = le;
 		return printList(" " + op.print() + " ", e);
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see minizinc.representation.expressions.Expr#simplify()
+	 */
+	@Override
+	public Expr simplify() {		
+		Expr r = this;
+		
+		// if the operator is and / or then rely on this classes for simplification
+		if (op.print().equals("/\\")) {
+			And eAnd = new And(e); 
+			r = eAnd.simplify();
+		}
+		else if (op.print().equals("\\/")) {
+			Or eOr = new Or(e); 
+			r = eOr.simplify();
+		} 
+		else {
+			List<Expr> es = simplifyList(e);
+			if (es!=null) 
+				if (es.size()>1)
+				   r = new InfixExpr(op,es);
+				else
+					// this should never happen
+					r = null;
+		
+		}
+		return r;
+	}
+
+	/**
+	 * Basic list simplification
+	 * @param e The list to simplify
+	 * @return The simplified list
+	 */
+	private List<Expr> simplifyList(List<Expr> e) {
+		boolean changed=false;
+		List<Expr> r = null;
+		List<Expr> le = new ArrayList<Expr>();
+		for (Expr expr : e) {
+			Expr ep = expr.simplify();
+			
+			// first case, a basic expression between round brackets
+			if (ep instanceof RbracketExpr) {
+				RbracketExpr ep2 = (RbracketExpr) ep;
+				Expr epinside = ep2.getExprInside();
+				if (isBasic(epinside)) {
+					le.add(epinside);
+					changed=true;
+				}
+			} else	if (!isBasic(ep))  {		
+				le.add(new RbracketExpr(ep));
+				changed = true;
+			}
+			
+			if (!changed)
+				le.add(ep);
+			
+			// if modified...
+			if (!ep.equals(expr))
+				changed = true;
+		}
+		
+		// look for a fixpoint
+		if (!changed)
+			r = le;
+		else 
+			r = simplifyList(le);
+		return r;
+	}
+	
+
 
 	/*
 	 * (non-Javadoc)

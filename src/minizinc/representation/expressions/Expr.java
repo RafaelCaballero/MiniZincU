@@ -106,4 +106,16 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions,
 	public Expr simplify() {
 		return this;
 	}
+	
+	/**
+	 * Indicates if ep is a basic expression, that is an expression that can be considered as an atom in any context
+	 * @param ep
+	 * @return
+	 */
+	public static boolean isBasic(Expr ep) {
+		boolean r = (ep instanceof IntC    || ep instanceof PredOrUnionExpr || 
+				ep instanceof StringC || ep instanceof ID ||
+				ep instanceof BoolC || ep instanceof FloatC) ;
+		return r;
+	}
 }

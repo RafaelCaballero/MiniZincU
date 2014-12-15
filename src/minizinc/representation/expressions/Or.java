@@ -11,10 +11,12 @@ public class Or extends InfixExpr {
 
 	public Or(Expr e1, Expr e2) {
 		super("\\/", e1, e2);
+		simplify();
 	}
 
 	public Or(List<? extends Expr> e) {
-		super("\\/", e);
+		super("\\/",e);
+		simplify();		
 	}
 
 	@Override
@@ -35,14 +37,7 @@ public class Or extends InfixExpr {
 			changed = true;
 		} else {
 
-			// simplify elements
-			for (int j = 0; j < e.size(); j++) {
-				Expr exp = e.get(j).simplify();
-				if (!exp.equals(e.get(j))) {
-					e.add(j, exp);
-					e.remove(j + 1);
-				}
-			}
+			changed = changed || simplifyElements();
 
 			// remove repeated values
 
@@ -69,6 +64,30 @@ public class Or extends InfixExpr {
 		return r;
 	}
 
+	private boolean simplifyElements() {
+		boolean changed=false;
+		// simplify elements
+		int j=0;
+		while (j < e.size()) {
+			Expr expj = e.get(j);
+			Expr exp = expj.simplify();
+			// remove false values except if it is the only value in the list
+			if (!(j==0 && e.size()==1) && exp instanceof BoolC && ((BoolC) exp).getValue()==false) {
+			   e.remove(j);
+			   changed=true;
+			   // j is not incremented, because this has been achieved removing the element
+			} else
+			if (!exp.equals(e.get(j))) {
+				// replace by the simplified form
+				e.add(j, exp);
+				e.remove(j + 1);
+				j++;
+				changed=true;
+			} else 
+				j++;
+		}
+		return changed;
+	}
 	private boolean containsTrue() {
 		boolean r = false;
 		for (int i = 0; i < e.size() && !r; i++) {
