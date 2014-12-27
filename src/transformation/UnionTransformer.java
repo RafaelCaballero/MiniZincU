@@ -32,6 +32,10 @@ public class UnionTransformer implements ExprTransformer {
 	protected SplitModel m;
 	protected Set<String> recpred;
 	protected Set<String> recfunc;
+	/**
+	 * Used to introduce new fresh variables in the let declarations that occur in the predicates 
+	 */
+	protected LetTransformer lt;
 
 	/**
 	 * @param m
@@ -44,6 +48,7 @@ public class UnionTransformer implements ExprTransformer {
 		this.recpred = recpred;
 		// this.unionpred = unionpred;
 		this.recfunc = recfunc;
+		this.lt = null;
 
 	}
 
@@ -91,7 +96,10 @@ public class UnionTransformer implements ExprTransformer {
 				// we work with a copy of the body...yes, I am afraid I am
 				// using clone
 				r = p.getBody().clone();
-				LetTransformer lt = new LetTransformer(m,input);
+				
+				// if it is necessary rename let identifiers in the body to avoid name collisions
+				if (lt!=null)
+					r.subexpressions(lt);
 				
 				ldecl = p.getDecls();
 				int nargs = ldecl.size();
@@ -113,6 +121,13 @@ public class UnionTransformer implements ExprTransformer {
 								(CaseExpr) r);
 						r = ct.transform();
 					}
+
+					// include the new variables to avoid the repetition of names in acumulate let defs.
+					// (this can happen after unfolding recursive calls)
+					if (lt == null)
+					     lt = new LetTransformer(m,r);
+					else 
+						lt.addLetVars(r);
 
 					// now eliminate the calls in the predicate definition
 					r.subexpressions(this);

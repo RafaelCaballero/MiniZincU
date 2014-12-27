@@ -201,7 +201,7 @@ public abstract class Decl extends Statement {
 
 	@Override
 	public void subexpressions(ExprTransformer t) {
-		ID id2 = this.applyTransformer2(t, id);
+		ID id2 = (ID) this.applyTransformer(t, id);
 		Expr expr2 = this.applyTransformer(t, expr);
 
 		id = id2;

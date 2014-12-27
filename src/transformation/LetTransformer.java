@@ -9,6 +9,7 @@ import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.LetDecl;
 import minizinc.representation.expressions.LetExpr;
 import minizinc.representation.model.SplitModel;
+import minizinc.representation.statement.Decl;
 
 /**
  * Transforms any expression replacing the let declarations by new fresh variables that 
@@ -35,7 +36,20 @@ public class LetTransformer implements ExprTransformer {
 		ids = m.getDecl().stream().map(x -> x.getID().print()).collect(Collectors.toSet());
 		LetVarGetter lv = new LetVarGetter();
 		input.subexpressions(lv);
-		ids.addAll(lv.getIds());
+		Set<String> varsinput = lv.getIds();
+		ids.addAll(varsinput);
+		
+	}
+	
+	/**
+	 * The let vars in the expression are added to the set of variables that cannot be repeated
+	 * @param input
+	 */
+	public void addLetVars(Expr input) {
+		LetVarGetter lv = new LetVarGetter();
+		input.subexpressions(lv);
+		Set<String> varsinput = lv.getIds();
+		ids.addAll(varsinput);
 		
 	}
 
@@ -45,9 +59,11 @@ public class LetTransformer implements ExprTransformer {
 		if (input != null && input instanceof LetExpr) {
 			LetExpr le = (LetExpr) input;
 			// get the identifiers of the let declarations
-			Set<String> ll = le.getDecl().stream().map(x->x.print()).collect(Collectors.toSet());
+			Set<String> ll = le.getDecl().stream().
+					         filter(x->x.getStatement() instanceof Decl).
+					         map(x->((Decl) x.getStatement()).getID().print()).collect(Collectors.toSet());
 			// intersection with ids
-			ll.removeAll(ids);
+			ll.retainAll(ids);
 			// non-empty intersection
 			if (ll!=null && ll.size()>0) {
 				Substitution s = new Substitution();
@@ -72,6 +88,11 @@ public class LetTransformer implements ExprTransformer {
 		}
 
 		return r;
+	}
+
+	@Override
+	public String toString() {
+		return ids+"";
 	}
 
 }
