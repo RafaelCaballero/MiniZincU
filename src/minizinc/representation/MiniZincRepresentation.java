@@ -54,10 +54,10 @@ public interface MiniZincRepresentation {
 		String s = "";
 		List<String> l = lt.stream().map(x -> x.print())
 				.collect(Collectors.toList());
-		if (l!=null && l.size()>1)
-		     s = String.join(sep, l);
-		else if (l!=null && l.size()==1)
-			 s = l.get(0);
+		if (l != null && l.size() > 1)
+			s = String.join(sep, l);
+		else if (l != null && l.size() == 1)
+			s = l.get(0);
 		return s;
 	}
 

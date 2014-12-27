@@ -72,79 +72,79 @@ public class InfixExpr extends Expr {
 		e = le;
 		return printList(" " + op.print() + " ", e);
 	}
-	
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.expressions.Expr#simplify()
 	 */
 	@Override
-	public Expr simplify() {		
+	public Expr simplify() {
 		Expr r = this;
-		
-		// if the operator is and / or then rely on this classes for simplification
+
+		// if the operator is and / or then rely on this classes for
+		// simplification
 		if (op.print().equals("/\\")) {
-			And eAnd = new And(e); 
+			And eAnd = new And(e);
 			r = eAnd.simplify();
-		}
-		else if (op.print().equals("\\/")) {
-			Or eOr = new Or(e); 
+		} else if (op.print().equals("\\/")) {
+			Or eOr = new Or(e);
 			r = eOr.simplify();
-		} 
-		else {
+		} else {
 			List<Expr> es = simplifyList(e);
-			if (es!=null) 
-				if (es.size()>1)
-				   r = new InfixExpr(op,es);
+			if (es != null)
+				if (es.size() > 1)
+					r = new InfixExpr(op, es);
 				else
 					// this should never happen
 					r = null;
-		
+
 		}
 		return r;
 	}
 
 	/**
-	 * Basic list simplification
-	 * @param e The list to simplify
+	 * Basic list simplification, based in the simplification of each element of the list
+	 * 
+	 * @param e
+	 *            The list to simplify
 	 * @return The simplified list
 	 */
 	private List<Expr> simplifyList(List<Expr> e) {
-		boolean changed=false;
+		boolean changed = false;
 		List<Expr> r = null;
 		List<Expr> le = new ArrayList<Expr>();
 		for (Expr expr : e) {
 			Expr ep = expr.simplify();
-			
+
 			// first case, a basic expression between round brackets
 			if (ep instanceof RbracketExpr) {
 				RbracketExpr ep2 = (RbracketExpr) ep;
 				Expr epinside = ep2.getExprInside();
 				if (isBasic(epinside)) {
 					le.add(epinside);
-					changed=true;
-				}
-			} else	if (!isBasic(ep))  {		
+					changed = true;
+				} else 
+				   le.add(ep);
+				// second case, if it is not a basic expression and it is not yet surrounded by () include ()
+			} else if (!isBasic(ep)) {
 				le.add(new RbracketExpr(ep));
 				changed = true;
-			}
-			
-			if (!changed)
+			} else 
 				le.add(ep);
-			
+
 			// if modified...
 			if (!ep.equals(expr))
 				changed = true;
 		}
-		
+
 		// look for a fixpoint
 		if (!changed)
 			r = le;
-		else 
+		else
 			r = simplifyList(le);
 		return r;
 	}
-	
-
 
 	/*
 	 * (non-Javadoc)

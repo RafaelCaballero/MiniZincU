@@ -6,11 +6,18 @@ package transformation;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.javafx.scene.paint.GradientUtils.Parser;
+
 import transformation.pattern.PatternMatching;
+import minizinc.representation.Parsing;
+import minizinc.representation.DataDef.DataCons;
+import minizinc.representation.DataDef.DataConsData;
 import minizinc.representation.expressions.*;
 import minizinc.representation.expressions.cases.Branch;
 import minizinc.representation.model.SplitModel;
+import minizinc.representation.statement.DataDef;
 import minizinc.representation.statement.decls.VarDecl;
+import minizinc.representation.types.Type;
 import minizinc.representation.types.TypeUnion;
 
 /**
@@ -62,7 +69,7 @@ public class CaseTransformer {
 				// the result is the and of all the transformed expressions
 				r = new Or(le);
 		}
-		//System.out.println(r.print());
+		// System.out.println(r.print());
 		return r;
 	}
 
@@ -91,28 +98,91 @@ public class CaseTransformer {
 				ID ids = new ID(s);
 				r = m.getVarByName(ids);
 				if (r != null && r.getDeclType() instanceof TypeUnion) {
-					int level = r.getLevel();
-					TypeUnion dr = (TypeUnion) r.getDeclType();
-					// if (r.getDeclType() != null
-					int n = 0; // count the number of --
-					do {
-						// number of constructor
-						//
-						pos = idp.indexOf('_', pos + 1);
-						n++;
-					} while (pos != -1);
-					// convert the original declaration into the declaration of
-					// this
-					// auxiliary variable
-					// first the type
-					int newlevel = level - n / 2;
-					TypeUnion tu = new TypeUnion(dr.getId(), newlevel);
-
-					r = new VarDecl(tu, id);
+					// generate new var
+					r = generateVarDecl(idp, s, pos);
 
 				}
 			}
 		}
+		return r;
+	}
+
+	/**
+	 * generates a variable definition given its complete name {@code idp} and
+	 * the prefix {@code s} which is the name of an union var that exists.
+	 * Preconditions:
+	 * <ul>
+	 * <li>Exists a variable with name {@code s} and type union in the model
+	 * {@link m}
+	 * <li>The name {@code s} does not contain '_'
+	 * <li> {@code s} is a prefix of {@code idp} and includes at least one '_'
+	 * <li> {@code pos} corresponds to the first occurrence of '_' in {@code idp}
+	 * </ul>
+	 * 
+	 * @param idp
+	 *            long name of variable generated from s
+	 * @param s
+	 *            String prefix of {@link idp} which corresponds to a already
+	 *            existing union variable declared in the model {@link m}
+	 * @param pos
+	 *            Integer indicating the position of the first "_"
+	 * @return A new var declaration for idp or null if it is not possible
+	 */
+	private VarDecl generateVarDecl(String idp, String s, int pos) {
+		// obtain the declaration of s in m.
+		VarDecl r = m.getVarByName(new ID(s));
+
+		int level = r.getLevel();
+		// a precondition is a type union
+		TypeUnion dr = (TypeUnion) r.getDeclType();
+		ID typeId = dr.getId();
+		DataDef d = m.getDataByName(typeId.print());
+		// if (r.getDeclType() != null
+		int n = 0; // count the number of --
+		String s_narg; // string representing the arg.pos
+		int narg; // the arg position
+		Type argType = null; // type of the argument
+		String s_ncons; // string representing the constructor position
+		int ncons; // the position in the list of constructors
+		DataCons dc = null; // the data constructor
+		do {
+			try {
+				// number of constructor
+				int pos2 = idp.indexOf('_', pos + 1);
+				s_ncons = idp.substring(pos + 1, pos2);
+				ncons = Integer.parseInt(s_ncons) - 1;
+				if (d != null)
+					dc = d.getCons().get(ncons);
+				int pos3 = idp.indexOf('_', pos2 + 1);
+				s_narg = pos3 != -1 ? idp.substring(pos2 + 1, pos3) : idp
+						.substring(pos2 + 1);
+				narg = Integer.parseInt(s_narg) - 1;
+				if (dc != null)
+					argType = dc.getSubtypes().get(narg);
+				// prepare the following iteration
+				n++;
+				pos = pos3;
+				d = m.getDataByName(argType.print());
+				if (d != null)
+					level--;
+
+			} catch (NumberFormatException e) {
+				Parsing.error("Unexpected internal variable format " + idp);
+				pos = -1;
+			}
+		} while (pos != -1);
+		// convert the original declaration into the declaration of
+		// this
+		// auxiliary variable
+		// first the type
+		int newlevel = level;
+		Type tu = null;
+		if (d != null)
+			tu = new TypeUnion(new ID(d.getDataName()), newlevel);
+		else
+			tu = argType;
+		r = new VarDecl(tu, new ID(idp));
+
 		return r;
 	}
 
@@ -129,37 +199,47 @@ public class CaseTransformer {
 	 * @return Its transformation.
 	 */
 	private Expr transform(Expr id, VarDecl v, Branch b) {
-		Expr r = null;
-		Expr expr = b.getExpr();
-		PredOrUnionExpr ped = b.getPattern();
-		ID cte = b.getIdpattern();
 
-		if (cte != null) {
-			// this is just transformed as the transformation of
-			// 'id==cte /\ expr'
-			DataExprTransformer eqTr = new DataExprTransformer(m);
-			// the expression id == cte is constructed and transformed
-			BoolVal bv1 = new BoolVal(cte);
-			BoolVal bv2 = new BoolVal((ID) id);
-			InfixBoolExpr iexpr = new InfixBoolExpr("=", bv1, bv2);
-			Expr cond = eqTr.transform(iexpr);
-			r = new And(cond, expr);
+		Expr r = null;
+		if (v == null) {
+			Parsing.error("Erroneous variable " + id + " in case branch");
 		} else {
-			// ped is a pattern
-			PatternMatching pm = new PatternMatching(m, v, ped);
-			if (pm.fail())
-				r = new BoolC(false);  // former true with the -> transformation
-			else {
-				Substitution s = pm.getSubstitution();
-				Expr exprSubs = expr.applyTransformer(s, expr);
-				Expr cond = pm.getMatchingExpression();
-				//System.out.println(cond.print());
-				r = new And(cond, exprSubs);
+			Expr expr = b.getExpr();
+			PredOrUnionExpr ped = b.getPattern();
+			ID cte = b.getIdpattern();
+
+			if (cte != null) {
+				// this is just transformed as the transformation of
+				// 'id==cte /\ expr'
+				DataEqualTransformer d = new DataEqualTransformer(m);
+				DataConsData dc = m.getDataByConsName(cte.print());
+				Expr cond = d.varEqualCons(v, dc);
+
+				/*
+				 * DataExprTransformer eqTr = new DataExprTransformer(m); // the
+				 * expression id == cte is constructed and transformed BoolVal
+				 * bv1 = new BoolVal(cte); BoolVal bv2 = new BoolVal((ID) id);
+				 * InfixBoolExpr iexpr = new InfixBoolExpr("=", bv1, bv2); Expr
+				 * cond = eqTr.transform(iexpr);
+				 */
+				r = new And(cond, expr);
+			} else {
+				// ped is a pattern
+				PatternMatching pm = new PatternMatching(m, v, ped);
+				if (pm.fail())
+					r = new BoolC(false); // former true with the ->
+											// transformation
+				else {
+					Substitution s = pm.getSubstitution();
+					Expr exprSubs = expr.applyTransformer(s, expr);
+					Expr cond = pm.getMatchingExpression();
+					// System.out.println(cond.print());
+					r = new And(cond, exprSubs);
+
+				}
 
 			}
-
 		}
-
 		return r;
 	}
 

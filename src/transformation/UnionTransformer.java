@@ -91,6 +91,8 @@ public class UnionTransformer implements ExprTransformer {
 				// we work with a copy of the body...yes, I am afraid I am
 				// using clone
 				r = p.getBody().clone();
+				LetTransformer lt = new LetTransformer(m,input);
+				
 				ldecl = p.getDecls();
 				int nargs = ldecl.size();
 
@@ -114,8 +116,7 @@ public class UnionTransformer implements ExprTransformer {
 
 					// now eliminate the calls in the predicate definition
 					r.subexpressions(this);
-					
-					
+
 				}
 			}
 		}

@@ -307,8 +307,8 @@ public class DataExprTransformer implements ExprTransformer {
 	 * 
 	 * @param e
 	 *            PredOrUnionExpr to check
-	 * @return The position of the constructor in its data def. 0 if it is not a
-	 *         constructor
+	 * @return The position of the constructor in its data def. null if it is
+	 *         not a constructor
 	 */
 	private DataConsData isConstructedTerm(ID e) {
 		DataConsData d = m.getDataByConsName(e.print());

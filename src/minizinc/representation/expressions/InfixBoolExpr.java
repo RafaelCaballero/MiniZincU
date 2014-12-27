@@ -44,8 +44,9 @@ public class InfixBoolExpr extends BoolExpr {
 
 	@Override
 	public String print() {
-		// TODO Auto-generated method stub
-		return e1.toString() + " " + op + " " + e2.toString();
+		String s1 = isBasic(e1) ? e1.print() : "(" + e1.print() + ")";
+		String s2 = isBasic(e2) ? e2.print() : "(" + e2.print() + ")";
+		return s1 + " " + op + " " + s2;
 
 	}
 
@@ -142,34 +143,35 @@ public class InfixBoolExpr extends BoolExpr {
 	public BoolExpr getE2() {
 		return e2;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.expressions.Expr#simplify()
 	 */
 	@Override
-	public Expr simplify() {		
+	public Expr simplify() {
 		Expr r = this;
-		
-		// if the operator is and / or then rely on this classes for simplification
+
+		// if the operator is and / or then rely on this classes for
+		// simplification
 		if (op.equals("/\\")) {
-			And eAnd = new And(e1,e2); 
+			And eAnd = new And(e1, e2);
 			r = eAnd.simplify();
-		}
-		else if (op.equals("\\/")) {
-			Or eOr = new Or(e1,e2); 
+		} else if (op.equals("\\/")) {
+			Or eOr = new Or(e1, e2);
 			r = eOr.simplify();
 		} else if (op.equals("->")) {
-			Imply eImply = new Imply(e1,e2); 
+			Imply eImply = new Imply(e1, e2);
 			r = eImply.simplify();
-		} 
-		else {
-			
+		} else {
+
 			// in principle only the subexpressions can be simplified
 			Expr e1s = e1.simplify();
 			Expr e2s = e2.simplify();
-			if (!e1s.equals(e1) || ! e2s.equals(e2)) 
-				r = new InfixExpr(op,e1s,e2s);
-		
+			if (!e1s.equals(e1) || !e2s.equals(e2))
+				r = new InfixExpr(op, e1s, e2s);
+
 		}
 		return r;
 	}

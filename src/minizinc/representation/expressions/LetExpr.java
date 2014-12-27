@@ -48,14 +48,16 @@ public class LetExpr extends Expr {
 		return s;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see minizinc.representation.expressions.Expr#simplify()
 	 */
 	@Override
 	public Expr simplify() {
 		Expr r = this;
 		Expr e2 = expr.simplify();
-		if (e2 instanceof BoolC) 
+		if (e2 instanceof BoolC)
 			r = e2;
 		return r;
 	}
@@ -147,6 +149,10 @@ public class LetExpr extends Expr {
 		decls = decls2;
 		expr = expr2;
 
+	}
+	
+	public List<LetDecl>  getDecl() {
+		return decls;
 	}
 
 }

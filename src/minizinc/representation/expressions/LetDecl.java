@@ -139,5 +139,9 @@ public class LetDecl implements MiniZincRepresentation, SubExpressions,
 		statement = statement2;
 
 	}
+	
+	public Statement getStatement() {
+		return statement;
+	}
 
 }

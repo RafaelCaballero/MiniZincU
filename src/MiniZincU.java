@@ -39,7 +39,6 @@ public class MiniZincU {
 		// special initial treatment
 		TransRecursiveModel trec = new TransRecursiveModel(tdexp);
 
-
 		TransShowModel ts = new TransShowModel(trec);
 		// System.out.println(ts.print());
 

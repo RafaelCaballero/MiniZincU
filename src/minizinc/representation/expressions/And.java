@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Represents the conjunction of two or more expressions
+ * 
  * @author rafa
  *
  */
@@ -81,7 +82,7 @@ public class And extends InfixExpr {
 				BoolC lv = (BoolC) es;
 				if (lv.getValue() == false)
 					r = true;
-			} 
+			}
 		}
 
 		return r;

@@ -90,7 +90,7 @@ public class TransRecursiveModel extends SplitModel {
 					.collect(Collectors.toList());
 			// remove then starting by the last one
 			for (int i = this.recfunc.size() - 1; i >= 0; i--) {
-				int pos = li.get(i);			
+				int pos = li.get(i);
 				function.remove(pos);
 			}
 		}
@@ -101,17 +101,15 @@ public class TransRecursiveModel extends SplitModel {
 					.map(name -> getPredicatePosByName(name)).sorted()
 					.collect(Collectors.toList());
 			// remove then starting by the last one
-			for (int i = this.recpred.size() - 1; i >= 0; i--){
-				int pos = li.get(i);			
+			for (int i = this.recpred.size() - 1; i >= 0; i--) {
+				int pos = li.get(i);
 				predicate.remove(pos);
 			}
-				
 
 		}
 
 	}
 
-	
 	private void getUnionProcs() {
 
 		// local vars. used to traverse the list of predicates and functions
@@ -289,5 +287,5 @@ public class TransRecursiveModel extends SplitModel {
 		return r;
 
 	}
-		
+
 }

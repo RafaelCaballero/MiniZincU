@@ -217,7 +217,7 @@ public class DataEqualTransformer {
 		return r;
 	}
 
-	private Expr varEqualCons(VarDecl v1, DataConsData d2) {
+	public Expr varEqualCons(VarDecl v1, DataConsData d2) {
 		return new InfixExpr("=", v1.getID(), new IntC(d2.getPosition()));
 	}
 

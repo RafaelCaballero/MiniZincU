@@ -28,8 +28,8 @@ public class TransDataExprModel extends SplitModel {
 		DataExprTransformer det = new DataExprTransformer(this);
 		applyTransformer(det, constraint);
 		applyTransformer(det, decl);
-		//applyTransformer(det, function);
-		//applyTransformer(det, predicate);
+		// applyTransformer(det, function);
+		// applyTransformer(det, predicate);
 		applyTransformer(det, init);
 		applyTransformer(det, output);
 		applyTransformer(det, solve);
