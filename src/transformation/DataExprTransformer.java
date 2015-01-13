@@ -71,8 +71,8 @@ public class DataExprTransformer implements ExprTransformer {
 	 */
 	private Expr caseExpr(CaseExpr e) {
 		Expr r = null;
-		CaseTransformer d = new CaseTransformer(m, e);
-		r = d.transform();
+		CaseTransformer d = new CaseTransformer(m);
+		r = d.transform(e);
 		return r;
 	}
 

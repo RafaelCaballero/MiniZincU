@@ -6,8 +6,16 @@ import java.util.List;
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.ExtendedContext;
 import minizinc.representation.Parsing;
+import minizinc.representation.expressions.BoolC;
+import minizinc.representation.expressions.Expr;
+import minizinc.representation.expressions.FloatC;
 import minizinc.representation.expressions.ID;
+import minizinc.representation.expressions.IntC;
+import minizinc.representation.types.Rbool;
+import minizinc.representation.types.Rfloat;
+import minizinc.representation.types.Rint;
 import minizinc.representation.types.Type;
+import minizinc.representation.types.TypeRange;
 
 /**
  * extended: 'extended' ID '=' (preExt '++')? typename ('++' postExt)?;<br>
@@ -181,6 +189,28 @@ public class Extended extends Statement {
 		dataName = dataName2;
 		left = left2;
 		right = right2;
+	}
+	
+	public Expr zero() {
+		Expr r = null;
+		if (left!=null && left.size()>0) {
+			r = left.get(0);
+		} else {
+			if (baseType instanceof Rbool)
+				r = new BoolC(false);
+			else if (baseType instanceof Rfloat)
+				r = new FloatC(0.0);
+			else if (baseType instanceof Rint)
+				r = new IntC(0);
+			else if (baseType instanceof TypeRange) {
+				TypeRange tr = (TypeRange) baseType;
+				r = tr.zero();
+			}
+			
+		}
+			
+		
+		return r;
 	}
 
 }

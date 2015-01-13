@@ -4,6 +4,7 @@
 package transformation;
 
 import minizinc.representation.expressions.Expr;
+import minizinc.representation.expressions.RbracketExpr;
 
 /**
  * A model transformer is a model that includes a model transformation.
@@ -18,5 +19,14 @@ public interface ExprTransformer {
 	 * model, if exists, is lost. The input model is not modified.
 	 */
 	public Expr transform(Expr input);
+
+	public default Expr withoutBrackets(Expr input) {
+		Expr r = input;
+
+		while (r instanceof RbracketExpr) {
+			r = ((RbracketExpr) r).getExprInside();
+		}
+		return r;
+	}
 
 }

@@ -26,51 +26,122 @@ import minizinc.representation.types.TypeUnion;
  * @author rafa
  *
  */
-public class CaseTransformer {
+public class CaseTransformer implements ExprTransformer {
 	protected SplitModel m;
-	protected CaseExpr e;
 
 	/**
 	 * 
 	 */
-	public CaseTransformer(SplitModel m, CaseExpr e) {
+	public CaseTransformer(SplitModel m) {
 		this.m = m;
-		this.e = e;
 	}
 
 	/**
-	 * 
+	 * @Override
 	 * @return The transformation of the case expression
 	 */
-	public Expr transform() {
+	public Expr transform(Expr input) {
 		Expr r = null;
-		// all the cases in the case statement
-		List<Branch> lb = e.getBranches();
-		Expr id = e.getId();
-		boolean ok = true;
+		if (input != null && input instanceof CaseExpr) {
+			CaseExpr e = (CaseExpr) input;
+			// all the cases in the case statement
+			List<Branch> lb = e.getBranches();
+			Expr id = e.getId();
+			boolean ok = true;
 
-		// check if the case argument is a variable
-		VarDecl vd = null;
-		if (id != null && id instanceof ID) {
-			vd = getVarByName((ID) id);
+			// the case argument can be a variable or a constant
+			VarDecl vd = null;
+			ID idd = null;
+			PredOrUnionExpr cd = null;
+			if (id != null && id instanceof ID) {
+				idd = (ID) id;
+				vd = getVarByName(idd);
+			} else if (id != null && id instanceof PredOrUnionExpr) {
+				cd = (PredOrUnionExpr) id;
+			} else
+				Parsing.error("Unexpected case argument: " + id.print());
 
-			// le is the list of transformed case expressions
-			List<Expr> le = new ArrayList<Expr>(lb.size());
-			for (Branch b : lb) {
-				// transform branch b
-				Expr bt = transform(id, vd, b);
-				if (bt != null)
-					le.add(bt);
-				else
-					ok = false;
+			// transform each branch
+			if (idd != null || vd != null || cd != null) {
+				// le is the list of transformed case expressions
+				List<Expr> le = new ArrayList<Expr>(lb.size());
+				for (Branch b : lb) {
+					// transform branch b
+					Expr bt = null;
+					if (vd != null)
+						bt = transform(id, vd, b);
+					else
+						bt = transform(idd, cd, b);
+					if (bt != null)
+						le.add(bt);
+					else
+						ok = false;
+				}
+
+				if (ok)
+					// the result is the and of all the transformed expressions
+					r = new Or(le);
 			}
-
-			if (ok)
-				// the result is the and of all the transformed expressions
-				r = new Or(le);
 		}
 		// System.out.println(r.print());
 		return r;
+	}
+
+	/**
+	 * Transforms a case branch
+	 * 
+	 * @param ID
+	 *            the case expression
+	 * @param cd
+	 *            The case expression as a PredOrUnionExpr value
+	 * @param b
+	 *            A case branch
+	 * @return The expression cd==pat /\ body where pat is the pattern in the
+	 *         branch and body its body
+	 */
+	private Expr transform(ID id, PredOrUnionExpr cd, Branch b) {
+		Expr r = null;
+		Expr expr = b.getExpr();
+		PredOrUnionExpr ped = b.getPattern();
+		ID cte = b.getIdpattern();
+
+		DataEqualTransformer d = new DataEqualTransformer(m);
+
+		// the patter is a constant
+		if (cte != null) {
+			// c = c'(t1...tn)...no mathc is possible
+			if (cd != null)
+				r = new BoolC(false);
+			else {
+				// c = c'
+				DataConsData dc = m.getDataByConsName(cte.print());
+				DataConsData dc2 = m.getDataByConsName(id.print());
+				Expr cond = d.trEqual(null, dc, dc2);
+				r = new And(cond, expr);
+			}
+		} else {
+			if (ped != null && cd != null) {
+				PatternMatching pm = new PatternMatching(m, cd, ped);
+				if (pm.fail())
+					r = new BoolC(false); // former true with the ->
+				else {
+					Substitution s = pm.getSubstitution();
+					if (s == null) // identity subst.
+						r = expr;
+					else {
+						Expr exprSubs = expr.applyTransformer(s, expr);
+						Expr cond = pm.getMatchingExpression();
+						// System.out.println(cond.print());
+						r = new And(cond, exprSubs);
+					}
+				}
+			} else {
+				// Parsing.error("Unexpected case pattern "+id );
+				r = new BoolC(false);
+			}
+		}
+		return r;
+
 	}
 
 	/**

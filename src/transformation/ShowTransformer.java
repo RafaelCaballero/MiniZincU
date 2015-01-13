@@ -183,8 +183,8 @@ public class ShowTransformer implements ExprTransformer {
 
 			// build result
 			r = new InfixExpr("++", li);
-			//String s = r.print();
-			//System.out.println(s);
+			// String s = r.print();
+			// System.out.println(s);
 		}
 
 		return r;

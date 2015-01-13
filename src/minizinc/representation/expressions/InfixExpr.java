@@ -104,7 +104,8 @@ public class InfixExpr extends Expr {
 	}
 
 	/**
-	 * Basic list simplification, based in the simplification of each element of the list
+	 * Basic list simplification, based in the simplification of each element of
+	 * the list
 	 * 
 	 * @param e
 	 *            The list to simplify
@@ -124,13 +125,14 @@ public class InfixExpr extends Expr {
 				if (isBasic(epinside)) {
 					le.add(epinside);
 					changed = true;
-				} else 
-				   le.add(ep);
-				// second case, if it is not a basic expression and it is not yet surrounded by () include ()
+				} else
+					le.add(ep);
+				// second case, if it is not a basic expression and it is not
+				// yet surrounded by () include ()
 			} else if (!isBasic(ep)) {
 				le.add(new RbracketExpr(ep));
 				changed = true;
-			} else 
+			} else
 				le.add(ep);
 
 			// if modified...

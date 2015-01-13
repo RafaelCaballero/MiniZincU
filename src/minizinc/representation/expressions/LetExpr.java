@@ -150,8 +150,8 @@ public class LetExpr extends Expr {
 		expr = expr2;
 
 	}
-	
-	public List<LetDecl>  getDecl() {
+
+	public List<LetDecl> getDecl() {
 		return decls;
 	}
 

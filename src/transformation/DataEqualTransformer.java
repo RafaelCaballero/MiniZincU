@@ -69,21 +69,27 @@ public class DataEqualTransformer {
 			// obtain the list of auxiliary variables
 			List<VarDecl> lv1 = getVars(v1b);
 			List<VarDecl> lv2 = getVars(v2b);
-			HashMap<String, VarDecl> hm1 = getHash(lv1);
-			HashMap<String, VarDecl> hm2 = getHash(lv2);
-
 			List<Expr> eqs = new ArrayList<Expr>();
 
-			for (Map.Entry<String, VarDecl> entry : hm1.entrySet()) {
-				String s = entry.getKey();
-				VarDecl vd1 = entry.getValue();
-				VarDecl vd2 = hm2.get(s);
-				if (vd2 != null) {
-					InfixExpr i = new InfixExpr("=", vd1.getID(), vd2.getID());
-					eqs.add(i);
-				}
+			int m = Math.min(lv1.size(), lv2.size());
+			for (int i = 0; i < m; i++) {
+				VarDecl a = lv1.get(i);
+				VarDecl b = lv2.get(i);
+				InfixExpr eqVar = new InfixExpr("=", a.getID(), b.getID());
+				eqs.add(eqVar);
+
 			}
 
+			/*
+			 * HashMap<String, VarDecl> hm1 = getHash(lv1); HashMap<String,
+			 * VarDecl> hm2 = getHash(lv2);
+			 * 
+			 * 
+			 * for (Map.Entry<String, VarDecl> entry : hm1.entrySet()) { String
+			 * s = entry.getKey(); VarDecl vd1 = entry.getValue(); VarDecl vd2 =
+			 * hm2.get(s); if (vd2 != null) { InfixExpr i = new InfixExpr("=",
+			 * vd1.getID(), vd2.getID()); eqs.add(i); } }
+			 */
 			if (!(eqs == null || eqs.size() == 0))
 				// finally, the conjunction of all the equalities is the
 				// solution

@@ -17,6 +17,7 @@ import minizinc.representation.expressions.IntC;
 import minizinc.representation.expressions.PredOrUnionExpr;
 import minizinc.representation.expressions.StringC;
 import minizinc.representation.model.Model;
+import minizinc.representation.model.SplitModel;
 import minizinc.representation.statement.DataDef;
 import minizinc.representation.statement.decls.VarDecl;
 import minizinc.representation.types.TypeUnion;
@@ -76,6 +77,76 @@ public class PatternMatching {
 			}
 
 		}
+	}
+
+	/**
+	 * Matching of the term cd with the pattern ped
+	 * 
+	 * @param m
+	 *            The split model
+	 * @param cd
+	 *            Input value
+	 * @param ped
+	 *            The pattern
+	 */
+	public PatternMatching(SplitModel m2, PredOrUnionExpr cd,
+			PredOrUnionExpr ped) {
+		this.le = null;
+		this.binding = null;
+		this.matched = false;
+		this.m = m2;
+
+		matching(cd, ped);
+
+	}
+
+	private void matching(Expr cd, Expr pattern) {
+		matched = true;
+		if (!cd.equals(pattern))
+			if (pattern instanceof ID) {
+				ID idp = (ID) pattern;
+				DataConsData dcons = m.getDataByConsName(pattern.print());
+				if (dcons != null) {
+					// the pattern is a constructor with arity 0...but we know
+					// already that it is different from the call args.
+					matched = false;
+				} else {
+					// a new variable!
+					// this generates a binding
+					if (binding == null)
+						binding = new Substitution();
+					binding.put(idp.print(), cd);
+				}
+			} else if (cd instanceof PredOrUnionExpr
+					&& pattern instanceof PredOrUnionExpr) {
+				PredOrUnionExpr e = (PredOrUnionExpr) cd;
+				PredOrUnionExpr pe = (PredOrUnionExpr) pattern;
+				ID idi = e.getId();
+				ID idp = pe.getId();
+				// this should not happen...
+				if (idi == null || idp == null) {
+					matched = false;
+				} else if (!idi.equals(idp)) {
+					matched = false;
+
+				} else {// the root match. Check the arguments
+					List<Expr> li = e.getArgs();
+					List<Expr> lp = pe.getArgs();
+					int ni = li == null ? 0 : li.size();
+					int n = lp == null ? 0 : lp.size();
+					if (ni != n) {// this shouldn't happen
+						matched = false;
+						Parsing.error("Different number of arguments in case call expression and branch pattern "
+								+ e.print() + " " + pe.print());
+					} else
+						for (int i = 0; i < n && matched; i++)
+							matching(li.get(i), lp.get(i));
+				}
+			} else {
+				// different expresions which are not PredOrUnionExpr
+				matched = false;
+			}
+
 	}
 
 	/**
@@ -150,8 +221,10 @@ public class PatternMatching {
 		Expr r = null;
 		if (!matched)
 			r = new BoolC(false);
-		else
+		else if (le != null)
 			r = new And(le);
+		else
+			r = new BoolC(true);
 		return r;
 	}
 
@@ -161,5 +234,15 @@ public class PatternMatching {
 
 	public Substitution getSubstitution() {
 		return binding;
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		if (le != null)
+			s += "Equalities: " + le;
+		if (binding != null)
+			s += " Binding: " + binding;
+		return s;
 	}
 }

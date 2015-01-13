@@ -1,0 +1,18 @@
+
+
+
+
+extended int3 = [negInf]++int++[undef,posInf];
+enum stack  = { empty, s(int3,stack) };
+var stack(1):a;
+
+% t = push x on s
+
+constraint a==empty;
+
+
+solve satisfy;
+
+output(["a: ",show(a),"\n"
+
+       ]);

@@ -33,7 +33,8 @@ public class UnionTransformer implements ExprTransformer {
 	protected Set<String> recpred;
 	protected Set<String> recfunc;
 	/**
-	 * Used to introduce new fresh variables in the let declarations that occur in the predicates 
+	 * Used to introduce new fresh variables in the let declarations that occur
+	 * in the predicates
 	 */
 	protected LetTransformer lt;
 
@@ -96,11 +97,12 @@ public class UnionTransformer implements ExprTransformer {
 				// we work with a copy of the body...yes, I am afraid I am
 				// using clone
 				r = p.getBody().clone();
-				
-				// if it is necessary rename let identifiers in the body to avoid name collisions
-				if (lt!=null)
+
+				// if it is necessary rename let identifiers in the body to
+				// avoid name collisions
+				if (lt != null)
 					r.subexpressions(lt);
-				
+
 				ldecl = p.getDecls();
 				int nargs = ldecl.size();
 
@@ -116,17 +118,19 @@ public class UnionTransformer implements ExprTransformer {
 
 					// if r is a CaseExpr now we need to replace the local
 					// variable to avoid infinity recursive calls
+					CaseTransformer ct = new CaseTransformer(m);
 					if (r instanceof CaseExpr) {
-						CaseTransformer ct = new CaseTransformer(m,
-								(CaseExpr) r);
-						r = ct.transform();
+						r = ct.transform(r);
 					}
+					// anyway transform the subexpressions
+					r.subexpressions(ct);
 
-					// include the new variables to avoid the repetition of names in acumulate let defs.
+					// include the new variables to avoid the repetition of
+					// names in accumulate let defs.
 					// (this can happen after unfolding recursive calls)
 					if (lt == null)
-					     lt = new LetTransformer(m,r);
-					else 
+						lt = new LetTransformer(m, r);
+					else
 						lt.addLetVars(r);
 
 					// now eliminate the calls in the predicate definition

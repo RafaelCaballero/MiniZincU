@@ -39,7 +39,10 @@ public class MiniZincU {
 		// special initial treatment
 		TransRecursiveModel trec = new TransRecursiveModel(tdexp);
 
-		TransShowModel ts = new TransShowModel(trec);
+		// eliminate again expressions including data
+		TransDataExprModel tdexp2 = new TransDataExprModel(trec);
+
+		TransShowModel ts = new TransShowModel(tdexp2);
 		// System.out.println(ts.print());
 
 		// Transform union variables
@@ -61,6 +64,7 @@ public class MiniZincU {
 
 			if (!f.exists()) {
 				System.out.println("File " + inputFile + " not found!");
+				return null;
 			}
 		} else {
 			System.out.println("Please specify a MiniZinc input file (.mzn)");

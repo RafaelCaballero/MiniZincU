@@ -3,7 +3,10 @@
  */
 package minizinc.representation.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import minizinc.antlr4.MiniZincGrammarParser.ModelContext;
@@ -150,8 +153,12 @@ public class SplitModel extends Model {
 	@Override
 	public String print() {
 		String s = "";
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+
 		s += new Comment("MiniZinc Model parsed using Antlr4");
-		s += new Comment("Rafael Caballero, 2014\n\n\n");
+		s += new Comment("Rafael Caballero " + dateFormat.format(cal.getTime())
+				+ "2014\n\n\n");
 
 		s += printStatements("", comment);
 
@@ -417,6 +424,48 @@ public class SplitModel extends Model {
 		}
 
 		return r;
+	}
+
+	/**
+	 * Returns an extension declaration given its name
+	 * 
+	 * @param name
+	 *            Name of the extension
+	 * @return The extension declaration or null if it does not exist
+	 */
+	public Extended getExtensionByName(String name) {
+		Extended r = null;
+		if (extended != null) {
+			int pos = getExtensionPosByName(name);
+			if (pos != -1)
+				r = extended.get(pos);
+		}
+
+		return r;
+	}
+
+	/**
+	 * Given the name of an extension returns its position in the list of
+	 * extensions
+	 * 
+	 * @param name
+	 *            Name of the extension as a String
+	 * @return The extension position or -1 if it does not exist
+	 */
+	public int getExtensionPosByName(String name) {
+		int r = -1;
+		if (extended != null) {
+			int n = 0;
+			for (int i = 0; i < extended.size() && r == -1; i++) {
+				String s = extended.get(i).getDataName();
+				if (s.equals(name))
+					r = i;
+			}
+
+		}
+
+		return r;
+
 	}
 
 	@Override
