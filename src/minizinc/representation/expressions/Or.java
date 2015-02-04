@@ -12,12 +12,12 @@ public class Or extends InfixExpr {
 
 	public Or(Expr e1, Expr e2) {
 		super("\\/", e1, e2);
-		simplify();
+		//simplify();
 	}
 
 	public Or(List<? extends Expr> e) {
 		super("\\/", e);
-		simplify();
+		//simplify();
 	}
 
 	@Override
@@ -25,6 +25,7 @@ public class Or extends InfixExpr {
 
 		boolean changed = false;
 		Expr r = this;
+
 		// the empty conjunction is false
 		if (e == null || e.size() == 0) {
 			r = new BoolC(false);
@@ -36,7 +37,9 @@ public class Or extends InfixExpr {
 		if (containsTrue()) {
 			r = new BoolC(true);
 			changed = true;
-		} else {
+		} else if (removeFalse())
+			changed = true;
+		else {
 
 			changed = changed || simplifyElements();
 
@@ -91,10 +94,33 @@ public class Or extends InfixExpr {
 		return changed;
 	}
 
+	/**
+	 * Removes values false
+	 * 
+	 * @return true if some element has been removed
+	 */
+	private boolean removeFalse() {
+		int nRemoved = 0;
+		if (e != null && e.size() > 1) {
+			int n = e.size();
+			for (int i = 0; nRemoved != n - 1 && i < e.size();) {
+				Expr ej = e.get(i);
+				if (ej instanceof BoolC && !((BoolC) ej).getValue()){
+					e.remove(i);
+					nRemoved++;
+				}
+				else
+					i++;
+			}
+		}
+
+		return nRemoved > 0;
+	}
+
 	private boolean containsTrue() {
 		boolean r = false;
 		for (int i = 0; i < e.size() && !r; i++) {
-			Expr es = e.get(i).simplify();
+			Expr es = e.get(i);
 			if (es instanceof BoolC) {
 				BoolC lv = (BoolC) es;
 				if (lv.getValue() == true)

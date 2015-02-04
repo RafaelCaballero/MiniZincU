@@ -127,10 +127,13 @@ public class ShowTransformer implements ExprTransformer {
 				t = new IfS(cond, sThen, new StringC("\"\""));
 			} else {
 				Expr ts = sVari(d, v, l, i + 1, n);
+				Expr ssThen = sThen.simplify();
 				if (ts == null)
-					t = new IfS(cond, sThen, new StringC("\"\""));
-				else
-					t = new IfS(cond, sThen, ts);
+					t = new IfS(cond, ssThen, new StringC("\"\""));
+				else {
+					Expr sts = ts.simplify();
+					t = new IfS(cond, ssThen, sts);
+				}
 			}
 		}
 
@@ -182,7 +185,7 @@ public class ShowTransformer implements ExprTransformer {
 			li.add(new StringC("\")\""));
 
 			// build result
-			r = new InfixExpr("++", li);
+			r = new InfixExpr("++", li).simplify();
 			// String s = r.print();
 			// System.out.println(s);
 		}
@@ -246,6 +249,9 @@ public class ShowTransformer implements ExprTransformer {
 
 		} // end for
 
+		if (li!=null) {
+			StringC.concat(li);
+		}
 	} // end method
 
 }

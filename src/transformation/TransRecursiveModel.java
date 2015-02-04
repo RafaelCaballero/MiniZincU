@@ -53,9 +53,10 @@ public class TransRecursiveModel extends SplitModel {
 	 */
 
 	public TransRecursiveModel(SplitModel sp) {
-		super(sp.getData(), sp.getConstraint(), sp.getDecl(), sp.getExtended(),
-				sp.getFunction(), sp.getInclude(), sp.getInit(),
-				sp.getOutput(), sp.getPredicate(), sp.getSolve());
+		super(sp.getComment(), sp.getData(), sp.getConstraint(), sp.getDecl(),
+				sp.getExtended(), sp.getFunction(), sp.getInclude(), sp
+						.getInit(), sp.getOutput(), sp.getPredicate(), sp
+						.getSolve());
 		recpred = new HashSet<String>();
 		recfunc = new HashSet<String>();
 

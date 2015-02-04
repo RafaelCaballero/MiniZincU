@@ -103,4 +103,12 @@ public class InfixArithExpr extends ArithExpr {
 		e2 = e2p;
 	}
 
+	@Override
+	public Expr simplify() {
+		Expr e1s = e1.simplify();
+		Expr e2s = e2.simplify();
+		Expr r = InfixArithBoolExpr.simplifyOp(this, op, e1s, e2s);
+		return r;
+	}
+
 }

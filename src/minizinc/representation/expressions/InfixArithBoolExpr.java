@@ -105,4 +105,101 @@ public class InfixArithBoolExpr extends BoolExpr {
 		e2 = e2p;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see minizinc.representation.expressions.Expr#simplify()
+	 */
+	@Override
+	public Expr simplify() {
+		Expr r = this;
+		if (e1 != null && e2 != null) {
+			Expr e1s = e1.simplify();
+			Expr e2s = e2.simplify();
+			if (e1s != null && e2s != null && !e1s.equals(e1)
+					|| !e2s.equals(e2)) {
+				if (e1s instanceof ArithExpr && e2s instanceof ArithExpr) {
+					r = new InfixArithBoolExpr(op, (ArithExpr) e1s,
+							(ArithExpr) e2s);
+					r = r.simplify();
+				}
+			}
+			r = simplifyOp(r, op, e1s, e2s);
+		}
+		return r;
+	}
+
+	public static Expr simplifyOp(Expr ri, String op, Expr e1s, Expr e2s) {
+		Expr r = ri;
+
+		//  a=a becomes true
+		if (e1s!=null && e2s!=null && e1s.equals(e2s) && (op.equals("=") || op.equals("==")))
+			r = new BoolC(true);
+		else 	
+		if ((e1s instanceof BoolC) && ((BoolC) e1s).getValue()) {
+			r = e2s;
+		} else if (Expr.isBasic(e1s) && Expr.isBasic(e2s))
+			if ((e1s instanceof IntC && e2s instanceof IntC) || 
+				 (e1s instanceof BoolC && e2s instanceof BoolC) ||
+				 (e1s instanceof FloatC && e2s instanceof FloatC)) {
+				if (op.equals("=") || op.equals("==")) {
+					r = new BoolC(e1s.equals(e2s));
+				} else if (op.equals("!="))
+					r = new BoolC(!e1s.equals(e2s));
+				else if (op.equals(">") || op.equals("<") || op.equals(">=")
+						|| op.equals("<=") || op.equals("+") || op.equals("-")
+						|| op.equals("*")) {
+					// unfold operands
+					if (e1s instanceof Operand)
+						e1s = ((Operand) e1s).getExpr();
+					if (e2s instanceof Operand)
+						e2s = ((Operand) e2s).getExpr();
+
+					if (e1s instanceof IntC && e2s instanceof IntC) {
+						int e1v = ((IntC) e1s).get();
+						int e2v = ((IntC) e2s).get();
+						switch (op) {
+						case ">":
+							r = new BoolC(e1v > e2v);
+							break;
+						case "<":
+							r = new BoolC(e1v < e2v);
+							break;
+						case ">=":
+							r = new BoolC(e1v >= e2v);
+							break;
+						case "<=":
+							r = new BoolC(e1v <= e2v);
+							break;
+						case "+":
+							r = new IntC(e1v + e2v);
+							break;
+						case "-":
+							r = new IntC(e1v - e2v);
+							break;
+						case "*":
+							r = new IntC(e1v * e2v);
+							break;
+						}
+					}
+				}
+			}
+		return r;
+	}
+
+	/**
+	 * @return The expression operand as a String
+	 */
+	public String getOp() {
+		return op;
+	}
+
+	public ArithExpr getE1() {
+		return e1;
+	}
+
+	public ArithExpr getE2() {
+		return e2;
+	}
+
 }

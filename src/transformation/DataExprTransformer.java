@@ -86,6 +86,11 @@ public class DataExprTransformer implements ExprTransformer {
 		Expr r = null;
 		List<Expr> le = e.getE();
 		String op = e.getOp().getInfixSetOp();
+		if (equalOp(op) && le != null && le.size() == 2) {
+			Expr e1 = le.get(0);
+			Expr e2 = le.get(1);
+			r = transformEqual(op, e1, e2);
+		}
 
 		return r;
 	}
@@ -257,34 +262,38 @@ public class DataExprTransformer implements ExprTransformer {
 	private Expr callEqTransformer(VarDecl v1, VarDecl v2, DataConsData d1,
 			DataConsData d2, PredOrUnionExpr ped1, PredOrUnionExpr ped2) {
 		Expr r = null;
-		DataEqualTransformer d = new DataEqualTransformer(m);
-		// First case: the first one is a variable
-		if (v1 != null) {
-			// the second one is also a variable
-			if (v2 != null) {
-				r = d.trEqual(this, v1, v2);
-			} else
-			// the second one is a constant
-			if (d2 != null)
-				r = d.trEqual(this, v1, d2);
-			else // this is the only possibility
-			if (ped2 != null)
-				r = d.trEqual(this, v1, ped2);
-		} else { // no variable around
-			if (d1 != null) {
-				if (d2 != null)
-					r = d.trEqual(this, d1, d2);
-				else
-				// constant and constructed term...it doesn't work
-				if (ped2 != null)
-					r = new BoolC(false);
-			} else
-				// the only possibility
-				r = d.trEqual(this, ped1, ped2);
-		}
+		if (!((v1 == null && d1 == null && ped1 == null) || (v2 == null
+				&& d2 == null && ped2 == null))) {
 
-		if (r == null)
-			r = new BoolC(false);
+			DataEqualTransformer d = new DataEqualTransformer(m);
+			// First case: the first one is a variable
+			if (v1 != null) {
+				// the second one is also a variable
+				if (v2 != null) {
+					r = d.trEqual(this, v1, v2);
+				} else
+				// the second one is a constant
+				if (d2 != null)
+					r = d.trEqual(this, v1, d2);
+				else // this is the only possibility
+				if (ped2 != null)
+					r = d.trEqual(this, v1, ped2);
+			} else { // no variable around
+				if (d1 != null) {
+					if (d2 != null)
+						r = d.trEqual(this, d1, d2);
+					else
+					// constant and constructed term...it doesn't work
+					if (ped2 != null)
+						r = new BoolC(false);
+				} else
+					// the only possibility
+					r = d.trEqual(this, ped1, ped2);
+			}
+
+			if (r == null)
+				r = new BoolC(false);
+		}
 		return r;
 	}
 
@@ -337,6 +346,14 @@ public class DataExprTransformer implements ExprTransformer {
 	private VarDecl isUnionVar(ID id) {
 		VarDecl r = null;
 		VarDecl v = m.getVarByName(id);
+		// look for the name without _ 
+		if (v==null) {
+			int iu = id.print().indexOf("_");
+			if (iu!=-1) {
+				String s = id.print().substring(0,iu);
+				v = m.getVarByName(new ID(s));
+			}
+		}
 		if (v != null && v.getDeclType() instanceof TypeUnion)
 			r = v;
 

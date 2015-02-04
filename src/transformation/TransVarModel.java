@@ -26,16 +26,18 @@ public class TransVarModel extends SplitModel {
 	 * complete constructor
 	 */
 	public TransVarModel(SplitModel sp, List<TransVar> l) {
-		super(sp.getData(), sp.getConstraint(), sp.getDecl(), sp.getExtended(),
-				sp.getFunction(), sp.getInclude(), sp.getInit(),
-				sp.getOutput(), sp.getPredicate(), sp.getSolve());
+		super(sp.getComment(), sp.getData(), sp.getConstraint(), sp.getDecl(),
+				sp.getExtended(), sp.getFunction(), sp.getInclude(), sp
+						.getInit(), sp.getOutput(), sp.getPredicate(), sp
+						.getSolve());
 		this.l = l;
 	}
 
 	public TransVarModel(SplitModel sp) {
-		super(sp.getData(), sp.getConstraint(), sp.getDecl(), sp.getExtended(),
-				sp.getFunction(), sp.getInclude(), sp.getInit(),
-				sp.getOutput(), sp.getPredicate(), sp.getSolve());
+		super(sp.getComment(), sp.getData(), sp.getConstraint(), sp.getDecl(),
+				sp.getExtended(), sp.getFunction(), sp.getInclude(), sp
+						.getInit(), sp.getOutput(), sp.getPredicate(), sp
+						.getSolve());
 		l = new ArrayList<TransVar>();
 		transvar();
 	}
@@ -57,6 +59,7 @@ public class TransVarModel extends SplitModel {
 				if (tv.getCtr().equals(new Constraint(new BoolC(true)))) {
 					i++;
 				} else {
+					comment.add(tv.c);
 					decl.remove(i);
 					decl.addAll(tv.getVar());
 					decl.addAll(tv.getVarb());
@@ -70,6 +73,7 @@ public class TransVarModel extends SplitModel {
 					}
 
 					l.add(tv);
+
 				}
 
 			} else

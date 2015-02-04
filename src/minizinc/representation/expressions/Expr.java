@@ -21,6 +21,13 @@ import minizinc.representation.expressions.sets.SetExpr;
 public abstract class Expr implements MiniZincRepresentation, SubExpressions,
 		Typeable, Cloneable {
 
+
+	/**
+	 * True if the expression has been already simplified
+	 * Currently not used
+	 */
+	protected boolean simplified=false;
+	
 	@Override
 	public String toString() {
 		return print();
@@ -117,7 +124,17 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions,
 	public static boolean isBasic(Expr ep) {
 		boolean r = (ep instanceof IntC || ep instanceof PredOrUnionExpr
 				|| ep instanceof StringC || ep instanceof ID
-				|| ep instanceof BoolC || ep instanceof FloatC);
+				|| ep instanceof BoolC || ep instanceof FloatC || (ep instanceof Operand && ((Operand) ep)
+				.isBasic()));
+		return r;
+	}
+
+	public static Expr unwrap(Expr e) {
+		Expr r = e;
+		if (e instanceof RbracketExpr)
+			r = ((RbracketExpr) e).getExprInside();
+		else if (e instanceof Operand)
+			r = ((Operand) e).getExpr();
 		return r;
 	}
 }

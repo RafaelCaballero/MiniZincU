@@ -18,6 +18,7 @@ import minizinc.representation.expressions.ID;
 import minizinc.representation.expressions.InfixExpr;
 import minizinc.representation.expressions.InfixOp;
 import minizinc.representation.statement.*;
+import minizinc.representation.statement.decls.ParDecl;
 import minizinc.representation.statement.decls.VarDecl;
 
 /**
@@ -42,10 +43,12 @@ public class SplitModel extends Model {
 	/**
 	 * complete constructor
 	 */
-	public SplitModel(List<DataDef> data, List<Constraint> constraint,
-			List<Decl> decl, List<Extended> extended, List<Function> function,
+	public SplitModel(List<Comment> comment, List<DataDef> data,
+			List<Constraint> constraint, List<Decl> decl,
+			List<Extended> extended, List<Function> function,
 			List<Include> include, List<Init> init, List<Output> output,
 			List<Predicate> predicate, List<Solve> solve) {
+		this.comment = comment;
 		this.data = data;
 		this.constraint = constraint;
 		this.decl = decl;
@@ -56,7 +59,7 @@ public class SplitModel extends Model {
 		this.output = output;
 		this.predicate = predicate;
 		this.solve = solve;
-		this.comment = new ArrayList<Comment>();
+		// this.comment = new ArrayList<Comment>();
 	}
 
 	public SplitModel() {
@@ -175,6 +178,10 @@ public class SplitModel extends Model {
 		return s;
 	}
 
+	public List<Comment> getComment() {
+		return comment;
+	}
+
 	public List<Constraint> getConstraint() {
 		return constraint;
 	}
@@ -257,6 +264,13 @@ public class SplitModel extends Model {
 		List<Output> outputp = null;
 		List<Predicate> predicatep = null;
 		List<Solve> solvep = null;
+		List<Comment> commentp = null;
+
+		if (comment != null) {
+			commentp = new ArrayList<Comment>();
+			for (Comment x : comment)
+				commentp.add(x.clone());
+		}
 
 		if (data != null) {
 			datap = new ArrayList<DataDef>();
@@ -309,13 +323,13 @@ public class SplitModel extends Model {
 			for (Solve x : solve)
 				solvep.add(x.clone());
 		}
-		r = new SplitModel(datap, constraintp, declp, extendedp, functionp,
-				includep, initp, outputp, predicatep, solvep);
+		r = new SplitModel(commentp, datap, constraintp, declp, extendedp,
+				functionp, includep, initp, outputp, predicatep, solvep);
 		return r;
 	}
 
 	/**
-	 * Initializations are removed and transformed into equality contrainsts
+	 * Initializations are removed and transformed into equality constraints
 	 */
 	@Deprecated
 	public void initsToConstraints() {
@@ -570,6 +584,25 @@ public class SplitModel extends Model {
 		return r;
 	}
 
+	/**
+	 * Obtains a declaration given its identifier.
+	 * 
+	 * @param id
+	 *            The identifier.
+	 * @return The declaration, or null if the identifier does not
+	 *         correspond to a variable
+	 */
+	public ParDecl getParDeclByName(ID id) {
+		ParDecl r = null;
+		for (Decl d : this.decl)
+			if (d instanceof ParDecl && d.getID().equals(id)) {
+				r = (ParDecl) d;
+				break;
+			}
+
+		return r;
+	}
+
 	@Override
 	public DataConsData getDataByConsName(String consname) {
 		DataConsData r = null;
@@ -584,4 +617,23 @@ public class SplitModel extends Model {
 		return r;
 	}
 
+	/**
+	 * Removes the variable declaration, if exists
+	 * 
+	 * @param v
+	 *            A variable declaration
+	 * @return true if the variable existed
+	 */
+	public boolean removeVarDecl(VarDecl v) {
+		boolean r = false;
+		if (decl != null && v!=null)
+			for (int i = 0; !r && i < this.decl.size(); i++) {
+				Decl d = decl.get(i);
+				if (d instanceof VarDecl && d.getID().equals(v.getID())) {
+					decl.remove(i);
+					r = true;
+				}
+			}
+		return r;
+	}
 }

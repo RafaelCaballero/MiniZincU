@@ -6,8 +6,10 @@ import minizinc.representation.model.SplitModel;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import transformation.SimplifyModel;
 import transformation.TransDataExprModel;
 import transformation.TransDataModel;
+import transformation.TransParamModel;
 import transformation.TransRecursiveModel;
 import transformation.TransShowModel;
 import transformation.TransVarModel;
@@ -31,9 +33,14 @@ public class MiniZincU {
 
 	}
 
-	private static TransDataModel transformUnion(SplitModel p) {
+	private static SplitModel transformUnion(SplitModel p) {
+		
+		// eliminate parameters in union variables
+		TransParamModel tparam = new TransParamModel(p); 
+		
+		
 		// eliminate expressions including data
-		TransDataExprModel tdexp = new TransDataExprModel(p);
+		TransDataExprModel tdexp = new TransDataExprModel(tparam);
 
 		// recursive calls and predicates including case statements deserve an
 		// special initial treatment
@@ -50,7 +57,11 @@ public class MiniZincU {
 
 		// eliminate the data section
 		TransDataModel td = new TransDataModel(tv);
-		return td;
+
+		// simplify constraints
+		SimplifyModel sm = new SimplifyModel(td);
+
+		return sm;
 
 	}
 

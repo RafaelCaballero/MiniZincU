@@ -12,12 +12,12 @@ public class And extends InfixExpr {
 
 	public And(Expr e1, Expr e2) {
 		super("/\\", e1, e2);
-		simplify();
+				//simplify();
 	}
 
 	public And(List<? extends Expr> e) {
 		super("/\\", e);
-		simplify();
+		//simplify();
 	}
 
 	@Override
@@ -25,6 +25,7 @@ public class And extends InfixExpr {
 
 		boolean changed = false;
 		Expr r = this;
+		
 		// the empty conjunction is true
 		if (e == null || e.size() == 0) {
 			r = new BoolC(true);
@@ -36,16 +37,20 @@ public class And extends InfixExpr {
 		if (containsFalse()) {
 			r = new BoolC(false);
 			changed = true;
-		} else {
-
+		} else
+		// if it constains a true, remove it
+		if (removeTrue())
+			changed = true;
+		else {
 			// simplify elements
 			for (int j = 0; j < e.size(); j++) {
 				// simplify the j-th element
 				Expr expj = e.get(j);
 				Expr exp = expj.simplify();
-				if (!exp.equals(e.get(j))) {
+				if (!exp.equals(expj)) {
 					e.add(j, exp);
 					e.remove(j + 1);
+					changed = true;
 				}
 			}
 
@@ -74,10 +79,33 @@ public class And extends InfixExpr {
 		return r;
 	}
 
+	/**
+	 * Removes values true
+	 * 
+	 * @return true if some element has been removed
+	 */
+	private boolean removeTrue() {
+		int nRemoved = 0;
+		if (e != null && e.size() > 1) {
+			int n = e.size();
+			for (int i = 0; nRemoved != n - 1 && i < e.size();) {
+				Expr ej = e.get(i);
+				if (ej instanceof BoolC && ((BoolC) ej).getValue()){
+					e.remove(i);
+					nRemoved++;
+				}
+				else
+					i++;
+			}
+		}
+
+		return nRemoved > 0;
+	}
+
 	private boolean containsFalse() {
 		boolean r = false;
 		for (int i = 0; i < e.size() && !r; i++) {
-			Expr es = e.get(i).simplify();
+			Expr es = e.get(i);
 			if (es instanceof BoolC) {
 				BoolC lv = (BoolC) es;
 				if (lv.getValue() == false)

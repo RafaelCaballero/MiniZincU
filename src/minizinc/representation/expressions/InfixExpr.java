@@ -47,7 +47,7 @@ public class InfixExpr extends Expr {
 	public InfixExpr(InfixOp op, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
 		for (Expr expr : le)
-			this.e.add(expr.simplify());
+			this.e.add(expr);
 		this.op = op;
 	}
 
@@ -57,7 +57,7 @@ public class InfixExpr extends Expr {
 	public InfixExpr(String string, List<? extends Expr> le) {
 		this.e = new ArrayList<Expr>();
 		for (Expr expr : le)
-			this.e.add(expr.simplify());
+			this.e.add(expr);
 		this.op = new InfixOp(string);
 	}
 
@@ -82,23 +82,54 @@ public class InfixExpr extends Expr {
 	public Expr simplify() {
 		Expr r = this;
 
+		// first simplify the arguments
+		List<Expr> es = simplifyList(e);
+		if (es != null)
+			if (es.size() > 1)
+				r = new InfixExpr(op, es);
+
 		// if the operator is and / or then rely on this classes for
 		// simplification
-		if (op.print().equals("/\\")) {
-			And eAnd = new And(e);
+		String ops = op.print();
+		if (ops.equals("/\\")) {
+			And eAnd = new And(es);
 			r = eAnd.simplify();
-		} else if (op.print().equals("\\/")) {
-			Or eOr = new Or(e);
+		} else if (ops.equals("\\/")) {
+			Or eOr = new Or(es);
 			r = eOr.simplify();
-		} else {
-			List<Expr> es = simplifyList(e);
-			if (es != null)
-				if (es.size() > 1)
-					r = new InfixExpr(op, es);
-				else
-					// this should never happen
-					r = null;
+		} else if ((ops.equals("=") || ops.equals("=") || ops.equals("!="))
+				&& es != null && es.size() == 2) {
+			Expr e1s = es.get(0);
+			Expr e2s = es.get(1);
 
+			r = InfixArithBoolExpr.simplifyOp(r, ops, e1s, e2s);
+		}  // simplify String concatenation
+		   if (ops.equals("++") && es != null)  {
+			   Expr ess = simplifyStringConc(es);
+			   if (ess!=null)
+				   r=ess;
+		   }
+		return r;
+	}
+
+	/**
+	 * Simplified concatenations of Strings, changing "a"++"b" by "ab"
+	 * @param es The list of arguments of ++, with 2 or more elements
+	 * @return The result of the concatenation simplified
+	 */
+	private Expr simplifyStringConc(List<Expr> es) {
+		Expr r = null;
+		if (es!=null) {
+			if (es.size()==1)
+				r = es.get(0);
+			else { // size >=2 
+				boolean changed=StringC.concat(es);
+				if (changed)
+					if (es.size()==1)
+						r = es.get(0);
+					else
+						r = new InfixExpr("++",es);
+			}
 		}
 		return r;
 	}

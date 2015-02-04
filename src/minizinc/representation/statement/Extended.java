@@ -190,10 +190,10 @@ public class Extended extends Statement {
 		left = left2;
 		right = right2;
 	}
-	
+
 	public Expr zero() {
 		Expr r = null;
-		if (left!=null && left.size()>0) {
+		if (left != null && left.size() > 0) {
 			r = left.get(0);
 		} else {
 			if (baseType instanceof Rbool)
@@ -206,10 +206,9 @@ public class Extended extends Statement {
 				TypeRange tr = (TypeRange) baseType;
 				r = tr.zero();
 			}
-			
+
 		}
-			
-		
+
 		return r;
 	}
 

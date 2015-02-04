@@ -190,4 +190,12 @@ public class Operand extends ArithExpr {
 		return true;
 	}
 
+	public boolean isBasic() {
+		return Expr.isBasic(e);
+	}
+
+	@Override
+	public Expr simplify() {
+		return e.simplify();
+	}
 }

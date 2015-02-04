@@ -1,6 +1,6 @@
-int:N=7;
 
-set of int: S = {3,14,32};
+%set of int: S = {3,14,32};
+set of int: S = {4};
 enum op = {add , subst , multi , divi};
 enum tree = { leaf(int), node(op, tree, tree)};
 var tree(4):t;

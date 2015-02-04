@@ -134,6 +134,7 @@ public class RbracketExpr extends Expr {
 	@Override
 	public Expr simplify() {
 		Expr r = this;
+		
 		Expr es = e.simplify();
 		if (isBasic(es))
 			r = es;

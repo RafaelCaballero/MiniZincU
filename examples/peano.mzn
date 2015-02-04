@@ -1,4 +1,5 @@
 
+int:N=3;
 enum nat = {zero ,s(nat)};
 
 
@@ -11,15 +12,15 @@ case a of
            endcase);
 endcase;
 
-var nat(2):t;
-var nat(2):s;
+var nat(N):t;
+var nat(N):s;
 
 constraint lessThanOrEqualTo(t,s);
 
-
 solve satisfy;
 
-output(["t<=s with \nt: ",show(t),"\n", 
-        "s: ",show(s),"\n"]);
+ output(["t<=s with \nt: ",show(t),"\n", 
+         "s: ",show(s),"\n"]);
+%utput([".."]);
 
 

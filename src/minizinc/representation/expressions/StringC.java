@@ -3,6 +3,8 @@
  */
 package minizinc.representation.expressions;
 
+import java.util.List;
+
 import transformation.ExprTransformer;
 import minizinc.antlr4.MiniZincGrammarParser.StringExprContext;
 import minizinc.representation.Parsing;
@@ -98,6 +100,40 @@ public class StringC extends Expr {
 	public void subexpressions(ExprTransformer t) {
 		// nothing to do
 
+	}
+	
+	/**
+	 * Concat consecutive string constants  in the list
+	 * @param es
+	 * @return The list possibly modified, and true
+	 */
+	public static boolean concat(List<Expr> es) {
+		boolean r=false;
+		boolean changed=false;
+		do {
+			changed=false; // true if there is any change
+			int i=0;
+			while (i<es.size()-1){
+				if (es.get(i) instanceof StringC && es.get(i+1) instanceof StringC) {
+					// es =  es[i]+es[i+1];
+					String ei = ((StringC)es.get(i)).get();
+					String  eiplus = ((StringC)es.get(i+1)).get();
+					if (ei.endsWith("\""))
+						ei = ei.substring(0, ei.length()-1);
+					if (eiplus.startsWith("\""))
+					    eiplus = eiplus.substring(1,eiplus.length());
+					String concat = ei+eiplus;
+					es.set(i, new StringC(concat));
+					// remove es[u+1]
+					es.remove(i+1);
+					r=changed=true;
+				} else 
+					i++;
+			
+			}
+		} while (changed);	
+
+		return r;
 	}
 
 }

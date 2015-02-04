@@ -19,9 +19,10 @@ public class TransDataModel extends SplitModel {
 	 */
 
 	public TransDataModel(SplitModel sp) {
-		super(sp.getData(), sp.getConstraint(), sp.getDecl(), sp.getExtended(),
-				sp.getFunction(), sp.getInclude(), sp.getInit(),
-				sp.getOutput(), sp.getPredicate(), sp.getSolve());
+		super(sp.getComment(), sp.getData(), sp.getConstraint(), sp.getDecl(),
+				sp.getExtended(), sp.getFunction(), sp.getInclude(), sp
+						.getInit(), sp.getOutput(), sp.getPredicate(), sp
+						.getSolve());
 		transformData();
 	}
 
