@@ -122,19 +122,35 @@ public abstract class Expr implements MiniZincRepresentation, SubExpressions,
 	 * @return
 	 */
 	public static boolean isBasic(Expr ep) {
-		boolean r = (ep instanceof IntC || ep instanceof PredOrUnionExpr
+		boolean r = 
+				ep instanceof IntC || ep instanceof PredOrUnionExpr
 				|| ep instanceof StringC || ep instanceof ID
-				|| ep instanceof BoolC || ep instanceof FloatC || (ep instanceof Operand && ((Operand) ep)
-				.isBasic()));
+				|| ep instanceof BoolC || ep instanceof FloatC 
+				|| (ep instanceof Operand && ((Operand) ep).isBasic()) 
+				|| ((ep instanceof MinusArithExpr) && Expr.isBasic( ((MinusArithExpr)ep).getExpr())) ;
 		return r;
 	}
 
+	/**
+	 * Unwraps expressios eliminating round brackets and also extracting expressions inside operands
+	 * @param e
+	 * @return
+	 */
 	public static Expr unwrap(Expr e) {
 		Expr r = e;
-		if (e instanceof RbracketExpr)
-			r = ((RbracketExpr) e).getExprInside();
-		else if (e instanceof Operand)
-			r = ((Operand) e).getExpr();
+		boolean unwrapped;
+		do {
+			unwrapped = false;
+			if (r instanceof RbracketExpr){
+				r = ((RbracketExpr) r).getExprInside();
+				unwrapped = true;
+			}
+			else if (r instanceof Operand) {
+				r = ((Operand) r).getExpr();
+				unwrapped = true;
+			}
+		} while(unwrapped);
+		
 		return r;
 	}
 }

@@ -42,8 +42,17 @@ public class Constraint extends Statement {
 		return "constraint " + t.print();
 	}
 
-	public void simplify() {
-		t = t.simplify();
+	public Boolean simplify() {
+		Boolean r = false;
+		Expr t2= t.simplify();
+		r = !t2.equals(t);
+		// modify the expression if it has been simplified
+		if (r)
+			t=t2;
+		
+		return r;
+		
+		
 	}
 
 	/**

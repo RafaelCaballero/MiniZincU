@@ -1,0 +1,14 @@
+enum tree = { leaf(int), node(int, tree, tree)};
+
+predicate root(var tree:t, var int:r) = 
+case t of
+leaf(x) --> r=x;
+node(o,t1,t2) --> r=o;
+endcase;
+
+predicate heap(var tree:t) =
+case t of
+leaf(x) --> true;
+node(o,t1,t2) --> l>0 /\ compl(t1,l-1) /\ compl(t2,l-1);
+endcase;
+

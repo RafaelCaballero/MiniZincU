@@ -105,4 +105,7 @@ public class MinusArithExpr extends ArithExpr {
 
 	}
 
+	public Expr getExpr() {
+		return expr;
+	}
 }

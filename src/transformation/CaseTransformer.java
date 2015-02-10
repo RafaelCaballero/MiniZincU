@@ -78,9 +78,14 @@ public class CaseTransformer implements ExprTransformer {
 						ok = false;
 				}
 
-				if (ok)
-					// the result is the and of all the transformed expressions
+				if (ok) {
+
+					// the result is the or of all the transformed expressions					
 					r = new Or(le);
+					// eliminate the union data in the body 	
+					DataExprTransformer det = new DataExprTransformer(m);
+					r.applyTransformerList2(det, le);
+				}
 			}
 		}
 		// System.out.println(r.print());

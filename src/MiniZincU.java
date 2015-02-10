@@ -47,9 +47,9 @@ public class MiniZincU {
 		TransRecursiveModel trec = new TransRecursiveModel(tdexp);
 
 		// eliminate again expressions including data
-		TransDataExprModel tdexp2 = new TransDataExprModel(trec);
+//		TransDataExprModel tdexp2 = new TransDataExprModel(trec);
 
-		TransShowModel ts = new TransShowModel(tdexp2);
+		TransShowModel ts = new TransShowModel(trec);
 		// System.out.println(ts.print());
 
 		// Transform union variables
